@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-light py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="display-3 text-primary">
+                <img src="{{url_for('static', filename='bert.png')}}" width="200" />
+                <span class="align-middle">Adapter Hub</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mb-4">
+    <div class="row justify-content-center">
+        <a class="col-2 mx-3 btn btn-outline-primary"
+           href="{{url_for('main.explore_tasks')}}">
+            <div class="h1">
+                <i class="fas fa-binoculars"></i>
+            </div>
+            <p>Explore</p>
+        </a>
+        <a class="col-2 mx-3 btn btn-outline-primary"
+           href="{{ config.DOCUMENTATION_URL }}">
+            <div class="h1">
+                <i class="fas fa-book"></i>
+            </div>
+            <p>Docs</p>
+        </a>
+        <a class="col-2 mx-3 btn btn-outline-primary"
+           href="https://github.com/adapter-hub">
+            <div class="h1">
+                <i class="fas fa-scroll"></i>
+            </div>
+            <p>Paper</p>
+        </a>
+        <a class="col-2 mx-3 btn btn-outline-primary"
+           href="https://github.com/adapter-hub">
+            <div class="h1">
+                <i class="fab fa-github"></i>
+            </div>
+            <p>GitHub</p>
+        </a>
+    </div>
+</div>
+<hr>
+<section>
+    <h2>What is it about?</h2>
+    Adapter Hub is a central repository for pre-trained adapter modules for language models.
+    TODO add some more content...
+</section>
+
+<section>
+    <h2>How do I get started?</h2>
+    Read our <a href="{{ config.DOCUMENTATION_URL }}">Documentation</a>!
+    (probably some really short quick start to be added...)
+</section>
+
+<section>
+    <h2>Cite us</h2>
+    <pre class="p-4 bg-light">
+@article{TheDemoPaper,
+    title={TBD},
+    author={Ernie & Bert},
+    journal={ArXiv},
+    year={2020}
+}</pre>
+</section>
+
+{% endblock %}

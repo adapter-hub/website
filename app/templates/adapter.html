@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% set active_page = "explore" %}
+{% set specifier = adapter['task']+"/"+adapter['subtask']+"@"+adapter['groupname'] %}
+
+{% block title %}{{ adapter['groupname']+"/"+adapter['filename'] }}{% endblock %}
+{% block content %}
+<ol class="breadcrumb bg-transparent px-0 py-3">
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_tasks')}}">Explore</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_tasks', task_type=adapter['type'])}}">{{ adapter.adapter_type.displayname }}</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_adapters', task=adapter['task'], subtask=adapter['subtask'])}}">{{ adapter.subtask_ref }}</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_adapters', task=adapter['task'], subtask=adapter['subtask'], model_type=adapter['model_type'])}}">{{ adapter['model_type'].title() }}</a>
+    </li>
+    <li class="breadcrumb-item">
+        {{ adapter }}
+    </li>
+</ol>
+<h3 class="text-secondary">{{ adapter['groupname']+"/" }}</h3>
+<h1 class="text-secondary mt-0 mb-5">{{ adapter['filename'] }}</h1>
+<section>
+    <b>
+        <pre class="p-4 bg-light">
+model = AutoModel.from_pretrained("{{ adapter.model_name }}")
+model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config="{{ adapter['config'] }}")</pre>
+    </b>
+    <i class="btn-clipboard"></i
+</section>
+<section>
+    <h4 class="my-4">Description</h4>
+    {{ adapter['description'] }}
+</section>
+<section>
+    <h4 class="my-4">Properties</h4>
+    <table class="table table-borderless">
+        <tr><td class="text-muted">Model type</td><td>{{ adapter['model_type'].title() }}; hidden size: {{adapter['hidden_size']}}</td></tr>
+        <tr><td class="text-muted">Task</td><td>{{ adapter['task'] }}</td></tr>
+        <tr><td class="text-muted">Subtask</td><td>{{ adapter['subtask'] }}</td></tr>
+        <tr><td class="text-muted">Author</td><td>{{ adapter['author'] }} ({{adapter['email']}})</td></tr>
+        <tr><td class="text-muted">Web</td><td><a href="{{ adapter['url'] }}">{{ adapter['url'] }}</a></td></tr>
+        <tr><td class="text-muted">Architecture</td><td>{{ adapter['config'] }}</td></tr>
+        <tr><td class="text-muted">ID</td><td>{{ adapter['id'] }}</td></tr>
+    </table>
+</section>
+<section>
+    <h4 class="my-4">Versions</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Identifier</th>
+                <th scope="row">URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in adapter.files %}
+            <tr class="{{ 'table-active' if file['version'] == adapter['default_version'] else '' }}">
+                <th scope="row">{{ file['version'] }}</th>
+                <td><a href="{{ file['url'] }}">{{ file['url'] }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    (Default version is highlighted.)
+</section>
+<section>
+    <h4 class="my-4">Citation</h4>
+    <pre class="p-4 bg-light">{{ adapter['citation'] }}</pre>
+</section>
+{% endblock %}

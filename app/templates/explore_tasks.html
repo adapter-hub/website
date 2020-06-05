@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% set active_page = "explore" %}
+
+{% block content %}
+<ol class="breadcrumb bg-transparent px-0 py-3 mb-0">
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_tasks')}}">Explore</a>
+    </li>
+</ol>
+<div class="display-4 text-secondary mt-0 mb-5">
+    {% block title %} Explore Adapters {% endblock %}
+</div>
+    <section class="mb-2">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="{{ 'nav-link active' if not task_type else 'nav-link' }}"
+                   href="{{url_for('main.explore_tasks')}}">
+                    All
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="{{ 'nav-link active' if task_type == 'text_task' else 'nav-link' }}"
+                   href="{{url_for('main.explore_tasks', task_type='text_task')}}">
+                    Task
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="{{ 'nav-link active' if task_type == 'text_lang' else 'nav-link' }}"
+                   href="{{url_for('main.explore_tasks', task_type='text_lang')}}">
+                    Language
+                </a>
+            </li>
+        </ul>
+    </section>
+    {% for task in tasks %}
+    <h2 class="text-muted">{{ task.displayname }}</h2>
+    <p>
+        {{ task.description }}
+    </p>
+    <div class="row mt-3">
+        {% for subtask in subtasks[task.task] %}
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <a href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}" class="card-link">
+                            <span class="text-muted">{{ subtask['task'] }}/</span>{{ subtask['displayname'] or subtask['subtask'] }}
+                        </a>
+                    </h5>
+                </div>
+                <div class="card-body py-3">
+                    <p class="card-text">
+                        {{ subtask.description if subtask.description }}
+                        {% if subtask.url %}
+                        &nbsp; <a href="{{ subtask.url }}">{{ subtask.url }}</a>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}

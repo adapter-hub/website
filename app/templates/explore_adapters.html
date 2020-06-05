@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% set active_page = "explore" %}
+
+{% block content %}
+<ol class="breadcrumb bg-transparent px-0 py-3 mb-0">
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_tasks')}}">Explore</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_tasks', task_type=subtask.task_type)}}">{{ subtask.task_type_ref.displayname }}</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_adapters', task=subtask.task, subtask=subtask.subtask)}}">{{ subtask }}</a>
+    </li>
+    {% if model_type %}
+    <li class="breadcrumb-item">
+        <a href="{{url_for('main.explore_adapters', task=subtask.task, subtask=subtask.subtask, model_type=model_type)}}">{{ model_type.title() }}</a>
+    </li>
+    {% endif %}
+</ol>
+<div class="display-4 text-secondary mt-0 mb-5">
+    {% block title %} '{{subtask}}' Adapters {% endblock %}
+</div>
+    <section class="mb-2">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="{{ 'nav-link active' if not model_type else 'nav-link' }}"
+                   href="{{url_for('main.explore_adapters', task=task, subtask=subtask)}}">
+                    All
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="{{ 'nav-link active' if model_type == 'bert' else 'nav-link' }}"
+                   href="{{url_for('main.explore_adapters', task=task, subtask=subtask, model_type='bert')}}">
+                    BERT
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="{{ 'nav-link active' if model_type == 'roberta' else 'nav-link' }}"
+                   href="{{url_for('main.explore_adapters', task=task, subtask=subtask, model_type='roberta')}}">
+                    RoBERTa
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section class="mb-2">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="{{ 'nav-link active' if not model else 'nav-link' }}"
+                   href="{{url_for('main.explore_adapters', task=task, subtask=subtask, model_type=model_type)}}">
+                    All
+                </a>
+            </li>
+            {% if model_type %}
+            {% for m in all_models %}
+            <li class="nav-item">
+                <a class="{{ 'nav-link active' if m.name == model else 'nav-link' }}"
+                   href="{{url_for('main.explore_adapters', task=task, subtask=subtask, model_type=model_type, model=m.name)}}">
+                    {{ m.name }}
+                </a>
+            </li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </section>
+    <div class="row mt-3">
+        {% for item in items %}
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <a href="{{ url_for('main.adapter_details', groupname=item['groupname'], filename=item['filename']) }}" class="card-link">
+                            {{ item['task']+"/"+item['subtask'] }}<span class="text-muted">@{{ item['groupname'] }}</span>
+                        </a>
+                    </h5>
+                    <h6 class="card-subtitle text-muted">
+                        Model: {{ item['model_type'].title() }}; {{ item['hidden_size'] }}
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                        Type: {{ item.adapter_type['displayname'].title() }}
+                    </h6>
+                </div>
+                <div class="card-body py-3">
+                    <p class="mb-2">
+                        <span class="badge badge-primary">{{ item['config'] }}</span>
+                        <span class="badge badge-primary">v. {{ item['default_version'] }}</span>
+                        <span class="badge badge-primary">{{ item['upload_date'].strftime('%Y-%m-%d %H:%m') }}</span>
+                        <span class="badge badge-primary">{{ item.files|length }} Version(s)</span>
+                    </p>
+                    <p class="card-text">
+                        {{ item['description'][:180] }}{{'...' if item['description']|length > 180 }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

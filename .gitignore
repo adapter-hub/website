@@ -1,0 +1,16 @@
+# Python
+__pycache__
+/env/
+
+# VSCode
+.vscode
+*.code-workspace
+
+# Static
+.webassets-cache/
+node_modules/
+app/**/gen/
+/build
+
+# Other
+*.db

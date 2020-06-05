@@ -1,0 +1,17 @@
+{
+  "name": "adapter-hub-web",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "codecopy": "^1.0.2",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

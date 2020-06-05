@@ -1,0 +1,24 @@
+
+$primary:       #39B3C6;
+// $secondary:     $gray-600;
+// $success:       $green;
+// $info:          $cyan;
+// $warning:       $yellow;
+// $danger:        $red;
+$light:         #f0f2f5;
+// $dark:          #495057;
+
+$enable-gradients: true;
+
+$breadcrumb-divider: quote(">");
+
+h1 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+h2 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+@import "node_modules/bootstrap/scss/bootstrap";
