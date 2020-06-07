@@ -5,7 +5,6 @@ from .models import Architecture, Task, Subtask, AdapterType, Adapter, AdapterFi
 basedir = os.getcwd()
 
 class Config(object):
-    REPO_NAME = "adapter-hub-web"
     DOCUMENTATION_URL = "http://adapter-hub.webredirect.org/docs/"
 
     ### db
@@ -19,7 +18,7 @@ class Config(object):
 
     ### frozen flask
     # FREEZER_BASE_URL = "http://127.0.0.1:5000/"
-    FREEZER_BASE_URL="http://localhost/{}/".format(REPO_NAME)
+    FREEZER_BASE_URL="http://localhost/website/"
     FREEZER_DESTINATION = os.path.join(basedir, 'build')
     # FREEZER_RELATIVE_URLS = True
     FREEZER_STATIC_IGNORE = [
