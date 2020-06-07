@@ -82,11 +82,12 @@ $breadcrumb-divider: quote(">");
   margin-top:40px;
 
   a {
-    background-color: $secondary;
+    //background-color: $secondary;
+    background-color: darken($primary, 10%);
     color: #fff;
 
     &:hover {
-      background-color: darken($secondary, 10%);
+      background-color: darken($primary, 20%);
     }
   }
 
