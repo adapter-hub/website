@@ -18,7 +18,7 @@ class Config(object):
 
     ### frozen flask
     # FREEZER_BASE_URL = "http://127.0.0.1:5000/"
-    FREEZER_BASE_URL="http://localhost/website/"
+    FREEZER_BASE_URL="http://adapterhub.ml/"
     FREEZER_DESTINATION = os.path.join(basedir, 'build')
     # FREEZER_RELATIVE_URLS = True
     FREEZER_STATIC_IGNORE = [
