@@ -24,8 +24,8 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container">
+        <img src="{{ url_for('static', filename='bert.png') }}" width="28" class="bert"/>
         <a class="navbar-brand p-0" href="{{ url_for('main.index') }}">
-            <img src="{{ url_for('static', filename='bert.png') }}" width="45"/>
             AdapterHub
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
