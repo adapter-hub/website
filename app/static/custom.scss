@@ -92,6 +92,10 @@ $breadcrumb-divider: quote(">");
     }
   }
 
+  .form-group {
+    margin-bottom: 0;
+  }
+
   .badge {
     opacity: 0.65;
     padding: 5px 10px;
@@ -111,5 +115,17 @@ $breadcrumb-divider: quote(">");
     &:hover {
       background-color: darken($primary, 10%);
     }
+  }
+}
+
+#TypeToSearch {
+  margin-top: 7px;
+
+  background-color: lighten($primary, 10%);
+  border: 1px solid lighten($primary, 20%);
+  color: white;
+
+  &:focus {
+    border: 1px solid lighten($primary, 50%);
   }
 }

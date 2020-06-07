@@ -2,15 +2,19 @@
 {% set active_page = "explore" %}
 
 {% block header %}
-    <h1>{% block title %} Explore Adapters {% endblock %}</h1>
+    <div class="form-group row">
+        <label for="TypeToSearch" class="col-sm-3 col-form-label">
+        <h1>
+            {% block title %} Explore {% endblock %}
+        </h1>
+        </label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control form-control-lg" id="TypeToSearch" placeholder="Type to search...">
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-<ol class="breadcrumb bg-transparent px-0 py-3 mb-0">
-    <li class="breadcrumb-item">
-        <a href="{{url_for('main.explore_tasks')}}">Explore</a>
-    </li>
-</ol>
     <section class="mb-2">
         <ul class="nav nav-pills">
             <li class="nav-item">
