@@ -1,8 +1,9 @@
 // Global colors
 // --------
+//
 $primary: #39B3C6;
-$secondary: #FF9F46;
-// $secondary:     $gray-600;
+//$secondary: #FF9F46;
+$secondary: darken(#FF9F46, 20%);
 // $success:       $green;
 // $info:          $cyan;
 // $warning:       $yellow;
@@ -10,37 +11,53 @@ $secondary: #FF9F46;
 $light: #f0f2f5;
 //$dark:          #495057;
 
+
 // Navbar
 // --------
+//
 $navbar-light-color: rgba(#000, .65);
 $navbar-light-hover-color: rgba(#000, .8);
-$navbar-light-active-color: rgba(#000, 1);
+//$navbar-light-active-color: rgba(#000, 1);
+$navbar-light-active-color: $secondary;
 //$navbar-light-disabled-color:       rgba($black, .3) !default;
 
 
 // Global COLORS
 // --------
+//
 $enable-gradients: true;
 $breadcrumb-divider: quote(">");
 
 
+// Bootstrap import
+// --------
+//
+@import "node_modules/bootstrap/scss/bootstrap";
+
+
 // Custom styles
 // --------
-
-.navbar img.bert {
-  margin-right: 15px;
-}
-
-.nav-item {
-  margin-left: 15px;
-
-  &.nav-secondary {
-    margin-left: 0;
+//
+.navbar.navbar-light {
+  img.bert {
+    margin-right: 15px;
   }
 
-  &.separator {
-    margin: 5px 15px;
-    border-right: 1px solid darken(#fff, 25%);
+  .navbar-brand {
+    color: #000;
+  }
+
+  .nav-item {
+    margin-left: 15px;
+
+    &.nav-secondary {
+      margin-left: 0;
+    }
+
+    &.separator {
+      margin: 5px 15px;
+      border-right: 1px solid darken(#fff, 25%);
+    }
   }
 }
 
@@ -62,13 +79,12 @@ $breadcrumb-divider: quote(">");
 
   h1 {
     color: #fff;
-
     margin: 0;
   }
 
   p.highlight-text {
     color: rgba(#fff, 0.65);
-    font-size: 1.2em;
+    font-size: 1.25em;
 
     .highlight {
       color: #fff;
@@ -97,6 +113,3 @@ $breadcrumb-divider: quote(">");
     }
   }
 }
-
-
-@import "node_modules/bootstrap/scss/bootstrap";
