@@ -1,24 +1,95 @@
-
-$primary:       #39B3C6;
+// Global colors
+// --------
+$primary: #39B3C6;
+$secondary: #FF9F46;
 // $secondary:     $gray-600;
 // $success:       $green;
 // $info:          $cyan;
 // $warning:       $yellow;
 // $danger:        $red;
-$light:         #f0f2f5;
-// $dark:          #495057;
+$light: #f0f2f5;
+//$dark:          #495057;
 
+// Navbar
+// --------
+$navbar-light-color: rgba(#000, .65);
+$navbar-light-hover-color: rgba(#000, .8);
+$navbar-light-active-color: rgba(#000, 1);
+//$navbar-light-disabled-color:       rgba($black, .3) !default;
+
+
+// Global COLORS
+// --------
 $enable-gradients: true;
-
 $breadcrumb-divider: quote(">");
 
-h1 {
-    margin-top: 1.5rem !important;
-    margin-bottom: 1.5rem !important;
+
+// Custom styles
+// --------
+
+.nav-item {
+  margin-left: 15px;
+
+  &.nav-secondary {
+    margin-left: 0;
+  }
+
+  &.separator {
+    margin: 5px 15px;
+    border-right: 1px solid darken(#fff, 25%);
+  }
 }
-h2 {
-    margin-top: 1.5rem !important;
-    margin-bottom: 1.5rem !important;
+
+.container {
+  h1 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+#Header {
+  background-color: $primary;
+  padding: 40px 0;
+
+  h1 {
+    color: #fff;
+
+    margin: 0;
+  }
+
+  p.highlight-text {
+    color: rgba(#fff, 0.65);
+    font-size: 1.2em;
+
+    .highlight {
+      color: #fff;
+      font-size: 1.5em;
+    }
+  }
+
+  .badge {
+    opacity: 0.65;
+    padding: 5px 10px;
+  }
+}
+
+#IndexButtonRow {
+  margin-top:40px;
+
+  a {
+    background-color: $secondary;
+    color: #fff;
+
+    &:hover {
+      background-color: darken($secondary, 10%);
+    }
+  }
+
 }
 
 @import "node_modules/bootstrap/scss/bootstrap";

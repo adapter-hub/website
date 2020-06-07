@@ -2,71 +2,154 @@
 
 {% block title %} Home {% endblock %}
 
-{% block content %}
-<div class="jumbotron jumbotron-fluid bg-light py-4">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="display-3 text-primary">
-                <img src="{{url_for('static', filename='bert.png')}}" width="200" />
-                <span class="align-middle">Adapter Hub</span>
+{% block header %}
+    <div class="row">
+        <div class="text-light col-sm-8">
+            <p class="highlight-text">
+                <span class="highlight">AdapterHub</span>
+                is a <span class="highlight">central repository</span><br>
+                for pre-trained <span class="highlight">adapter modules</span> for language models.
+            </p>
+
+            <div class="row" id="IndexButtonRow">
+                <a class="col-2 mx-1 btn"
+                   href="{{ url_for('main.explore_tasks') }}">
+                    <div class="h3">
+                        <i class="fas fa-binoculars"></i>
+                    </div>
+                    Explore
+                </a>
+                <a class="col-2 mx-1 btn"
+                   href="{{ url_for('main.upload') }}">
+                    <div class="h3">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    Upload
+                </a>
+                <a class="col-2 mx-1 btn"
+                   href="{{ config.DOCUMENTATION_URL }}">
+                    <div class="h3">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    Docs
+                </a>
+                <a class="col-2 mx-1 btn"
+                   href="https://github.com/adapter-hub">
+                    <div class="h3">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    GitHub
+                </a>
+                <a class="col-2 mx-1 btn"
+                   href="https://github.com/adapter-hub">
+                    <div class="h3">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    Paper
+                </a>
             </div>
+
+{#            <div class="row" id="IndexButtonRow">#}
+{#                <a class="col-2 mx-1 btn"#}
+{#                   href="{{ url_for('main.explore_tasks') }}">#}
+{#                    <div class="h3">#}
+{#                        <i class="fas fa-binoculars"></i>#}
+{#                    </div>#}
+{#                    Explore#}
+{#                </a>#}
+{#                <a class="col-2 mx-1 btn"#}
+{#                   href="{{ url_for('main.upload') }}">#}
+{#                    <div class="h3">#}
+{#                        <i class="fas fa-upload"></i>#}
+{#                    </div>#}
+{#                    Upload#}
+{#                </a>#}
+{#                <a class="col-2 mx-1 btn"#}
+{#                   href="{{ config.DOCUMENTATION_URL }}">#}
+{#                    <div class="h3">#}
+{#                        <i class="fas fa-book"></i>#}
+{#                    </div>#}
+{#                    Docs#}
+{#                </a>#}
+{#                <a class="col-2 mx-1 btn"#}
+{#                   href="https://github.com/adapter-hub">#}
+{#                    <div class="h3">#}
+{#                        <i class="fab fa-github"></i>#}
+{#                    </div>#}
+{#                    GitHub#}
+{#                </a>#}
+{#                <a class="col-2 mx-1 btn"#}
+{#                   href="https://github.com/adapter-hub">#}
+{#                    <div class="h3">#}
+{#                        <i class="fas fa-scroll"></i>#}
+{#                    </div>#}
+{#                    Paper#}
+{#                </a>#}
+{#            </div>#}
+        </div>
+        <div class="ml-auto">
+            <img src="{{ url_for('static', filename='bert.png') }}" width="200"/>
         </div>
     </div>
-</div>
-<div class="container-fluid mb-4">
-    <div class="row justify-content-center">
-        <a class="col-2 mx-3 btn btn-outline-primary"
-           href="{{url_for('main.explore_tasks')}}">
-            <div class="h1">
-                <i class="fas fa-binoculars"></i>
+{% endblock %}
+
+{% block content %}
+
+    <section>
+    <h2>Features</h2>
+
+    <div class="row">
+        <div class="card col-sm-3 mx-2">
+            <div class="card-body">
+                <h5 class="card-title">Text, language, and vision adapters</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
             </div>
-            <p>Explore</p>
-        </a>
-        <a class="col-2 mx-3 btn btn-outline-primary"
-           href="{{ config.DOCUMENTATION_URL }}">
-            <div class="h1">
-                <i class="fas fa-book"></i>
+        </div>
+
+        <div class="card col-sm-3 mx-2">
+            <div class="card-body">
+                <h5 class="card-title">Extensible</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
             </div>
-            <p>Docs</p>
-        </a>
-        <a class="col-2 mx-3 btn btn-outline-primary"
-           href="https://github.com/adapter-hub">
-            <div class="h1">
-                <i class="fas fa-scroll"></i>
+        </div>
+
+        <div class="card col-sm-3 mx-2">
+            <div class="card-body">
+                <h5 class="card-title">Built on HuggingFace Transformers</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
             </div>
-            <p>Paper</p>
-        </a>
-        <a class="col-2 mx-3 btn btn-outline-primary"
-           href="https://github.com/adapter-hub">
-            <div class="h1">
-                <i class="fab fa-github"></i>
-            </div>
-            <p>GitHub</p>
-        </a>
+        </div>
+
     </div>
-</div>
-<hr>
-<section>
-    <h2>What is it about?</h2>
-    Adapter Hub is a central repository for pre-trained adapter modules for language models.
-    TODO add some more content...
-</section>
 
-<section>
-    <h2>How do I get started?</h2>
-    Read our <a href="{{ config.DOCUMENTATION_URL }}">Documentation</a>!
-    (probably some really short quick start to be added...)
-</section>
+    </section>
 
-<section>
-    <h2>Cite us</h2>
-    <pre class="p-4 bg-light">
+    <section>
+        <h2>Quickstart</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+            amet.
+        </p>
+        <p>
+            For a detailed user-guide please see our <a href="{{ config.DOCUMENTATION_URL }}">Documentation</a>!
+        </p>
+    </section>
+
+    <section>
+        <h2>Cite our paper!</h2>
+        <pre class="p-4 bg-light">
 @article{TheDemoPaper,
     title={TBD},
     author={Ernie & Bert},
     journal={ArXiv},
     year={2020}
 }</pre>
-</section>
+    </section>
 
 {% endblock %}

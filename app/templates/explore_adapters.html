@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% set active_page = "explore" %}
 
+{% block header %}
+    <h1>{% block title %} '{{subtask}}' Adapters {% endblock %}</h1>
+{% endblock %}
+
 {% block content %}
 <ol class="breadcrumb bg-transparent px-0 py-3 mb-0">
     <li class="breadcrumb-item">
@@ -18,9 +22,6 @@
     </li>
     {% endif %}
 </ol>
-<div class="display-4 text-secondary mt-0 mb-5">
-    {% block title %} '{{subtask}}' Adapters {% endblock %}
-</div>
     <section class="mb-2">
         <ul class="nav nav-pills">
             <li class="nav-item">

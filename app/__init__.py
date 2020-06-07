@@ -24,5 +24,4 @@ def create_app():
     def make_shell_context():
         return {'db': db, 'Adapter': Adapter}
 
-
     return app

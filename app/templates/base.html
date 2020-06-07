@@ -7,37 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <!-- CSS -->
     {% assets "css_all" %}
-    <link rel="stylesheet" href="{{ ASSET_URL }}">
+        <link rel="stylesheet" href="{{ ASSET_URL }}">
     {% endassets %}
     <!-- JS -->
     {% assets "js_all" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
 
-    <title>{% block title %} {% endblock %} - Adapter Hub</title>
+    <title>{% block title %} {% endblock %} - AdapterHub</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-primary">
-        <a class="navbar-brand p-0" href="{{ url_for('main.index')}}">
-            <img src="{{url_for('static', filename='bert.png')}}" width="45"/>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="{{ url_for('main.index') }}">
+            <img src="{{ url_for('static', filename='bert.png') }}" width="45"/>
+            AdapterHub
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="{{ 'nav-item active' if active_page == 'explore' else 'nav-item' }}">
-                    <a class="nav-link" href="{{url_for('main.explore_tasks')}}">
+                    <a class="nav-link" href="{{ url_for('main.explore_tasks') }}">
                         <i class="fas fa-binoculars"></i>&nbsp; Explore
                     </a>
                 </li>
                 <li class="{{ 'nav-item active' if active_page == 'upload' else 'nav-item' }}">
-                    <a class="nav-link" href="{{url_for('main.upload')}}">
+                    <a class="nav-link" href="{{ url_for('main.upload') }}">
                         <i class="fas fa-upload"></i>&nbsp; Upload
                     </a>
                 </li>
@@ -46,32 +49,40 @@
                         <i class="fas fa-book"></i>&nbsp; Docs
                     </a>
                 </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item justify-content-end">
+                <li class="nav-item separator">
+                </li>
+                <li class="nav-item nav-secondary justify-content-end">
                     <a class="nav-link" href="https://github.com/adapter-hub">
-                        <i class="fab fa-github"></i>&nbsp; GitHub
+                        <i class="fab fa-github"></i>&nbsp;
                     </a>
                 </li>
-                <li class="nav-item justify-content-end">
+                <li class="nav-item nav-secondary justify-content-end">
                     <a class="nav-link" href="https://twitter.com/adapterhub">
-                        <i class="fab fa-twitter"></i>&nbsp; Twitter
+                        <i class="fab fa-twitter"></i>&nbsp;
                     </a>
                 </li>
             </ul>
         </div>
-    </nav>
-    <div class="container">
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-danger">{{ message }}</div>
-        {% endfor %}
-        {% block content %} {% endblock %}
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function (event) {
-            codecopy('pre') // your code tag selector!
-        })
-    </script>
+</nav>
+
+<div id="Header" class="jumbotron jumbotron-fluid">
+    <div class="container">
+        {% block header %} {% endblock %}
+    </div>
+</div>
+
+<div class="container">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+    {% block content %} {% endblock %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+    })
+</script>
 </body>
 <br>
 <br>
