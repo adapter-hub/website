@@ -48,44 +48,6 @@
                     Paper
                 </a>
             </div>
-
-{#            <div class="row" id="IndexButtonRow">#}
-{#                <a class="col-2 mx-1 btn"#}
-{#                   href="{{ url_for('main.explore_tasks') }}">#}
-{#                    <div class="h3">#}
-{#                        <i class="fas fa-binoculars"></i>#}
-{#                    </div>#}
-{#                    Explore#}
-{#                </a>#}
-{#                <a class="col-2 mx-1 btn"#}
-{#                   href="{{ url_for('main.upload') }}">#}
-{#                    <div class="h3">#}
-{#                        <i class="fas fa-upload"></i>#}
-{#                    </div>#}
-{#                    Upload#}
-{#                </a>#}
-{#                <a class="col-2 mx-1 btn"#}
-{#                   href="{{ config.DOCUMENTATION_URL }}">#}
-{#                    <div class="h3">#}
-{#                        <i class="fas fa-book"></i>#}
-{#                    </div>#}
-{#                    Docs#}
-{#                </a>#}
-{#                <a class="col-2 mx-1 btn"#}
-{#                   href="https://github.com/adapter-hub">#}
-{#                    <div class="h3">#}
-{#                        <i class="fab fa-github"></i>#}
-{#                    </div>#}
-{#                    GitHub#}
-{#                </a>#}
-{#                <a class="col-2 mx-1 btn"#}
-{#                   href="https://github.com/adapter-hub">#}
-{#                    <div class="h3">#}
-{#                        <i class="fas fa-scroll"></i>#}
-{#                    </div>#}
-{#                    Paper#}
-{#                </a>#}
-{#            </div>#}
         </div>
         <div class="ml-auto">
             <img src="{{ url_for('static', filename='bert.png') }}" width="200"/>
@@ -96,24 +58,22 @@
 {% block content %}
 
     <section>
-    <h2>Features</h2>
-
     <div class="row">
-        <div class="card col-sm-3 mx-2">
+        <div class="card col-sm mx-2 bg-light border-0">
             <div class="card-body">
                 <h5 class="card-title">Text, language, and vision adapters</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
             </div>
         </div>
 
-        <div class="card col-sm-3 mx-2">
+        <div class="card col-sm mx-2 bg-light border-0">
             <div class="card-body">
                 <h5 class="card-title">Extensible</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
             </div>
         </div>
 
-        <div class="card col-sm-3 mx-2">
+        <div class="card col-sm mx-2 bg-light border-0">
             <div class="card-body">
                 <h5 class="card-title">Built on HuggingFace Transformers</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>

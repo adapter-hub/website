@@ -83,14 +83,16 @@ $breadcrumb-divider: quote(">");
 
   a {
     //background-color: $secondary;
-    background-color: darken($primary, 10%);
+    //border: 1px solid darken($primary, 10%);
+    border: none;
+    background-color: darken($primary, 5%);
     color: #fff;
 
     &:hover {
-      background-color: darken($primary, 20%);
+      background-color: darken($primary, 10%);
     }
   }
-
 }
+
 
 @import "node_modules/bootstrap/scss/bootstrap";
