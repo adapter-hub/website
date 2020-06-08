@@ -11,7 +11,6 @@ pages = FlatPages()
 
 
 @bp.route('/')
-@bp.route('/index/')
 def index():
     return render_template('index.html', posts=[])
 

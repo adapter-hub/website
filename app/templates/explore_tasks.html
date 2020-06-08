@@ -38,7 +38,7 @@
         </ul>
     </section>
     {% for task in tasks %}
-    <h2 class="text-muted">{{ task.displayname }}</h2>
+    <h2 class="my-3 text-muted">{{ task.displayname }}</h2>
     <p>
         {{ task.description }}
     </p>
@@ -46,13 +46,11 @@
         {% for subtask in subtasks[task.task] %}
         <div class="col-lg-6 mb-4">
             <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        <a href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}" class="card-link">
-                            <span class="text-muted">{{ subtask['task'] }}/</span>{{ subtask['displayname'] or subtask['subtask'] }}
-                        </a>
-                    </h5>
-                </div>
+                <h5 class="card-header">
+                    <a href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}" class="card-link">
+                        {{ subtask['displayname'] or subtask['subtask'] }}
+                    </a>
+                </h5>
                 <div class="card-body py-3">
                     <p class="card-text">
                         {{ subtask.description if subtask.description }}

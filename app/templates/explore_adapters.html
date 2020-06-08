@@ -71,11 +71,11 @@
                 <div class="card-header">
                     <h5 class="card-title">
                         <a href="{{ url_for('main.adapter_details', groupname=item['groupname'], filename=item['filename']) }}" class="card-link">
-                            {{ item['task']+"/"+item['subtask'] }}<span class="text-muted">@{{ item['groupname'] }}</span>
+                            {{ item['task']+"/"+item['subtask'] }}@{{ item['groupname'] }}
                         </a>
                     </h5>
                     <h6 class="card-subtitle text-muted">
-                        Model: {{ item['model_type'].title() }}; {{ item['hidden_size'] }}
+                        Model: {{ item.model_name }}
                         &nbsp;&nbsp;|&nbsp;&nbsp;
                         Type: {{ item.adapter_type['displayname'].title() }}
                     </h6>
