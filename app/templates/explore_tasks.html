@@ -42,7 +42,7 @@
 {#            </p>#}
             <div class="row subtasks">
                 {% for subtask in subtasks[task.task] %}
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 subtask">
                         <a class="btn card bg-light border-0" href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -58,4 +58,38 @@
             </div>
         </div>
     {% endfor %}
+
+
+    <script>
+        // TODO refactor
+        $(function(){
+            $('#TypeToSearch').on('input', function() {
+                var q = $('#TypeToSearch').val().toLowerCase();
+
+                // hide subtasks
+                $('.subtask').each(function () {
+                    var visible = $(this).text().toLowerCase().includes(q);
+                    if(visible) {
+                        $(this).removeClass('d-none');
+                        $(this).addClass('d-block');
+                    } else {
+                        $(this).addClass('d-none');
+                        $(this).removeClass('d-block');
+                    }
+                })
+
+                // hide tasks if no subtasks are present
+                $('.task').each(function(){
+                    var visible = $(this).find('.subtask.d-block').length > 0;
+                    if(visible) {
+                        $(this).removeClass('d-none');
+                        $(this).addClass('d-block');
+                    } else {
+                        $(this).addClass('d-none');
+                        $(this).removeClass('d-block');
+                    }
+                });
+            })
+        });
+    </script>
 {% endblock %}
