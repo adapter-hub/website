@@ -68,8 +68,8 @@ $breadcrumb-divider: quote(">");
   }
 
   h2 {
-    margin-top: 2.5rem;
-    margin-bottom: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -83,8 +83,10 @@ $breadcrumb-divider: quote(">");
   }
 
   p.highlight-text {
+    margin-top:10px;
     color: rgba(#fff, 0.65);
     font-size: 1.25em;
+    line-height: 1.25;
 
     .highlight {
       color: #fff;
@@ -106,6 +108,8 @@ $breadcrumb-divider: quote(">");
   margin-top:40px;
 
   a {
+    width: 120px;
+
     //background-color: $secondary;
     //border: 1px solid darken($primary, 10%);
     border: none;
@@ -127,5 +131,26 @@ $breadcrumb-divider: quote(">");
 
   &:focus {
     border: 1px solid lighten($primary, 50%);
+  }
+}
+
+
+.task {
+  margin-bottom: 15px;
+
+  h3 {
+    i {
+      font-size: 0.8em;
+      margin-left: 5px;
+    }
+  }
+
+  .subtasks {
+    margin-top: 15px;
+
+    a {
+      text-align: left;
+      margin-bottom: 30px;
+    }
   }
 }
