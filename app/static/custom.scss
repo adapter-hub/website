@@ -144,17 +144,45 @@ $nav-pills-link-active-bg: $secondary;
 }
 
 #AdapterTypeNav {
-  border-left: 3px solid $secondary;
-  border-right: none;
-  background-color: $gray-200;
-  //padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  .navigation, .documentation {
+    padding-top: 7px;
+  }
 
   .navigation {
+    //padding-top: 3px;
+    p {
+      float: left;
+      font-weight: bold;
+      //color: rgba(255,255,255,0.8);
+      color: $white;
+      margin: 8px 8px 0 0;
+    }
 
+
+    .nav-item {
+      margin-right: 8px;
+      a.active {
+        background-color: $secondary;
+        color: $white;
+      }
+
+      a:not(.active) {
+        //background-color: rgba(255, 255, 255, 0.2);
+        //border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid $dark;
+        color: $white;
+      }
+    }
   }
 
   .documentation {
+    //padding-top: 12px;
 
+    color: lighten($primary, 40%);
   }
 }
 
