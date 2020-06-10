@@ -9,7 +9,7 @@ $secondary: darken(#FF9F46, 10%);
 // $warning:       $yellow;
 // $danger:        $red;
 $light: #f0f2f5;
-//$dark:          #495057;
+$dark:  darken($primary, 8%);;
 
 
 // Navbar
@@ -63,12 +63,21 @@ $breadcrumb-divider: quote(">");
 
 .container {
   h1 {
+    color: $dark;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    color: $dark;
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
 
-  h2 {
-    margin-top: 2rem;
+  h3 {
+    color: $dark;
+    margin-top: 1rem;
     margin-bottom: 1rem;
   }
 }
@@ -85,12 +94,12 @@ $breadcrumb-divider: quote(">");
   }
 
   p.highlight-text {
-    color: rgba(#fff, 0.65);
+    color: lighten($primary, 30%);
     font-size: 1.3em;
     line-height: 1.3;
 
     .highlight {
-      color: #fff;
+      color: lighten($primary, 49%);
       font-size: 1.6em;
     }
   }
@@ -114,11 +123,11 @@ $breadcrumb-divider: quote(">");
     //background-color: $secondary;
     //border: 1px solid darken($primary, 10%);
     border: none;
-    background-color: darken($primary, 5%);
+    background-color: $dark;
     color: #fff;
 
     &:hover {
-      background-color: darken($primary, 10%);
+      background-color: darken($dark, 10%);
     }
   }
 }
