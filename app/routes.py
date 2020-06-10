@@ -17,10 +17,10 @@ def index():
 
 @bp.route('/explore/')
 @bp.route('/explore/<task_type>/')
-def explore_tasks(task_type=None):
+def explore_tasks(task_type='text_task'):
     tasks = Task.query.filter(
         Task.task_type==task_type if task_type else True
-    ).all()
+    ).order_by(Task.displayname).all()
     subtask_query = Subtask.query.filter(
         Subtask.task_type==task_type if task_type else True
     ).order_by(Subtask.task)

@@ -15,14 +15,8 @@
 {% endblock %}
 
 {% block content %}
-    <section class="mb-2">
+    <section class="mb-4">
         <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="{{ 'nav-link active' if not task_type else 'nav-link' }}"
-                   href="{{url_for('main.explore_tasks')}}">
-                    All
-                </a>
-            </li>
             <li class="nav-item">
                 <a class="{{ 'nav-link active' if task_type == 'text_task' else 'nav-link' }}"
                    href="{{url_for('main.explore_tasks', task_type='text_task')}}">
@@ -53,10 +47,10 @@
                 </h5>
                 <div class="card-body py-3">
                     <p class="card-text">
-                        {{ subtask.description if subtask.description }}
-                        {% if subtask.url %}
-                        &nbsp; <a href="{{ subtask.url }}">{{ subtask.url }}</a>
-                        {% endif %}
+                        {{ subtask.description|truncate(200) if subtask.description }}
+                        <a href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}" >
+                            More
+                        </a>
                     </p>
                 </div>
             </div>

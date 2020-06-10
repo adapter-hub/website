@@ -2,7 +2,7 @@
 {% set active_page = "explore" %}
 
 {% block header %}
-    <h1>{% block title %} Adapters for {{subtask}} {% endblock %}</h1>
+    <h1>{% block title %} {{subtask.displayname or subtask}} Adapters {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -88,7 +88,7 @@
                         <span class="badge badge-primary">{{ item.files|length }} Version(s)</span>
                     </p>
                     <p class="card-text">
-                        {{ item['description'][:180] }}{{'...' if item['description']|length > 180 }}
+                        {{ item['description']|truncate(200) }}
                     </p>
                 </div>
             </div>
