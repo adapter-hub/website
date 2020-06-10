@@ -110,15 +110,22 @@ $nav-pills-link-active-bg: $secondary;
 
   a {
     width: 120px;
+    margin-right: 4px;
+
+    > div {
+      font-size: 1.3rem;
+      opacity: 0.8;
+    }
 
     //background-color: $secondary;
-    //border: 1px solid darken($primary, 10%);
-    border: none;
-    background-color: $dark;
+    //border: 1px solid $dark;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    //border: none;
+    //background-color: $dark;
     color: #fff;
 
     &:hover {
-      background-color: darken($dark, 10%);
+      background-color: $dark;
     }
   }
 }
@@ -164,17 +171,24 @@ $nav-pills-link-active-bg: $secondary;
 
 
     .nav-item {
-      margin-right: 8px;
+      margin-right: 4px;
       a.active {
         background-color: $secondary;
+        border: 1px solid $secondary;
         color: $white;
       }
 
       a:not(.active) {
         //background-color: rgba(255, 255, 255, 0.2);
         //border: 1px solid rgba(255, 255, 255, 0.2);
-        border: 1px solid $dark;
+        //border: 1px solid $dark;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+
         color: $white;
+
+        &:hover {
+          background-color: $dark;
+        }
       }
     }
   }
