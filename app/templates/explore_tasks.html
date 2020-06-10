@@ -3,12 +3,12 @@
 
 {% block header %}
     <div class="row" id="AdapterTypeNav">
-        <div class="col-sm-2">
+        <div class="col-lg-2">
             <h1>
                 {% block title %} Explore {% endblock %}
             </h1>
         </div>
-        <div class="col-sm-4">
+        <div class="col-lg-5 col-xl-4">
             <div class="navigation">
                 <p>Adapters for</p>
                 <ul class="nav nav-pills">
@@ -27,7 +27,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col documentation">
+        <div class="col-lg documentation">
             <i class="fa fa-book"></i>
             {% if task_type == 'text_task' %}
                 A task adapter is lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -52,7 +52,7 @@
             </h3>
             <div class="row subtasks">
                 {% for subtask in subtasks[task.task] %}
-                    <div class="col-sm-6 subtask">
+                    <div class="col-lg-6 subtask">
                         <a class="btn card bg-light border-0" href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}">
                             <div class="card-body">
                                 <h5 class="card-title">
