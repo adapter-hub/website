@@ -1,32 +1,19 @@
-// Global colors
+// Defaults
 // --------
 //
 $primary: #39B3C6;
-//$secondary: #FF9F46;
 $secondary: darken(#FF9F46, 10%);
-// $success:       $green;
-// $info:          $cyan;
-// $warning:       $yellow;
-// $danger:        $red;
 $light: #f0f2f5;
 $dark:  darken($primary, 8%);;
 
-
-// Navbar
-// --------
-//
-$navbar-light-color: rgba(#000, .65);
-$navbar-light-hover-color: rgba(#000, .8);
-//$navbar-light-active-color: rgba(#000, 1);
-$navbar-light-active-color: $secondary;
-//$navbar-light-disabled-color:       rgba($black, .3) !default;
-
-
-// Global COLORS
-// --------
-//
 $enable-gradients: true;
 $breadcrumb-divider: quote(">");
+
+// -------- Navbar
+$navbar-light-color: rgba(#000, .65);
+$navbar-light-hover-color: rgba(#000, .8);
+$navbar-light-active-color: $secondary;
+$nav-pills-link-active-bg: $secondary;
 
 
 // Bootstrap import
@@ -94,13 +81,17 @@ $breadcrumb-divider: quote(">");
   }
 
   p.highlight-text {
-    color: lighten($primary, 30%);
-    font-size: 1.3em;
-    line-height: 1.3;
+    //text-transform: uppercase;
+    color: lighten($primary, 35%);
+    font-size: 1.1rem;
+    line-height: 2.1rem;
+    margin-top: 2rem;
 
     .highlight {
+      padding: 0 6px;
+      text-transform: none;
       color: lighten($primary, 49%);
-      font-size: 1.6em;
+      font-size: 2rem;
     }
   }
 
@@ -115,7 +106,7 @@ $breadcrumb-divider: quote(">");
 }
 
 #IndexButtonRow {
-  margin-top:2rem;
+  margin-top:1rem;
 
   a {
     width: 120px;
@@ -153,8 +144,18 @@ $breadcrumb-divider: quote(">");
 }
 
 #AdapterTypeNav {
-  border: 1px solid $secondary;
-  padding: 2rem;
+  border-left: 3px solid $secondary;
+  border-right: none;
+  background-color: $gray-200;
+  //padding: 1rem 2rem;
+
+  .navigation {
+
+  }
+
+  .documentation {
+
+  }
 }
 
 .task {
