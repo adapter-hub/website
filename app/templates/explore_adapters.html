@@ -1,85 +1,90 @@
 {% extends 'base.html' %}
 {% set active_page = "explore" %}
 
+{% set task_name = subtask.task %}
+{% set subtask_name = subtask.subtask %}
+
 {% block header %}
-    <div class="row">
-        <div class="col-md-auto mr-5">
-            <h1>{% block title %}{{subtask.displayname or subtask}}{% endblock %}</h1>
-            <h2>{{ subtask.task_type_ref.displayname }} Adapters</h2>
-        </div>
-        <div class="col-md-auto mt-3 mt-md-0">
-            <div class="adapter-nav" id="ModelTypeNav">
-                <div class="navigation">
-                    <p>Model type</p>
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <a class="{{ 'nav-link active' if not model_type else 'nav-link' }}"
-                               href="{{url_for('main.explore_adapters', task=task, subtask=subtask)}}">
-                                All models
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="{{ 'nav-link active' if model_type == 'bert' else 'nav-link' }}"
-                               href="{{url_for('main.explore_adapters', task=task, subtask=subtask, model_type='bert')}}">
-                                BERT
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="{{ 'nav-link active' if model_type == 'roberta' else 'nav-link' }}"
-                               href="{{url_for('main.explore_adapters', task=task, subtask=subtask, model_type='roberta')}}">
-                                RoBERTa
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            {% if model_type %}
-            <div class="adapter-nav">
-                <div class="navigation">
-                    <p>Model Name</p>
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <a class="{{ 'nav-link active' if not model else 'nav-link' }}"
-                               href="{{url_for('main.explore_adapters', task=task, subtask=subtask, model_type=model_type)}}">
-                                Show all
-                            </a>
-                        </li>
-                            {% for m in all_models %}
-                                <li class="nav-item">
-                                    <a class="{{ 'nav-link active' if m.name == model else 'nav-link' }}"
-                                       href="{{url_for('main.explore_adapters', task=task, subtask=subtask, model_type=model_type, model=m.name)}}">
-                                        {{ m.name }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            {% endif %}
-        </div>
+<div class="row">
+    <div class="col-md-auto mr-5">
+        <h1>{% block title %}{{subtask.displayname or subtask}}{% endblock %}</h1>
+        <h2>{{ subtask.task_type_ref.displayname }} Adapters</h2>
     </div>
-
-    <div class="row breadcrumb-nav">
-        <nav aria-label="breadcrumb" class="col">
-            <ol class="breadcrumb bg-transparent">
-                <li class="breadcrumb-item">
-                    <a href="{{url_for('main.explore_tasks')}}">Explore</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{url_for('main.explore_tasks', task_type=subtask.task_type)}}">{{ subtask.task_type_ref.displayname }}</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{url_for('main.explore_adapters', task=subtask.task, subtask=subtask.subtask)}}">{{ subtask }}</a>
-                </li>
-                {% if model_type %}
-                    <li class="breadcrumb-item">
-                        <a href="{{url_for('main.explore_adapters', task=subtask.task, subtask=subtask.subtask, model_type=model_type)}}">{{ model_type.title() }}</a>
+    <div class="col-md-auto mt-3 mt-md-0">
+        <div class="adapter-nav" id="ModelTypeNav">
+            <div class="navigation">
+                <p>Model type</p>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="{{ 'nav-link active' if not model_type else 'nav-link' }}"
+                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name)}}">
+                            All models
+                        </a>
                     </li>
-                {% endif %}
-            </ol>
-        </nav>
+                    <li class="nav-item">
+                        <a class="{{ 'nav-link active' if model_type == 'bert' else 'nav-link' }}"
+                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type='bert')}}">
+                            BERT
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{{ 'nav-link active' if model_type == 'roberta' else 'nav-link' }}"
+                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type='roberta')}}">
+                            RoBERTa
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        {% if model_type %}
+        <div class="adapter-nav">
+            <div class="navigation">
+                <p>Model Name</p>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="{{ 'nav-link active' if not model else 'nav-link' }}"
+                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type)}}">
+                            Show all
+                        </a>
+                    </li>
+                    {% for m in all_models %}
+                    <li class="nav-item">
+                        <a class="{{ 'nav-link active' if m.name == model else 'nav-link' }}"
+                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type, model=m.name)}}">
+                            {{ m.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
     </div>
+</div>
+
+<div class="row breadcrumb-nav">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="{{url_for('main.explore_tasks')}}">Explore</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a
+                    href="{{url_for('main.explore_tasks', task_type=subtask.task_type)}}">{{ subtask.task_type_ref.displayname }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name)}}">{{ subtask }}</a>
+            </li>
+            {% if model_type %}
+            <li class="breadcrumb-item">
+                <a
+                    href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type)}}">{{ model_type.title() }}</a>
+            </li>
+            {% endif %}
+        </ol>
+    </nav>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -89,7 +94,8 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
-                    <a href="{{ url_for('main.adapter_details', groupname=item['groupname'], filename=item['filename']) }}" class="card-link">
+                    <a href="{{ url_for('main.adapter_details', groupname=item['groupname'], filename=item['filename']) }}"
+                        class="card-link">
                         {{ item['task']+"/"+item['subtask'] }}@{{ item['groupname'] }}
                     </a>
                 </h5>
