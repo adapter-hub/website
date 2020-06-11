@@ -4,7 +4,8 @@
 $primary: #39B3C6;
 $secondary: darken(#FF9F46, 10%);
 $light: #f0f2f5;
-$dark:  darken($primary, 8%);;
+$dark: darken($primary, 8%);
+;
 
 $enable-gradients: true;
 $breadcrumb-divider: quote(">");
@@ -69,17 +70,44 @@ $nav-pills-link-active-bg: $secondary;
   }
 }
 
-// --- Index
-
 #Header {
   background-color: $primary;
   padding: 2rem 0;
 
   h1 {
-    color: #fff;
+    color: $white;
     margin: 0;
   }
 
+  h2 {
+    margin: 1rem 0 0 0;
+    color: lighten($primary, 35%);
+    font-size: 1.5rem;
+  }
+
+  .breadcrumb-nav {
+    margin-top: 2rem;
+
+    nav {
+      ol.breadcrumb {
+        margin: 0;
+        border: 1px solid lighten($primary, 20%);
+
+        li a {
+          color: $white;
+        }
+
+        li::before {
+          color: lighten($primary, 20%);
+        }
+      }
+    }
+  }
+}
+
+// --- Index
+
+#Header {
   p.highlight-text {
     //text-transform: uppercase;
     color: lighten($primary, 35%);
@@ -103,100 +131,114 @@ $nav-pills-link-active-bg: $secondary;
     opacity: 0.65;
     padding: 5px 10px;
   }
-}
 
-#IndexButtonRow {
-  margin-top:1rem;
+  #IndexButtonRow {
+    margin-top: 1rem;
 
-  a {
-    width: 120px;
-    margin-right: 4px;
-
-    > div {
-      font-size: 1.3rem;
-      opacity: 0.8;
-    }
-
-    //background-color: $secondary;
-    //border: 1px solid $dark;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    //border: none;
-    //background-color: $dark;
-    color: #fff;
-
-    &:hover {
-      background-color: $dark;
-    }
-  }
-}
-
-// --- Task/Languages overview
-
-#TypeToSearch {
-  margin-top: 7px;
-
-  background-color: lighten($primary, 10%);
-  border: 1px solid lighten($primary, 20%);
-  color: #fff;
-
-  &:focus {
-    border: 1px solid lighten($primary, 50%);
-  }
-
-  &::placeholder {
-    color: #fff;
-    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
-    opacity: .8;
-  }
-}
-
-#AdapterTypeNav {
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-
-  .navigation, .documentation {
-    padding-top: 7px;
-  }
-
-  .navigation {
-    //padding-top: 3px;
-    p {
-      float: left;
-      font-weight: bold;
-      //color: rgba(255,255,255,0.8);
-      color: $white;
-      margin: 8px 8px 0 0;
-    }
-
-
-    .nav-item {
+    a {
+      width: 120px;
       margin-right: 4px;
-      a.active {
-        background-color: $secondary;
-        border: 1px solid $secondary;
-        color: $white;
+
+      > div {
+        font-size: 1.3rem;
+        opacity: 0.8;
       }
 
-      a:not(.active) {
-        //background-color: rgba(255, 255, 255, 0.2);
-        //border: 1px solid rgba(255, 255, 255, 0.2);
-        //border: 1px solid $dark;
-        border: 1px solid rgba(255, 255, 255, 0.4);
+      //background-color: $secondary;
+      //border: 1px solid $dark;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      //border: none;
+      //background-color: $dark;
+      color: #fff;
 
+      &:hover {
+        background-color: $dark;
+      }
+    }
+  }
+}
+
+// --- Task/Languages/Adapters overview
+
+#Header {
+  #AdapterTypeNav {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    //border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  #TypeToSearch {
+    margin-top: 7px;
+
+    background-color: lighten($primary, 10%);
+    border: 1px solid lighten($primary, 20%);
+    color: #fff;
+
+    &:focus {
+      border: 1px solid lighten($primary, 50%);
+    }
+
+    &::placeholder {
+      color: #fff;
+      // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+      opacity: .8;
+    }
+  }
+
+  #ModelTypeNav {
+    //padding-right: 2rem;
+    .navigation {
+      p {
+        min-width: 6rem;
+      }
+    }
+  }
+
+  .adapter-nav {
+    .navigation, .documentation {
+      padding-top: 7px;
+    }
+
+    .navigation {
+      //padding-top: 3px;
+      p {
+        float: left;
+        font-weight: bold;
+        //color: rgba(255,255,255,0.8);
         color: $white;
+        margin: 0.5rem 1rem 0 0;
+      }
 
-        &:hover {
-          background-color: $dark;
+
+      .nav-item {
+        margin-right: 4px;
+
+        a.active {
+          background-color: $secondary;
+          border: 1px solid $secondary;
+          color: $white;
+        }
+
+        a:not(.active) {
+          //background-color: rgba(255, 255, 255, 0.2);
+          //border: 1px solid rgba(255, 255, 255, 0.2);
+          //border: 1px solid $dark;
+          border: 1px solid rgba(255, 255, 255, 0.4);
+
+          color: $white;
+
+          &:hover {
+            background-color: $dark;
+          }
         }
       }
     }
-  }
 
-  .documentation {
-    //padding-top: 12px;
+    .documentation {
+      //padding-top: 12px;
 
-    color: lighten($primary, 40%);
+      color: lighten($primary, 40%);
+    }
   }
 }
 

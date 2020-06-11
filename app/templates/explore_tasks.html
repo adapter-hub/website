@@ -2,7 +2,7 @@
 {% set active_page = "explore" %}
 
 {% block header %}
-    <div class="row" id="AdapterTypeNav">
+    <div class="row adapter-nav" id="AdapterTypeNav">
         <div class="col-lg-2">
             <h1>
                 {% block title %} Explore {% endblock %}
@@ -30,9 +30,9 @@
         <div class="col-lg documentation">
             <i class="fa fa-book"></i>
             {% if task_type == 'text_task' %}
-                A task adapter is lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                A task adapter is lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
             {% elif  task_type == 'text_lang' %}
-                A language adapter is lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                A language adapter is lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
             {% endif %}
         </div>
     </div>
