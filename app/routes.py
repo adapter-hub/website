@@ -1,7 +1,7 @@
 from flask import Blueprint
-from flask import render_template, request, url_for, flash, redirect, abort
+from flask import render_template, request, url_for
 from flask_flatpages import FlatPages
-from .models import Adapter, Model, Task, Subtask
+from .models import Adapter, AdapterType, Model, Task, Subtask
 from itertools import groupby
 
 
@@ -24,10 +24,11 @@ def explore_tasks(task_type='text_task'):
     subtask_query = Subtask.query.filter(
         Subtask.task_type==task_type if task_type else True
     ).order_by(Subtask.task)
+    task_type_ref = AdapterType.query.get(task_type)
     subtasks = {k: list(g) for k, g in groupby(subtask_query, lambda t: t.task)}
     return render_template(
         'explore_tasks.html',
-        tasks=tasks, subtasks=subtasks, task_type=task_type
+        tasks=tasks, subtasks=subtasks, task_type=task_type_ref
     )
 
 

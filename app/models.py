@@ -46,6 +46,8 @@ class Subtask(db.Model):
     task_type = db.Column(db.String(20), db.ForeignKey('adapter_types.id'))
     task_type_ref = db.relationship('AdapterType', backref='subtasks')
 
+    language = db.Column(db.String(30))
+
     def __repr__(self):
         return '{}/{}'.format(self.task, self.subtask)
 
@@ -73,32 +75,38 @@ class Model(db.Model):
 
 class Adapter(db.Model):
     __tablename__ = "adapters"
-
+    # name
     groupname = db.Column(db.String(30), primary_key=True)
     filename = db.Column(db.String(80), primary_key=True)
 
-    model_name = db.Column(db.Text, nullable=False)
-    config_id = db.Column(db.String(24), nullable=False)
+    # type & task
+    type = db.Column(db.String(20), db.ForeignKey('adapter_types.id'))
+    adapter_type = db.relationship('AdapterType', backref='adapters')
     task = db.Column(db.String(30), nullable=False)
     subtask = db.Column(db.String(30), nullable=False)
+    subtask_ref = db.relationship('Subtask', backref='adapters')
+
+    # model & config
+    model_type = db.Column(db.String(30), nullable=False)
+    hidden_size = db.Column(db.Integer, nullable=False)
+    model_name = db.Column(db.Text, nullable=False)
+    config_id = db.Column(db.String(24), nullable=False)
+    config = db.Column(db.Text, nullable=False)
+
+    # meta
     description = db.Column(db.Text)
     author = db.Column(db.String(80))
     email = db.Column(db.String(80))
     url = db.Column(db.String(150))
+    github = db.Column(db.String(30))
+    twitter = db.Column(db.String(30))
     citation = db.Column(db.Text)
-    default_version = db.Column(db.String(10), nullable=False)
     # score = db.Column(db.Float)
-
-    config = db.Column(db.Text, nullable=False)
-    hidden_size = db.Column(db.Integer, nullable=False)
-    model_type = db.Column(db.String(30), nullable=False)
+    
+    # files
+    default_version = db.Column(db.String(10), nullable=False)
 
     upload_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
-    type = db.Column(db.String(20), db.ForeignKey('adapter_types.id'))
-    adapter_type = db.relationship('AdapterType', backref='adapters')
-
-    subtask_ref = db.relationship('Subtask', backref='adapters')
 
     __table_args__ = (
         ForeignKeyConstraint([task, subtask], [Subtask.task, Subtask.subtask]),
