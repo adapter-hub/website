@@ -50,9 +50,13 @@
                 {% for subtask in subtasks[task.task] %}
                     <div class="col-lg-6 subtask">
                         <a class="btn card bg-light border-0" href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}">
+{#                            <div class="notice">{{ subtask.language | capitalize }}</div>#}
                             <div class="card-body">
                                 <h5 class="card-title">
                                     {{ subtask['displayname'] or subtask['subtask'] }}
+                                    {% if subtask.language %}
+                                        <span class="notice">{{ subtask.language | capitalize }}</span>
+                                    {% endif %}
                                 </h5>
                                 <p class="card-text">
                                     {{ subtask.description|truncate(200) if subtask.description }}
