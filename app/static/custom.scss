@@ -81,7 +81,7 @@ $nav-pills-link-active-bg: $secondary;
 
   h2 {
     margin: 1rem 0 0 0;
-    color: lighten($primary, 35%);
+    color: $white;
     font-size: 1.5rem;
   }
 
@@ -198,11 +198,8 @@ $nav-pills-link-active-bg: $secondary;
   }
 
   #ModelTypeNav {
-    //padding-right: 2rem;
-    .navigation {
-      p {
-        min-width: 6rem;
-      }
+    .dropdown {
+      display: inline-block;
     }
   }
 
@@ -221,11 +218,18 @@ $nav-pills-link-active-bg: $secondary;
         margin: 0.5rem 1rem 0 0;
       }
 
+      .dropdown {
+        a.dropdown-toggle, a.active {
+          background: $secondary;
+          border: 1px solid $secondary;
+          color: $white;
+        }
+      }
 
       .nav-item {
         margin-right: 4px;
 
-        a.active {
+        a.nav-link.active {
           background-color: $secondary;
           border: 1px solid $secondary;
           color: $white;

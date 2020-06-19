@@ -5,57 +5,73 @@
 {% set subtask_name = subtask.subtask %}
 
 {% block header %}
-<div class="row">
-    <div class="col-md-auto mr-5">
-        <h1>{% block title %}{{subtask.displayname or subtask}}{% endblock %}</h1>
-        <h2>{{ subtask.task_type_ref.displayname }} Adapters</h2>
-    </div>
-    <div class="col-md-auto mt-3 mt-md-0">
-        <div class="adapter-nav" id="ModelTypeNav">
-            <div class="navigation">
-                <p>Model type</p>
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="{{ 'nav-link active' if not model_type else 'nav-link' }}"
-                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name)}}">
-                            All models
-                        </a>
-                    </li>
-                    {% for mt in all_model_types %}
-                        <li class="nav-item">
-                            <a class="{{ 'nav-link active' if model_type == mt else 'nav-link' }}"
-                               href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=mt)}}">
-                                {{ mt }}
+<div class="row adapter-nav" id="ModelTypeNav">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-auto mr-5">
+                <h1>
+                    {{ subtask.task_type_ref.displayname }} Adapters
+                </h1>
+            </div>
+            <div class="col-md-auto">
+                <div class="navigation row">
+                    <div class="col-xs-auto">
+                        <p>Pre-trained model: </p>
+                        <div class="dropdown show mr-2">
+                            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ model_type or 'All architectures'}}
                             </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+                                <a class="dropdown-item {{ 'active' if not model_type else '' }}"
+                                   href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name)}}">
+                                    All architectures
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                {% for mt in all_model_types %}
+                                    <a class="dropdown-item {{ 'active' if model_type == mt else '' }}"
+                                       href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=mt)}}">
+                                        {{ mt }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-auto">
+                        {% if model_type %}
+                            <div class="dropdown show">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ model or 'All  shortcut names'}}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                                    <a class="dropdown-item {{ 'active' if not model else '' }}"
+                                       href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type)}}">
+                                        All shortcut names
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    {% for m in all_models %}
+                                        <a class="dropdown-item {{ 'active' if m.name == model else '' }}"
+                                           href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type, model=m.name)}}">
+                                            {{ m.name }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
-
-        {% if model_type %}
-        <div class="adapter-nav">
-            <div class="navigation">
-                <p>Model Name</p>
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="{{ 'nav-link active' if not model else 'nav-link' }}"
-                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type)}}">
-                            Show all
-                        </a>
-                    </li>
-                    {% for m in all_models %}
-                    <li class="nav-item">
-                        <a class="{{ 'nav-link active' if m.name == model else 'nav-link' }}"
-                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type, model=m.name)}}">
-                            {{ m.name }}
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
+        <div class="row mt-3">
+            <div class="col-md-auto mr-5">
+                <h2 class="mt-1">
+                    {% block title %}{{subtask.displayname or subtask}}{% endblock %}
+                </h2>
+            </div>
+            <div class="col-md documentation">
+                <i class="fa fa-book"></i>
+                {{ subtask.description }}
             </div>
         </div>
-        {% endif %}
     </div>
 </div>
 
@@ -66,17 +82,20 @@
                 <a href="{{url_for('main.explore_tasks')}}">Explore</a>
             </li>
             <li class="breadcrumb-item">
-                <a
-                    href="{{url_for('main.explore_tasks', task_type=subtask.task_type)}}">{{ subtask.task_type_ref.displayname }}</a>
+                <a href="{{url_for('main.explore_tasks', task_type=subtask.task_type)}}">{{ subtask.task_type_ref.displayname }}</a>
             </li>
             <li class="breadcrumb-item">
                 <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name)}}">{{ subtask }}</a>
             </li>
             {% if model_type %}
-            <li class="breadcrumb-item">
-                <a
-                    href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type)}}">{{ model_type.title() }}</a>
-            </li>
+                <li class="breadcrumb-item">
+                    <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type)}}">{{ model_type }}</a>
+                </li>
+            {% endif %}
+            {% if model %}
+                <li class="breadcrumb-item">
+                    <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type, model=model)}}">{{ model }}</a>
+                </li>
             {% endif %}
         </ol>
     </nav>
