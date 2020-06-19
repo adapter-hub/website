@@ -78,7 +78,12 @@
         <div class="mt-5">
             <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="350" class="float-left"/>
             <div class="speech-bubble">
-                <p class="m-0">Add your task to AdapterHub,<br/>it's super easy!</p>
+                <p class="m-0">Add your
+                    {{ 'language' if task_type.id == 'text_lang' else 'task' }}
+                    to AdapterHub,
+                    <br/>
+                    it's super easy!
+                </p>
                 <div class="text-right">
                     <a class="btn btn-light btn-sm" href="http://adapter-hub.webredirect.org/adapter-docs/_build/html/adapter_sharing.html">
                         <i class="fa fa-book text-muted"></i> Docs
@@ -89,7 +94,6 @@
     </div>
 
     <script>
-        // TODO refactor
         $(function(){
             $('#TypeToSearch').on('input paste change', function() {
                 const searchBox = $('#TypeToSearch');
