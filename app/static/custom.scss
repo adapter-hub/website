@@ -105,6 +105,18 @@ $nav-pills-link-active-bg: $secondary;
   }
 }
 
+.card {
+  .card-title {
+    .notice {
+      float: right;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: $gray-600;
+      margin-top: 0.2rem;
+    }
+  }
+}
+
 // --- Index
 
 #Header {
