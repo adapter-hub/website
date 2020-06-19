@@ -283,3 +283,40 @@ $nav-pills-link-active-bg: $secondary;
     }
   }
 }
+
+
+#NoSearchResult {
+  //margin-top: 5rem;
+  .query {
+    opacity: 0.65;
+  }
+
+  img {
+    margin-top: 20px;
+  }
+
+  .speech-bubble {
+    position: absolute;
+    margin-left: 160px;
+    max-width: 300px;
+    background: $primary;
+    border-radius: 1rem;
+    color: $white;
+    padding: 1rem;
+  }
+
+  .speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 0;
+    height: 0;
+    border: 25px solid transparent;
+    border-top-color: $primary;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -0px;
+    margin-bottom: -25px;
+  }
+}
