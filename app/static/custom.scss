@@ -25,6 +25,11 @@ $nav-pills-link-active-bg: $secondary;
 // Custom styles
 // --------
 //
+.activate-tooltip > * {
+  // fix flickering of tooltip on mouseover
+  pointer-events: none;
+}
+
 .navbar.navbar-light {
   img.bert {
     margin-right: 10px;
