@@ -11,7 +11,7 @@
                 for pre-trained <span class="highlight">adapter modules</span> for language models.
             </p>
 
-            <div id="IndexButtonRow">
+            <div id="IndexButtonRow" class="rounded">
                 <a class="btn"
                    href="{{ url_for('main.explore_tasks') }}">
                     <div>
@@ -49,8 +49,8 @@
                 </a>
             </div>
         </div>
-        <div class="col-sm-3 text-right" style="margin-top: -10px;">
-            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="210"/>
+        <div class="col-sm-3 text-right">
+            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="225"/>
         </div>
     </div>
 {% endblock %}
