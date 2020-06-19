@@ -21,18 +21,14 @@
                             All models
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="{{ 'nav-link active' if model_type == 'bert' else 'nav-link' }}"
-                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type='bert')}}">
-                            BERT
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="{{ 'nav-link active' if model_type == 'roberta' else 'nav-link' }}"
-                            href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type='roberta')}}">
-                            RoBERTa
-                        </a>
-                    </li>
+                    {% for mt in all_model_types %}
+                        <li class="nav-item">
+                            <a class="{{ 'nav-link active' if model_type == mt else 'nav-link' }}"
+                               href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=mt)}}">
+                                {{ mt }}
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
