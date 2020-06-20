@@ -5,7 +5,9 @@ from .models import Architecture, Task, Subtask, AdapterType, Adapter, AdapterFi
 basedir = os.getcwd()
 
 class Config(object):
-    DOCUMENTATION_URL = "http://adapter-hub.webredirect.org/docs/"
+    ### some external urls
+    DOCUMENTATION_URL = "https://docs.adapterhub.ml/"
+    CONTRIBUTING_URL = DOCUMENTATION_URL+"contributing.html"
 
     ### db
     SECRET_KEY = os.environ.get('SECRET_KEY') or "default_secret_key"

@@ -63,12 +63,6 @@ def adapter_details(groupname, filename):
     return render_template('adapter.html', adapter=adapter)
 
 
-@bp.route('/upload/', methods=('GET', 'POST'))
-def upload():
-    page = pages.get_or_404('contributing')
-    return render_template('flatpage.html', page=page, active_page='upload')
-
-
 @bp.app_errorhandler(404)
 def error_404(error):
     return render_template('errors/404.html'), 404
