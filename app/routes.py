@@ -37,7 +37,7 @@ def explore_tasks(task_type='text_task'):
 @bp.route('/explore/<task>/<subtask>/<model_type>/')
 @bp.route('/explore/<task>/<subtask>/<model_type>/<model>/')
 def explore_adapters(task, subtask, model_type=None, model=None):
-    all_model_types = [m.model_type for m in Model.query.distinct(Model.model_type)]
+    all_model_types = [m.model_type for m in Model.query.with_entities(Model.model_type).distinct()]
     all_models = Model.query.filter(Model.model_type == model_type if model_type else True)
     items = Adapter.query.filter(
         Adapter.task == task,
