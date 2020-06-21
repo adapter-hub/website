@@ -1,6 +1,14 @@
 import os
 from flask_filealchemy import ColumnMapping
-from .models import Architecture, Task, Subtask, AdapterType, Adapter, AdapterFile
+from .models import (
+    Architecture,
+    Task,
+    Subtask,
+    AdapterType,
+    Adapter,
+    AdapterFile,
+    AdapterDependency,
+)
 
 basedir = os.getcwd()
 
@@ -39,7 +47,8 @@ class Config(object):
         (Subtask, {'task_type': ColumnMapping.FOLDER_NAME}),
         AdapterType,
         (Adapter, {'groupname': ColumnMapping.FOLDER_NAME, 'filename': ColumnMapping.FILE_NAME}),
-        AdapterFile
+        AdapterFile,
+        AdapterDependency,
     ]
     FILEALCHEMY_SKIP_NO_MODEL = True
     FILEALCHEMY_MAP_NESTED = True

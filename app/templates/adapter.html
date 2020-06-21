@@ -36,16 +36,31 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config="{{ adapter[
     <h4 class="my-4">Description</h4>
     {{ adapter['description'] }}
 </section>
+{% if adapter.dependencies|length %}
+<section>
+    <h4 class="my-4">Dependencies</h4>
+    This adapter should be used together with these dependencies to achieve best results:
+    <ul class="my-4">
+        {% for dep in adapter.dependencies %}
+        {% set dep_groupname, dep_filename = dep.key.split('/') %}
+        <li class="my-2">
+            <a href="{{ url_for('main.adapter_details', groupname=dep_groupname, filename=dep_filename) }}">{{ dep.key }}</a>
+            - {{ dep.description }}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
 <section>
     <h4 class="my-4">Properties</h4>
     <table class="table table-borderless">
-        <tr><td class="text-muted">Model type</td><td>{{ adapter['model_type'].title() }}; hidden size: {{adapter['hidden_size']}}</td></tr>
-        <tr><td class="text-muted">Task</td><td>{{ adapter['task'] }}</td></tr>
-        <tr><td class="text-muted">Subtask</td><td>{{ adapter['subtask'] }}</td></tr>
+        <tr><td class="text-muted">Task</td><td>{{ adapter.subtask_ref.task_ref.displayname }}</td></tr>
+        <tr><td class="text-muted">Subtask</td><td>{{ adapter.subtask_ref.displayname or adapter.subtask }}</td></tr>
+        <tr><td class="text-muted">Model</td><td>{{ adapter.model_name }}</td></tr>
         <tr><td class="text-muted">Author</td><td>{{ adapter['author'] }} ({{adapter['email']}})</td></tr>
         <tr><td class="text-muted">Web</td><td><a href="{{ adapter['url'] }}">{{ adapter['url'] }}</a></td></tr>
         <tr><td class="text-muted">Architecture</td><td>{{ adapter['config'] }}</td></tr>
-        <tr><td class="text-muted">ID</td><td>{{ adapter['id'] }}</td></tr>
+        <tr><td class="text-muted">ID</td><td>{{ adapter['config_id'] }}</td></tr>
     </table>
 </section>
 <section>

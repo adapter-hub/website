@@ -36,12 +36,14 @@ class Task(db.Model):
 class Subtask(db.Model):
     __tablename__ = "subtasks"
 
-    task = db.Column(db.String(30), primary_key=True)
+    task = db.Column(db.String(30), db.ForeignKey('tasks.task'), primary_key=True)
     subtask = db.Column(db.String(30), primary_key=True)
     displayname = db.Column(db.String(80))
     description = db.Column(db.Text)
     url = db.Column(db.String(150))
     citation = db.Column(db.Text)
+
+    task_ref = db.relationship('Task', backref='subtasks')
 
     task_type = db.Column(db.String(20), db.ForeignKey('adapter_types.id'))
     task_type_ref = db.relationship('AdapterType', backref='subtasks')
@@ -114,6 +116,24 @@ class Adapter(db.Model):
 
     def __repr__(self):
         return '{}/{}'.format(self.groupname, self.filename)
+
+
+class AdapterDependency(db.Model):
+    __tablename__ = "dependencies"
+
+    adapter_groupname = db.Column(db.String(30), primary_key=True)
+    adapter_filename = db.Column(db.String(24), primary_key=True)
+    key = db.Column(db.String(100), primary_key=True)
+    description = db.Column(db.Text)
+
+    adapter = db.relationship('Adapter', backref='dependencies')
+
+    __table_args__ = (
+        ForeignKeyConstraint([adapter_groupname, adapter_filename], [Adapter.groupname, Adapter.filename]),
+    )
+
+    def __repr__(self):
+        return '<AdapterDependency {}/{} {}>'.format(self.adapter_groupname, self.adapter_filename, self.key)
 
 
 class AdapterFile(db.Model):
