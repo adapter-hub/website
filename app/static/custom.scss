@@ -320,3 +320,35 @@ $nav-pills-link-active-bg: $secondary;
     margin-bottom: -25px;
   }
 }
+
+.adapters {
+  margin-bottom: 1rem;
+
+  h3 {
+    i {
+      font-size: 0.8em;
+      margin-left: 5px;
+    }
+  }
+
+  .adapter {
+    margin-top: 1rem;
+
+    a {
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    h5 {
+      margin-bottom: 0;
+    }
+
+    .features {
+      margin-bottom: 0.75rem;
+
+      .badge {
+        opacity: 0.8;
+      }
+    }
+  }
+}

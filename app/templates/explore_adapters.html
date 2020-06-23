@@ -103,36 +103,27 @@
 {% endblock %}
 
 {% block content %}
-<div class="row mt-3">
+<div class="row adapters">
     {% for item in items %}
-    <div class="col-lg-6 mb-4">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">
-                    <a href="{{ url_for('main.adapter_details', groupname=item['groupname'], filename=item['filename']) }}"
-                        class="card-link">
+        <div class="col-lg-6 adapter">
+            <a class="btn card bg-light border-0" href="{{ url_for('main.adapter_details', groupname=item['groupname'], filename=item['filename']) }}">
+                <div class="card-body">
+                    <h5 class="card-title">
                         {{ item['task']+"/"+item['subtask'] }}@{{ item['groupname'] }}
-                    </a>
-                </h5>
-                <h6 class="card-subtitle text-muted">
-                    Model: {{ item.model_name }}
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-                    Type: {{ item.adapter_type['displayname'].title() }}
-                </h6>
-            </div>
-            <div class="card-body py-3">
-                <p class="mb-2">
-                    <span class="badge badge-primary">{{ item['config'] }}</span>
-                    <span class="badge badge-primary">v. {{ item['default_version'] }}</span>
-                    <span class="badge badge-primary">{{ item['upload_date'].strftime('%Y-%m-%d %H:%m') }}</span>
-                    <span class="badge badge-primary">{{ item.files|length }} Version(s)</span>
-                </p>
-                <p class="card-text">
-                    {{ item['description']|truncate(200) }}
-                </p>
-            </div>
+                        <span class="notice">
+                            {{ item.model_name }}
+                        </span>
+                    </h5>
+                    <div class="features">
+                        <span class="badge badge-primary">Adapter type: {{ item['config'] }}</span>
+                        <span class="badge badge-primary">{{ item.files|length }} version{% if item.files|length > 1 %}s{% endif %}</span>
+                    </div>
+                    <p class="card-text">
+                        {{ item['description']|truncate(200) }}
+                    </p>
+                </div>
+            </a>
         </div>
-    </div>
     {% endfor %}
 </div>
 {% endblock %}
