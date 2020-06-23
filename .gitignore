@@ -6,6 +6,9 @@ __pycache__
 .vscode
 *.code-workspace
 
+# IntelliJ
+.idea
+
 # Static
 .webassets-cache/
 node_modules/
