@@ -28,6 +28,7 @@
     {% assets "css_all" %}
         <link rel="stylesheet" href="{{ ASSET_URL }}">
     {% endassets %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
     <!-- JS -->
     {% assets "js_all" %}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
@@ -100,6 +101,21 @@
         $('.activate-tooltip').tooltip();   // bootstrap tooltips
     })
 </script>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
 </script>
 </body>
 <br>
