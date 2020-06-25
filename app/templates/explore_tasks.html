@@ -44,7 +44,7 @@
     {% for task in tasks %}
         <div class="task">
             <h3>{{ task.displayname }}
-                <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="right" title="{{ task.description }}"></i>
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="{{ task.description }}"></i>
             </h3>
             <div class="row subtasks">
                 {% for subtask in subtasks[task.task] %}

@@ -25,9 +25,16 @@ $nav-pills-link-active-bg: $secondary;
 // Custom styles
 // --------
 //
-.activate-tooltip > * {
+.text-white-65 {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.activate-tooltip {
   // fix flickering of tooltip on mouseover
-  pointer-events: none;
+  cursor: default;
+  > * {
+    pointer-events: none;
+  }
 }
 
 .navbar.navbar-light {
