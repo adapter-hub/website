@@ -63,7 +63,7 @@ def adapter_details(groupname, filename):
     return render_template('adapter.html', adapter=adapter)
 
 
-@bp.route('/imprint-privacy')
+@bp.route('/imprint-privacy/')
 def imprint_privacy():
     return render_template('imprint_privacy.html')
 

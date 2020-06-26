@@ -99,19 +99,12 @@
 <footer>
     <div class="container">
         <p class="float-right"><a href="{{ url_for('main.imprint_privacy') }}">Imprint & Privacy</a></p>
-        <p class="text-muted">Brought to you with ❤️ by authors from:</p>
-        <a href="https://ukp.informatik.tu-darmstadt.de/" class="logo">
-            <img src="{{ url_for('static', filename='logos/ukp_logo_182x0.png') }}" height="45px">
-        </a>
-        <a href="https://www.tu-darmstadt.de/index.en.jsp" class="logo">
-            <img src="{{ url_for('static', filename='logos/tu_logo_web.svg') }}" height="65px">
-        </a>
-        <a href="https://www.nyu.edu/" class="logo">
-            <img src="{{ url_for('static', filename='logos/nyu_short_color.png') }}" height="30px">
-        </a>
-        <a href="https://deepmind.com/" class="logo">
-            <img src="{{ url_for('static', filename='logos/DeepMind_logo.png') }}" height="35px">
-        </a>
+        <p class="text-muted">Brought to you with ❤️ &nbsp;by authors from:</p>
+        <img src="{{ url_for('static', filename='logos/ukp_logo_182x0.png') }}" class="logo" height="45px">
+        <img src="{{ url_for('static', filename='logos/tu_logo_web.svg') }}" class="logo" height="65px">
+        <img src="{{ url_for('static', filename='logos/nyu_short_color.png') }}" class="logo" height="30px">
+        <img src="{{ url_for('static', filename='logos/cambridge.png') }}" class="logo" height="30px">
+        <img src="{{ url_for('static', filename='logos/DeepMind_logo.png') }}" class="logo" height="35px">
     </div>
 </footer>
 
