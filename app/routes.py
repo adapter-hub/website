@@ -63,6 +63,11 @@ def adapter_details(groupname, filename):
     return render_template('adapter.html', adapter=adapter)
 
 
+@bp.route('/imprint-privacy')
+def imprint_privacy():
+    return render_template('imprint_privacy.html')
+
+
 @bp.app_errorhandler(404)
 def error_404(error):
     return render_template('errors/404.html'), 404

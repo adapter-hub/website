@@ -128,6 +128,33 @@ $nav-pills-link-active-bg: $secondary;
   }
 }
 
+// Sticky footer
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 177px; /* Margin bottom by footer height */
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 177px;
+
+  padding-top: 2rem;
+  background-color: $gray-100;
+  box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.1);
+
+  a.logo {
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+}
+
 // --- Index
 
 #Header {
