@@ -4,10 +4,10 @@
 
 {% block header %}
     <div class="row">
-        <div class="text-light col-sm-9">
+        <div class="text-light col-md-9">
             <p class="highlight-text">
                 <span class="highlight">AdapterHub</span>
-                is a <span class="highlight">central repository</span><br>
+                is a <span class="highlight">central repository</span><br class="d-none d-lg-inline">
                 for pre-trained <span class="highlight">adapter modules</span> for language models.
             </p>
 
@@ -33,7 +33,7 @@
                     </div>
                     Docs
                 </a>
-                <a class="btn"
+                <a class="btn d-none d-lg-inline-block"
                    href="https://github.com/adapter-hub">
                     <div>
                         <i class="fab fa-github"></i>
@@ -49,7 +49,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-sm-3 text-right">
+        <div class="col-sm-3 text-right d-none d-md-block">
             <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="225"/>
         </div>
     </div>
@@ -59,21 +59,21 @@
 
     <section class="">
         <div class="row">
-            <div class="card col-sm mx-3 bg-light border-0">
+            <div class="card col-md mt-3 mx-3 bg-light border-0">
                 <div class="card-body">
                     <h5 class="card-title">Adapters</h5>
                     <p class="card-text">Adapters are a small amount of newly introduced weights within each layer of a transformer model such as BERT or RoBERTa. Training Adapters performs on-par with full fine-tuning the model, while only requiring as little as 1MB of storage space per task. </p>
                 </div>
             </div>
 
-            <div class="card col-sm mx-3 bg-light border-0">
+            <div class="card col-md mx-3 ml-md-0 mr-md-3 mr-lg-0 mt-3 bg-light border-0">
                 <div class="card-body">
                     <h5 class="card-title">Modular, Composable, Extensible</h5>
                     <p class="card-text"> Adapters are encapsuled within layers, making the  representations  compatible. They can thus be stacked, composed or similarly modified, opening up many research directions. </p>
                 </div>
             </div>
 
-            <div class="card col-sm mx-3 bg-light border-0">
+            <div class="card col-lg mx-3 mt-3 bg-light border-0">
                 <div class="card-body">
                     <h5 class="card-title">Built on HuggingFace Transformers</h5>
                     <p class="card-text">AdapterHub builds on the <a href=https://github.com/huggingface/transformers target="_blank">HuggingFace transformers</a> framework requiring as little as two additional lines of code to train adapters for a downstream task.</p>
