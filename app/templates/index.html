@@ -61,21 +61,21 @@
         <div class="row">
             <div class="card col-md mt-3 mx-3 bg-light border-0">
                 <div class="card-body">
-                    <h5 class="card-title">Adapters</h5>
+                    <h5 class="card-title">Adapters 🤖</h5>
                     <p class="card-text">Adapters are a small amount of newly introduced weights within each layer of a transformer model such as BERT or RoBERTa. Training Adapters performs on-par with full fine-tuning the model, while only requiring as little as 1MB of storage space per task. </p>
                 </div>
             </div>
 
             <div class="card col-md mx-3 ml-md-0 mr-md-3 mr-lg-0 mt-3 bg-light border-0">
                 <div class="card-body">
-                    <h5 class="card-title">Modular, Composable, Extensible</h5>
+                    <h5 class="card-title">Modular, Composable, Extensible 🔧</h5>
                     <p class="card-text"> Adapters are encapsuled within layers, making the  representations  compatible. They can thus be stacked, composed or similarly modified, opening up many research directions. </p>
                 </div>
             </div>
 
             <div class="card col-lg mx-3 mt-3 bg-light border-0">
                 <div class="card-body">
-                    <h5 class="card-title">Built on HuggingFace Transformers</h5>
+                    <h5 class="card-title">Built on HuggingFace Transformers 🚀</h5>
                     <p class="card-text">AdapterHub builds on the <a href=https://github.com/huggingface/transformers target="_blank">HuggingFace transformers</a> framework requiring as little as two additional lines of code to train adapters for a downstream task.</p>
                 </div>
             </div>
@@ -83,24 +83,59 @@
     </section>
 
     <section>
-        <h1>Quickstart</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-            amet.
-        </p>
-        <p>
-            For a detailed user-guide please see our <a href="{{ config.DOCUMENTATION_URL }}">Documentation</a>!
-        </p>
+        <div class="row">
+            <div class="col col-lg-8">
+                <h1>Quickstart 🔥</h1>
+                <p>In the following, we outline the two most common ways of using AdapterHub.
+                    Install the adapter-transformers library first:
+                </p>
+                <p>
+                    <pre class="bg-light py-3 px-4">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
+                </p>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Load an Adapter 🏄</h4>
+                        <p>Loading existing adapters from our repository is as simple as adding one additional line of code!</p>
+                        <pre class="bg-light p-3">model = AutoModel.from_pretrained('roberta-base')
+model.load_adapter('sst', load_head=True)
+</pre>
+                        <p>This loads an adapter that is trained on the Stanford Sentiment Treebank.
+                            It achieves state-of-the-art results while also being light-weight: the <a href="">SST adapter</a> is only 3MB!</p>
+                        <p>
+                            We can now use this adapter to predict the sentiment of sentences:</p>
+                        <pre class="bg-light p-3">
+tokenizer = AutoTokenizer.from_pretrained('roberta-base')
+tokens = tokenizer.tokenize("AdapterHub is awesome!")
+input_tensor = torch.tensor([
+    tokenizer.convert_tokens_to_ids(tokens)
+])
+
+outputs = model(
+    input_tensor,
+    adapter_tasks=['sst'],
+    task='sst'
+)</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Train an Adapter 🏋️️</h5>
+                        <p class="card-text">...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section>
-        <h1>Cite our paper!</h1>
+        <h1>Citation 📝</h1>
         <pre class="p-4 bg-light">
 @article{TheDemoPaper,
     title={TBD},
