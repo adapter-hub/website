@@ -29,6 +29,10 @@ $nav-pills-link-active-bg: $secondary;
   color: rgba(255, 255, 255, 0.65);
 }
 
+.text-black-30 {
+  color: rgba(0, 0, 0, 0.3);
+}
+
 .activate-tooltip {
   // fix flickering of tooltip on mouseover
   cursor: default;
@@ -135,14 +139,14 @@ html {
 }
 
 body {
-  margin-bottom: 177px; /* Margin bottom by footer height */
+  margin-bottom: 250px;
 }
 
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 177px;
+  height: 250px;
 
   padding-top: 2rem;
   background-color: $gray-100;
@@ -153,6 +157,16 @@ footer {
     &:not(:last-child) {
       margin-right: 1rem;
     }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  body {
+    margin-bottom: 177px;
+  }
+
+  footer {
+    height: 177px;
   }
 }
 

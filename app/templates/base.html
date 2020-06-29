@@ -98,14 +98,20 @@
 
 <footer>
     <div class="container">
-        <p class="float-right"><a href="{{ url_for('main.imprint_privacy') }}">Imprint & Privacy</a></p>
-        <p class="text-muted">Brought to you with ❤️ &nbsp;by authors from:</p>
-        <img src="{{ url_for('static', filename='logos/ukp_logo_182x0.png') }}" class="logo" height="45px">
-        <img src="{{ url_for('static', filename='logos/tu_logo_web.svg') }}" class="logo" height="65px">
-        <img src="{{ url_for('static', filename='logos/nyu_short_color.png') }}" class="logo" height="30px">
-        <img src="{{ url_for('static', filename='logos/cambridge.png') }}" class="logo" height="30px">
-        <img src="{{ url_for('static', filename='logos/DeepMind_logo.png') }}" class="logo" height="35px">
-    </div>
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://github.com/adapter-hub">Paper</a>
+            <span class="text-black-30 px-1">|</span>
+            <a href="{{ url_for('main.imprint_privacy') }}">Imprint & Privacy</a>
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ &nbsp;by authors from:</p>
+        <div class="text-center text-md-left">
+            <img src="{{ url_for('static', filename='logos/ukp_logo_182x0.png') }}" class="logo" height="45px">
+            <img src="{{ url_for('static', filename='logos/tu_logo_web.svg') }}" class="logo" height="65px">
+            <img src="{{ url_for('static', filename='logos/nyu_short_color.png') }}" class="logo" height="30px">
+            <img src="{{ url_for('static', filename='logos/cambridge.png') }}" class="logo" height="30px">
+            <img src="{{ url_for('static', filename='logos/DeepMind_logo.png') }}" class="logo" height="35px">
+        </div>
+        </div>
 </footer>
 
 <script>
