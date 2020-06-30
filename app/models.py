@@ -90,9 +90,8 @@ class Adapter(db.Model):
 
     # model & config
     model_type = db.Column(db.String(30), nullable=False)
-    hidden_size = db.Column(db.Integer, nullable=False)
     model_name = db.Column(db.Text, nullable=False)
-    config_id = db.Column(db.String(24), nullable=False)
+    model_class = db.Column(db.Text)
     config = db.Column(db.Text, nullable=False)
 
     # meta
@@ -103,7 +102,7 @@ class Adapter(db.Model):
     github = db.Column(db.String(30))
     twitter = db.Column(db.String(30))
     citation = db.Column(db.Text)
-    # score = db.Column(db.Float)
+    score = db.Column(db.Float)
     
     # files
     default_version = db.Column(db.String(10), nullable=False)
