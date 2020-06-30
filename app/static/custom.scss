@@ -33,6 +33,11 @@ $nav-pills-link-active-bg: $secondary;
   color: rgba(0, 0, 0, 0.3);
 }
 
+.code {
+  background-color: lighten($light, 3%);
+  border-left: 4px solid darken($light, 3%);;
+}
+
 .activate-tooltip {
   // fix flickering of tooltip on mouseover
   cursor: default;
@@ -224,6 +229,7 @@ footer {
     }
   }
 }
+
 
 // --- Task/Languages/Adapters overview
 

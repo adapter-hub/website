@@ -90,25 +90,27 @@
                     Install the adapter-transformers library first:
                 </p>
                 <p>
-                    <pre class="bg-light py-3 px-4">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
+                    <pre class="code py-3 px-4">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
                 </p>
             </div>
         </div>
 
-        <div class="row mt-3">
-            <div class="col-sm-6">
-                <div class="card">
+        <div class="row">
+            <div class="col-xl-6 mt-3">
+                <div class="card bg-light border-0">
                     <div class="card-body">
                         <h4 class="card-title">Load an Adapter 🏄</h4>
-                        <p>Loading existing adapters from our repository is as simple as adding one additional line of code!</p>
-                        <pre class="bg-light p-3">model = AutoModel.from_pretrained('roberta-base')
+                        <p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>
+                        <pre class="code p-3">model = AutoModel.from_pretrained('roberta-base')
 model.load_adapter('sst', load_head=True)
 </pre>
-                        <p>This loads an adapter that is trained on the Stanford Sentiment Treebank.
-                            It achieves state-of-the-art results while also being light-weight: the <a href="">SST adapter</a> is only 3MB!</p>
-                        <p>
-                            We can now use this adapter to predict the sentiment of sentences:</p>
-                        <pre class="bg-light p-3">
+                        <p>The <a href="">SST adapter</a> is light-weight: it is only 3MB! At
+                            the same time, it achieves <a href="">results</a> that are on-par with fully fine-tuned BERT.
+                            We can now leverage SST adapter to predict the sentiment of sentences:</p>
+                        <p class="text-center">
+                            <button class="btn btn-sm btn-primary" id="QuickstartInferenceShowMore">Show more...</button>
+                        </p>
+                        <pre class="code p-3 d-none" id="QuickstartInferenceMore">
 tokenizer = AutoTokenizer.from_pretrained('roberta-base')
 tokens = tokenizer.tokenize("AdapterHub is awesome!")
 input_tensor = torch.tensor([
@@ -123,8 +125,8 @@ outputs = model(
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card">
+            <div class="col-xl-6 mt-3">
+                <div class="card bg-light border-0">
                     <div class="card-body">
                         <h5 class="card-title">Train an Adapter 🏋️️</h5>
                         <p class="card-text">...</p>
@@ -136,7 +138,7 @@ outputs = model(
 
     <section>
         <h1>Citation 📝</h1>
-        <pre class="p-4 bg-light">
+        <pre class="p-4 code">
 @article{pfeiffer2020AdapterHub,
     title={AdapterHub},
     author={Jonas Pfeiffer, 
@@ -151,5 +153,15 @@ outputs = model(
     year={2020}
 }</pre>
     </section>
+
+
+    <script>
+        $(function(){
+            $('#QuickstartInferenceShowMore').click(function(){
+                $(this).addClass('d-none');
+                $('#QuickstartInferenceMore').removeClass('d-none');
+            });
+        });
+    </script>
 
 {% endblock %}
