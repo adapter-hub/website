@@ -5,7 +5,7 @@
 {% block title %}{{ adapter['groupname'] + "/" + adapter['filename'] }}{% endblock %}
 
 {% block header %}
-<h1>Adapter</h1>
+<h1>{{ 'Language' if adapter.type == 'text_lang' else 'Task' }} Adapter</h1>
 <h2>{{ adapter['groupname'] }} / <span class="text-white-65">{{ adapter['filename'] }}</span></h2>
 
 <div class="row breadcrumb-nav">
@@ -66,36 +66,38 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config="{{ adapter[
 <section class="row mt-4 mb-4">
     <div class="col-12">
         <h3>Properties</h3>
-        <table class="table table-sm">
-        <tr><td>Task</td><td>{{ adapter.subtask_ref.task_ref.displayname }}</td></tr>
-        <tr><td>Dataset</td><td>{{ adapter.subtask_ref.displayname or adapter.subtask }}</td></tr>
-        <tr><td>Pre-trained model</td><td>{{ adapter.model_name }}</td></tr>
-        <tr><td>Adapter architecture name</td><td>{{ adapter['config'] }}</td></tr>
-        <tr><td>Adapter ID</td><td>{{ adapter['config_id'] }}</td></tr>
-        <tr><td>Author</td><td>{{ adapter['author'] }} ({{adapter['email']}})</td></tr>
-        <tr><td>Web</td><td><a href="{{ adapter['url'] }}">{{ adapter['url'] }}</a></td></tr>
+        <table class="table table-sm table-hover">
+        <tr class="d-flex"><td class="col-4 col-xl-3">Task</td><td class="col-8 col-xl-9">{{ adapter.subtask_ref.task_ref.displayname }}</td></tr>
+        <tr class="d-flex"><td class="col-4 col-xl-3">Dataset</td><td class="col-8 col-xl-9">{{ adapter.subtask_ref.displayname or adapter.subtask }}</td></tr>
+        <tr class="d-flex"><td class="col-4 col-xl-3">Pre-trained model</td><td class="col-8 col-xl-9">{{ adapter.model_name }}</td></tr>
+        <tr class="d-flex"><td class="col-4 col-xl-3">Adapter architecture name</td><td class="col-8 col-xl-9">{{ adapter['config'] }}</td></tr>
+        <tr class="d-flex"><td class="col-4 col-xl-3">Adapter ID</td><td class="col-8 col-xl-9">{{ adapter['config_id'] }}</td></tr>
+        <tr class="d-flex"><td class="col-4 col-xl-3">Author</td><td class="col-8 col-xl-9">{{ adapter['author'] }} ({{adapter['email']}})</td></tr>
+        <tr class="d-flex"><td class="col-4 col-xl-3">Web</td><td class="col-8 col-xl-9"><a href="{{ adapter['url'] }}">{{ adapter['url'] }}</a></td></tr>
     </table>
     </div>
 </section>
 <section class="mt-4 mb-4">
     <h3>Versions</h3>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th scope="col">Identifier</th>
-                <th scope="row">URL</th>
+            <tr class="d-flex">
+                <th scope="col" class="col-4 col-xl-3">Identifier</th>
+                <th scope="col" class="col-6 col-xl-7">Comment</th>
+                <th scope="col" class="col-2 text-right">Weights</th>
             </tr>
         </thead>
         <tbody>
             {% for file in adapter.files %}
-            <tr>
-                <th scope="row">
+            <tr class="d-flex">
+                <th scope="row" class="col-4 col-xl-3">
                     {{ file['version'] }}
                     {% if file['version'] == adapter['default_version'] %}
                         <span class="badge badge-primary activate-tooltip" data-toggle="tooltip" data-placement="top" title="This is the default version for the adapter.">DEFAULT</span>
                     {% endif %}
                 </th>
-                <td><a href="{{ file['url'] }}">{{ file['url'] }}</a></td>
+                <td  class="col-6 col-xl-7">...</td>
+                <td class="text-right col-2"><a href="{{ file['url'] }}"><i class="fa fa-link"></i></a></td>
             </tr>
             {% endfor %}
         </tbody>
