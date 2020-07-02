@@ -144,6 +144,7 @@ class AdapterFile(db.Model):
     url = db.Column(db.String(200), nullable=False)
     sha1 = db.Column(db.String(40))
     sha256 = db.Column(db.String(64))
+    description = db.Column(db.Text)
 
     adapter = db.relationship('Adapter', backref='files')
 

@@ -84,7 +84,7 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config="{{ adapter[
             <tr class="d-flex">
                 <th scope="col" class="col-4 col-xl-3">Identifier</th>
                 <th scope="col" class="col-6 col-xl-7">Comment</th>
-                <th scope="col" class="col-2 text-right">Weights</th>
+                <th scope="col" class="col-2 text-right">Download</th>
             </tr>
         </thead>
         <tbody>
@@ -96,8 +96,8 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config="{{ adapter[
                         <span class="badge badge-primary activate-tooltip" data-toggle="tooltip" data-placement="top" title="This is the default version for the adapter.">DEFAULT</span>
                     {% endif %}
                 </th>
-                <td  class="col-6 col-xl-7">...</td>
-                <td class="text-right col-2"><a href="{{ file['url'] }}"><i class="fa fa-link"></i></a></td>
+                <td  class="col-6 col-xl-7">{{ file.description or "" }}</td>
+                <td class="text-right col-2"><a href="{{ file['url'] }}"><i class="fa fa-download"></i></a></td>
             </tr>
             {% endfor %}
         </tbody>
