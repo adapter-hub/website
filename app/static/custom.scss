@@ -179,18 +179,34 @@ footer {
 
 #Header {
   p.highlight-text {
-    //text-transform: uppercase;
-    color: lighten($primary, 35%);
-    font-size: 1.1rem;
+    color: lighten($primary, 30%);
+    font-size: 1.6rem;
     line-height: 2.1rem;
-    //margin-top: 1rem;
 
     .highlight {
-      //padding: 0 6px;
+      font-size: 2rem;
       text-transform: none;
       color: lighten($primary, 49%);
-      font-size: 2rem;
     }
+  }
+
+  pre {
+    font-size: 0.8rem;
+    border-left: 4px solid lighten($primary, 30%);;
+    background-color: lighten($primary, 5%);
+
+    @include media-breakpoint-up(xl) {
+      & {
+        font-size: 1rem;
+      }
+    }
+
+    @include media-breakpoint-between(sm, md) {
+      & {
+        width: 494px;
+      }
+    }
+
   }
 
   .form-group {

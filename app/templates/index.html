@@ -8,10 +8,10 @@
             <p class="highlight-text mt-md-3">
                 <span class="highlight">AdapterHub</span>
                 is a <span class="highlight">central repository</span><br class="d-none d-lg-inline">
-                for pre-trained <span class="highlight">adapter modules</span> for language models.
+                for pre-trained <span class="highlight">adapter modules</span>.
             </p>
 
-            <div id="IndexButtonRow" class="rounded">
+            <div id="IndexButtonRow" class="rounded mb-3">
                 <a class="btn"
                    href="{{ url_for('main.explore_tasks') }}">
                     <div>
@@ -48,9 +48,10 @@
                     Paper
                 </a>
             </div>
+            <pre class="text-white py-2 px-3 mt-4">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre></p>
         </div>
         <div class="col-sm-3 text-right d-none d-md-block">
-            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="225"/>
+            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="275"/>
         </div>
     </div>
 {% endblock %}
@@ -86,9 +87,6 @@
         <div class="row">
             <div class="col col-lg-12">
                 <h1>Quickstart 🔥</h1>
-                <p>
-                    <pre class="code py-3 px-4">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
-                </p>
             </div>
         </div>
         <div class="row mt-3">
