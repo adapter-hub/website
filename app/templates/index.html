@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} A central repository for pre-trained adapter modules {% endblock %}
 
 {% block header %}
     <div class="row">
@@ -57,7 +57,7 @@
 
 {% block content %}
 
-    <section class="">
+    <section>
         <div class="row">
             <div class="card col-md mt-md-3 mx-3 px-0 px-md-2 bg-light border-0">
                 <div class="card-body">
@@ -84,7 +84,7 @@
 
     <section>
         <div class="row">
-            <div class="col col-lg-8">
+            <div class="col col-lg-12">
                 <h1>Quickstart 🔥</h1>
                 <p>In the following, we outline the two most common ways of using AdapterHub.
                     Install the adapter-transformers library first:
@@ -94,23 +94,26 @@
                 </p>
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col col-lg-4">
+                <div class="list-group" role="tablist">
+                    <a href="#quickstartInference" class="list-group-item list-group-item-action active" data-toggle="tab" role="tab" aria-controls="quickstartInference" aria-selected="true">
+                        Adapter Inference
+                    </a>
+                    <a href="#quickstartTraining" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartTraining" aria-selected="true">Adapter Training</a>
+                </div>
+            </div>
 
-        <div class="row">
-            <div class="col-xl-6 mt-3">
-                <div class="card bg-light border-0">
-                    <div class="card-body">
-                        <h4 class="card-title">Load an Adapter 🏄</h4>
-                        <p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>
-                        <pre class="code p-3">model = AutoModel.from_pretrained('roberta-base')
-model.load_adapter('sst', load_head=True)
-</pre>
-                        <p>The <a href="">SST adapter</a> is light-weight: it is only 3MB! At
-                            the same time, it achieves <a href="">results</a> that are on-par with fully fine-tuned BERT.
-                            We can now leverage SST adapter to predict the sentiment of sentences:</p>
-                        <p class="text-center">
-                            <button class="btn btn-sm btn-primary" id="QuickstartInferenceShowMore">Show more...</button>
-                        </p>
-                        <pre class="code p-3 d-none" id="QuickstartInferenceMore">
+            <div class="tab-content col col-lg-8">
+                <div class="tab-pane fade show active" id="quickstartInference" role="tabpanel">
+                    <h3 class="mt-0">Load an Adapter for Inference 🏄</h3>
+                    <p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>
+                    <pre class="code p-3">model = AutoModel.from_pretrained('roberta-base')
+model.load_adapter('sst', load_head=True)</pre>
+                    <p>The <a href="">SST adapter</a> is light-weight: it is only 3MB! At
+                        the same time, it achieves <a href="">results</a> that are on-par with fully fine-tuned BERT.
+                        We can now leverage SST adapter to predict the sentiment of sentences:</p>
+                    <pre class="code p-3" id="QuickstartInferenceMore">
 tokenizer = AutoTokenizer.from_pretrained('roberta-base')
 tokens = tokenizer.tokenize("AdapterHub is awesome!")
 input_tensor = torch.tensor([
@@ -122,15 +125,11 @@ outputs = model(
     adapter_tasks=['sst'],
     task='sst'
 )</pre>
-                    </div>
                 </div>
-            </div>
-            <div class="col-xl-6 mt-3">
-                <div class="card bg-light border-0">
-                    <div class="card-body">
-                        <h5 class="card-title">Train an Adapter 🏋️️</h5>
-                        <p class="card-text">...</p>
-                    </div>
+
+                <div class="tab-pane fade" id="quickstartTraining" role="tabpanel">
+                    <h3 class="mt-0">Train an Adapter 🏋️️</h3>
+                    <p>...</p>
                 </div>
             </div>
         </div>
@@ -154,14 +153,5 @@ outputs = model(
 }</pre>
     </section>
 
-
-    <script>
-        $(function(){
-            $('#QuickstartInferenceShowMore').click(function(){
-                $(this).addClass('d-none');
-                $('#QuickstartInferenceMore').removeClass('d-none');
-            });
-        });
-    </script>
 
 {% endblock %}
