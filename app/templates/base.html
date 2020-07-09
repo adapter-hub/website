@@ -51,6 +51,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
                 <li class="{{ 'nav-item active' if active_page == 'explore' else 'nav-item' }}">
                     <a class="nav-link" href="{{ url_for('main.explore_tasks') }}">
                         <i class="fas fa-binoculars"></i>&nbsp; Explore
@@ -66,14 +67,13 @@
                         <i class="fas fa-book"></i>&nbsp; Docs
                     </a>
                 </li>
-                <li class="nav-item separator">
-                </li>
-                <li class="nav-item nav-secondary justify-content-end">
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
                     <a class="nav-link" href="https://github.com/adapter-hub">
                         <i class="fab fa-github"></i>&nbsp;
                     </a>
                 </li>
-                <li class="nav-item nav-secondary justify-content-end">
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
                     <a class="nav-link" href="https://twitter.com/adapterhub">
                         <i class="fab fa-twitter"></i>&nbsp;
                     </a>
