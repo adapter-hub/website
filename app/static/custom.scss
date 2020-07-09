@@ -370,7 +370,8 @@ footer {
     position: absolute;
     margin-left: 160px;
     max-width: 300px;
-    background: $primary;
+    //background: $primary;
+    background: $gray-500;
     border-radius: 1rem;
     color: $white;
     padding: 1rem;
@@ -384,7 +385,8 @@ footer {
     width: 0;
     height: 0;
     border: 25px solid transparent;
-    border-top-color: $primary;
+    //border-top-color: $primary;
+    border-top-color: $gray-500;
     border-bottom: 0;
     border-left: 0;
     margin-left: -0px;

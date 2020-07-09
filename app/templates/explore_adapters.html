@@ -130,4 +130,27 @@
         </div>
     {% endfor %}
 </div>
+
+{% if items|length == 0 %}
+    <div id="NoSearchResult">
+        <div class="alert alert-light">
+            No {{ subtask.task_type_ref.displayname | lower }} adapters available for <span class="font-weight-bold">{{ task_name }}/{{ subtask_name }}</span> <i class="fas fa-arrow-right"></i> <span class="font-weight-bold">{{ model }}</span>
+        </div>
+        <div class="mt-5">
+            <div class="speech-bubble">
+                <p class="m-0">Add your adapter to AdapterHub,
+                    <br/>
+                    it's super awesome!
+                </p>
+                <div class="mt-3 text-right">
+                    <a class="text-white btn btn-sm border-white" href="{{ config.CONTRIBUTING_URL }}#add-your-pre-trained-adapter">
+                        <i class="fas fa-rocket"></i> Get started
+                    </a>
+                </div>
+            </div>
+            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="350"/>
+        </div>
+    </div>
+{% endif %}
+
 {% endblock %}
