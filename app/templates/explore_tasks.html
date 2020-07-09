@@ -76,7 +76,6 @@
             No tasks and datasets for "<span class="query"></span>"!
         </div>
         <div class="mt-5">
-            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="350" class="float-left"/>
             <div class="speech-bubble">
                 <p class="m-0">Add your
                     {{ 'language' if task_type.id == 'text_lang' else 'task' }}
@@ -84,12 +83,13 @@
                     <br/>
                     it's super awesome!
                 </p>
-                <div class="mt-1 text-right">
-                    <a class="btn btn-secondary btn-sm text-white" href="{{ config.CONTRIBUTING_URL }}#add-your-pre-trained-adapter">
+                <div class="mt-3 text-right">
+                    <a class="text-white btn btn-sm border-white" href="{{ config.CONTRIBUTING_URL }}#add-your-pre-trained-adapter">
                         <i class="fas fa-rocket"></i> Get started
                     </a>
                 </div>
             </div>
+            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="350"/>
         </div>
     </div>
 
