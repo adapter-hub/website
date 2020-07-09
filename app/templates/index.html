@@ -48,7 +48,7 @@
                     Paper
                 </a>
             </div>
-            <pre class="text-white py-2 px-3 mt-4">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre></p>
+            <pre class="text-white py-2 px-3 mt-4 mb-1 mb-md-3">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
         </div>
         <div class="col-sm-3 text-right d-none d-md-block">
             <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="275"/>
@@ -91,7 +91,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col col-12 col-md-4">
+            <div class="col col-12 col-md-4 d-none d-lg-block">
                 <div class="list-group flex-md-column flex-row" role="tablist">
                     <a href="#quickstartInference" class="list-group-item list-group-item-action active" data-toggle="tab" role="tab" aria-controls="quickstartInference" aria-selected="true">
                         Inference
@@ -102,7 +102,22 @@
                 </div>
             </div>
 
-            <div class="tab-content col col-12 col-md-8 mt-4 mt-md-0">
+            <div class="col col-12 d-lg-none">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a href="#quickstartInference" class="nav-link active" data-toggle="tab" role="tab" aria-controls="quickstartInference" aria-selected="true">
+                            Inference
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quickstartTraining" class="nav-link" data-toggle="tab" role="tab" aria-controls="quickstartTraining" aria-selected="true">
+                            Training
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content col col-12 col-lg-8 mt-4 mt-lg-0">
                 <div class="tab-pane fade show active" id="quickstartInference" role="tabpanel">
                     <h3 class="mt-0">Load an Adapter for Inference 🏄</h3>
                     <p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>

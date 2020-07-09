@@ -207,6 +207,12 @@ footer {
       }
     }
 
+    @media (min-width: 0) and (max-width: 420px) {
+      & {
+        width: 370px;
+      }
+    }
+
   }
 
   .form-group {
