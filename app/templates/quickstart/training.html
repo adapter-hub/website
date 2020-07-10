@@ -1,0 +1,17 @@
+<h3 class="mt-0">Train an Adapter 🏋️️</h3>
+<p>Training a task adapter on a given dataset requires only few modifications compared to fine-tuning the full model with HuggingFace' Trainer.
+    We first load a pre-trained model, e,g, <code>roberta-base</code>, and add a new task adapter:</p>
+<pre class="code">model = AutoModelWithHeads.from_pretrained('roberta-base')
+model.add_adapter("sst-2", AdapterType.text_task)
+model.train_task_adapter()
+</pre>
+<p>By calling <code>train_task_adapter()</code>, we tell the model to freeze all parameters of the model except for the newly added adapter.
+    We then add a new classification head for our task:</p>
+<pre class="code">model.add_classification_head("sst-2", num_labels=2)
+model.set_active_task("sst-2")
+</pre>
+<p>By calling <code>model.set_active_task("sst-2")</code> the model will standardly use the sst-2 adapter and classification head.</p>
+<p>We can then continue training our model, e.g., with a standard HuggingFace <code>Trainer</code>.
+After training we can export our new adapter.</p>
+<pre class="code">trainer.train()
+model.save_all_adapters('adapter-sst-2')</pre>

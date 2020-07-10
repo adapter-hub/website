@@ -40,6 +40,8 @@ $break-iphone-se: 320px;
 .code {
   background-color: lighten($light, 3%);
   border-left: 4px solid darken($light, 3%);;
+
+  padding: 1rem;
 }
 
 .activate-tooltip {

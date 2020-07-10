@@ -119,30 +119,11 @@
 
             <div class="tab-content col col-12 col-lg-8 mt-4 mt-lg-0">
                 <div class="tab-pane fade show active" id="quickstartInference" role="tabpanel">
-                    <h3 class="mt-0">Load an Adapter for Inference 🏄</h3>
-                    <p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>
-                    <pre class="code p-3">model = AutoModel.from_pretrained('roberta-base')
-model.load_adapter('sst', load_head=True)</pre>
-                    <p>The <a href="">SST adapter</a> is light-weight: it is only 3MB! At
-                        the same time, it achieves <a href="">results</a> that are on-par with fully fine-tuned BERT.
-                        We can now leverage SST adapter to predict the sentiment of sentences:</p>
-                    <pre class="code p-3" id="QuickstartInferenceMore">
-tokenizer = AutoTokenizer.from_pretrained('roberta-base')
-tokens = tokenizer.tokenize("AdapterHub is awesome!")
-input_tensor = torch.tensor([
-    tokenizer.convert_tokens_to_ids(tokens)
-])
-
-outputs = model(
-    input_tensor,
-    adapter_tasks=['sst'],
-    task='sst'
-)</pre>
+                    {% include 'quickstart/inference.html' %}
                 </div>
 
                 <div class="tab-pane fade" id="quickstartTraining" role="tabpanel">
-                    <h3 class="mt-0">Train an Adapter 🏋️️</h3>
-                    <p>...</p>
+                    {% include 'quickstart/training.html' %}
                 </div>
             </div>
         </div>
