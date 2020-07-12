@@ -426,8 +426,6 @@ footer {
 }
 
 .task {
-  margin-bottom: 1rem;
-
   h3 {
     i {
       font-size: 0.8em;
@@ -436,11 +434,10 @@ footer {
   }
 
   .subtasks {
-    margin-top: 1rem;
+    //margin-top: 1rem;
 
     a {
       text-align: left;
-      margin-bottom: 2rem;
     }
   }
 }
@@ -495,11 +492,8 @@ footer {
   }
 
   .adapter {
-    margin-top: 1rem;
-
     a {
       text-align: left;
-      margin-bottom: 2rem;
     }
 
     h5 {

@@ -42,13 +42,13 @@
 
 {% block content %}
     {% for task in tasks %}
-        <div class="task">
-            <h3>{{ task.displayname }}
+        <div class="task mb-4">
+            <h3 class="mb-2">{{ task.displayname }}
             <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="{{ task.description }}"></i>
             </h3>
             <div class="row subtasks">
                 {% for subtask in subtasks[task.task] %}
-                    <div class="col-lg-6 subtask">
+                    <div class="col-lg-6 subtask my-3">
                         <a class="btn card bg-light border-0" href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}">
                             <div class="card-body">
                                 <h5 class="card-title">
