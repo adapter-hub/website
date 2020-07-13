@@ -13,7 +13,14 @@ pages = FlatPages()
 
 @bp.route('/')
 def index():
-    return render_template('index.html', posts=[])
+    n_subtasks = Subtask.query.filter(
+        Subtask.task_type == 'text_task'
+    ).count()
+    n_languages = Task.query.filter(
+        Task.task_type == 'text_lang'
+    ).count()
+    n_adapters = Adapter.query.count()
+    return render_template('index.html', posts=[], n_subtasks=n_subtasks, n_languages=n_languages,n_adapters=n_adapters)
 
 
 @bp.route('/explore/')

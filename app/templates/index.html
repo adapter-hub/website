@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %} A central repository for pre-trained adapter modules {% endblock %}
+{% block title %} {{ n_adapters }} adapters for {{ n_subtasks }} text tasks and languages {% endblock %}
 
 {% block header %}
     <div class="row">
         <div class="text-light col-md-9">
             <p class="highlight-text mt-md-3">
-                A <span class="highlight">central repository</span><br class="d-none d-sm-inline-block">
+                A <span class="highlight">central repository</span>
                 for pre-trained <span class="highlight">adapter modules</span>.
+                <br>
+                <span class="small">
+                    <span class="badge badge-light">{{ n_adapters }} adapters</span>
+                    <span class="badge badge-light">{{ n_subtasks }} text tasks</span>
+                    <span class="badge badge-light">{{ n_languages }} languages</span>
+                </span>
             </p>
-
             <div id="IndexButtonRow" class="rounded mb-3">
                 <a class="btn"
                    href="{{ url_for('main.explore_tasks') }}">
