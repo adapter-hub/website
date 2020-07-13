@@ -29,12 +29,20 @@ $nav-pills-link-active-bg: $secondary;
 $break-iphone-x: 400px;
 $break-iphone-se: 320px;
 
+.text-white-80 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .text-white-65 {
   color: rgba(255, 255, 255, 0.65);
 }
 
 .text-black-30 {
   color: rgba(0, 0, 0, 0.3);
+}
+
+.text-black-65 {
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .code {
@@ -291,9 +299,8 @@ footer {
     margin-bottom: 0;
   }
 
-  .badge {
-    opacity: 0.65;
-    padding: 5px 10px;
+  .badge-light {
+    background-color: lighten($primary, 25%);
   }
 
   #IndexButtonRow {
