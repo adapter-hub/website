@@ -5,31 +5,31 @@
 {% set subtask_name = subtask.subtask %}
 
 {% block header %}
-<div class="row breadcrumb-nav">
-    <nav aria-label="breadcrumb" class="col">
-        <ol class="breadcrumb bg-transparent">
-            <li class="breadcrumb-item">
-                <a href="{{url_for('main.explore_tasks')}}">Explore</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{url_for('main.explore_tasks', task_type=subtask.task_type)}}">{{ subtask.task_type_ref.displayname }}</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name)}}">{{ subtask }}</a>
-            </li>
-            {% if model_type %}
-                <li class="breadcrumb-item">
-                    <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type)}}">{{ model_type }}</a>
-                </li>
-            {% endif %}
-            {% if model %}
-                <li class="breadcrumb-item">
-                    <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type, model=model)}}">{{ model }}</a>
-                </li>
-            {% endif %}
-        </ol>
-    </nav>
-</div>
+{#<div class="row breadcrumb-nav">#}
+{#    <nav aria-label="breadcrumb" class="col">#}
+{#        <ol class="breadcrumb bg-transparent">#}
+{#            <li class="breadcrumb-item">#}
+{#                <a href="{{url_for('main.explore_tasks')}}">Explore</a>#}
+{#            </li>#}
+{#            <li class="breadcrumb-item">#}
+{#                <a href="{{url_for('main.explore_tasks', task_type=subtask.task_type)}}">{{ subtask.task_type_ref.displayname }}</a>#}
+{#            </li>#}
+{#            <li class="breadcrumb-item">#}
+{#                <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name)}}">{{ subtask }}</a>#}
+{#            </li>#}
+{#            {% if model_type %}#}
+{#                <li class="breadcrumb-item">#}
+{#                    <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type)}}">{{ model_type }}</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#            {% if model %}#}
+{#                <li class="breadcrumb-item">#}
+{#                    <a href="{{url_for('main.explore_adapters', task=task_name, subtask=subtask_name, model_type=model_type, model=model)}}">{{ model }}</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#        </ol>#}
+{#    </nav>#}
+{#</div>#}
 
 <div class="row adapter-nav" id="ModelTypeNav">
     <div class="col-md-12">
