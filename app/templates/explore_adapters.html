@@ -109,7 +109,7 @@
 {% block content %}
 <div class="row adapters">
     {% for item in items %}
-        <div class="col-lg-6 adapter my-3">
+        <div class="col-lg-6 adapter my-lg-3 my-2">
             <a class="btn card bg-light border-0" href="{{ url_for('main.adapter_details', groupname=item['groupname'], filename=item['filename']) }}">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -154,7 +154,7 @@
                     </a>
                 </div>
             </div>
-            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="350"/>
+            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="300"/>
         </div>
     </div>
 {% endif %}

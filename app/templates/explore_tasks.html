@@ -27,7 +27,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-lg documentation">
+        <div class="col-lg documentation mt-1 mt-lg-0">
             <i class="fa fa-book"></i>
             {{ task_type.description }}
         </div>
@@ -48,7 +48,7 @@
             </h3>
             <div class="row subtasks">
                 {% for subtask in subtasks[task.task] %}
-                    <div class="col-lg-6 subtask my-3">
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
                         <a class="btn card bg-light border-0" href="{{ url_for('main.explore_adapters', task=task.task, subtask=subtask.subtask) }}">
                             <div class="card-body">
                                 <h5 class="card-title">
