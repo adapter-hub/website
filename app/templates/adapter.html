@@ -33,15 +33,15 @@
 
 {% block content %}
 
-    <section class="mt-4 mb-4">
-        <h3>Description</h3>
+    <section>
+        <h2>Description</h2>
         <p>
             {{ adapter['description'] }}
         </p>
     </section>
 
-    <section class="mt-4 mb-4">
-        <h3>Usage</h3>
+    <section>
+        <h2>Usage</h2>
         {# Build config loading string #}
         {% set custom_config_str = "" %}
         {% if adapter.config_non_linearity %}
@@ -58,8 +58,8 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
     </section>
 
 {% if adapter.dependencies|length %}
-<section class="mt-4 mb-4">
-    <h3>Dependencies</h3>
+<section>
+    <h2>Dependencies</h2>
     This adapter should be used together with these dependencies to achieve best results:
     <ul class="my-4">
         {% for dep in adapter.dependencies %}
@@ -72,9 +72,9 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
     </ul>
 </section>
 {% endif %}
-<section class="row mt-4 mb-4">
+<section class="row mb-4">
     <div class="col-12">
-        <h3>Properties</h3>
+        <h2>Properties</h2>
         <table class="table table-sm table-hover">
         <tr class="d-flex"><td class="col-4 col-xl-3">Task</td><td class="col-8 col-xl-9">{{ adapter.subtask_ref.task_ref.displayname }}</td></tr>
         <tr class="d-flex"><td class="col-4 col-xl-3">Dataset</td><td class="col-8 col-xl-9">{{ adapter.subtask_ref.displayname or adapter.subtask }}</td></tr>
@@ -85,8 +85,8 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
     </table>
     </div>
 </section>
-<section class="mt-4 mb-4">
-    <h3>Versions</h3>
+<section>
+    <h2>Versions</h2>
     <table class="table table-hover">
         <thead>
             <tr class="d-flex">
@@ -112,7 +112,7 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
     </table>
 </section>
 <section class="mt-4 mb-4">
-    <h3>Citation</h3>
+    <h2>Citation</h2>
     <pre class="p-4 bg-light">{{ adapter['citation'] }}</pre>
 </section>
 {% endblock %}

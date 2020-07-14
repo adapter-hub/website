@@ -266,6 +266,16 @@ footer {
     }
   }
 
+  #HeaderLogo {
+    margin-top: -15px;
+
+    @include media-breakpoint-down(md) {
+      & {
+        margin-top: 0;
+      }
+    }
+  }
+
   pre {
     font-size: 0.8rem;
     border-left: 4px solid lighten($primary, 30%);;
@@ -273,7 +283,8 @@ footer {
 
     @include media-breakpoint-up(xl) {
       & {
-        font-size: 1rem;
+        //font-size: 1rem;
+        width: 618px;
       }
     }
 

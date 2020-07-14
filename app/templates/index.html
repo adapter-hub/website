@@ -9,13 +9,13 @@
                 A <span class="highlight">central repository</span>
                 for pre-trained <span class="highlight">adapter modules</span>
             </p>
-            <p class="mb-4 mt-2">
+            <p class="mt-2">
                 <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">{{ n_adapters }} <span class=" font-weight-normal">adapters</span></span>
                 <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">{{ n_subtasks }} <span class=" font-weight-normal">text tasks</span></span>
                 <span class="badge badge-light p-1 py-md-2 px-md-3 text-black-65">{{ n_languages }} <span class=" font-weight-normal">languages</span></span>
             </p>
-            <pre class="text-white py-2 px-3 mt-3 mt-lg-5 d-none d-md-block">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
-            <div id="IndexButtonRow" class="rounded mt-1 mt-lg-1">
+            <pre class="text-white py-2 px-3 my-4 d-none d-md-block">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
+            <div id="IndexButtonRow" class="rounded mt-lg-1">
                 <a class="btn"
                    href="{{ url_for('main.explore_tasks') }}">
                     <div>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="col-sm-3 text-right d-none d-md-block">
-            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="255"/>
+            <img id="HeaderLogo" src="{{ url_for('static', filename='adapter-bert.png') }}" height="252"/>
         </div>
     </div>
 {% endblock %}
@@ -62,15 +62,15 @@
 {% block content %}
 
     <section>
-        <div class="row">
-            <div class="card col-md mt-md-3 mx-3 px-0 px-md-2 bg-light border-0">
+        <div class="row pt-lg-3">
+            <div class="card col-md mx-3 px-0 px-md-2 bg-light border-0">
                 <div class="card-body">
                     <h5 class="card-title">Adapters are Lightweight 🤖</h5>
                     <p class="card-text"> "Adapter" refers to a set of newly introduced weights, typically within the layers of a transformer model. Adapters provide an alternative to fully fine-tuning the model for each downstream task, while maintaining performance. They also have the added benefit of requiring as little as 1MB of storage space per task! </p>
                 </div>
             </div>
 
-            <div class="card col-md mx-3 ml-md-0 mr-md-3 mr-lg-0 mt-3 px-0 px-md-2 bg-light border-0">
+            <div class="card col-md mx-3 ml-md-0 mr-md-3 mr-lg-0 mt-3 mt-md-0 px-0 px-md-2 bg-light border-0">
                 <div class="card-body">
                     <h5 class="card-title">Modular, Composable, and Extensible 🔧</h5>
                     <p class="card-text"> Adapters, being self-contained moduar units, allow for easy extension and composition. This opens up opportunities to compose adapters to solve new tasks. </p>  
@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-            <div class="card col-lg mx-3 mt-3 px-0 px-md-2 bg-light border-0">
+            <div class="card col-lg mx-3 mt-3 mt-lg-0 px-0 px-md-2 bg-light border-0">
                 <div class="card-body">
                     <h5 class="card-title">Built on HuggingFace Transformers 🚀</h5>
                     <p class="card-text">AdapterHub builds on the <a href=https://github.com/huggingface/transformers target="_blank">HuggingFace transformers</a> framework requiring as little as two additional lines of code to train adapters for a downstream task.</p>
