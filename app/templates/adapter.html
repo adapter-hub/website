@@ -5,9 +5,6 @@
 {% block title %}{{ adapter['groupname'] + "/" + adapter['filename'] }}{% endblock %}
 
 {% block header %}
-<h1>{{ 'Language' if adapter.type == 'text_lang' else 'Task' }} Adapter</h1>
-<h2>{{ adapter['groupname'] }} / <span class="text-white-65">{{ adapter['filename'] }}</span></h2>
-
 <div class="row breadcrumb-nav">
     <nav aria-label="breadcrumb" class="col">
         <ol class="breadcrumb bg-transparent">
@@ -29,6 +26,9 @@
         </ol>
     </nav>
 </div>
+
+<h1>{{ 'Language' if adapter.type == 'text_lang' else 'Task' }} Adapter</h1>
+<h2>{{ adapter['groupname'] }} / <span class="text-white-65">{{ adapter['filename'] }}</span></h2>
 {% endblock %}
 
 {% block content %}
