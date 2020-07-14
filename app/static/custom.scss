@@ -122,15 +122,13 @@ $break-iphone-se: 320px;
   }
 
   .breadcrumb-nav {
-    margin-bottom: 2rem;
-
     nav {
       ol.breadcrumb {
         margin: 0;
         padding: 0;
 
         li a {
-          color: $white;
+          color: lighten($primary, 35%);
         }
 
         li::before {

@@ -5,27 +5,27 @@
 {% block title %}{{ adapter['groupname'] + "/" + adapter['filename'] }}{% endblock %}
 
 {% block header %}
-{#<div class="row breadcrumb-nav">#}
-{#    <nav aria-label="breadcrumb" class="col">#}
-{#        <ol class="breadcrumb bg-transparent">#}
-{#            <li class="breadcrumb-item">#}
-{#                <a href="{{url_for('main.explore_tasks')}}">Explore</a>#}
-{#            </li>#}
-{#            <li class="breadcrumb-item">#}
-{#                <a href="{{url_for('main.explore_tasks', task_type=adapter['type'])}}">{{ adapter.adapter_type.displayname }}</a>#}
-{#            </li>#}
-{#            <li class="breadcrumb-item">#}
-{#                <a href="{{url_for('main.explore_adapters', task=adapter['task'], subtask=adapter['subtask'])}}">{{ adapter.subtask_ref }}</a>#}
-{#            </li>#}
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="{{url_for('main.explore_tasks')}}">Explore</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{url_for('main.explore_tasks', task_type=adapter['type'])}}">{{ adapter.adapter_type.displayname }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{url_for('main.explore_adapters', task=adapter['task'], subtask=adapter['subtask'])}}">{{ adapter.subtask_ref }}</a>
+            </li>
 {#            <li class="breadcrumb-item">#}
 {#                <a href="{{url_for('main.explore_adapters', task=adapter['task'], subtask=adapter['subtask'], model_type=adapter['model_type'])}}">{{ adapter['model_type'].title() }}</a>#}
 {#            </li>#}
 {#            <li class="breadcrumb-item text-white">#}
 {#                {{ adapter }}#}
 {#            </li>#}
-{#        </ol>#}
-{#    </nav>#}
-{#</div>#}
+        </ol>
+    </nav>
+</div>
 
 <h1>{{ 'Language' if adapter.type == 'text_lang' else 'Task' }} Adapter</h1>
 <h2>{{ adapter['groupname'] }} / <span class="text-white-65">{{ adapter['filename'] }}</span></h2>
