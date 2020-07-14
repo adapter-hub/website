@@ -5,17 +5,17 @@
 {% block header %}
     <div class="row">
         <div class="text-light col-md-9">
-            <p class="highlight-text mt-md-3">
+            <p class="highlight-text my-0">
                 A <span class="highlight">central repository</span>
                 for pre-trained <span class="highlight">adapter modules</span>
-                <br>
-                <span class="small">
-                    <span class="badge badge-light p-1 px-2 text-black-65">{{ n_adapters }} <span class=" font-weight-normal">adapters</span></span>
-                    <span class="badge badge-light py-1 px-2 text-black-65">{{ n_subtasks }} <span class=" font-weight-normal">text tasks</span></span>
-                    <span class="badge badge-light py-1 px-2 text-black-65">{{ n_languages }} <span class=" font-weight-normal">languages</span></span>
-                </span>
             </p>
-            <div id="IndexButtonRow" class="rounded mb-3">
+            <p class="mb-4 mt-2">
+                <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">{{ n_adapters }} <span class=" font-weight-normal">adapters</span></span>
+                <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">{{ n_subtasks }} <span class=" font-weight-normal">text tasks</span></span>
+                <span class="badge badge-light p-1 py-md-2 px-md-3 text-black-65">{{ n_languages }} <span class=" font-weight-normal">languages</span></span>
+            </p>
+            <pre class="text-white py-2 px-3 mt-3 mt-lg-5 d-none d-md-block">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
+            <div id="IndexButtonRow" class="rounded mt-1 mt-lg-1 mb-3">
                 <a class="btn"
                    href="{{ url_for('main.explore_tasks') }}">
                     <div>
@@ -52,10 +52,9 @@
                     Paper
                 </a>
             </div>
-            <pre class="text-white py-2 px-3 mt-3 mb-1 mb-md-3">pip install git+https://github.com/adapter-hub/adapter-transformers.git</pre>
         </div>
         <div class="col-sm-3 text-right d-none d-md-block">
-            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="275"/>
+            <img src="{{ url_for('static', filename='adapter-bert.png') }}" height="255"/>
         </div>
     </div>
 {% endblock %}

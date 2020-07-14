@@ -257,7 +257,7 @@ footer {
   p.highlight-text {
     color: lighten($primary, 30%);
     font-size: 1.6rem;
-    line-height: 2.1rem;
+    line-height: 2.2rem;
 
     .highlight {
       font-size: 2rem;
@@ -302,7 +302,8 @@ footer {
   }
 
   .badge-light {
-    background-color: lighten($primary, 25%);
+    font-size: 0.9rem;
+    background-color: lighten($primary, 20%);
   }
 
   #IndexButtonRow {
