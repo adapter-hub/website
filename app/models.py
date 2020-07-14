@@ -93,6 +93,8 @@ class Adapter(db.Model):
     model_name = db.Column(db.Text, nullable=False)
     model_class = db.Column(db.Text)
     config = db.Column(db.Text, nullable=False)
+    config_non_linearity = db.Column(db.Text)
+    config_reduction_factor = db.Column(db.Text)
 
     # meta
     description = db.Column(db.Text)

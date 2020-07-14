@@ -119,8 +119,14 @@
                         </span>
                     </h5>
                     <div class="features">
-                        <span class="badge badge-primary">Adapter type: {{ item['config'] }}</span>
                         <span class="badge badge-primary">{{ item.files|length }} version{% if item.files|length > 1 %}s{% endif %}</span>
+                        <span class="badge badge-primary">Architecture: {{ item['config'] }}</span>
+                        {% if item.config_non_linearity %}
+                        <span class="badge badge-primary">non-linearity: {{ item.config_non_linearity }}</span>
+                        {% endif %}
+                        {% if item.config_reduction_factor %}
+                        <span class="badge badge-primary">reduction factor: {{ item.config_reduction_factor }}</span>
+                        {% endif %}
                     </div>
                     <p class="card-text">
                         {{ item['description']|truncate(200) }}

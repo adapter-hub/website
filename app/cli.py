@@ -1,3 +1,5 @@
+import json
+
 from flask import current_app
 from flask.cli import AppGroup
 from flask_frozen import Freezer
@@ -33,4 +35,10 @@ def db_init():
         if not db.session.query(Subtask).filter_by(**kwargs).first():
             subtask_obj = Subtask(task_type=subtask_args[2], **kwargs)
             db.session.add(subtask_obj)
+    # hack: fix all configs, this should be replaced with something better
+    for adapter in db.session.query(Adapter).all():
+        config = json.loads(adapter.config.replace("\'", "\""))
+        adapter.config = config["using"]
+        adapter.config_non_linearity = config.get("non_linearity", None)
+        adapter.config_reduction_factor = config.get("reduction_factor", None)
     db.session.commit()

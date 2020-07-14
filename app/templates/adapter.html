@@ -42,9 +42,18 @@
 
     <section class="mt-4 mb-4">
         <h3>Usage</h3>
+        {# Build config loading string #}
+        {% set custom_config_str = "" %}
+        {% if adapter.config_non_linearity %}
+        {% set custom_config_str = custom_config_str + ", non_linearity=\""+adapter.config_non_linearity+"\"" %}
+        {% endif %}
+        {% if adapter.config_reduction_factor %}
+        {% set custom_config_str = custom_config_str + ", reduction_factor="+adapter.config_reduction_factor %}
+        {% endif %}
         <pre class="p-4 bg-light">
-model = AutoModel.from_pretrained("{{ adapter.model_name }}")
-model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config="{{ adapter['config'] }}")</pre>
+model = {{ adapter.model_class or "AutoModel" }}.from_pretrained("{{ adapter.model_name }}")
+config = AdapterConfig.load("{{ adapter.config }}"{{ custom_config_str }})
+model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre>
         <i class="btn-clipboard"></i>
     </section>
 
@@ -70,8 +79,7 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config="{{ adapter[
         <tr class="d-flex"><td class="col-4 col-xl-3">Task</td><td class="col-8 col-xl-9">{{ adapter.subtask_ref.task_ref.displayname }}</td></tr>
         <tr class="d-flex"><td class="col-4 col-xl-3">Dataset</td><td class="col-8 col-xl-9">{{ adapter.subtask_ref.displayname or adapter.subtask }}</td></tr>
         <tr class="d-flex"><td class="col-4 col-xl-3">Pre-trained model</td><td class="col-8 col-xl-9">{{ adapter.model_name }}</td></tr>
-        <tr class="d-flex"><td class="col-4 col-xl-3">Adapter architecture name</td><td class="col-8 col-xl-9">{{ adapter['config'] }}</td></tr>
-        <tr class="d-flex"><td class="col-4 col-xl-3">Adapter ID</td><td class="col-8 col-xl-9">{{ adapter['config_id'] }}</td></tr>
+        <tr class="d-flex"><td class="col-4 col-xl-3">Adapter architecture</td><td class="col-8 col-xl-9">{{ adapter['config'] + custom_config_str }}</td></tr>
         <tr class="d-flex"><td class="col-4 col-xl-3">Author</td><td class="col-8 col-xl-9">{{ adapter['author'] }} ({{adapter['email']}})</td></tr>
         <tr class="d-flex"><td class="col-4 col-xl-3">Web</td><td class="col-8 col-xl-9"><a href="{{ adapter['url'] }}">{{ adapter['url'] }}</a></td></tr>
     </table>
