@@ -2,8 +2,8 @@
 {% set active_page = "explore" %}
 
 {% block header %}
-    <div class="row adapter-nav" id="AdapterTypeNav">
-        <div class="col-lg-2">
+    <div class="row adapter-nav mb-4" id="AdapterTypeNav">
+        <div class="col-lg-2 mb-2">
             <h1>
                 {% block title %} Explore {% endblock %}
             </h1>
@@ -27,7 +27,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-lg documentation mt-1 mt-lg-0">
+        <div class="col-lg documentation mt-2 mt-lg-0">
             <i class="fa fa-book"></i>
             {{ task_type.description }}
         </div>
