@@ -3,15 +3,15 @@
     We first load a pre-trained model, e.g., <code>roberta-base</code> and add a new task adapter:</p>
 <pre class="code">model = AutoModelWithHeads.from_pretrained('roberta-base')
 model.add_adapter("sst-2", AdapterType.text_task)
-model.train_task_adapter()
+model.train_adapter(["sst-2"])
 </pre>
-<p>By calling <code>train_task_adapter()</code> we freeze all transformer parameters except for the parameters of task adapters.
+<p>By calling <code>train_adapter(["sst-2"])</code> we freeze all transformer parameters except for the parameters of sst-2 adapter.
 Before training we add a new classification head to our model:</p>
 <pre class="code">model.add_classification_head("sst-2", num_labels=2)
-model.set_active_task("sst-2")
+model.set_active_adapters([["sst-2"]])
 </pre>
 <p>The weights of this classification head can be stored together with the adapter weights to allow for a full reproducibility.
-The method call <code>model.set_active_task("sst-2")</code> registers the sst-2 adapter and classification head as default choices, which are used during training.</p>
+The method call <code>model.set_active_adapters([["sst-2"]])</code> registers the sst-2 adapter as a default for training. This also supports adapter stacking and adapter fusion!</p>
 <p>We can then train our adapter using the Hugging Face <code>Trainer</code>:</p>
 <pre class="code">trainer.train()
 model.save_all_adapters('output-path')</pre>

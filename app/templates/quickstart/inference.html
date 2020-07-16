@@ -1,7 +1,7 @@
 <h3 class="mt-0">Load an Adapter for Inference 🏄</h3>
 <p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>
 <pre class="code">model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased")
-model.load_adapter("sentiment/sst-2@ukp")</pre>
+model.load_adapter("sentiment/sst-2@ukp", config="pfeiffer")</pre>
 <p>The <a href="">SST adapter</a> is light-weight: it is only 3MB! At
     the same time, it achieves <a href="">results</a> that are on-par with fully fine-tuned BERT.
     We can now leverage SST adapter to predict the sentiment of sentences:</p>
@@ -13,5 +13,5 @@ input_tensor = torch.tensor([
 ])
 outputs = model(
     input_tensor,
-    adapter_tasks=['sst']
+    adapter_names=['sst-2']
 )</pre>
