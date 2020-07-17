@@ -1,0 +1,6 @@
+<h3 class="mt-0">💡💡💡💡💡💡Things to watch out for💡💡💡💡💡💡</h3>
+<p>Adapter weights are usually initialized randomly. This requires a higher than normal learning rate. 
+We have found that setting a learning rate of <code>lr=0.0001</code> works quite well for most settings</p>
+<p>Depending on your data set size you might also need to train slightly longer than usual. 
+We usually evaluate the adapters after each epoch on the development set and store the best model. </p>
+
