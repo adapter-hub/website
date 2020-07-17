@@ -14,10 +14,25 @@ model.set_active_adapters([["sst-2"]])
 The method call <code>model.set_active_adapters([["sst-2"]])</code> registers the sst-2 adapter as a default for training. This also supports adapter stacking and adapter fusion!</p>
 <p>We can then train our adapter using the Hugging Face <code>Trainer</code>:</p>
 
-<p class="alert alert-info"> 💡Tip1💡️ </br> Adapter weights are usually initialized randomly. That is why we require a higher learning rate.
-We have found that a default adapter learning rate of <code>lr=0.0001</code> works well for most settings. </p>
-<p class="alert alert-info"> 💡Tip2💡️ </br> Depending on your data set size you might also need to train longer than usual.
- To avoid overfitting you can evaluating the adapters after each epoch on the development set and only save the best model. </p>
 <pre class="code">trainer.train()
 model.save_all_adapters('output-path')</pre>
+
+<div class="row">
+    <div class="col-auto pr-0" style="font-size: 2rem">💡</div>
+    <div class="col">
+        <div class="alert alert-secondary">
+            <span class="font-weight-bold">Tip 1</span>️: Adapter weights are usually initialized randomly. That is why we require a higher learning rate.
+            We have found that a default adapter learning rate of <code>lr=0.0001</code> works well for most settings.</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-auto pr-0" style="font-size: 2rem">💡</div>
+    <div class="col">
+        <div class="alert alert-secondary">
+            <span class="font-weight-bold">Tip 2</span>️: Depending on your data set size you might also need to train longer than usual.
+            To avoid overfitting you can evaluating the adapters after each epoch on the development set and only save the best model.</div>
+    </div>
+</div>
+
 <p>That's it! <code>model.save_all_adapters('output-path)</code> exports all adapters. Consider sharing them on AdapterHub!</p>
