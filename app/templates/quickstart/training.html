@@ -1,4 +1,14 @@
-<h3 class="mt-0">Train an Adapter 🏋️️</h3>
+<div class="row mb-3">
+    <div class="col-auto">
+        <h3 class="m-0">Train an Adapter 🏋️️</h3>
+    </div>
+    <div class="col text-right d-none d-lg-block">
+        <a class="btn-colab-headline" href="https://colab.research.google.com/github/Adapter-Hub/website/blob/master/app/static/notebooks/Adapter_Quickstart_Training.ipynb" target="_blank">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+        </a>
+    </div>
+</div>
+
 <p>Training a new task adapter requires only few modifications compared to fully fine-tuning a model with Hugging Face's <code>Trainer</code>.
     We first load a pre-trained model, e.g., <code>roberta-base</code> and add a new task adapter:</p>
 <pre class="code">model = AutoModelWithHeads.from_pretrained('roberta-base')
