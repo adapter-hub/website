@@ -1,14 +1,16 @@
+from datetime import datetime, timezone
 from itertools import groupby
 
 from flask import Blueprint, abort
 from flask import render_template, current_app
-from flask_flatpages import FlatPages
+from flask_flatpages import FlatPages, pygments_style_defs
+from feedgen.feed import FeedGenerator
 
 from .models import Adapter, AdapterType, Model, Task, Subtask
 
 bp = Blueprint('main', __name__)
 
-pages = FlatPages()
+blog_posts = FlatPages()
 
 
 @bp.route('/')
@@ -72,6 +74,45 @@ def adapter_details(groupname, filename):
         return render_template('adapter.html', adapter=adapter, file=file)
     else:
         return abort(404)
+
+
+@bp.route('/blog/')
+def blog():
+    return render_template('blog.html', posts=blog_posts)
+
+
+@bp.route('/blog/<path>')
+def blog_post(path):
+    post = blog_posts.get_or_404(path)
+    return render_template('blog_post.html', post=post)
+
+
+@bp.route('/blog/atom.xml')
+def blog_feed():
+    feed = FeedGenerator()
+    feed.title("The AdapterHub Blog")
+    feed.subtitle("The latest news from AdapterHub")
+    feed.id("https://adapterhub.ml/blog/")
+    feed.link(href="https://adapterhub.ml/blog/")
+    for post in blog_posts:
+        url = "https://adapterhub.ml/blog/"+post.path
+        entry = feed.add_entry()
+        entry.id(url)
+        entry.link(href=url)
+        entry.title(post['title'])
+        entry.summary(post['summary'])
+        entry.content(post.html, type='html')
+        entry.author({'name': post['author']['name']})
+        dt = post['date']
+        post_time = datetime(dt.year, dt.month, dt.day, tzinfo=timezone.utc)
+        entry.pubDate(post_time)
+        entry.updated(post_time)
+    return feed.atom_str(pretty=True), 200, {'Content-Type': 'application/atom+xml'}
+
+
+@bp.route('/pygments.css')
+def pygments_css():
+    return pygments_style_defs("tango"), 200, {'Content-Type': 'text/css'}
 
 
 @bp.route('/imprint-privacy/')

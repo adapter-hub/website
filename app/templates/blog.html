@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% set active_page = "blog" %}
+
+{% block title %} Blog {% endblock %}
+
+{% block header %}
+
+<h1>Blog</h1>
+<ul class="blog-post-bar mt-4 mb-0">
+    <li>
+        <a href="{{ url_for('main.blog_feed') }}">
+            <i class="fa fa-rss"></i>&nbsp; Feed
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+{% for post in posts|reverse %}
+<div class="my-5">
+    <a href="{{ url_for('main.blog_post', path=post.path) }}">
+        <h2>{{ post['title'] }}</h2>
+    </a>
+    <ul class="blog-list-bar my-2">
+        <li><i class="fa fa-calendar-alt"></i>&nbsp; {{ post['date'] }}</li>
+        <li><i class="fa fa-user"></i>&nbsp; {{ post['author']['name'] }}</li>
+    </ul>
+    <p>
+        {{ post['summary'] }}
+    </p>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -24,8 +24,9 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     ### flat-pages
-    FLATPAGES_ROOT = os.path.join(basedir, 'data')
+    FLATPAGES_ROOT = os.path.join(basedir, 'posts')
     FLATPAGES_EXTENSION = '.md'
+    FLATPAGES_MARKDOWN_EXTENSIONS = ['codehilite']
 
     ### frozen flask
     # FREEZER_BASE_URL = "http://127.0.0.1:5000/"

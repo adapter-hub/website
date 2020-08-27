@@ -569,3 +569,35 @@ footer {
   text-align: right;
   margin-right: 4px;
 }
+
+.codehilite {
+  pre {
+    padding: 1rem;
+  }
+}
+
+.blog-list-bar {
+  padding: 0;
+  li {
+    display: inline-block;
+    color: $gray-600;
+    padding-right: 16px;
+  }
+}
+
+.blog-post-bar {
+  padding: 0;
+
+  li {
+    display: inline-block;
+    color: lighten($primary, 40%);
+    padding-right: 16px;
+  }
+  a {
+    color: lighten($primary, 40%);
+  }
+  a:hover {
+    color: white;
+    text-decoration: none;
+  }
+}

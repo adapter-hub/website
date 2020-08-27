@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% set active_page = "blog" %}
+
+{% block title %}{{ post['title'] }}{% endblock %}
+
+{% block meta %}
+<meta name="description" content="{{ post['summary'] }}" />
+{% endblock %}
+
+{% block header %}
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="{{url_for('main.blog')}}">Blog</a>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<h1>{{ post['title'] }}</h1>
+<ul class="blog-post-bar mt-4 mb-0">
+    <li><i class="fa fa-calendar-alt"></i>&nbsp; {{ post['date'] }}</li>
+    <li><i class="fa fa-user"></i>&nbsp; {{ post['author']['name'] }}</li>
+    {% if post['author']['twitter'] %}
+    <li>
+        <a href="https://twitter.com/{{ post['author']['twitter'] }}">
+            <i class="fab fa-twitter"></i>&nbsp; {{ post['author']['twitter'] }}
+        </a>
+    </li>
+    {% endif %}
+    {% if post['author']['github'] %}
+    <li>
+        <a href="https://github.com/{{ post['author']['github'] }}">
+            <i class="fab fa-github"></i>&nbsp; {{ post['author']['github'] }}
+        </a> 
+    </li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="my-4">
+    {{ post }}
+</div>
+<div class="my-5">
+    <a href="https://github.com/adapter-hub/website/blob/master/posts/{{ post.path }}.md">
+        <i class="fa fa-edit"></i>&nbsp; Edit Post on GitHub
+    </a>
+</div>
+
+
+{% endblock %}
