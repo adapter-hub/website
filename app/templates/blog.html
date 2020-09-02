@@ -3,16 +3,12 @@
 
 {% block title %} Blog {% endblock %}
 
-{% block header %}
+{% block meta %}
+<link rel="alternate" type="application/atom+xml" title="Feed for the AdapterHub Blog" href="{{ url_for('main.blog_feed') }}"/>
+{% endblock %}
 
+{% block header %}
 <h1>Blog</h1>
-<ul class="blog-post-bar mt-4 mb-0">
-    <li>
-        <a href="{{ url_for('main.blog_feed') }}">
-            <i class="fa fa-rss"></i>&nbsp; Feed
-        </a>
-    </li>
-</ul>
 {% endblock %}
 
 {% block content %}
@@ -31,5 +27,11 @@
     </p>
 </div>
 {% endfor %}
+
+<div class="my-5">
+    <a href="{{ url_for('main.blog_feed') }}">
+        <i class="fa fa-rss"></i>&nbsp; Feed
+    </a>
+</div>
 
 {% endblock %}
