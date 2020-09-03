@@ -525,3 +525,47 @@ footer {
     }
   }
 }
+
+.property-box {
+  .row {
+    margin: 0;
+    padding: 8px 0;
+    border-bottom: 2px solid $light;
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
+  }
+
+  .label {
+    color: $gray-600;
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 6px;
+    }
+  }
+}
+
+.collapse-container {
+  .collapse-header {
+    margin-bottom: 12px;
+
+    button.btn {
+      background-color: $light;
+      text-align: left;
+    }
+
+    button.collapsed i.rotate-icon {
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.citation-notice {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: $gray-600;
+  text-align: right;
+  margin-right: 4px;
+}

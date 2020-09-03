@@ -14,6 +14,8 @@ class Architecture(db.Model):
     description = db.Column(db.Text)
     citation = db.Column(db.Text)
     config = db.Column(db.Text)
+    config_non_linearity = db.Column(db.Text)
+    config_reduction_factor = db.Column(db.Integer)
 
     def __repr__(self):
         return self.name
@@ -92,9 +94,10 @@ class Adapter(db.Model):
     model_type = db.Column(db.String(30), nullable=False)
     model_name = db.Column(db.Text, nullable=False)
     model_class = db.Column(db.Text)
-    config = db.Column(db.Text, nullable=False)
+    config = db.Column(db.Text, db.ForeignKey('architectures.name'))
+    config_ref = db.relationship('Architecture', backref='adapters')
     config_non_linearity = db.Column(db.Text)
-    config_reduction_factor = db.Column(db.Text)
+    config_reduction_factor = db.Column(db.Integer)
 
     # meta
     description = db.Column(db.Text)

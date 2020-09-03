@@ -1,7 +1,7 @@
 from itertools import groupby
 
-from flask import Blueprint
-from flask import render_template
+from flask import Blueprint, abort
+from flask import render_template, current_app
 from flask_flatpages import FlatPages
 
 from .models import Adapter, AdapterType, Model, Task, Subtask
@@ -67,7 +67,11 @@ def explore_adapters(task, subtask, model_type=None, model=None):
 @bp.route('/adapters/<groupname>/<filename>/')
 def adapter_details(groupname, filename):
     adapter = Adapter.query.get((groupname, filename))
-    return render_template('adapter.html', adapter=adapter)
+    if adapter:
+        file = current_app.config["HUB_URL"]+"/"+groupname+"/"+filename+".yaml"
+        return render_template('adapter.html', adapter=adapter, file=file)
+    else:
+        return abort(404)
 
 
 @bp.route('/imprint-privacy/')

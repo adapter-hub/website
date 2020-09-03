@@ -14,6 +14,7 @@ basedir = os.getcwd()
 
 class Config(object):
     ### some external urls
+    HUB_URL = "https://github.com/Adapter-Hub/Hub/blob/master/adapters/"
     DOCUMENTATION_URL = "https://docs.adapterhub.ml/"
     CONTRIBUTING_URL = DOCUMENTATION_URL+"contributing.html"
 

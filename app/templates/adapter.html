@@ -27,16 +27,22 @@
     </nav>
 </div>
 
-<h1>{{ 'Language' if adapter.type == 'text_lang' else 'Task' }} Adapter</h1>
-<h2>{{ adapter['groupname'] }} / <span class="text-white-65">{{ adapter['filename'] }}</span></h2>
+<h1><span class="text-white-65">Adapter for</span> {{adapter.subtask_ref.displayname or adapter.subtask_ref}}</h1>
+<h2>{{ adapter['groupname'] }} / {{ adapter['filename'] }}</h2>
 {% endblock %}
 
 {% block content %}
 
+    <div class="d-none d-md-inline float-md-right" style="margin-top: -16px;">
+        <a href="{{ file }}">
+            <i class="fa fa-edit"></i>&nbsp; Edit on GitHub
+        </a>
+    </div>
+
     <section>
         <h2>Description</h2>
         <p>
-            {{ adapter['description'] }}
+            {{ adapter['description'] | urlize }}
         </p>
     </section>
 
@@ -48,14 +54,44 @@
         {% set custom_config_str = custom_config_str + ", non_linearity=\""+adapter.config_non_linearity+"\"" %}
         {% endif %}
         {% if adapter.config_reduction_factor %}
-        {% set custom_config_str = custom_config_str + ", reduction_factor="+adapter.config_reduction_factor %}
+        {% set custom_config_str = custom_config_str + ", reduction_factor="+adapter.config_reduction_factor|string %}
         {% endif %}
-        <pre class="p-4 bg-light">
+        <pre class="p-4 code">
 model = {{ adapter.model_class or "AutoModel" }}.from_pretrained("{{ adapter.model_name }}")
 config = AdapterConfig.load("{{ adapter.config }}"{{ custom_config_str }})
 model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre>
         <i class="btn-clipboard"></i>
     </section>
+
+<section>
+    <h2>Properties</h2>
+    <div class="property-box">
+        <div class="row">
+            <div class="col-sm-3 label">Pre-trained model</div>
+            <div class="col-sm-9">{{ adapter.model_name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Adapter type</div>
+            <div class="col-sm-9">
+                <a href="{{ url_for('main.explore_tasks', task_type=adapter.type) }}">
+                    {{ adapter.adapter_type.displayname }}
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Task</div>
+            <div class="col-sm-9">{{ adapter.subtask_ref.task_ref.displayname }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Dataset</div>
+            <div class="col-sm-9">
+                <a href="{{ url_for('main.explore_adapters', task=adapter.task, subtask=adapter.subtask) }}">
+                    {{ adapter.subtask_ref.displayname or adapter.subtask }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% if adapter.dependencies|length %}
 <section>
@@ -72,19 +108,69 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
     </ul>
 </section>
 {% endif %}
-<section class="row mb-4">
-    <div class="col-12">
-        <h2>Properties</h2>
-        <table class="table table-sm table-hover">
-        <tr class="d-flex"><td class="col-4 col-xl-3">Task</td><td class="col-8 col-xl-9">{{ adapter.subtask_ref.task_ref.displayname }}</td></tr>
-        <tr class="d-flex"><td class="col-4 col-xl-3">Dataset</td><td class="col-8 col-xl-9">{{ adapter.subtask_ref.displayname or adapter.subtask }}</td></tr>
-        <tr class="d-flex"><td class="col-4 col-xl-3">Pre-trained model</td><td class="col-8 col-xl-9">{{ adapter.model_name }}</td></tr>
-        <tr class="d-flex"><td class="col-4 col-xl-3">Adapter architecture</td><td class="col-8 col-xl-9">{{ adapter['config'] + custom_config_str }}</td></tr>
-        <tr class="d-flex"><td class="col-4 col-xl-3">Author</td><td class="col-8 col-xl-9">{{ adapter['author'] }} ({{adapter['email']}})</td></tr>
-        <tr class="d-flex"><td class="col-4 col-xl-3">Web</td><td class="col-8 col-xl-9"><a href="{{ adapter['url'] }}">{{ adapter['url'] }}</a></td></tr>
-    </table>
+
+<section>
+    <h2>Architecture</h2>
+    <div class="property-box">
+        <div class="row">
+            <div class="col-sm-3 label">Name</div>
+            <div class="col-sm-9">{{ adapter.config }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Non-linearity</div>
+            <div class="col-sm-9">{{ adapter.config_non_linearity or adapter.config_ref.config_non_linearity }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Reduction factor</div>
+            <div class="col-sm-9">{{ adapter.config_reduction_factor or adapter.config_ref.config_reduction_factor }}</div>
+        </div>
+    </div>
+    <div class="collapse-container">
+        <div class="collapse-header">
+            <button class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#collapseConfig">
+                <h5 class="my-1">Configuration <i class="float-right mt-1 fas fa-angle-up rotate-icon"></i></h5>
+            </button>
+        </div>
+        <div id="collapseConfig" class="collapse">
+            <pre class="p-4">{{ adapter.config_ref.config }}</pre>
+        </div>
     </div>
 </section>
+
+<section>
+    <h2>Author</h2>
+    <div class="property-box">
+        <div class="row">
+            <div class="col-sm-3 label">Name&nbsp; <i class="fas fa-user"></i></div>
+            <div class="col-sm-9">{{ adapter.author }}</div>
+        </div>
+        {% if adapter.email %}
+        <div class="row">
+            <div class="col-sm-3 label">E-Mail&nbsp; <i class="fas fa-envelope"></i></div>
+            <div class="col-sm-9"><a href="mailto:{{ adapter.email }}">{{ adapter.email }}</a></div>
+        </div>
+        {% endif %}
+        {% if adapter.url %}
+        <div class="row">
+            <div class="col-sm-3 label">Web&nbsp; <i class="fas fa-globe"></i></div>
+            <div class="col-sm-9"><a href="{{ adapter.url }}" target="_blank">{{ adapter.url }}</a></div>
+        </div>
+        {% endif %}
+        {% if adapter.github %}
+        <div class="row">
+            <div class="col-sm-3 label">GitHub&nbsp; <i class="fab fa-github"></i></div>
+            <div class="col-sm-9"><a href="https://github.com/{{ adapter.github }}" target="_blank">{{ adapter.github }}</a></div>
+        </div>
+        {% endif %}
+        {% if adapter.twitter %}
+        <div class="row">
+            <div class="col-sm-3 label">Twitter&nbsp; <i class="fab fa-twitter"></i></div>
+            <div class="col-sm-9"><a href="https://twitter.com/{{ adapter.twitter }}" target="_blank">{{ adapter.twitter }}</a></div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
 <section>
     <h2>Versions</h2>
     <table class="table table-hover">
@@ -111,8 +197,32 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
         </tbody>
     </table>
 </section>
-<section class="mt-4 mb-4">
-    <h2>Citation</h2>
-    <pre class="p-4 bg-light">{{ adapter['citation'] }}</pre>
+
+<section class="mb-5">
+    <h2>Citations</h2>
+    <div class="collapse-container">
+        <div class="collapse-header">
+            <button class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#collapseOne">
+                <h5 class="my-1">BibTeX <i class="float-right mt-1 fas fa-angle-up rotate-icon"></i></h5>
+            </button>
+        </div>
+        <div id="collapseOne" class="collapse">
+            <div>
+                {% if adapter.citation %}
+                <h5 class="citation-notice">Adapter</h5>
+                <pre class="p-4 code">{{ adapter['citation'] }}</pre>
+                {% endif %}
+                {% if adapter.config_ref.citation %}
+                <h5 class="citation-notice">Architecture</h5>
+                <pre class="p-4 code">{{ adapter.config_ref.citation }}</pre>
+                {% endif %}
+                {% if adapter.subtask_ref.citation %}
+                <h5 class="citation-notice">Task</h5>
+                <pre class="p-4 code">{{ adapter.subtask_ref.citation }}</pre>
+                {% endif %}
+            </div>
+        </div>
+      </div>
 </section>
+
 {% endblock %}

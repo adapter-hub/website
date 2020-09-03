@@ -4,7 +4,7 @@ from flask import current_app
 from flask.cli import AppGroup
 from flask_frozen import Freezer
 from flask_filealchemy import FileAlchemy
-from .models import db, Adapter, Model, Subtask
+from .models import db, Adapter, Architecture, Model, Subtask
 
 
 freeze_cli = AppGroup("freeze")
@@ -35,6 +35,11 @@ def db_init():
         if not db.session.query(Subtask).filter_by(**kwargs).first():
             subtask_obj = Subtask(task_type=subtask_args[2], **kwargs)
             db.session.add(subtask_obj)
+    # hack: fill additional config columns for architectures
+    for architecture in db.session.query(Architecture).all():
+        config = json.loads(architecture.config)
+        architecture.config_non_linearity = config["non_linearity"]
+        architecture.config_reduction_factor = config["reduction_factor"]
     # hack: fix all configs, this should be replaced with something better
     for adapter in db.session.query(Adapter).all():
         config = json.loads(adapter.config.replace("\'", "\""))
