@@ -107,7 +107,6 @@ class Adapter(db.Model):
     github = db.Column(db.String(30))
     twitter = db.Column(db.String(30))
     citation = db.Column(db.Text)
-    score = db.Column(db.Float)
     
     # files
     default_version = db.Column(db.String(10), nullable=False)
@@ -150,6 +149,7 @@ class AdapterFile(db.Model):
     sha1 = db.Column(db.String(40))
     sha256 = db.Column(db.String(64))
     description = db.Column(db.Text)
+    score = db.Column(db.Float)
 
     adapter = db.relationship('Adapter', backref='files')
 
