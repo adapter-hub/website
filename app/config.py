@@ -30,7 +30,7 @@ class Config(object):
 
     ### frozen flask
     # FREEZER_BASE_URL = "http://127.0.0.1:5000/"
-    FREEZER_BASE_URL="http://adapterhub.ml/"
+    FREEZER_BASE_URL = os.environ.get("FREEZER_BASE_URL") or "http://adapterhub.ml/"
     FREEZER_DESTINATION = os.path.join(basedir, 'build')
     # FREEZER_RELATIVE_URLS = True
     FREEZER_STATIC_IGNORE = [
@@ -40,6 +40,9 @@ class Config(object):
         '*.scss'
     ]
     FREEZER_IGNORE_404_NOT_FOUND = True
+
+    ### utterances
+    COMMENTS_REPO = os.environ.get("COMMENTS_REPO") or "Adapter-Hub/website"
 
     ### filealchemy
     FILEALCHEMY_DATA_DIR = os.path.join(basedir, 'data')
