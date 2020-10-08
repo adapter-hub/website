@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKeyConstraint
+from sqlalchemy.orm import backref
 
 
 db = SQLAlchemy()
@@ -54,6 +55,24 @@ class Subtask(db.Model):
 
     def __repr__(self):
         return '{}/{}'.format(self.task, self.subtask)
+
+
+class SubtaskMetric(db.Model):
+    __tablename__ = "metric"
+
+    task = db.Column(db.String(30), primary_key=True)
+    subtask = db.Column(db.String(30), primary_key=True)
+    name = db.Column(db.Text, primary_key=True)
+    higher_is_better = db.Column(db.Boolean, nullable=False)
+
+    subtask_ref = db.relationship('Subtask', backref=backref('metric', uselist=False))
+
+    __table_args__ = (
+        ForeignKeyConstraint([task, subtask], [Subtask.task, Subtask.subtask]),
+    )
+
+    def __repr__(self):
+        return str(self.name).title()
 
 
 class AdapterType(db.Model):
