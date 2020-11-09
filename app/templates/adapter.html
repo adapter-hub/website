@@ -141,30 +141,30 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
     <h2>Author</h2>
     <div class="property-box">
         <div class="row">
-            <div class="col-sm-3 label">Name&nbsp; <i class="fas fa-user"></i></div>
+            <div class="col-sm-3 label"><i class="fas fa-user"></i>&nbsp; Name</div>
             <div class="col-sm-9">{{ adapter.author }}</div>
         </div>
         {% if adapter.email %}
         <div class="row">
-            <div class="col-sm-3 label">E-Mail&nbsp; <i class="fas fa-envelope"></i></div>
+            <div class="col-sm-3 label"><i class="fas fa-envelope"></i>&nbsp; E-Mail</div>
             <div class="col-sm-9"><a href="mailto:{{ adapter.email }}">{{ adapter.email }}</a></div>
         </div>
         {% endif %}
         {% if adapter.url %}
         <div class="row">
-            <div class="col-sm-3 label">Web&nbsp; <i class="fas fa-globe"></i></div>
+            <div class="col-sm-3 label"><i class="fas fa-globe"></i>&nbsp; Web</div>
             <div class="col-sm-9"><a href="{{ adapter.url }}" target="_blank">{{ adapter.url }}</a></div>
         </div>
         {% endif %}
         {% if adapter.github %}
         <div class="row">
-            <div class="col-sm-3 label">GitHub&nbsp; <i class="fab fa-github"></i></div>
+            <div class="col-sm-3 label"><i class="fab fa-github"></i>&nbsp; GitHub</div>
             <div class="col-sm-9"><a href="https://github.com/{{ adapter.github }}" target="_blank">{{ adapter.github }}</a></div>
         </div>
         {% endif %}
         {% if adapter.twitter %}
         <div class="row">
-            <div class="col-sm-3 label">Twitter&nbsp; <i class="fab fa-twitter"></i></div>
+            <div class="col-sm-3 label"><i class="fab fa-twitter"></i>&nbsp; Twitter</div>
             <div class="col-sm-9"><a href="https://twitter.com/{{ adapter.twitter }}" target="_blank">{{ adapter.twitter }}</a></div>
         </div>
         {% endif %}
@@ -176,21 +176,25 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
     <table class="table table-hover">
         <thead>
             <tr class="d-flex">
-                <th scope="col" class="col-sm-5 col-md-4 col-xl-3">Identifier</th>
-                <th scope="col" class="col-sm-7 col-md-6 col-xl-7">Comment</th>
+                <th scope="col" class="col-sm-5 col-md-3">Identifier</th>
+                <th scope="col" class="col-sm-7 col-md-6">Comment</th>
+                <th scope="col" class="col-md-1 d-none d-md-table-cell">Score
+                    <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="{{ adapter.subtask_ref.metric }}"></i>
+                </th>
                 <th scope="col" class="col-md-2 text-right d-none d-md-table-cell">Download</th>
             </tr>
         </thead>
         <tbody>
             {% for file in adapter.files %}
             <tr class="d-flex">
-                <th scope="row" class="col-4 col-xl-3">
+                <th scope="row" class="col-sm-5 col-md-3">
                     {{ file['version'] }}
                     {% if file['version'] == adapter['default_version'] %}
                         <span class="badge badge-primary activate-tooltip" data-toggle="tooltip" data-placement="top" title="This is the default version for the adapter.">DEFAULT</span>
                     {% endif %}
                 </th>
-                <td  class="col-6 col-xl-7">{{ file.description or "" }}</td>
+                <td class="col-sm-7 col-md-6">{{ file.description or "" }}</td>
+                <td class="col-md-1 d-none d-md-table-cell">{{ file.score or "" }}</td>
                 <td class="text-right col-2 d-none d-md-table-cell"><a href="{{ file['url'] }}"><i class="fa fa-download"></i></a></td>
             </tr>
             {% endfor %}

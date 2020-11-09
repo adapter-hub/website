@@ -12,7 +12,7 @@
 <p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>
 <pre class="code">model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased")
 model.load_adapter("sentiment/sst-2@ukp")</pre>
-<p>The <a href="https://adapterhub.ml/adapters/ukp/bert-base-uncased-sst_pfeiffer/">SST adapter</a> is light-weight: it is only 3MB! At
+<p>The <a href="https://adapterhub.ml/adapters/ukp/bert-base-uncased_sentiment_sst-2_pfeiffer/">SST adapter</a> is light-weight: it is only 3MB! At
     the same time, it achieves <a href="https://arxiv.org/abs/2007.07779" target="_blank">results</a> that are on-par with fully fine-tuned BERT.
     We can now leverage SST adapter to predict the sentiment of sentences:</p>
 <pre class="code" id="QuickstartInferenceMore">

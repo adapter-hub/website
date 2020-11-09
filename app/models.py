@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKeyConstraint
+from sqlalchemy.orm import backref
 
 
 db = SQLAlchemy()
@@ -56,6 +57,24 @@ class Subtask(db.Model):
         return '{}/{}'.format(self.task, self.subtask)
 
 
+class SubtaskMetric(db.Model):
+    __tablename__ = "metric"
+
+    task = db.Column(db.String(30), primary_key=True)
+    subtask = db.Column(db.String(30), primary_key=True)
+    name = db.Column(db.Text, primary_key=True)
+    higher_is_better = db.Column(db.Boolean, nullable=False)
+
+    subtask_ref = db.relationship('Subtask', backref=backref('metric', uselist=False))
+
+    __table_args__ = (
+        ForeignKeyConstraint([task, subtask], [Subtask.task, Subtask.subtask]),
+    )
+
+    def __repr__(self):
+        return str(self.name).title()
+
+
 class AdapterType(db.Model):
     __tablename__ = "adapter_types"
 
@@ -107,7 +126,6 @@ class Adapter(db.Model):
     github = db.Column(db.String(30))
     twitter = db.Column(db.String(30))
     citation = db.Column(db.Text)
-    score = db.Column(db.Float)
     
     # files
     default_version = db.Column(db.String(10), nullable=False)
@@ -150,6 +168,7 @@ class AdapterFile(db.Model):
     sha1 = db.Column(db.String(40))
     sha256 = db.Column(db.String(64))
     description = db.Column(db.Text)
+    score = db.Column(db.Float)
 
     adapter = db.relationship('Adapter', backref='files')
 
