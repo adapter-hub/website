@@ -81,7 +81,7 @@ def blog():
     return render_template('blog.html', posts=blog_posts)
 
 
-@bp.route('/blog/<path>/')
+@bp.route('/blog/<path:path>/')
 def blog_post(path):
     post = blog_posts.get_or_404(path)
     return render_template('blog_post.html', post=post)

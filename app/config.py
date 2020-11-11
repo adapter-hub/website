@@ -27,7 +27,16 @@ class Config(object):
     ### flat-pages
     FLATPAGES_ROOT = os.path.join(basedir, 'posts')
     FLATPAGES_EXTENSION = '.md'
-    FLATPAGES_MARKDOWN_EXTENSIONS = ['codehilite']
+    FLATPAGES_MARKDOWN_EXTENSIONS = [
+        'codehilite',
+        'fenced_code',
+        'caption'
+    ]
+    FLATPAGES_EXTENSION_CONFIGS = {
+        'caption': {
+            'captionNumbering': True
+        }
+    }
 
     ### frozen flask
     # FREEZER_BASE_URL = "http://127.0.0.1:5000/"

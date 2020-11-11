@@ -41,24 +41,42 @@
 
 {% block content %}
 
-<div class="my-4">
-    {{ post }}
-</div>
-<div class="my-5">
-    <a href="https://github.com/adapter-hub/website/blob/master/posts/{{ post.path }}.md">
-        <i class="fa fa-edit"></i>&nbsp; Edit Post on GitHub
-    </a>
-</div>
+<div class="row">
+    <div class="col-lg-10">
+        {% if post['paper'] %}
+        <a class="blog-paper btn card bg-light border-0" href="{{ post['paper']['url'] }}">
+            {{ post['paper']['citation'] }}
+        </a>
+        {% endif %}
+        
+        {{ post }}
 
-<div id="comments">
-    <script src="https://utteranc.es/client.js"
-        repo="{{ config.COMMENTS_REPO }}"
-        issue-term="pathname"
-        label="blog-post 💬"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-    </script>
+        <div class="my-5">
+            <a href="https://github.com/adapter-hub/website/blob/master/posts/{{ post.path }}.md">
+                <i class="fa fa-edit"></i>&nbsp; Edit Post on GitHub
+            </a>
+        </div>
+        
+        <div id="col-lg-10 comments">
+            <script src="https://utteranc.es/client.js"
+                repo="{{ config.COMMENTS_REPO }}"
+                issue-term="pathname"
+                label="blog-post 💬"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </div>
+
+    <div class="blog-share col-lg-2 mb-4">
+        <div class="my-4 text-muted">
+            Share
+        </div>
+        <a href="https://twitter.com/intent/tweet?text={{ post.title+' - '+config.FREEZER_BASE_URL+post.path }}">
+            <i class="fab fa-twitter"></i>
+        </a>
+    </div>
 </div>
 
 {% endblock %}
