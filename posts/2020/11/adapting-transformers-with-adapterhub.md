@@ -39,8 +39,10 @@ During training on the target task, all weights in the pre-trained language mode
 The only weights to be updated are those introduced by the adapter modules.
 This results in modular knowledge representations which subsequently can be easily extracted from the underlying language model.
 The extracted adapter modules then can be distributed independently and plugged in into a language model dynamically.
-The encapsulated character of adapters also allows for easy exchange and composition of different adapters ([Pfeiffer et al., 2020](https://arxiv.org/pdf/2005.00247.pdf)).
-Figure 1 illustrates this adapter workflow.
+The encapsulated character of adapters also allows for easy exchange and composition of different adapters ([Pfeiffer et al., 2020a](https://arxiv.org/pdf/2005.00247.pdf)).
+Since this workflow of using adapters is very universal, it can potentially be applied to a wide range of different use cases.
+As an example, adapters have been used successfully for zero-shot cross-lingual transfer between different tasks ([Pfeiffer et al., 2020b](https://arxiv.org/pdf/2005.00052.pdf)).
+Figure 1 illustrates the described adapter workflow.
 
 ![](/static/images/size_comparison.png "Size comparison of a fully fine-tuned model and an adapter")
 
