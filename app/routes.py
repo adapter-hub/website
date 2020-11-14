@@ -120,6 +120,11 @@ def imprint_privacy():
     return render_template('imprint_privacy.html')
 
 
+@bp.route('/emnlp/')
+def emnlp():
+    return render_template('emnlp.html')
+
+
 @bp.app_errorhandler(404)
 def error_404(error):
     return render_template('errors/404.html'), 404

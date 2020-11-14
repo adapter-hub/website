@@ -13,9 +13,16 @@ paper:
     url: "https://arxiv.org/pdf/2007.07779.pdf"
 ---
 
-Adapters, small layers inserted into every layer of a Transformer-based language model, recently have been proposed as an alternative to full fine-tuning of pre-trained models for transfer learning in NLP.
-Compared to the fine-tuning approach, adapters provide various benefits with regard to parameter efficiency, modularity and composability.
-We have developed **[AdapterHub, A Framework for Adapting Transformers](https://arxiv.org/pdf/2007.07779.pdf)** which makes working with adapters easily accessible by integrating them with [Huggingface's transformers](https://github.com/huggingface/transformers), a popular framework for transformer-based language models.
+The state-of-the art in many NLP tasks has been improved significantly in recent years with the introduction of large, pre-trained language models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) or RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)).
+These models, typically based on a Transformer architecture (check out [this blog post](https://jalammar.github.io/illustrated-transformer/) for an introduction), are pre-trained on huge amounts of text and then fine-tuned to a specific target task.
+As the full model is fine-tuned to the target task, this approach is expensive with regard to storage space and training time.
+
+**Adapters**, small layers inserted into every layer of a Transformer-based language model, recently have been introduced as a promising alternative to full fine-tuning of pre-trained models.
+Adapters overcome various issues with the established full fine-tuning approach:
+they are **parameter-efficient**, **speed up training iterations** and they are especially **shareable** and **composable** due to their modularity and compact size.
+Most importantly, they often perform **on-par with state-of-the-art full fine-tuning**.
+
+We have developed **[AdapterHub, A Framework for Adapting Transformers](https://arxiv.org/pdf/2007.07779.pdf)** which makes working with adapters easily accessible by integrating them with [Huggingface's Transformers](https://github.com/huggingface/transformers), a popular framework for transformer-based language models.
 In the following, we will go through the process of training, sharing, consuming and composing adapters with AdapterHub.
 
 
@@ -25,7 +32,7 @@ In the following, we will go through the process of training, sharing, consuming
 
 Adapters provide a lightweight alternative to fully fine-tuning a pre-trained language model on a downstream task.
 For a transformer-based architecture, a small set of new parameters is introduced in every transformer layer.
-While different adapter architectures are possible, a simple layout using a down- and an up-projection layer first introduced by [Houlsby et al. (2020)](https://arxiv.org/pdf/1902.00751.pdf) has proven to work well.
+While different adapter architectures are possible, a simple layout using a down- and an up-projection layer first introduced by [Houlsby et al. (2020)](https://arxiv.org/pdf/1902.00751.pdf) has proven to work well (see Figure 1 for illustration).
 In many cases, adapters perform on-par with fully fine-tuned models.
 
 During training on the target task, all weights in the pre-trained language model are kept fix.
@@ -64,6 +71,10 @@ In ⑥, he lastly can apply 👩🏾‍💻's adapter for his own purposes.
 In the following, we will have a look at some of this steps in a bit more detail.
 
 ## Training an Adapter
+
+<a href="https://colab.research.google.com/drive/1QR2Vy4mJFUi5r3HaQVROY3dQ9QMTJqhR?usp=sharing" target="_blank">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 Training an adapter on a downstream task is a straightforward process using `adapter-transformers` which can be installed via pip:
 
@@ -121,6 +132,10 @@ model.save_adapter("./final_adapter", "rotten_tomatoes")
 
 ## Interacting with the Hub
 
+<a href="https://colab.research.google.com/drive/1ovA1_ENGU1TT4T6nz2bW2bzq8-Lg8mMW?usp=sharing" target="_blank">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 The adapter weights trained in the previous section subsequently can be distributed via the Hub, the second core component of the AdapterHub framework.
 The Hub infrastructure is based on plain YAML description files contributed to a central GitHub repository.
 The full process of contributing pre-trained adapters is described [in our documentation](https://docs.adapterhub.ml/contributing.html).
@@ -155,6 +170,10 @@ The rest of the inference is identical to a setup without adapters.
 To see a full example, check out [the Colab notebook for adapter inference](https://colab.research.google.com/drive/1ovA1_ENGU1TT4T6nz2bW2bzq8-Lg8mMW?usp=sharing).
 
 ## Adapter Composition
+
+<a href="https://colab.research.google.com/drive/1bt_EmBe00s4TldihSavA7ha9Pq2inDY4?usp=sharing" target="_blank">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 As presented earlier, adapters are especially suitable for various kinds of compositions on a new target task.
 One of these composition approaches is _AdapterFusion_ ([Pfeiffer et al., 2020](https://arxiv.org/pdf/2005.00247.pdf)) which is also tightly integrated into AdapterHub.
@@ -205,6 +224,7 @@ AdapterHub is continuously evolving with the addition of adapter support to new 
 
 ## References
 
+- Devlin, J., Chang, M., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. NAACL-HLT.
 - Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., & Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML.
 - Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., & Gurevych, I. (2020). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. ArXiv, abs/2005.00247.
 - Pfeiffer, J., Vulic, I., Gurevych, I., & Ruder, S. (2020). MAD-X: An Adapter-based Framework for Multi-task Cross-lingual Transfer. ArXiv, abs/2005.00052.
