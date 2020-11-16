@@ -13,9 +13,8 @@ paper:
     url: "https://arxiv.org/pdf/2007.07779.pdf"
 ---
 
-The state-of-the art in many NLP tasks has been improved significantly in recent years with the introduction of large, pre-trained language models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) or RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)).
-These models, typically based on a Transformer architecture (check out [this blog post](https://jalammar.github.io/illustrated-transformer/) for an introduction), are pre-trained on huge amounts of text and then fine-tuned to a specific target task.
-As the full model is fine-tuned to the target task, this approach is expensive with regard to storage space and training time.
+Pre-trained transformers have led to considerable advances in NLP, achieving state-of-the-art results across the board. 
+Models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) and RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)) several millions of parameters, and thus, sharing and distributing fine-tuned transformer models can be prohibitive. 
 
 **Adapters**, small layers inserted into every layer of a Transformer-based language model, recently have been introduced as a promising alternative to full fine-tuning of pre-trained models.
 Adapters overcome various issues with the established full fine-tuning approach:
