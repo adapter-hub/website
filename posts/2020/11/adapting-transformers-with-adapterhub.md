@@ -13,8 +13,8 @@ paper:
     url: "https://arxiv.org/pdf/2007.07779.pdf"
 ---
 
-Pre-trained transformers have led to considerable advances in NLP, achieving state-of-the-art results across the board. 
-Models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) and RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)) consist of several millions of parameters, and thus, sharing and distributing fully fine-tuned models for each individual downstream task can be prohibitive. 
+Transformer models pre-trained on massive amounts of text data and subsequently fine-tuned on target tasks have led to considerable advances in NLP, achieving state-of-the-art results across the board. 
+However, models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) and RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)) consist of several millions of parameters, and thus, sharing and distributing fully fine-tuned models for each individual downstream task can be prohibitive. 
 
 **Adapters** are a light-weight alternative to full model fine-tuning, consisting of only a tiny set of newly introduced parameters at every transformer layer.
 Adapters overcome several limitations typically observed with full model fine-tuning:
@@ -23,7 +23,7 @@ Moreover, adapters usually perform **on-par with state-of-the-art full fine-tuni
 
 With multiple different adapter architectures and a wide variety of pre-trained transformers available, training, sharing and re-using adapters is not straightforward.
 As a solution,  **[AdapterHub, A Framework for Adapting Transformers](https://arxiv.org/pdf/2007.07779.pdf)** provides a unified interface to different adapter architectures and composition techniques, making them widely accessible to the research community.
-Built on top of [Huggingface's Transformers framework](https://github.com/huggingface/transformers), AdapterHub has access to a large base of pre-trained transformers.
+Built on top of [Huggingface's Transformers framework](https://github.com/huggingface/transformers), the AdapterHub has access to a large base of pre-trained transformers.
 In the following, we will go through the process of training, sharing, and composing adapters with AdapterHub.
 
 
@@ -36,10 +36,10 @@ For a transformer-based architecture, a small set of new parameters is introduce
 While different adapter architectures are possible, a simple layout using a down- and an up-projection layer first introduced by [Houlsby et al. (2020)](https://arxiv.org/pdf/1902.00751.pdf) has proven to work well (see Figure 1 for illustration).
 In many cases, adapters perform on-par with fully fine-tuned models.
 
-During training on the target task, all weights in the pre-trained language model are kept fix.
+During training on the target task, all weights of the pre-trained language model are kept fix.
 The only weights to be updated are those introduced by the adapter modules.
 This results in modular knowledge representations which subsequently can be easily extracted from the underlying language model.
-The extracted adapter modules then can be distributed independently and plugged in into a language model dynamically.
+The extracted adapter modules then can be distributed independently and plugged into a language model dynamically.
 The encapsulated character of adapters also allows for easy exchange and composition of different adapters ([Pfeiffer et al., 2020a](https://arxiv.org/pdf/2005.00247.pdf)).
 Since this workflow of using adapters is very universal, it can potentially be applied to a wide range of different use cases.
 As an example, adapters have been used successfully for zero-shot cross-lingual transfer between different tasks ([Pfeiffer et al., 2020b](https://arxiv.org/pdf/2005.00052.pdf)).
@@ -48,9 +48,9 @@ Figure 1 illustrates the described adapter workflow.
 ![](/static/images/size_comparison.png "Size comparison of a fully fine-tuned model and an adapter")
 
 Using adapters provides various benefits, especially in parameter efficiency.
-With adapter fine-tuning, the amount of updated parameters makes only about 1% of fully fine-tuning a language model in many cases, often just a few Megabytes.
+The amount of updated adapter parameters are only about 1% of the fully fine-tuned model and in many cases only requires a few Megabytes of storage space.
 This makes it easy to share adapters, store adapters for many different tasks and load additional adapters on-the-fly.
-Additionally, their compact size make adapters a computationally efficient fine-tuning choice ([Rücklé et al., 2020](https://arxiv.org/pdf/2010.11918.pdf)).
+Additionally, their compact size with the majority of weights bein frozen, makes adapters a computationally efficient fine-tuning choice ([Rücklé et al., 2020](https://arxiv.org/pdf/2010.11918.pdf)).
 
 
 ## What is AdapterHub?
@@ -60,7 +60,7 @@ AdapterHub is divided into two core components: [adapter-transformers](https://g
 
 ![](/static/images/lifecycle.png "The AdapterHub lifecycle")
 
-Based on Figure 3, we'll go through the lifecycle of working with AdapterHub on a high level:
+Based on Figure 3, we'll go through the lifecycle of working with AdapterHub on a higher level:
 HuggingFace `transformers` (🤗) builds the backbone of our framework.
 A user who wants to train an adapter (👩🏾‍💻) loads a pre-trained language model (🤖) from 🤗.
 In ①, new adapter modules are introduced to the loaded language model.
@@ -71,7 +71,7 @@ Here, 👨🏼‍💻 can find the pre-trained adapter in step ④.
 Together with downloading the matching 🤖 from 🤗, 👨🏼‍💻 then can download the adapter from the Hub and integrate it into his own model (⑤).
 In ⑥, he lastly can apply 👩🏾‍💻's adapter for his own purposes.
 
-In the following, we will have a look at some of this steps in a bit more detail.
+In the following, we will have a look at some of these steps in more detail.
 
 ## Training an Adapter
 
