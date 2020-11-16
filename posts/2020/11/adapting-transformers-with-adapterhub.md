@@ -14,7 +14,7 @@ paper:
 ---
 
 Pre-trained transformers have led to considerable advances in NLP, achieving state-of-the-art results across the board. 
-Models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) and RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)) consist of several millions of parameters. Sharing and distributing such fully fine-tuned models can, thus, be prohibitive. 
+Models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) and RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)) consist of several millions of parameters, and thus, sharing and distributing fully fine-tuned models for each individual downstream task can be prohibitive. 
 
 **Adapters** are a light-weight alternative to full model fine-tuning, consisting of only a tiny set of newly introduced parameters at every transformer layer.
 Adapters overcome several limitations typically observed with full model fine-tuning:
