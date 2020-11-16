@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% set active_page = "blog" %}
+
+{% block title %} Blog {% endblock %}
+
+{% block meta %}
+<link rel="alternate" type="application/atom+xml" title="Feed for the AdapterHub Blog" href="{{ url_for('main.blog_feed') }}"/>
+{% endblock %}
+
+{% block header %}
+<h1>Blog</h1>
+{% endblock %}
+
+{% block content %}
+
+{% for post in posts|reverse %}
+<div class="my-5">
+    <a href="{{ url_for('main.blog_post', path=post.path) }}">
+        <h2>{{ post['title'] }}</h2>
+    </a>
+    <ul class="blog-list-bar my-2">
+        <li><i class="fa fa-calendar-alt"></i>&nbsp; {{ post['date'] }}</li>
+        <li><i class="fa fa-user"></i>&nbsp; {{ post['author']['name'] }}</li>
+    </ul>
+    <p>
+        {{ post['summary'] }}
+    </p>
+</div>
+{% endfor %}
+
+<div class="my-5">
+    <a href="{{ url_for('main.blog_feed') }}">
+        <i class="fa fa-rss"></i>&nbsp; Feed
+    </a>
+</div>
+
+{% endblock %}

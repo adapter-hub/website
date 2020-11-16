@@ -18,12 +18,15 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block meta %} {% endblock %}
 
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='adapter-bert-head.png') }}" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="{{ url_for('main.pygments_css') }}">
     <!-- CSS -->
     {% assets "css_all" %}
         <link rel="stylesheet" href="{{ ASSET_URL }}">
@@ -65,6 +68,11 @@
                 <li class="{{ 'nav-item active' if active_page == 'docs' else 'nav-item' }}">
                     <a class="nav-link" href="{{ config.DOCUMENTATION_URL }}">
                         <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="{{ 'nav-item active' if active_page == 'blog' else 'nav-item' }}">
+                    <a class="nav-link" href="{{ url_for('main.blog') }}">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
                     </a>
                 </li>
                 <li class="nav-item separator d-none d-md-inline-block"></li>

@@ -569,3 +569,82 @@ footer {
   text-align: right;
   margin-right: 4px;
 }
+
+/* Blog */
+
+.blog-share {
+  a {
+    display: block;
+    background-color: $primary;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+  }
+  a:hover {
+    background-color: $dark;
+  }
+  i {
+    vertical-align: middle;
+  }
+}
+
+.blog-paper {
+  text-align: left;
+  display: block;
+  margin-bottom: 28px;
+}
+
+.blog-paper::before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 28px;
+  content: "\f15b";
+  float: left;
+  margin-right: 12px;
+}
+
+.codehilite {
+  pre {
+    padding: 1rem;
+  }
+}
+
+.blog-list-bar {
+  padding: 0;
+  li {
+    display: inline-block;
+    color: $gray-600;
+    padding-right: 16px;
+  }
+}
+
+.blog-post-bar {
+  padding: 0;
+
+  li {
+    display: inline-block;
+    color: lighten($primary, 40%);
+    padding-right: 16px;
+  }
+  a {
+    color: lighten($primary, 40%);
+  }
+  a:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+figure img {
+  max-width: 100%;
+}
+
+figcaption {
+  padding: 8px 0;
+  color: $gray-600;
+}
+
+.utterances {
+  max-width: 100%;
+}

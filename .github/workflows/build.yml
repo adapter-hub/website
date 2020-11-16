@@ -25,6 +25,9 @@ jobs:
         run: |
           git submodule update --remote
       - name: Build
+        env:
+          COMMENTS_REPO: ${{ secrets.COMMENTS_REPO }}
+          FREEZER_BASE_URL: ${{ secrets.FREEZER_BASE_URL }}
         run: |
           flask db init
           flask freeze build
