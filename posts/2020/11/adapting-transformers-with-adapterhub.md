@@ -21,7 +21,9 @@ Adapters overcome several limitations typically observed with full model fine-tu
 they are **parameter-efficient**, they **speed up training iterations**, and they are **shareable** and **composable** due to their modularity and compact size.
 Moreover, adapters usually perform **on-par with state-of-the-art full fine-tuning**.
 
-Before AdapterHub, training, sharing, and re-using adapters has not been straightforward as there exist several different adapter architectures and a wide variety of pre-trained transformers. As a solution,  **[AdapterHub, A Framework for Adapting Transformers](https://arxiv.org/pdf/2007.07779.pdf)** provides a unified interface to different adapter architectures and composition techniques, making them widely accessible to the research community. Built on top of [Huggingface's Transformers](https://github.com/huggingface/transformers), AdapterHub has access to a wide variety of pre-trained transformers.
+With multiple different adapter architectures and a wide variety of pre-trained transformers available, training, sharing and re-using adapters is not straightforward.
+As a solution,  **[AdapterHub, A Framework for Adapting Transformers](https://arxiv.org/pdf/2007.07779.pdf)** provides a unified interface to different adapter architectures and composition techniques, making them widely accessible to the research community.
+Built on top of [Huggingface's Transformers framework](https://github.com/huggingface/transformers), AdapterHub has access to a large base of pre-trained transformers.
 In the following, we will go through the process of training, sharing, and composing adapters with AdapterHub.
 
 
