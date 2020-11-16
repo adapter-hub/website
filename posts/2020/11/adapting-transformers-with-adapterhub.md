@@ -14,15 +14,15 @@ paper:
 ---
 
 Pre-trained transformers have led to considerable advances in NLP, achieving state-of-the-art results across the board. 
-Models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) and RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)) contain several millions of parameters, and thus, sharing and distributing fine-tuned transformer models can be prohibitive. 
+Models such as BERT ([Devlin et al., 2019](https://arxiv.org/pdf/1810.04805.pdf)) and RoBERTa ([Liu et al., 2019](https://arxiv.org/pdf/1907.11692.pdf)) consist of several millions of parameters, and thus, sharing and distributing fully fine-tuned models can be prohibitive. 
 
-**Adapters**, small layers inserted into every layer of a Transformer-based language model, recently have been introduced as a promising alternative to full fine-tuning of pre-trained models.
-Adapters overcome various issues with the established full fine-tuning approach:
+**Adapters** are a light-weight alternative to full model fine-tuning, consisting of only a tiny set of newly introduced parameters at every transformer layer.
+Adapters overcome several limitations typically observed with full model fine-tuning:
 they are **parameter-efficient**, **speed up training iterations** and they are especially **shareable** and **composable** due to their modularity and compact size.
-Most importantly, they often perform **on-par with state-of-the-art full fine-tuning**.
+Moreover, they usually perform **on-par with state-of-the-art full fine-tuning**.
 
-We have developed **[AdapterHub, A Framework for Adapting Transformers](https://arxiv.org/pdf/2007.07779.pdf)** which makes working with adapters easily accessible by integrating them with [Huggingface's Transformers](https://github.com/huggingface/transformers), a popular framework for transformer-based language models.
-In the following, we will go through the process of training, sharing, consuming and composing adapters with AdapterHub.
+Before AdapterHub, training, sharing, and re-using adapters has not been straightforward as there exist several different adapter architectures and a wide variety of pre-trained transformers. As a solution, we have developed **[AdapterHub, A Framework for Adapting Transformers](https://arxiv.org/pdf/2007.07779.pdf)** which makes working with adapters widely accessible by integrating them with [Huggingface's Transformers](https://github.com/huggingface/transformers), a popular framework for transformer-based language models.
+In the following, we will go through the process of training, sharing, and composing adapters with AdapterHub.
 
 
 ## A Short Introduction to Adapters
