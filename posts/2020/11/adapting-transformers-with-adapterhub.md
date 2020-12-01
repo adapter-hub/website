@@ -75,7 +75,7 @@ In the following, we will have a look at some of these steps in more detail.
 
 ## Training an Adapter
 
-<a href="https://colab.research.google.com/drive/1QR2Vy4mJFUi5r3HaQVROY3dQ9QMTJqhR?usp=sharing" target="_blank">
+<a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/01_Adapter_Training.ipynb" target="_blank">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -125,7 +125,7 @@ We add a new adapter to our model by calling `add_adapter()`. We pass a name (`"
 1. It freezes all weights of the pre-trained model so only the adapter weights are updated during training.
 2. It activates the adapter and the prediction head such that both are used in every forward pass.
 
-All the rest of the training process is identical to a full fine-tuning approach. Check out [the Colab notebook on adapter training](https://colab.research.google.com/drive/1QR2Vy4mJFUi5r3HaQVROY3dQ9QMTJqhR?usp=sharing) to see the full code.
+All the rest of the training process is identical to a full fine-tuning approach. Check out [the Colab notebook on adapter training](https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/01_Adapter_Training.ipynb) to see the full code.
 
 In the end, the trained adapter can be exported to the file system using a single line of code:
 
@@ -135,7 +135,7 @@ model.save_adapter("./final_adapter", "rotten_tomatoes")
 
 ## Interacting with the Hub
 
-<a href="https://colab.research.google.com/drive/1ovA1_ENGU1TT4T6nz2bW2bzq8-Lg8mMW?usp=sharing" target="_blank">
+<a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/02_Adapter_Inference.ipynb" target="_blank">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -170,11 +170,11 @@ model.set_active_adapters(adapter_name)
 
 Again, these are all changes needed to set up a pre-trained language model with a pre-trained adapter.
 The rest of the inference is identical to a setup without adapters.
-To see a full example, check out [the Colab notebook for adapter inference](https://colab.research.google.com/drive/1ovA1_ENGU1TT4T6nz2bW2bzq8-Lg8mMW?usp=sharing).
+To see a full example, check out [the Colab notebook for adapter inference](https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/02_Adapter_Inference.ipynb).
 
 ## Adapter Composition
 
-<a href="https://colab.research.google.com/drive/1bt_EmBe00s4TldihSavA7ha9Pq2inDY4?usp=sharing" target="_blank">
+<a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/03_Adapter_Fusion.ipynb" target="_blank">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -216,7 +216,7 @@ adapter_setup = [
 model.train_fusion(adapter_setup)
 ```
 
-See the full training example in [the Colab notebook on AdapterFusion](https://colab.research.google.com/drive/1bt_EmBe00s4TldihSavA7ha9Pq2inDY4?usp=sharing).
+See the full training example in [the Colab notebook on AdapterFusion](https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/03_Adapter_Fusion.ipynb).
 
 ## Conclusion
 
