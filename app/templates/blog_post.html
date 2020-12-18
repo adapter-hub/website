@@ -42,14 +42,18 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-10 my-2">
         {% if post['paper'] %}
-        <a class="blog-paper btn card bg-light border-0" href="{{ post['paper']['url'] }}">
-            {{ post['paper']['citation'] }}
-        </a>
+            <a href="{{ post['paper']['url'] }}" class="d-block mb-4">
+                <div class="code text-black">
+                    {{ post['paper']['citation'] }}
+                </div>
+            </a>
         {% endif %}
-        
-        {{ post }}
+
+        <div class="blog-post-content">
+            {{ post }}
+        </div>
 
         <div class="my-5">
             <a href="https://github.com/adapter-hub/website/blob/master/posts/{{ post.path }}.md">
@@ -69,13 +73,15 @@
         </div>
     </div>
 
-    <div class="blog-share col-lg-2 mb-4">
-        <div class="my-4 text-muted">
-            Share
+    <div class="blog-share col-lg-2 mt-2">
+        <div class="share-sheet px-3 pt-2 pb-3">
+            <div class="share-header text-muted font-weight-bold text-center text-uppercase mb-1">
+                Share
+            </div>
+            <a href="https://twitter.com/intent/tweet?text={{ post.title+' - '+config.FREEZER_BASE_URL+post.path }}">
+                <i class="fab fa-twitter"></i>
+            </a>
         </div>
-        <a href="https://twitter.com/intent/tweet?text={{ post.title+' - '+config.FREEZER_BASE_URL+post.path }}">
-            <i class="fab fa-twitter"></i>
-        </a>
     </div>
 </div>
 

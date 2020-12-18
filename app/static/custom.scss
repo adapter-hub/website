@@ -45,11 +45,26 @@ $break-iphone-se: 320px;
   color: rgba(0, 0, 0, 0.65);
 }
 
+.text-black {
+  color: rgba(0, 0, 0, 1);
+}
+
+
 .code {
   background-color: lighten($light, 3%);
   border-left: 4px solid darken($light, 3%);;
 
   padding: 1rem;
+}
+
+a {
+  .code {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  &:hover .code {
+    background-color: $light;
+    border-left-color: darken($light, 8%);;
+  }
 }
 
 .activate-tooltip {
@@ -140,13 +155,16 @@ $break-iphone-se: 320px;
 }
 
 .card {
+  .notice {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: $gray-600;
+    margin-top: 0.2rem;
+  }
+
   .card-title {
     .notice {
       float: right;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      color: $gray-600;
-      margin-top: 0.2rem;
     }
   }
 }
@@ -572,41 +590,51 @@ footer {
 
 /* Blog */
 
+.blog-post-content {
+  figure {
+    margin: 2rem 0;
+  }
+
+  li {
+    margin: 0.25rem 0;
+  }
+}
+
 .blog-share {
-  a {
-    display: block;
-    background-color: $primary;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    text-align: center;
-  }
-  a:hover {
-    background-color: $dark;
-  }
-  i {
-    vertical-align: middle;
-  }
-}
+  .share-sheet {
+    background-color: $light;
+    position: sticky;
+    top: 2rem;
+    border-radius: 0.5rem;
 
-.blog-paper {
-  text-align: left;
-  display: block;
-  margin-bottom: 28px;
-}
+    .share-header {
+      font-size: 0.9rem;
+    }
 
-.blog-paper::before {
-  font-family: "Font Awesome 5 Free";
-  font-size: 28px;
-  content: "\f15b";
-  float: left;
-  margin-right: 12px;
+    a {
+      display: block;
+      background-color: $primary;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      text-align: center;
+    }
+
+    a:hover {
+      background-color: $dark;
+    }
+
+    i {
+      vertical-align: middle;
+    }
+  }
 }
 
 .codehilite {
   pre {
-    padding: 1rem;
+    @extend .code;
+    margin: 1rem 0;
   }
 }
 
