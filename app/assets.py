@@ -6,13 +6,13 @@ js = Bundle(
     'node_modules/popper.js/dist/umd/popper.min.js',
     'node_modules/bootstrap/dist/js/bootstrap.min.js',
     'node_modules/codecopy/umd/codecopy.min.js',
-    filters=('jsmin'),
+    filters=('jsmin',),
     output='gen/packed.js'
 )
 
 css = Bundle(
     'node_modules/codecopy/umd/codecopy.min.css',
-    Bundle('custom.scss', filters=('scss')),
+    Bundle('custom.scss', filters=('scss',)),
     filters=('cssrewrite'),
     output='gen/packed.css'
 )
