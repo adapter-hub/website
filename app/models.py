@@ -113,6 +113,7 @@ class Adapter(db.Model):
     model_type = db.Column(db.String(30), nullable=False)
     model_name = db.Column(db.Text, nullable=False)
     model_class = db.Column(db.Text)
+    prediction_head = db.Column(db.Boolean)
     config = db.Column(db.Text, db.ForeignKey('architectures.name'))
     config_ref = db.relationship('Architecture', backref='adapters')
     config_non_linearity = db.Column(db.Text)

@@ -79,6 +79,21 @@ model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-3 label">
+                Prediction Head
+                <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top"
+                   title="If the adapter provides a prediction head, you can directly use it for inference.">
+                </i>
+            </div>
+            <div class="col-sm-9">
+                {% if adapter.prediction_head %}
+                <i class="fas fa-check"></i>&nbsp; Yes
+                {% else %}
+                <i class="fas fa-times"></i>&nbsp; No
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-3 label">Task</div>
             <div class="col-sm-9">{{ adapter.subtask_ref.task_ref.displayname }}</div>
         </div>

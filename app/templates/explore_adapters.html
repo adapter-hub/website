@@ -127,6 +127,13 @@
                         {% if item.config_reduction_factor %}
                         <span class="badge badge-primary">reduction factor: {{ item.config_reduction_factor }}</span>
                         {% endif %}
+                        <span class="badge badge-primary">Head:&nbsp;
+                            {% if item.prediction_head %}
+                            <i class="fas fa-check"></i>
+                            {% else %}
+                            <i class="fas fa-times"></i>
+                            {% endif %}
+                        </span>
                     </div>
                     <p class="card-text">
                         {{ item['description']|truncate(200) }}
