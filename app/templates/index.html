@@ -109,6 +109,15 @@
                     <a href="#quickstartTraining" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartTraining" aria-selected="true">
                         Training
                     </a>
+                    <a href="#quickstartAdapterFusion" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartAdapterFusion" aria-selected="true">
+                        AdapterFusion
+                    </a>
+                    <a href="#quickstartAdapterDrop" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartAdapterDrop" aria-selected="true">
+                        AdapterDrop
+                    </a>
+                    <a href="#quickstartParallelInference" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartParallelInference" aria-selected="true">
+                        Parallel Inference
+                    </a>
                 </div>
             </div>
 
@@ -124,6 +133,21 @@
                             Training
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#quickstartAdapterFusion" class="nav-link" data-toggle="tab" role="tab" aria-controls="quickstartAdapterFusion" aria-selected="true">
+                            AdapterFusion
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quickstartAdapterDrop" class="nav-link" data-toggle="tab" role="tab" aria-controls="quickstartAdapterDrop" aria-selected="true">
+                            AdapterDrop
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quickstartParallelInference" class="nav-link" data-toggle="tab" role="tab" aria-controls="quickstartParallelInference" aria-selected="true">
+                            Parallel Inference
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -134,6 +158,18 @@
 
                 <div class="tab-pane fade" id="quickstartTraining" role="tabpanel">
                     {% include 'quickstart/training.html' %}
+                </div>
+
+                <div class="tab-pane fade" id="quickstartAdapterFusion" role="tabpanel">
+                    {% include 'quickstart/adapter-fusion.html' %}
+                </div>
+
+                <div class="tab-pane fade" id="quickstartAdapterDrop" role="tabpanel">
+                    {% include 'quickstart/adapter-drop.html' %}
+                </div>
+
+                <div class="tab-pane fade" id="quickstartParallelInference" role="tabpanel">
+                    {% include 'quickstart/parallel-inference.html' %}
                 </div>
             </div>
         </div>
