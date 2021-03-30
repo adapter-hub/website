@@ -28,7 +28,7 @@ The AdapterHub framework makes adapters easy to use. Up until now, the framework
 |   MNLI  | 82.2 | 81.6 | 81.7 |
 |   QQP   | 88.5 | 87.1 | 87.7 |
 
-The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate 0f 1e-4. The adapters are trained for 10 epochs with a learningrate of 1e-4.
+The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate 0f 1e-4. The adapters are trained for 10 epochs with a learning rate of 1e-4.
 
 | BART | Full | Pfeiffer | Houlsby |
 |--------|--------|--------|--------|
@@ -41,7 +41,7 @@ The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate 0f 
 |   MNLI  | 85.7 | 85.9 | 85.9 |
 |   QQP   | 89.3 | 88.4 | 88.6 |
 
-The fully-finetuned model is trained for 3 epochs with a learningrate of 4e-5. The adapters are trained with early stopping for a maximum of 15 epochs with a learningrate of 1e-4.
+The fully-finetuned model is trained for 3 epochs with a learning rate of 4e-5. The adapters are trained with early stopping for a maximum of 15 epochs with a learning rate of 1e-4.
 
 The results of the adapters are comparable to those of the fully finetuned model. On some tasks like the SST-2 tasks, the adapters achieve a higher score than the fully finetuned model for GPT-2 and BART. This matches the results of other models with adapters. In general, adapters can be used instead of fully finetuning the model without decreasing results. 
 
@@ -49,7 +49,7 @@ Now we take a look at the scores the adapters can achieve on sequence to sequenc
 
 > Template: [ENT] was released in 6 [ENT] in [ENT].
 > 
-> Gold sentence: Black Ice was released in 6 Country in 2008.
+> Gold sentence: Black Ice was released in 6 Countries in 2008.
 
 The model can not just enter a number from the table but it needs to count all countries the album was released in 2008. We trained the GPT-2 model with small-sized GPT-2 vocabulary using maximum likelihood estimation. The results are recorded in the following table:
 
@@ -78,10 +78,11 @@ Like the GPT-2 model, the BART model achieves the highest score when it is fully
 
 Version 2.0 of the AdapterHub framework with the addition of adapters for BART and GPT-2 offers new possibilities. Language generation models are better suited for summaries and text generation. Adapters for BART and GPT-2 enable us to tackle these tasks with adapters.
 
-## Hands on example: Train an adapter to write poems
+## Hands-on example: Train an adapter to write poems
 
- [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/06_Text_Generation.ipynb)\
-To give an idea of how adapters can be used for that, we illustrate how to train the GPT-2 model on a poem dataset by [Sheng et al., 2020](https://arxiv.org/pdf/2011.02686.pdf) and let it create its own poems. The dataset contains poems from the Gutenberg project. The full code is available in the corresponding colab notebook. First, we need to add our adapters.  This is easily done with just a few lines of code:
+ [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](
+ https://colab.research.google.com/github/hSterz/adapter-transformers/blob/notebooks/notebooks/06_Text_Generation.ipynb)\
+To give an idea of how adapters can be used for that, we illustrate how to train the GPT-2 model on a poem dataset by [Sheng et al., 2020](https://arxiv.org/pdf/2011.02686.pdf) and let it create its own poems. The dataset contains poems from the Gutenberg project. The full code is available in the corresponding colab notebook. If you have read the previous blog post, this might look very familiar. First, we need to add our adapters.  This is easily done with just a few lines of code:
 
 ```python
 
@@ -102,7 +103,7 @@ model.save_adapter("path/to/adapter", "poem")
 
 ```
 We call `save_adapter()` and give the path to the directory where the adapter should be saved and the name of the adapter we want to save.
-Now that we have our trained adapter, we want to generate some poems and see what it learned. First we need to make a model with a language modeling head and load our trained adapter. Then we activate the loaded adapter.
+Now that we have our trained adapter, we want to generate some poems and see what it learned. First, we need to make a model with a language modeling head and load our trained adapter. Then we activate the loaded adapter.
 
 ```python
 
@@ -116,16 +117,21 @@ model.set_active_adapters("poem")
 With `load_adapter()` we can load an adapter from the Hub by passing the name of the adapter specified in the hub. We can also load a local adapter by giving the path to the adapter. Then, we activate our adapter such that is used in the forward pass with `set_active_adapters()`.
 Finally, we can think of a beginning for a poem and let the model finish it. In this case, the model generates 5 poems for the given beginning. We can choose the one we like most from those. We choose to start our poem with "In the night". One of the poems our model generated was:
 
-> In the night; when the stars shine on her head.\
-> the mounds are deep, and the water's dark,\
-> and the water's cold and with her hand,\
-> with her lips, in song and song,\
+> In the night; \
+> when the stars shine on her head.\
+> the mounds are deep, \
+> and the water's dark, \
+> and the water's cold \
+> and with her hand,\
+> with her lips, \
+> in song and song,\
 > the sound of the birds
 
+This can easily be applied to other datasets. Feel free to train your own adapter and upload it at the [Hub](https://adapterhub.ml/) or browse the adapters trained by the community.
 
 # Conclusion
 
-The new version 2.0 of the AdapterHub framework supports adapters for GPT-2 and BART. The support of these two models offers new possibilities in solving sequence to sequence tasks with adapters. As the results on the GLUE tasks and some sequence to sequence tasks show, adapters achieve results close to a fully finetuned model. To checkout AdapterHub and its other features visit us on [Github](https://github.com/Adapter-Hub/adapter-transformers)
+The new version 2.0 of the AdapterHub framework supports adapters for GPT-2 and BART. The support of these two models offers new possibilities in solving sequence to sequence tasks with adapters. As the results on the GLUE tasks and some sequence to sequence tasks show, adapters achieve results close to a fully finetuned model. To checkout AdapterHub and its other features visit us on [Github](https://github.com/Adapter-Hub/adapter-transformers).
 
 
 
