@@ -5,7 +5,7 @@ author:
   name: Clifton Poth
   twitter: "@clifapt"
 summary: |
-  Today, version 2 of adapter-transformers has been released.
+  Today, we are releasing version 2 of adapter-transformers.
   adapter-transformers, built on top of HuggingFace's Transformers library, is the heart of the AdapterHub framework that makes working with adapters easy.
   The new version brings new possibilities to compose adapters, also in more complex setups, as well as the support for new Transformers model architectures.
 ---
@@ -13,7 +13,7 @@ summary: |
 Adapters, a light-weight alternative to full fine-tuning of state-of-the-art language models, have enabled new possibilities of composing task-specific knowledge from multiple sources, for example for multi-task transfer learning ([Pfeiffer et al., 2021](https://arxiv.org/pdf/2005.00247.pdf)) or for cross-lingual transfer ([Pfeiffer et al., 2020](https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf)).
 One of the great advantages of adapters is their modularity that allows not only mentioned scenarios but also various other composition possibilities.
 
-Today, we have released version 2 of the `adapter-transformers` library which will make it easier than before to take advantage of this composability and flexibility of adapters.
+Today, we are releasing version 2 of the `adapter-transformers` library which will make it easier than before to take advantage of this composability and flexibility of adapters.
 `adapter-transformers`, which is an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/), is the heart of the [AdapterHub framework](https://adapterhub.ml/) which aims to simplify the full lifecycle of working with adapters.
 (Check out [our first blog post for more on that](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/).)
 
