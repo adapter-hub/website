@@ -5,7 +5,7 @@ author:
   name: Clifton Poth
   twitter: "@clifapt"
 summary: |
-  Today, we are releasing version 2 of adapter-transformers.
+  Today, version 2 of adapter-transformers has been released.
   adapter-transformers, built on top of HuggingFace's Transformers library, is the heart of the AdapterHub framework that makes working with adapters easy.
   The new version brings new possibilities to compose adapters, also in more complex setups, as well as the support for new Transformers model architectures.
 ---
@@ -13,7 +13,7 @@ summary: |
 Adapters, a light-weight alternative to full fine-tuning of state-of-the-art language models, have enabled new possibilities of composing task-specific knowledge from multiple sources, for example for multi-task transfer learning ([Pfeiffer et al., 2021](https://arxiv.org/pdf/2005.00247.pdf)) or for cross-lingual transfer ([Pfeiffer et al., 2020](https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf)).
 One of the great advantages of adapters is their modularity that allows not only mentioned scenarios but also various other composition possibilities.
 
-Today, we are releasing version 2 of the `adapter-transformers` library which will make it easier than before to take advantage of this composability and flexibility of adapters.
+Today, are realeasing version 2 of `adapter-transformers` which will make it easier than before to take advantage of this composability and flexibility of adapters.
 `adapter-transformers`, which is an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/), is the heart of the [AdapterHub framework](https://adapterhub.ml/) which aims to simplify the full lifecycle of working with adapters.
 (Check out [our first blog post for more on that](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/).)
 
@@ -57,11 +57,13 @@ We have [a separate blog post]() presenting our results when training adapters o
 
 ### AdapterDrop
 
-Version 2 of `adapter-transformers` integrates some new ideas introduced in the _AdapterDrop_ paper [(Rückle et al., 2020)](https://arxiv.org/pdf/2010.11918.pdf). This includes _robust_ adapter training by dynamically dropping adapters from random layers in each training step.
-Robust _AdapterDrop_ training is presented on an example [in this Colab notebook](https://github.com/Adapter-Hub/adapter-transformers/blob/master/notebooks/Adapter_Drop_Training.ipynb).
+Version 2 of `adapter-transformers` integrates some of the key ideas presented in _AdapterDrop_ [(Rücklé et al., 2020)](https://arxiv.org/pdf/2010.11918.pdf), namely, (1) parallel multi-task inference and (2) _robust_ AdapterDrop training. 
 
-Additionally, `adapter-transformers` enables parallel multi-task inference on different adapters via the `Parallel` adapter composition block.
-You can find out more about this feature [here](adapter_composition.html#parallel).
+Parallel multi-task inference, for any given input, runs multiple task adapters in parallel and thereby achieves considerable improvements in inference speed compared to sequentially running multiple BERT models (see our paper for more details). The `Parallel` adapter composition block implements this behavior, which we describe in more detail [here](adapter_composition.html#parallel).
+
+A central advantage of multi-task inference is that it shares the computations in lower transformer layers across all inference tasks (before the first adapter block). Dropping out adapters from lower transformer layers can thus result in even faster inference speeds, but it often comes at the cost of lower accuracies. To allow for _dynamic_ adjustment of the number of dropped adapter layers at run-time regarding the available computational resources, we introduce _robust_ adapter training. This technique drops adapters from a random number of lower transformer layers in each training step. The resulting adapter can then be adjusted at run-time regarding the number of dropped early layers.
+We present an example for robust _AdapterDrop_ training [in this Colab notebook](https://github.com/Adapter-Hub/adapter-transformers/blob/master/notebooks/Adapter_Drop_Training.ipynb).
+
 
 ### Transformers upgrade
 
