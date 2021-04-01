@@ -97,7 +97,7 @@ model.add_adapter("poem")
 model.model.train_adapter("poem")
 
 ```
-We have created the GPT-2 model and added an adapter with `add_adapter()`. We only need to pass the name of the adapter `"poem"`. After adding the new adapter, We call `train_adapter()` and pass the name of our adapter. This does two things. Firstly it freezes all parameters of the pre-trained model such that only the parameters of the adapter are updated during training. Secondly, it activates the adapter so that it is used in the forward pass. Next, we can train our model the same way we would without an adapter. In the end, we can save our trained adapter as follows.
+We have created the GPT-2 model and added an adapter with `add_adapter()`. We only need to pass the name of the adapter `"poem"`. After adding the new adapter. We call `train_adapter()` and pass the name of our adapter. This does two things. Firstly it freezes all parameters of the pre-trained model such that only the parameters of the adapter are updated during training. Secondly, it activates the adapter so that it is used in the forward pass. Next, we can train our model the same way we would without an adapter. In the end, we can save our trained adapter as follows.
 
 ```python
 
@@ -133,7 +133,7 @@ This can easily be applied to other datasets. Feel free to train your own adapte
 
 # Conclusion
 
-The new version 2.0 of the AdapterHub framework supports adapters for GPT-2 and BART. The support of these two models offers new possibilities in solving sequence to sequence tasks with adapters. As the results on the GLUE tasks and some sequence to sequence tasks show, adapters achieve results close to a fully finetuned model. To checkout AdapterHub and its other features visit us on [Github](https://github.com/Adapter-Hub/adapter-transformers).
+The new version 2.0 of the AdapterHub framework supports adapters for GPT-2 and BART. The support of these two models offers new possibilities in solving sequence to sequence tasks with adapters. To checkout AdapterHub and its other features visit us on [Github](https://github.com/Adapter-Hub/adapter-transformers).
 
 
 
