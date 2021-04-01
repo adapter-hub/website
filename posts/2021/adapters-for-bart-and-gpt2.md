@@ -8,13 +8,12 @@ summary: |
   Adapters have proven to be an efficient alternative to fully finetung models. The version 2.0 of the AdapterHub framework includes adapters for the BART and GPT2 models.
 ---
 
+!["AdapterHub now supports adapters for BART"](/app/static/images/BARTLogo.png)
 
 Adapters are becoming more and more important in machine learning for NLP. They enable us to quickly train and share new task specific models. Adapters are small layers that are stitched into the pre-trained model. During training, only the parameters of the adapter layers are finetuned. Meanwhile, the parameters of the pre-trained model remain frozen. As a result, it is sufficient to store the adapter layers for each task instead of storing fully finetuned models separately for each task. Furthermore, the lower number of parameters requires less memory and makes it easier to share the trained adapters. Adapters also offer possibilities in transfer learning. By using different combinations of adapters the model can be trained on one language and use the adapter on another one. (for more details and examples checkout [this blog post](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/)). [Bapna et al., 2019](https://www.aclweb.org/anthology/D19-1165.pdf) has shown that adapters are useful for sequence to sequence tasks. On a neural machine translation task, they achieved similar results with adapters as with a fully finetuned model.
 
 The AdapterHub framework makes adapters easy to use. Up until now, the framework included adapters for the models BERT, RoBERTa, XML-RoBERTa and DistilBERT. In the new version 2.0, the framework provides adapters for the language generation models BART and GPT-2 as well. This allows us to use adapters for sequence to sequence tasks like e.g. summarization.
 
-
-!["AdapterHub now supports adapters for BART"](/app/static/images/BARTLogo.png)
 
 ## Results of BART and GPT-2 with adapters
  Before we dive into more specific tasks we take a look at the performance on the GLUE tasks. We compare the scores of a fully finetuned model with the scores of a model with adapters configured according to [Pfeiffer et al., 2020a](https://arxiv.org/pdf/2005.00247.pdf) and a model with adapters configured according to [Houlsby et al. 2020](https://arxiv.org/pdf/1902.00751.pdf). The GPT-2 model and BART model achieve the following scores:
