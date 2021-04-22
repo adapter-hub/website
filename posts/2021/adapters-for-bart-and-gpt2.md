@@ -8,7 +8,7 @@ summary: |
   Adapters have proven to be an efficient alternative to fully finetung models. The version 2.0 of the AdapterHub framework includes adapters for the BART and GPT2 models.
 ---
 
-!["AdapterHub now supports adapters for BART"](/app/static/images/BARTLogo.png)
+![](/static/images/BARTLogo.png ""AdapterHub now supports adapters for BART"")
 
 Adapters are becoming more and more important in machine learning for NLP. They enable us to quickly train and share new task specific models. Adapters are small layers that are stitched into the pre-trained model. During training, only the parameters of the adapter layers are finetuned. Meanwhile, the parameters of the pre-trained model remain frozen. As a result, it is sufficient to store the adapter layers for each task instead of storing fully finetuned models separately for each task. Furthermore, the lower number of parameters requires less memory and makes it easier to share the trained adapters. Adapters also offer possibilities in transfer learning. By using different combinations of adapters the model can be trained on one language and use the adapter on another one. (for more details and examples checkout [this blog post](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/)). [Bapna et al., 2019](https://www.aclweb.org/anthology/D19-1165.pdf) has shown that adapters are useful for sequence to sequence tasks. On a neural machine translation task, they achieved similar results with adapters as with a fully finetuned model.
 
@@ -18,30 +18,68 @@ The AdapterHub framework makes adapters easy to use. Up until now, the framework
 ## Results of BART and GPT-2 with adapters
  Before we dive into more specific tasks we take a look at the performance on the GLUE tasks. We compare the scores of a fully finetuned model with the scores of a model with adapters configured according to [Pfeiffer et al., 2020a](https://arxiv.org/pdf/2005.00247.pdf) and a model with adapters configured according to [Houlsby et al. 2020](https://arxiv.org/pdf/1902.00751.pdf). The GPT-2 model and BART model achieve the following scores:
 
+<table>
+<tr>
+<td> GPT-2 </td><td> Full </td><td> Pfeiffer <Ttd><td> Houlsby </td>
+</tr>
+<tr>
+<td> RTE </td><td> 65.0 </td><td> 67.1 </td><td> 67.5 </td>
+</tr>
+<tr>
+<td>   MRPC  </td><td> 83.8 </td><td> 83.5 </td><td> 80.4 </td>
+</tr>
+<tr>
+<td>   STS-B </td><td> 86.7 </td><td> 85.3 </td><td> 85.4 </td>
+</tr>
+<tr>
+<td>   CoLA  </td><td> 33.6 </td><td> 43.0 </td><td> 41.2 </td>
+</tr>
+<tr>
+<td>   SST-2 </td><td> 90.0 </td><td> 90.5 </td><td> 90.9 </td>
+</tr>
+<tr>
+<td>   QNLI  </td><td> 87.6 </td><td> 88.2 </td><td> 88.5 </td>
+</tr>
+<tr>
+<td>   MNLI  </td><td> 82.2 </td><td> 81.6 </td><td> 81.7 </td>
+</tr>
+<tr>
+<td>   QQP   </td><td> 88.5 </td><td> 87.1 </td><td> 87.7 </td>
+</tr>
+</table>
 
-| GPT-2 | Full | Pfeiffer | Houlsby | 
-|--------|--------|--------|--------|
-|   RTE   | 65.0 | 67.1 | 67.5 |
-|   MRPC  | 83.8 | 83.5 | 80.4 |
-|   STS-B | 86.7 | 85.3 | 85.4 |
-|   CoLA  | 33.6 | 43.0 | 41.2 |
-|   SST-2 | 90.0 | 90.5 | 90.9 |
-|   QNLI  | 87.6 | 88.2 | 88.5 |
-|   MNLI  | 82.2 | 81.6 | 81.7 |
-|   QQP   | 88.5 | 87.1 | 87.7 |
 
 The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate 0f 1e-4. The adapters are trained for 10 epochs with a learning rate of 1e-4.
 
-| BART | Full | Pfeiffer | Houlsby |
-|--------|--------|--------|--------|
-|    RTE  | 71.12 | 69.7 | 69.1 |
-|    MRPC | 87.5 | 86.8 | 88.2 |
-|   STS-B | 89.0 | 88.1 | 88.3 |
-|   CoLA  | 46.6 | 46.1 | 45.6 |
-|   SST-2 | 92.7 | 93.7 | 93.6 |
-|   QNLI  | 91.6 | 92.2 | 93.6 |
-|   MNLI  | 85.7 | 85.9 | 85.9 |
-|   QQP   | 89.3 | 88.4 | 88.6 |
+<table>
+<tr>
+<td> BART </td><td> Full </td><td> Pfeiffer <Ttd><td> Houlsby </td>
+</tr>
+<tr>
+<td> RTE </td><td> 71.12 </td><td> 69.7 </td><td> 69.1</td>
+</tr>
+<tr>
+<td>   MRPC  </td><td> 87.5</td><td> 86.8 </td><td> 88.2 </td>
+</tr>
+<tr>
+<td>   STS-B </td><td> 89.0 </td><td> 88.1 </td><td> 88.3 </td>
+</tr>
+<tr>
+<td>   CoLA  </td><td> 46.6 </td><td> 46.1 </td><td> 45.6 </td>
+</tr>
+<tr>
+<td>   SST-2 </td><td> 92.7 </td><td> 93.7 </td><td> 93.6 </td>
+</tr>
+<tr>
+<td>   QNLI  </td><td> 91.6 </td><td> 92.2 </td><td> 93.6 </td>
+</tr>
+<tr>
+<td>   MNLI  </td><td> 85.7 </td><td> 85.9 </td><td> 85.9 </td>
+</tr>
+<tr>
+<td>   QQP   </td><td> 89.3 </td><td> 88.4 </td><td> 88.6 </td>
+</tr>
+</table>
 
 The fully-finetuned model is trained for 3 epochs with a learning rate of 4e-5. The adapters are trained with early stopping for a maximum of 15 epochs with a learning rate of 1e-4.
 
@@ -54,27 +92,40 @@ Now we take a look at the scores the adapters can achieve on sequence to sequenc
 > Gold sentence: Black Ice was released in 6 Countries in 2008.
 
 The model can not just enter a number from the table but it needs to count all countries the album was released in 2008. We trained the GPT-2 model with small-sized GPT-2 vocabulary using maximum likelihood estimation. The results are recorded in the following table:
-
-| | BLEU-1 | BLEU-2 | BLEU-3 | Adv-Acc |
-|--------|--------|--------|--------|--------|
-|    GPT-2  | 48.8 | 27.1 | 12.6 | 62.3 |
-|   GPT-2 + Pfeiffer |46.3 | 24.8 | 11.2 | 60.1 |
-|   GPT-2 + Houlsby | 45.5 | 23.9 | 10.5 | 59.7 |
-
+<table>
+<tr>
+<td></td><td> BLEU-1 </td><td> BLEU-2 </td><td> BLEU-3 </td><td> Adv-Acc </td>
+</tr>
+<tr>
+<td> GPT-2  </td><td> 48.8 </td><td> 27.1 </td><td> 12.6 </td><td> 62.3 </td>
+</tr><tr>
+<td> GPT-2 + Pfeiffer </td><td> 46.3 </td><td> 24.8 </td><td> 11.2 </td><td> 60.1 </td>
+</tr><tr>
+<td> GPT-2 + Houlsby </td><td> 45.5 </td><td> 23.9 </td><td> 10.5 </td><td> 59.7 </td>
+</tr>
+</table>
 The models with adapters have a lower score than the fully finetuned model. The adapters might produce slightly lower scores for sequence to sequence tasks than fully finetuning. But the results are close and adapters have several advantages over fully finetuning e.g. shorter training, they need less memory to be stored and they can easily be shared.
 
 To test the BART model on sequence to sequence tasks we evaluated the model on the CNN/Daily Mail dataset ([See et al., 2017](https://arxiv.org/pdf/1704.04368.pdf) [Hermann et al., 2015](https://arxiv.org/pdf/1506.03340.pdf)) and the XSum dataset ([Narayan et al., 2018](https://arxiv.org/pdf/1808.08745.pdf)). Both tasks train the model to summarize newspaper articles. The main difference is that XSum or extreme summary dataset trains the model to output short one sentence summaries. The results of the fully finetuned BART model and the adapters are as follows:
+<table style="padding:20px">
+<tr>
+<td> </td><td> R1 </td><td> R2 </td><td> RL </td>
+</tr><tr>
+<td> CNN/Daily mail </td><td> 44.16 </td><td> 21.28 </td><td> 40.90 </td>
+</tr><tr>
+<td>CNN/Daily mail + Pfeiffer </td><td> 43.40 </td><td> 20.86 </td><td> 30.66 </td>
+<tr></table>
 
-|| R1 | R2 | RL |
-|------ | -----| ----- | ------|
-|CNN/Daily mail| 44.16 | 21.28 | 40.90 |
-|CNN/Daily mail + Pfeiffer | 43.40 | 20.86 | 30.66 |
-
-|| R1 | R2 | RL |
-|------ | -----| ----- | ------|
-|XSum | 45.14 | 22.27 | 37.26 |
-|XSum + Pfeiffer | 43.56 | 20.56 | 35.56 |
-|XSum + Houlsby | 44.03 | 20.90 | 36.01 |
+<table>
+<tr>
+<td> </td><td> R1 </td><td> R2 </td><td> RL </td>
+</tr><tr>
+<td> XSum </td><td> 45.14 </td><td> 22.27 </td><td> 37.26 </td>
+</tr><tr>
+<td> XSum + Pfeiffer </td><td> 43.56 </td><td> 20.56 </td><td> 35.56 </td>
+</tr><tr>
+<td> XSum + Houlsby </td><td>44.03 </td><td> 20.90 </td><td> 36.01 </td>
+</tr></table>
 
 Like the GPT-2 model, the BART model achieves the highest score when it is fully finetuned. The models with adapters achieve slightly lower scores. This further indicates that adapters might achieve a slightly lower score on sequence to sequence tasks in general. But as previously stated they have several advantages over fully finetuning the model.
 
@@ -83,7 +134,7 @@ Version 2.0 of the AdapterHub framework with the addition of adapters for BART a
 ## Hands-on example: Train an adapter to write poems
 
  [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](
- https://colab.research.google.com/github/hSterz/adapter-transformers/blob/notebooks/notebooks/06_Text_Generation.ipynb)\
+ https://colab.research.google.com/github/hSterz/adapter-transformers/blob/notebooks/notebooks/06_Text_Generation.ipynb) <br>
 To give an idea of how adapters can be used for that, we illustrate how to train the GPT-2 model on a poem dataset by [Sheng et al., 2020](https://arxiv.org/pdf/2011.02686.pdf) and let it create its own poems. The dataset contains poems from the Gutenberg project. The full code is available in the corresponding colab notebook. If you have read the previous blog post, this might look very familiar. First, we need to add our adapters.  This is easily done with just a few lines of code:
 
 ```python
