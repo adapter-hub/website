@@ -8,7 +8,10 @@ summary: |
   Adapters have proven to be an efficient alternative to fully finetung models. The version 2.0 of the AdapterHub framework includes adapters for the BART and GPT2 models.
 ---
 
-![](/static/images/BARTLogo.png ""AdapterHub now supports adapters for BART"")
+
+<p align="center">
+<img src="/static/images/BARTLogo.png">
+</p>
 
 Adapters are becoming more and more important in machine learning for NLP. They enable us to quickly train and share new task specific models. Adapters are small layers that are stitched into the pre-trained model. During training, only the parameters of the adapter layers are finetuned. Meanwhile, the parameters of the pre-trained model remain frozen. As a result, it is sufficient to store the adapter layers for each task instead of storing fully finetuned models separately for each task. Furthermore, the lower number of parameters requires less memory and makes it easier to share the trained adapters. Adapters also offer possibilities in transfer learning. By using different combinations of adapters the model can be trained on one language and use the adapter on another one. (for more details and examples checkout [this blog post](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/)). [Bapna et al., 2019](https://www.aclweb.org/anthology/D19-1165.pdf) has shown that adapters are useful for sequence to sequence tasks. On a neural machine translation task, they achieved similar results with adapters as with a fully finetuned model.
 
@@ -20,7 +23,7 @@ The AdapterHub framework makes adapters easy to use. Up until now, the framework
 
 <table>
 <tr>
-<td> GPT-2 </td><td> Full </td><td> Pfeiffer <Ttd><td> Houlsby </td>
+<th> GPT-2 </th><th> Full </th><th> Pfeiffer </th><th> Houlsby </th>
 </tr>
 <tr>
 <td> RTE </td><td> 65.0 </td><td> 67.1 </td><td> 67.5 </td>
@@ -53,7 +56,7 @@ The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate 0f 
 
 <table>
 <tr>
-<td> BART </td><td> Full </td><td> Pfeiffer <Ttd><td> Houlsby </td>
+<th> BART </th><th> Full </th><th> Pfeiffer </th><th> Houlsby </th>
 </tr>
 <tr>
 <td> RTE </td><td> 71.12 </td><td> 69.7 </td><td> 69.1</td>
@@ -94,7 +97,7 @@ Now we take a look at the scores the adapters can achieve on sequence to sequenc
 The model can not just enter a number from the table but it needs to count all countries the album was released in 2008. We trained the GPT-2 model with small-sized GPT-2 vocabulary using maximum likelihood estimation. The results are recorded in the following table:
 <table>
 <tr>
-<td></td><td> BLEU-1 </td><td> BLEU-2 </td><td> BLEU-3 </td><td> Adv-Acc </td>
+<th></th><th> BLEU-1 </th><th> BLEU-2 </th><th> BLEU-3 </th><th> Adv-Acc </th>
 </tr>
 <tr>
 <td> GPT-2  </td><td> 48.8 </td><td> 27.1 </td><td> 12.6 </td><td> 62.3 </td>
@@ -107,18 +110,18 @@ The model can not just enter a number from the table but it needs to count all c
 The models with adapters have a lower score than the fully finetuned model. The adapters might produce slightly lower scores for sequence to sequence tasks than fully finetuning. But the results are close and adapters have several advantages over fully finetuning e.g. shorter training, they need less memory to be stored and they can easily be shared.
 
 To test the BART model on sequence to sequence tasks we evaluated the model on the CNN/Daily Mail dataset ([See et al., 2017](https://arxiv.org/pdf/1704.04368.pdf) [Hermann et al., 2015](https://arxiv.org/pdf/1506.03340.pdf)) and the XSum dataset ([Narayan et al., 2018](https://arxiv.org/pdf/1808.08745.pdf)). Both tasks train the model to summarize newspaper articles. The main difference is that XSum or extreme summary dataset trains the model to output short one sentence summaries. The results of the fully finetuned BART model and the adapters are as follows:
-<table style="padding:20px">
+<table>
 <tr>
-<td> </td><td> R1 </td><td> R2 </td><td> RL </td>
+<th></th><th> R1 </th><th> R2 </th><th> RL </th>
 </tr><tr>
 <td> CNN/Daily mail </td><td> 44.16 </td><td> 21.28 </td><td> 40.90 </td>
 </tr><tr>
 <td>CNN/Daily mail + Pfeiffer </td><td> 43.40 </td><td> 20.86 </td><td> 30.66 </td>
-<tr></table>
+</tr></table>
 
 <table>
 <tr>
-<td> </td><td> R1 </td><td> R2 </td><td> RL </td>
+<th></th><th> R1 </th><th> R2 </th><th> RL </th>
 </tr><tr>
 <td> XSum </td><td> 45.14 </td><td> 22.27 </td><td> 37.26 </td>
 </tr><tr>
