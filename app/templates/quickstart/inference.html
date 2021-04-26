@@ -11,7 +11,8 @@
 
 <p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>
 <pre class="code">model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased")
-model.load_adapter("sentiment/sst-2@ukp")</pre>
+model.load_adapter("sentiment/sst-2@ukp")
+model.set_active_adapters("sst-2")</pre>
 <p>The <a href="https://adapterhub.ml/adapters/ukp/bert-base-uncased_sentiment_sst-2_pfeiffer/">SST adapter</a> is light-weight: it is only 3MB! At
     the same time, it achieves <a href="https://arxiv.org/abs/2007.07779" target="_blank">results</a> that are on-par with fully fine-tuned BERT.
     We can now leverage SST adapter to predict the sentiment of sentences:</p>
@@ -21,7 +22,4 @@ tokens = tokenizer.tokenize("AdapterHub is awesome!")
 input_tensor = torch.tensor([
     tokenizer.convert_tokens_to_ids(tokens)
 ])
-outputs = model(
-    input_tensor,
-    adapter_names=['sst-2']
-)</pre>
+outputs = model(input_tensor)</pre>
