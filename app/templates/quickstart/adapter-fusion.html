@@ -3,10 +3,28 @@
         <h3 class="m-0">AdapterFusion</h3>
     </div>
     <div class="col text-right d-none d-lg-block">
-        <a class="btn-colab-headline" href="https://colab.research.google.com/github/Adapter-Hub/website/blob/master/app/static/notebooks/Adapter_Quickstart_Training.ipynb" target="_blank">
+        <a class="btn-colab-headline" href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/03_Adapter_Fusion.ipynb" target="_blank">
             <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
         </a>
     </div>
 </div>
 
-<p>TODO</p>
+<p>Using <i>AdapterFusion</i>, we can combine the knowledge of multiple pre-trained adapters on a downstream task.
+First, we load a pre-trained model and a couple of pre-trained adapters.
+As we discard the prediction heads of the pre-trained adapters, we add a new head afterwards.</p>
+<pre class="code">model = BertModelWithHeads.from_pretrained("bert-base-uncased")
+model.load_adapter("nli/multinli@ukp", load_as="multinli", with_head=False)
+model.load_adapter("sts/qqp@ukp", with_head=False)
+model.load_adapter("nli/qnli@ukp", with_head=False)
+
+model.add_classification_head("cb")
+</pre>
+<p>On top of the loaded adapters, we add a new fusion layer using <code>add_fusion()</code>.
+For this purpose, we first define the adapter setup using the <code>Fuse</code> <a href="https://docs.adapterhub.ml/adapter_composition.html">composition block</a>.
+During training, only the weights of the fusion layer will be updated. We ensure this by first activating all adapters in the setup and then calling <code>train_fusion()</code>:</p>
+<pre class="code">adapter_setup = Fuse("multinli", "qqp", "qnli")
+model.add_fusion(adapter_setup)
+model.set_active_adapters(adapter_setup)
+model.train_fusion(adapter_setup)
+</pre>
+<p>From here on, the training procedure is identical to training a single adapters or a full model. Check out the full working example <a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/03_Adapter_Fusion.ipynb">in the Colab notebook</a>.</p>
