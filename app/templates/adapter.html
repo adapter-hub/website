@@ -59,7 +59,7 @@
         <pre class="p-4 code">
 model = {{ adapter.model_class or "AutoModel" }}.from_pretrained("{{ adapter.model_name }}")
 config = AdapterConfig.load("{{ adapter.config }}"{{ custom_config_str }})
-model.load_adapter("{{specifier}}", "{{ adapter['type'] }}", config=config)</pre>
+model.load_adapter("{{specifier}}", config=config)</pre>
         <i class="btn-clipboard"></i>
     </section>
 
