@@ -9,6 +9,8 @@ authors:
 summary: Today, we are releasing version 2 of adapter-transformers. This release introduces several exciting new ways for composing adapters through composition blocks, including AdapterFusion, ParallelInference, Adapter stacking, and combinations thereof. Furthermore, we now support new Transformer architectures such as GPT-2 and BART.
 ---
 
+![](/static/images/v2_blocks.png "Illustration of adapter composition blocks supported in v2 of adapter-transformers.")
+
 Adapters, a light-weight alternative to full language model fine-tuning, enable new ways of composing task-specific knowledge from multiple sources, e.g., for multi-task transfer learning ([Pfeiffer et al., 2021](https://arxiv.org/pdf/2005.00247.pdf)) or cross-lingual transfer ([Pfeiffer et al., 2020](https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf)).
 One of the most important advantages of adapters is their modularity, which allows many exciting possibilities for composition beyond the ones mentioned above.
 
@@ -45,8 +47,9 @@ In the depicted setup, at every transformer layer the token representations are 
 
 Besides the two blocks shown, `adapter-transformers` includes a `Fuse` block (for [_AdapterFusion_](https://arxiv.org/pdf/2005.00247.pdf)) and a `Parallel` block (see below).
 All of these blocks are derived from `AdapterCompositionBlock`, and they can be flexibly combined in even very complex scenarios.
+Figure 1 shows an illustration of the structure of each composition block.
 For more information on specifying the active adapters using `active_adapters` and the new composition blocks,
-refer to the [corresponding section in our documentation](adapter_composition.md).
+refer to the [corresponding section in our documentation](https://docs.adapterhub.ml/adapter_composition.html).
 
 ### New model support: Adapters for BART and GPT-2
 
