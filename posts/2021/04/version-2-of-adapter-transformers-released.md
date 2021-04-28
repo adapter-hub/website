@@ -69,7 +69,7 @@ We present an example for robust _AdapterDrop_ training [in this Colab notebook]
 
 ### Transformers upgrade
 
-Version 2.0.0 upgrades the underlying HuggingFace Transformers library from v3.5.1 to v4.2.2, bringing many awesome new features created by HuggingFace.
+Version 2.0.0 upgrades the underlying HuggingFace Transformers library from v3.5.1 to v4.5.1, bringing many awesome new features created by HuggingFace.
 
 ## What has changed
 
