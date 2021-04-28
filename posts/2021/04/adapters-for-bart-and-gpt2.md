@@ -187,13 +187,16 @@ Finally, we can think of a beginning for a poem and let the model finish it. In 
 
 This can easily be applied to other datasets. Feel free to train your own adapter and upload it at the [Hub](https://adapterhub.ml/) or browse the adapters trained by the community.
 
-# Conclusion
+## Conclusion
 
-The new version 2.0 of the AdapterHub framework supports adapters for GPT-2 and BART. The support of these two models offers new possibilities in solving sequence to sequence tasks with adapters. To checkout AdapterHub and its other features visit us on [Github](https://github.com/Adapter-Hub/adapter-transformers).
+The new version 2.0 of the AdapterHub framework supports adapters for GPT-2 and BART. The support of these two models offers new possibilities in solving sequence to sequence tasks with adapters. To checkout AdapterHub and its other features, visit us on [GitHub](https://github.com/Adapter-Hub/adapter-transformers).
+
+## Acknowledgements
+
+We thank [André Fellenberg](https://www.behance.net/andrefellenberg) for the BART illustration.
 
 
-
-# References
+## References
 - Bapna, A., Arivazhagan, N., & Firat, O. (2019). Simple, scalable adaptation for neural machine translation. arXiv preprint arXiv:1909.08478.
 - Chen, W., Chen, J., Su, Y., Chen, Z., & Wang, W. Y. (2020). Logical natural language generation from open-domain tables. arXiv preprint arXiv:2004.10404.
 - Hermann, K. M., Kočiský, T., Grefenstette, E., Espeholt, L., Kay, W., Suleyman, M., & Blunsom, P. (2015). Teaching machines to read and comprehend. arXiv preprint arXiv:1506.03340.
@@ -202,4 +205,3 @@ The new version 2.0 of the AdapterHub framework supports adapters for GPT-2 and 
 - Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., & Gurevych, I. (2020). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. ArXiv, abs/2005.00247.
 - See, A., Liu, P. J., & Manning, C. D. (2017). Get to the point: Summarization with pointer-generator networks. arXiv preprint arXiv:1704.04368.
 - Sheng, E., & Uthus, D. (2020). Investigating Societal Biases in a Poetry Composition System. arXiv preprint arXiv:2011.02686.
-
