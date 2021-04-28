@@ -9,14 +9,14 @@ authors:
 summary: Today, we are releasing version 2 of adapter-transformers. This release introduces several exciting new ways for composing adapters through composition blocks, including AdapterFusion, ParallelInference, Adapter stacking, and combinations thereof. Furthermore, we now support new Transformer architectures such as GPT-2 and BART.
 ---
 
-Adapters, a light-weight alternative to full fine-tuning of state-of-the-art language models, have enabled new possibilities of composing task-specific knowledge from multiple sources, for example for multi-task transfer learning ([Pfeiffer et al., 2021](https://arxiv.org/pdf/2005.00247.pdf)) or for cross-lingual transfer ([Pfeiffer et al., 2020](https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf)).
-One of the great advantages of adapters is their modularity which not only allows the mentioned scenarios but also various other composition possibilities.
+Adapters, a light-weight alternative to full language model fine-tuning, enable new ways of composing task-specific knowledge from multiple sources, e.g., for multi-task transfer learning ([Pfeiffer et al., 2021](https://arxiv.org/pdf/2005.00247.pdf)) or cross-lingual transfer ([Pfeiffer et al., 2020](https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf)).
+One of the most important advantages of adapters is their modularity, which allows many exciting possibilities for composition beyond the ones mentioned above.
 
-Today, we are releasing version 2 of `adapter-transformers` which  makes it easier to take advantage of the composability and flexibility of adapters.
-`adapter-transformers` --- an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/) --- is the heart of the [AdapterHub framework](https://adapterhub.ml/) which aims to simplify the full lifecycle of working with adapters.
+Today, we are releasing version 2 of `adapter-transformers`, which makes it easier to take advantage of the composability and flexibility of adapters.
+`adapter-transformers` --- an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/) --- is the heart of the [AdapterHub framework](https://adapterhub.ml/) and simplifies the entire adapter lifecycle.
 (Check out [our first blog post for more on this](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/).)
 
-In the following sections, we will outline everything new and changed in the v2 release.
+In the following sections, we will discuss all new features and changes that we introduce with the v2 release.
 You can find `adapter-transformers` [on GitHub](https://github.com/Adapter-Hub/adapter-transformers) or install it via pip:
 
 ```bash
@@ -27,7 +27,7 @@ pip install -U adapter-transformers
 
 ### Adapter composition blocks
 
-The new version introduces a radically different way to define adapter setups in a Transformers model,
+The new version introduces a radically different way to define adapter setups in a Transformer model,
 allowing much more advanced and flexible adapter composition possibilities.
 An example setup using this new, modular composition mechanism might look like this:
 
@@ -37,22 +37,22 @@ import transformers.adapters.composition as ac
 model.active_adapters = ac.Stack("a", ac.Split("b", "c", split_index=60))
 ```
 
-As we can see, the basic building blocks of this setup are simple objects representing different possibilities to combine single adapters.
-In the example, `Stack` describes stacking adapters layers on top of each other,
-as used in the _MAD-X_ framework for cross-lingual transfer.
+As we can see, the basic building blocks of this setup are simple objects representing different possibilities to combine individual adapters.
+In the above example, `Stack` describes stacking adapters layers on top of each other,
+e.g., as it is used in the _MAD-X_ framework for cross-lingual transfer.
 `Split` results in splitting the input sequences between two adapters at a specified `split_index`.
 In the depicted setup, at every transformer layer the token representations are first passed through adapter `a` before being split at the `split_index` and passed through adapters `b` and `c` respectively.
 
-Besides the two blocks shown, `adapter-transformers` currently also includes a `Fuse` block (for [_AdapterFusion_](https://arxiv.org/pdf/2005.00247.pdf)) and a `Parallel` block (see below).
-All of these blocks are derived from `AdapterCompositionBlock`, and they can be flexibly combined providing many imaginable scenarios.
+Besides the two blocks shown, `adapter-transformers` includes a `Fuse` block (for [_AdapterFusion_](https://arxiv.org/pdf/2005.00247.pdf)) and a `Parallel` block (see below).
+All of these blocks are derived from `AdapterCompositionBlock`, and they can be flexibly combined in even very complex scenarios.
 For more information on specifying the active adapters using `active_adapters` and the new composition blocks,
 refer to the [corresponding section in our documentation](adapter_composition.md).
 
 ### New model support: Adapters for BART and GPT-2
 
-The two new model architectures added in v2.0, BART and GPT-2, start the process of integrating adapters into sequence-to-sequence models, with more to come.
+v2 adds support for BART and GPT-2, marking a new type of models we support in the framework, namely sequence-to-sequence models (more to come!)
 
-We have [a separate blog post](https://adapterhub.ml/blog/2021/04/adapters-for-bart-and-gpt2/) presenting our results when training adapters on both models and new adapters in the Hub.
+We have [a separate blog post](https://adapterhub.ml/blog/2021/04/adapters-for-bart-and-gpt2/) that studies the effectiveness of adapters within these two models in greater detail! This blog post also includes a hands-on example where we train GPT-2 to generate poetry.
 
 ### AdapterDrop
 
@@ -76,7 +76,7 @@ _Includes breaking changes ⚠️_
 
 The new version removes the hard distinction between _task_ and _language_ adapters (realized using the `AdapterType` enumeration in v1) everywhere in the library.
 Instead, all adapters use the same set of methods.
-This, of course, leads to some breaking changes.
+This results in some breaking changes.
 For example, you don't have to specify the adapter type anymore when adding a new adapter.
 Instead of...
 ```python
