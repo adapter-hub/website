@@ -4,10 +4,7 @@ date: 2020-04-01
 author:
   name: Clifton Poth
   twitter: "@clifapt"
-summary: |
-  Today, version 2 of adapter-transformers has been released.
-  adapter-transformers, built on top of HuggingFace's Transformers library, is the heart of the AdapterHub framework that makes working with adapters easy.
-  The new version brings new possibilities to compose adapters, also in more complex setups, as well as the support for new Transformers model architectures.
+summary: Today, we are releasing version 2 of adapter-transformers. This release introduces several exciting new ways for composing adapters through composition blocks, including AdapterFusion, ParallelInference, Adapter stacking, and combinations thereof. Furthermore, we now support new Transformer architectures such as GPT-2 and BART.
 ---
 
 Adapters, a light-weight alternative to full fine-tuning of state-of-the-art language models, have enabled new possibilities of composing task-specific knowledge from multiple sources, for example for multi-task transfer learning ([Pfeiffer et al., 2021](https://arxiv.org/pdf/2005.00247.pdf)) or for cross-lingual transfer ([Pfeiffer et al., 2020](https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf)).
