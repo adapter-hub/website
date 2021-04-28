@@ -11,13 +11,13 @@ summary: |
 ---
 
 Adapters, a light-weight alternative to full fine-tuning of state-of-the-art language models, have enabled new possibilities of composing task-specific knowledge from multiple sources, for example for multi-task transfer learning ([Pfeiffer et al., 2021](https://arxiv.org/pdf/2005.00247.pdf)) or for cross-lingual transfer ([Pfeiffer et al., 2020](https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf)).
-One of the great advantages of adapters is their modularity that allows not only mentioned scenarios but also various other composition possibilities.
+One of the great advantages of adapters is their modularity which not only allows the mentioned scenarios but also various other composition possibilities.
 
-Today, we are releasing version 2 of `adapter-transformers` which will make it easier than before to take advantage of this composability and flexibility of adapters.
-`adapter-transformers`, which is an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/), is the heart of the [AdapterHub framework](https://adapterhub.ml/) which aims to simplify the full lifecycle of working with adapters.
-(Check out [our first blog post for more on that](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/).)
+Today, we are releasing version 2 of `adapter-transformers` which  makes it easier to take advantage of the composability and flexibility of adapters.
+`adapter-transformers` --- an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/) --- is the heart of the [AdapterHub framework](https://adapterhub.ml/) which aims to simplify the full lifecycle of working with adapters.
+(Check out [our first blog post for more on this](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/).)
 
-In the following few sections, we will have a look into everything new and changed in the v2 release.
+In the following sections, we will outline everything new and changed in the v2 release.
 You can find `adapter-transformers` [on GitHub](https://github.com/Adapter-Hub/adapter-transformers) or install it via pip:
 
 ```bash
@@ -38,14 +38,14 @@ import transformers.adapters.composition as ac
 model.active_adapters = ac.Stack("a", ac.Split("b", "c", split_index=60))
 ```
 
-As we see, the basic building blocks of this setup are simple objects representing different possibilities to combine single adapters.
-In the example, `Stack` describes stacking layers of adapters on top of each other,
+As we can see, the basic building blocks of this setup are simple objects representing different possibilities to combine single adapters.
+In the example, `Stack` comprises of stacking adapters layers on top of each other,
 as used in the _MAD-X_ framework for cross-lingual transfer.
-`Split` describes splitting the input sequences between two adapters at a specified index.
-Thus, in the shown setup, in each adapter layer, the input is first passed through adapter `a` before being split up between adapters `b` and `c` and passed through both adapters in parallel.
+`Split` results in splitting the input sequences between two adapters at a specified `split_index`.
+In the depicted setup, at every transformer layer the token representations are first passed through adapter `a` before being split at the `split_index` and passed through adapters `b` and `c` respectively.
 
 Besides the two blocks shown, `adapter-transformers` currently also includes a `Fuse` block (for [_AdapterFusion_](https://arxiv.org/pdf/2005.00247.pdf)) and a `Parallel` block (see below).
-All of these blocks derive from `AdapterCompositionBlock`, and they can be combined in flexibly in many ways.
+All of these blocks are derived from `AdapterCompositionBlock`, and they can be flexibly combined providing many imaginable scenarios.
 For more information on specifying the active adapters using `active_adapters` and the new composition blocks,
 refer to the [corresponding section in our documentation](adapter_composition.md).
 
