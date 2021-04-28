@@ -676,3 +676,27 @@ figcaption {
 .utterances {
   max-width: 100%;
 }
+
+.blog-post-content table {
+  margin: 16px auto;
+  border-collapse: collapse;
+
+  th {
+    font-weight: bold;
+    min-width: 60px;
+    padding: 4px 8px;
+    text-align: center;
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  td {
+    min-width: 60px;
+    padding: 4px 8px;
+    text-align: right;
+  }
+
+  tr:last-child td {
+    border-bottom: 2px solid black;
+  }
+}
