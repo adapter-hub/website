@@ -57,6 +57,16 @@ $break-iphone-se: 320px;
   padding: 1rem;
 }
 
+blockquote {
+  background-color: lighten($light, 3%);
+  border-left: 4px solid darken($light, 3%);;
+  padding: 1rem;
+
+  p {
+    margin: 0;
+  }
+}
+
 a {
   .code {
     color: rgba(0, 0, 0, 0.8);

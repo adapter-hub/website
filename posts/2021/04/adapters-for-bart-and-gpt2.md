@@ -175,14 +175,14 @@ model.set_active_adapters("poem")
 With `load_adapter()` we can load an adapter from the Hub by passing the name of the adapter specified in the hub. We can also load a local adapter by giving the path to the adapter. Then, we activate our adapter such that is used in the forward pass with `set_active_adapters()`.
 Finally, we can think of a beginning for a poem and let the model finish it. In this case, the model generates 5 poems for the given beginning. We can choose the one we like most from those. We choose to start our poem with "In the night". One of the poems our model generated was:
 
-> In the night; \
-> when the stars shine on her head.\
-> the mounds are deep, \
-> and the water's dark, \
-> and the water's cold \
-> and with her hand,\
-> with her lips, \
-> in song and song,\
+> In the night;  
+> when the stars shine on her head.  
+> the mounds are deep,  
+> and the water's dark,  
+> and the water's cold  
+> and with her hand,  
+> with her lips,  
+> in song and song,  
 > the sound of the birds
 
 This can easily be applied to other datasets. Feel free to train your own adapter and upload it at the [Hub](https://adapterhub.ml/) or browse the adapters trained by the community.
