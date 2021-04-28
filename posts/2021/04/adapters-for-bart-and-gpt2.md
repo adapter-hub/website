@@ -15,13 +15,13 @@ summary: |
 <img src="/static/images/BARTLogo.png">
 </p>
 
-Adapters are becoming more and more important in machine learning for NLP. They enable us to quickly train and share new task specific models. Adapters are small layers that are stitched into the pre-trained model. During training, only the parameters of the adapter layers are finetuned. Meanwhile, the parameters of the pre-trained model remain frozen. As a result, it is sufficient to store the adapter layers for each task instead of storing fully finetuned models separately for each task. Furthermore, the lower number of parameters requires less memory and makes it easier to share the trained adapters. Adapters also offer possibilities in transfer learning. By using different combinations of adapters the model can be trained on one language and use the adapter on another one. (for more details and examples checkout [this blog post](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/)). [Bapna et al., 2019](https://www.aclweb.org/anthology/D19-1165.pdf) has shown that adapters are useful for sequence to sequence tasks. On a neural machine translation task, they achieved similar results with adapters as with a fully finetuned model.
+Adapters are becoming more and more important in machine learning for NLP. For instance, they enable us to quickly train and share new task-specific models. Adapters are small layers that are stitched into the pre-trained model. During training, only the parameters of the adapter layers are finetuned. Meanwhile, the parameters of the pre-trained model remain frozen. As a result, it is sufficient to only store the adapter layers instead of storing fully finetuned models separately for each task. Furthermore, the lower number of parameters requires less memory and makes it easier to share the trained adapters. Adapters also enable new possibilities in transfer learning. By using different compositions of adapters the model can be trained on one language and use the adapter on another one. (For more details and examples checkout [this blog post](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/).) [Bapna et al., 2019](https://www.aclweb.org/anthology/D19-1165.pdf) have shown that adapters are useful for sequence to sequence tasks. On a neural machine translation task, they achieved similar results with adapters as compared to a fully finetuned model.
 
-The AdapterHub framework makes adapters easy to use. Up until now, the framework included adapters for the models BERT, RoBERTa, XML-RoBERTa and DistilBERT. In the new version 2.0, the framework provides adapters for the language generation models BART and GPT-2 as well. This allows us to use adapters for sequence to sequence tasks like e.g. summarization.
+The AdapterHub framework makes adapters easy to use. Up until now, the framework included adapters for the models BERT, RoBERTa, XML-RoBERTa and DistilBERT. In the new version 2.0, the framework provides adapters for the language generation models BART and GPT-2 as well. This will allow researchers to use adapters for sequence-to-sequence tasks such as summarization.
 
 
 ## Results of BART and GPT-2 with adapters
- Before we dive into more specific tasks we take a look at the performance on the GLUE tasks. We compare the scores of a fully finetuned model with the scores of a model with adapters configured according to [Pfeiffer et al., 2020a](https://arxiv.org/pdf/2005.00247.pdf) and a model with adapters configured according to [Houlsby et al. 2020](https://arxiv.org/pdf/1902.00751.pdf). The GPT-2 model and BART model achieve the following scores:
+Before we dive into generation tasks, we take a look at the performance on the GLUE benchmark. We compare the scores of a fully finetuned model with the scores of adapter-based models, either using the adapter configuration of [Pfeiffer et al., 2020a](https://arxiv.org/pdf/2005.00247.pdf) or [Houlsby et al. 2020](https://arxiv.org/pdf/1902.00751.pdf). The GPT-2 model and BART models achieve the following scores:
 
 <table>
 <tr>
@@ -54,7 +54,7 @@ The AdapterHub framework makes adapters easy to use. Up until now, the framework
 </table>
 
 
-The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate 0f 1e-4. The adapters are trained for 10 epochs with a learning rate of 1e-4.
+The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate of 1e-4. The adapters are trained for 10 epochs with a learning rate of 1e-4.
 
 <table>
 <tr>
@@ -88,15 +88,15 @@ The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate 0f 
 
 The fully-finetuned model is trained for 3 epochs with a learning rate of 4e-5. The adapters are trained with early stopping for a maximum of 15 epochs with a learning rate of 1e-4.
 
-The results of the adapters are comparable to those of the fully finetuned model. On some tasks like the SST-2 tasks, the adapters achieve a higher score than the fully finetuned model for GPT-2 and BART. This matches the results of other models with adapters. In general, adapters can be used instead of fully finetuning the model without decreasing results. 
+The results of the adapters are comparable to those of the fully finetuned model. On some tasks such as SST-2, the adapters achieve a higher score than the fully finetuned model for GPT-2 and BART. This matches the results of other models with adapters. In general, we can use adapters instead of fully finetuning the model without decreasing results. 
 
-Now we take a look at the scores the adapters can achieve on sequence to sequence tasks. We train the GPT-2 model on the task proposed in [Chen et al., 2020](https://arxiv.org/abs/2004.10404). The task requires the model to learn to generate sentences that can be logically entailed to given data. As an example, the model could be given a table containing the release dates for an album and then the model is given templates it is supposed to fill the blanks in.
+Now we take a look at the scores for sequence-to-sequence tasks. We train the GPT-2 model on the task proposed in [Chen et al., 2020](https://arxiv.org/abs/2004.10404). This task requires the model to learn to generate sentences that can be logically entailed to given data. As an example, the model could be given a table containing the release dates for an album and then the model is given templates it is supposed to fill the blanks in.
 
 > Template: [ENT] was released in 6 [ENT] in [ENT].
 > 
 > Gold sentence: Black Ice was released in 6 Countries in 2008.
 
-The model can not just enter a number from the table but it needs to count all countries the album was released in 2008. We trained the GPT-2 model with small-sized GPT-2 vocabulary using maximum likelihood estimation. The results are recorded in the following table:
+The model can not just enter a number from the table but it needs to count all countries the album was released in 2008. We trained the GPT-2 model with small-sized GPT-2 vocabulary using maximum likelihood estimation. The results are given in the following table:
 <table>
 <tr>
 <th></th><th> BLEU-1 </th><th> BLEU-2 </th><th> BLEU-3 </th><th> Adv-Acc </th>
@@ -109,9 +109,9 @@ The model can not just enter a number from the table but it needs to count all c
 <td> GPT-2 + Houlsby </td><td> 45.5 </td><td> 23.9 </td><td> 10.5 </td><td> 59.7 </td>
 </tr>
 </table>
-The models with adapters have a lower score than the fully finetuned model. The adapters might produce slightly lower scores for sequence to sequence tasks than fully finetuning. But the results are close and adapters have several advantages over fully finetuning e.g. shorter training, they need less memory to be stored and they can easily be shared.
+We observe that the models with adapters achieve a lower score compared to full model fine-tuning, which are, however, close. On the other hand, adapters have several advantages over fully finetuning, e.g., shorter training times, they require less memory to be stored, and they can easily be shared.
 
-To test the BART model on sequence to sequence tasks we evaluated the model on the CNN/Daily Mail dataset ([See et al., 2017](https://arxiv.org/pdf/1704.04368.pdf) [Hermann et al., 2015](https://arxiv.org/pdf/1506.03340.pdf)) and the XSum dataset ([Narayan et al., 2018](https://arxiv.org/pdf/1808.08745.pdf)). Both tasks train the model to summarize newspaper articles. The main difference is that XSum or extreme summary dataset trains the model to output short one sentence summaries. The results of the fully finetuned BART model and the adapters are as follows:
+To test the BART model on sequence-to-sequence tasks, we evaluated the model on the CNN/Daily Mail dataset ([See et al., 2017](https://arxiv.org/pdf/1704.04368.pdf) [Hermann et al., 2015](https://arxiv.org/pdf/1506.03340.pdf)) and the XSum dataset ([Narayan et al., 2018](https://arxiv.org/pdf/1808.08745.pdf)). Both tasks train the model to summarize newspaper articles. The main difference is that XSum or extreme summary dataset trains the model to output short one sentence summaries. The results of the fully finetuned BART model and the adapters are as follows:
 <table>
 <tr>
 <th></th><th> R1 </th><th> R2 </th><th> RL </th>
@@ -132,15 +132,15 @@ To test the BART model on sequence to sequence tasks we evaluated the model on t
 <td> XSum + Houlsby </td><td>44.03 </td><td> 20.90 </td><td> 36.01 </td>
 </tr></table>
 
-Like the GPT-2 model, the BART model achieves the highest score when it is fully finetuned. The models with adapters achieve slightly lower scores. This further indicates that adapters might achieve a slightly lower score on sequence to sequence tasks in general. But as previously stated they have several advantages over fully finetuning the model.
+Similar to the GPT-2 model, the BART model achieves the highest score when it is fully fine-tuned. The models with adapters achieve slightly lower scores, further indicating that adapters might in general achieve slightly lower scores on sequence-to-sequence tasks. However, as previously stated, they have several  other advantages.
 
-Version 2.0 of the AdapterHub framework with the addition of adapters for BART and GPT-2 offers new possibilities. Language generation models are better suited for summaries and text generation. Adapters for BART and GPT-2 enable us to tackle these tasks with adapters.
+Version 2.0 of the AdapterHub framework opens up new possibilities such as experimenting with summarization and text generation tasks. Adapters for BART and GPT-2 enable us to tackle a wide variety of text generation tasks with adapters.
 
 ## Hands-on example: Train an adapter to write poems
 
  [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](
  https://colab.research.google.com/github/hSterz/adapter-transformers/blob/notebooks/notebooks/06_Text_Generation.ipynb) <br>
-To give an idea of how adapters can be used for that, we illustrate how to train the GPT-2 model on a poem dataset by [Sheng et al., 2020](https://arxiv.org/pdf/2011.02686.pdf) and let it create its own poems. The dataset contains poems from the Gutenberg project. The full code is available in the corresponding colab notebook. If you have read the previous blog post, this might look very familiar. First, we need to add our adapters.  This is easily done with just a few lines of code:
+To illustrate how we can use adapters for text generation, we provide a hands-on example for training adapters within GPT-2 on a poem dataset by [Sheng et al., 2020](https://arxiv.org/pdf/2011.02686.pdf) and let it create novel poems. The dataset contains poems from the Gutenberg project. The full code is available in the corresponding colab notebook linked above. If you have read the previous blog post, this might look very familiar. First, we need to add our adapters.  This is easily done with just a few lines of code:
 
 ```python
 
