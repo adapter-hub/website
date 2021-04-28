@@ -21,21 +21,17 @@
 <h1>{{ post['title'] }}</h1>
 <ul class="blog-post-bar mt-4 mb-0">
     <li><i class="fa fa-calendar-alt"></i>&nbsp; {{ post['date'] }}</li>
-    <li><i class="fa fa-user"></i>&nbsp; {{ post['author']['name'] }}</li>
-    {% if post['author']['twitter'] %}
-    <li>
-        <a href="https://twitter.com/{{ post['author']['twitter'] }}">
-            <i class="fab fa-twitter"></i>&nbsp; {{ post['author']['twitter'] }}
-        </a>
+    <li><i class="fa fa-user"></i>&nbsp;
+    {% for author in post['authors'] %}
+        {{ author.name }}
+        {% if author['twitter'] %}
+        &nbsp;<a href="https://twitter.com/{{ author['twitter'] }}"><i class="fab fa-twitter"></i></a>
+        {% endif %}
+        {% if not loop.last %}
+        ,&nbsp;
+        {% endif %}
+    {% endfor %}
     </li>
-    {% endif %}
-    {% if post['author']['github'] %}
-    <li>
-        <a href="https://github.com/{{ post['author']['github'] }}">
-            <i class="fab fa-github"></i>&nbsp; {{ post['author']['github'] }}
-        </a> 
-    </li>
-    {% endif %}
 </ul>
 {% endblock %}
 

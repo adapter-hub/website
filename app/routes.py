@@ -78,7 +78,8 @@ def adapter_details(groupname, filename):
 
 @bp.route('/blog/')
 def blog():
-    return render_template('blog.html', posts=blog_posts)
+    posts = sorted(blog_posts, key=lambda p: p["date"])
+    return render_template('blog.html', posts=posts)
 
 
 @bp.route('/blog/<path:path>/')
@@ -102,7 +103,7 @@ def blog_feed():
         entry.title(post['title'])
         entry.summary(post['summary'])
         entry.content(post.html, type='html')
-        entry.author({'name': post['author']['name']})
+        entry.author([{'name': a['name']} for a in post['authors']])
         dt = post['date']
         post_time = datetime(dt.year, dt.month, dt.day, tzinfo=timezone.utc)
         entry.pubDate(post_time)

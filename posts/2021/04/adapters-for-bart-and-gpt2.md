@@ -1,9 +1,11 @@
 ---
 title: Adapters for BART and GPT2
-date: 
-author:
-  name: Hannah Sterz
-  twitter: "@Hannah70676760"
+date: 2021-04-30
+authors:
+  - name: Hannah Sterz
+    twitter: "@Hannah70676760"
+  - name: Clifton Poth
+    twitter: "@clifapt"
 summary: |
   Adapters have proven to be an efficient alternative to fully finetung models. The version 2.0 of the AdapterHub framework includes adapters for the BART and GPT2 models.
 ---

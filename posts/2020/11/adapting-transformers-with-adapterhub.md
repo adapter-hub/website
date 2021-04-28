@@ -1,9 +1,9 @@
 ---
 title: Adapting Transformers with AdapterHub
 date: 2020-11-17
-author:
-  name: Clifton Poth
-  twitter: "@clifapt"
+authors:
+  - name: Clifton Poth
+    twitter: "@clifapt"
 summary: |
   Adapters are a new, efficient and composable alternative to full fine-tuning of pre-trained language models.
   AdapterHub makes working with adapters accessible by providing a framework for training, sharing, discovering and consuming adapter modules.
