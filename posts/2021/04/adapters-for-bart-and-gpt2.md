@@ -15,13 +15,13 @@ summary: |
 <img src="/static/images/BARTLogo.png">
 </p>
 
-Adapters are becoming more and more important in machine learning for NLP. For instance, they enable us to quickly train and share new task-specific models. Adapters are small layers that are stitched into the pre-trained model. During training, only the parameters of the adapter layers are finetuned. Meanwhile, the parameters of the pre-trained model remain frozen. As a result, it is sufficient to only store the adapter layers instead of storing fully finetuned models separately for each task. Furthermore, the lower number of parameters requires less memory and makes it easier to share the trained adapters. Adapters also enable new possibilities in transfer learning. By using different compositions of adapters the model can be trained on one language and use the adapter on another one. (For more details and examples checkout [this blog post](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/).) [Bapna et al., 2019](https://www.aclweb.org/anthology/D19-1165.pdf) have shown that adapters are useful for sequence to sequence tasks. On a neural machine translation task, they achieved similar results with adapters as compared to a fully finetuned model.
+Adapters are becoming more and more important in machine learning for NLP. For instance, they enable us to efficiently train and share new task-specific models. Adapters are small layers that are stitched into pre-trained transformer-based models. During training, only the parameters of the adapter layers are finetuned, while the parameters of the pre-trained model remain frozen. As a result, it is sufficient to only store the adapter layers instead of storing fully finetuned models separately for each task. Furthermore, the lower number of parameters requires less memory and makes it easier to share the trained adapters. Adapters also enable new possibilities in transfer learning. As adapters are encapsulated between frozen layers, they can be regarded as modular units which can be composed in a number of different ways (For more details and examples check out [this blog post](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/)). [Bapna et al. (2019)](https://www.aclweb.org/anthology/D19-1165.pdf) have shown that adapters are useful for sequence to sequence tasks. On a neural machine translation task, they achieved similar results with adapters as compared to a fully finetuned model. The modularity aspect of adapters in zero-shot machine translation has recently been demonstrated by [Philip et al. (2020)](https://www.aclweb.org/anthology/2020.emnlp-main.361.pdf).
 
-The AdapterHub framework makes adapters easy to use. Up until now, the framework included adapters for the models BERT, RoBERTa, XML-RoBERTa and DistilBERT. In the new version 2.0, the framework provides adapters for the language generation models BART and GPT-2 as well. This will allow researchers to use adapters for sequence-to-sequence tasks such as summarization.
+The AdapterHub framework makes adapters easy to use. Up until now, the framework included adapters for the models BERT, RoBERTa, XML-RoBERTa and DistilBERT. In the new version 2.0, the framework now also provides adapters for the language generation models BART and GPT-2. This will allow researchers and engineers to use adapters for sequence-to-sequence tasks.
 
 
 ## Results of BART and GPT-2 with adapters
-Before we dive into generation tasks, we take a look at the performance on the GLUE benchmark. We compare the scores of a fully finetuned model with the scores of adapter-based models, either using the adapter configuration of [Pfeiffer et al., 2020a](https://arxiv.org/pdf/2005.00247.pdf) or [Houlsby et al. 2020](https://arxiv.org/pdf/1902.00751.pdf). The GPT-2 model and BART models achieve the following scores:
+Before we dive into generation tasks, we will take a look at the performance on the GLUE benchmark. We compare the scores of a fully finetuned model with the scores of adapter-based models, either using the adapter configuration of [Pfeiffer et al. (2020a)](https://arxiv.org/pdf/2005.00247.pdf) or [Houlsby et al. (2020)](https://arxiv.org/pdf/1902.00751.pdf). The GPT-2 model and BART models achieve the following scores:
 
 <table>
 <tr>
@@ -86,17 +86,17 @@ The fully finetuned GPT-2 model is trained for 4 epochs with a learning rate of 
 </tr>
 </table>
 
-The fully-finetuned model is trained for 3 epochs with a learning rate of 4e-5. The adapters are trained with early stopping for a maximum of 15 epochs with a learning rate of 1e-4.
+The fully-finetuned BART model is trained for 3 epochs with a learning rate of 4e-5. The adapters are trained with early stopping for a maximum of 15 epochs with a learning rate of 1e-4.
 
-The results of the adapters are comparable to those of the fully finetuned model. On some tasks such as SST-2, the adapters achieve a higher score than the fully finetuned model for GPT-2 and BART. This matches the results of other models with adapters. In general, we can use adapters instead of fully finetuning the model without decreasing results. 
+The results of the adapters are comparable to those of the fully finetuned model. On some tasks such as SST-2, the adapters achieve a higher score than the fully finetuned model for GPT-2 and BART. This matches the results of other models with adapters. In general, we can use adapters instead of fully finetuning the model without a deterioration in downstream task performance. 
 
-Now we take a look at the scores for sequence-to-sequence tasks. We train the GPT-2 model on the task proposed in [Chen et al., 2020](https://arxiv.org/abs/2004.10404). This task requires the model to learn to generate sentences that can be logically entailed to given data. As an example, the model could be given a table containing the release dates for an album and then the model is given templates it is supposed to fill the blanks in.
+Now we will take a look at the scores for sequence-to-sequence tasks. We train a GPT-2 model on the task proposed by [Chen et al. (2020)](https://arxiv.org/abs/2004.10404). This task requires the model to learn to generate entailing sentences w.r.t. the input. For example,  given a table containing the release dates for an album, the model is provided with a template and and has the objective to fill in the blanks.
 
 > Template: [ENT] was released in 6 [ENT] in [ENT].
 > 
 > Gold sentence: Black Ice was released in 6 Countries in 2008.
 
-The model can not just enter a number from the table but it needs to count all countries the album was released in 2008. We trained the GPT-2 model with small-sized GPT-2 vocabulary using maximum likelihood estimation. The results are given in the following table:
+It is not sufficient for the model to simply enter a number from the table; it needs to count all countries the album was released in, in 2008. We trained the GPT-2 model with small-sized GPT-2 vocabulary using maximum likelihood estimation. The results are given in the following table:
 <table>
 <tr>
 <th></th><th> BLEU-1 </th><th> BLEU-2 </th><th> BLEU-3 </th><th> Adv-Acc </th>
@@ -109,9 +109,9 @@ The model can not just enter a number from the table but it needs to count all c
 <td> GPT-2 + Houlsby </td><td> 45.5 </td><td> 23.9 </td><td> 10.5 </td><td> 59.7 </td>
 </tr>
 </table>
-We observe that the models with adapters achieve a lower score compared to full model fine-tuning, which are, however, close. On the other hand, adapters have several advantages over fully finetuning, e.g., shorter training times, they require less memory to be stored, and they can easily be shared.
+We observe that the models with adapters achieve a competitive results to full model fine-tuning. However, adapters have several advantages over fully finetuning, e.g., shorter training times, they require less memory to be stored, and they can easily be shared.
 
-To test the BART model on sequence-to-sequence tasks, we evaluated the model on the CNN/Daily Mail dataset ([See et al., 2017](https://arxiv.org/pdf/1704.04368.pdf) [Hermann et al., 2015](https://arxiv.org/pdf/1506.03340.pdf)) and the XSum dataset ([Narayan et al., 2018](https://arxiv.org/pdf/1808.08745.pdf)). Both tasks train the model to summarize newspaper articles. The main difference is that XSum or extreme summary dataset trains the model to output short one sentence summaries. The results of the fully finetuned BART model and the adapters are as follows:
+To test the BART model on sequence-to-sequence tasks, we evaluated the model on the CNN/Daily Mail dataset ([Hermann et al. (2015)](https://arxiv.org/pdf/1506.03340.pdf); [See et al., 2017](https://arxiv.org/pdf/1704.04368.pdf)) and the extreme summary dataset (XSum) dataset ([Narayan et al., 2018](https://arxiv.org/pdf/1808.08745.pdf)). Both tasks have the objective to summarize newspaper articles. The main difference is that XSum requires the model to output short one sentence summaries. The results of the fully finetuned BART model and the adapters are as follows:
 <table>
 <tr>
 <th></th><th> R1 </th><th> R2 </th><th> RL </th>
@@ -132,7 +132,7 @@ To test the BART model on sequence-to-sequence tasks, we evaluated the model on 
 <td> XSum + Houlsby </td><td>44.03 </td><td> 20.90 </td><td> 36.01 </td>
 </tr></table>
 
-Similar to the GPT-2 model, the BART model achieves the highest score when it is fully fine-tuned. The models with adapters achieve slightly lower scores, further indicating that adapters might in general achieve slightly lower scores on sequence-to-sequence tasks. However, as previously stated, they have several  other advantages.
+Similar to the GPT-2 model, the BART model achieves the highest score when it is fully fine-tuned. The models with adapters achieve slightly lower scores, further indicating that adapters might in general achieve slightly lower scores on sequence-to-sequence tasks. However, as previously stated, they have several other advantages.
 
 Version 2.0 of the AdapterHub framework opens up new possibilities such as experimenting with summarization and text generation tasks. Adapters for BART and GPT-2 enable us to tackle a wide variety of text generation tasks with adapters.
 
@@ -140,7 +140,7 @@ Version 2.0 of the AdapterHub framework opens up new possibilities such as exper
 
  [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](
  https://colab.research.google.com/github/hSterz/adapter-transformers/blob/notebooks/notebooks/06_Text_Generation.ipynb) <br>
-To illustrate how we can use adapters for text generation, we provide a hands-on example for training adapters within GPT-2 on a poem dataset by [Sheng et al., 2020](https://arxiv.org/pdf/2011.02686.pdf) and let it create novel poems. The dataset contains poems from the Gutenberg project. The full code is available in the corresponding colab notebook linked above. If you have read the previous blog post, this might look very familiar. First, we need to add our adapters.  This is easily done with just a few lines of code:
+To illustrate how we can use adapters for text generation, we provide a hands-on example for training adapters within GPT-2 on a poem dataset by [Sheng et al. (2020)](https://arxiv.org/pdf/2011.02686.pdf) and let it create novel poems. The dataset contains poems from the Gutenberg project. The full code is available in the corresponding colab notebook linked above. If you have read the previous blog post, this might look very familiar. First, we need to add our adapters.  This is easily done with just a few lines of code:
 
 ```python
 
@@ -153,15 +153,15 @@ model.add_adapter("poem")
 model.model.train_adapter("poem")
 
 ```
-We have created the GPT-2 model and added an adapter with `add_adapter()`. We only need to pass the name of the adapter `"poem"`. After adding the new adapter. We call `train_adapter()` and pass the name of our adapter. This does two things. Firstly it freezes all parameters of the pre-trained model such that only the parameters of the adapter are updated during training. Secondly, it activates the adapter so that it is used in the forward pass. Next, we can train our model the same way we would without an adapter. In the end, we can save our trained adapter as follows.
+We have created the GPT-2 model and added an adapter with `add_adapter()`. We only need to pass the name of the adapter `"poem"`. After adding the new adapter, we call `train_adapter()` and pass the name of our adapter. This does two things: Firstly, it freezes all parameters of the pre-trained model such that only the parameters of the adapter are updated during training. Secondly, it activates the adapter so that it is used in the forward pass. Next, we can train our model the same way we would without an adapter. In the end, we can save our trained adapter as follows.
 
 ```python
 
 model.save_adapter("path/to/adapter", "poem")
 
 ```
-We call `save_adapter()` and give the path to the directory where the adapter should be saved and the name of the adapter we want to save.
-Now that we have our trained adapter, we want to generate some poems and see what it learned. First, we need to make a model with a language modeling head and load our trained adapter. Then we activate the loaded adapter.
+We call `save_adapter()` and provide the path to the directory where the adapter should be saved and the name of the adapter we want to save.
+Now that we have our trained adapter, we want to generate some poems and see what it has learned. First, we need to create a model with a language modeling head and load our trained adapter. Then we activate the loaded adapter.
 
 ```python
 
@@ -172,8 +172,8 @@ model.load_adapter("path/to/adapter")
 model.set_active_adapters("poem")
 ```
 
-With `load_adapter()` we can load an adapter from the Hub by passing the name of the adapter specified in the hub. We can also load a local adapter by giving the path to the adapter. Then, we activate our adapter such that is used in the forward pass with `set_active_adapters()`.
-Finally, we can think of a beginning for a poem and let the model finish it. In this case, the model generates 5 poems for the given beginning. We can choose the one we like most from those. We choose to start our poem with "In the night". One of the poems our model generated was:
+With `load_adapter()` we can load an adapter from the Hub by passing the name of the adapter specified in the hub. We can also load a local adapter by providing the path to the adapter. Then, we activate our adapter such that is used in the forward pass with `set_active_adapters()`.
+Finally, we can think of a beginning of a poem and let the model finish it. In this case, the model generates 5 poems for the given beginning. We can choose the one we like most from those. We choose to start our poem with "In the night". One of the poems our model generated was:
 
 > In the night;  
 > when the stars shine on her head.  
@@ -197,11 +197,12 @@ We thank [André Fellenberg](https://www.behance.net/andrefellenberg) for the BA
 
 
 ## References
-- Bapna, A., Arivazhagan, N., & Firat, O. (2019). Simple, scalable adaptation for neural machine translation. arXiv preprint arXiv:1909.08478.
-- Chen, W., Chen, J., Su, Y., Chen, Z., & Wang, W. Y. (2020). Logical natural language generation from open-domain tables. arXiv preprint arXiv:2004.10404.
-- Hermann, K. M., Kočiský, T., Grefenstette, E., Espeholt, L., Kay, W., Suleyman, M., & Blunsom, P. (2015). Teaching machines to read and comprehend. arXiv preprint arXiv:1506.03340.
-- Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., & Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML.
-- Narayan, S., Cohen, S. B., & Lapata, M. (2018). Don't give me the details, just the summary! topic-aware convolutional neural networks for extreme summarization. arXiv preprint arXiv:1808.08745.
-- Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., & Gurevych, I. (2020). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. ArXiv, abs/2005.00247.
-- See, A., Liu, P. J., & Manning, C. D. (2017). Get to the point: Summarization with pointer-generator networks. arXiv preprint arXiv:1704.04368.
-- Sheng, E., & Uthus, D. (2020). Investigating Societal Biases in a Poetry Composition System. arXiv preprint arXiv:2011.02686.
+- Bapna, A., Arivazhagan, N., & Firat, O. (2019). Simple, scalable adaptation for neural machine translation. EMNLP 2019, https://www.aclweb.org/anthology/D19-1165.pdf
+- Chen, W., Chen, J., Su, Y., Chen, Z., & Wang, W. Y. (2020). Logical natural language generation from open-domain tables. ACL 2020, https://www.aclweb.org/anthology/2020.acl-main.708.pdf
+- Hermann, K. M., Kočiský, T., Grefenstette, E., Espeholt, L., Kay, W., Suleyman, M., & Blunsom, P. (2015). Teaching machines to read and comprehend. NeurIPS 2015 https://proceedings.neurips.cc/paper/2015/hash/afdec7005cc9f14302cd0474fd0f3c96-Abstract.html.
+- Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., & Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML 2019, http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf
+- Narayan, S., Cohen, S. B., & Lapata, M. (2018). Don't give me the details, just the summary! topic-aware convolutional neural networks for extreme summarization. EMNLP 2018, https://www.aclweb.org/anthology/D18-1206/ 
+- Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., & Gurevych, I. (2021). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. EACL 2021, https://www.aclweb.org/anthology/2021.eacl-main.39.pdf.
+- Philip†, J., Bérard, A., Gallé, M., Besacier, L. (2020). Monolingual Adapters for Zero-Shot Neural Machine Translation. EMNLP 2020, https://www.aclweb.org/anthology/2020.emnlp-main.361.pdf
+- See, A., Liu, P. J., & Manning, C. D. (2017). Get to the point: Summarization with pointer-generator networks. ACL 2017, https://www.aclweb.org/anthology/P17-1099/
+- Sheng, E., & Uthus, D. (2020). Investigating Societal Biases in a Poetry Composition System. Proceedings of the Second Workshop on Gender Bias in Natural Language Processing, https://www.aclweb.org/anthology/2020.gebnlp-1.9/
