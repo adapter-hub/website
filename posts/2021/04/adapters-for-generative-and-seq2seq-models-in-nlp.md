@@ -1,6 +1,6 @@
 ---
 title: Adapters for Generative and Seq2Seq Models in NLP
-date: 2021-04-30
+date: 2021-04-29
 authors:
   - name: Hannah Sterz*
     twitter: "@Hannah70676760"
@@ -13,7 +13,6 @@ authors:
 summary: |
   Adapters have proven to be an efficient alternative to fully finetung models. The version 2.0 of the AdapterHub framework includes adapters for the BART and GPT2 models.
 ---
-\* equal contribution
 
 <p align="center">
 <img src="/static/images/BARTLogo.png">
@@ -211,11 +210,15 @@ We thank [André Fellenberg](https://www.behance.net/andrefellenberg) for the BA
 - See, A., Liu, P. J., & Manning, C. D. (2017). Get to the point: Summarization with pointer-generator networks. ACL 2017, [https://www.aclweb.org/anthology/P17-1099/](https://www.aclweb.org/anthology/P17-1099/)
 - Sheng, E., & Uthus, D. (2020). Investigating Societal Biases in a Poetry Composition System. Proceedings of the Second Workshop on Gender Bias in Natural Language Processing, [https://www.aclweb.org/anthology/2020.gebnlp-1.9/](https://www.aclweb.org/anthology/2020.gebnlp-1.9/)
 
-## Bibtex
-      @misc{sterz_2021, 
-        title={Adapters for Generative and Seq2Seq Models in NLP},
-        url={https://adapterhub.ml/blog/2021/04/adapters-for-bart-and-gpt2/}, 
-        author={Hannah Sterz and Clifton Poth and Andreas R\"uckl\'e and Jonas Pfeiffer}, 
-        year={2021}, 
-        month={Apr}
-      }
+## Citation
+```bibtex
+@misc{sterz_2021, 
+  title={Adapters for Generative and Seq2Seq Models in NLP},
+  url={https://adapterhub.ml/blog/2021/04/adapters-for-generative-and-seq2seq-models-in-nlp/}, 
+  author={Hannah Sterz and Clifton Poth and Andreas R\"uckl\'e and Jonas Pfeiffer}, 
+  year={2021}, 
+  month={Apr}
+}
+```
+
+\* equal contribution
