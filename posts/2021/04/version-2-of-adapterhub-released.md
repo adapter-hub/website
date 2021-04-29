@@ -157,9 +157,9 @@ Also, we're always happy for any kind of contributions!
 
 ## References
 
-- Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., & Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML.
-- Pfeiffer, J., Rücklé, A., Poth, C., Kamath, A., Vulić, I., Ruder, S., Cho, K., & Gurevych, I. (2020). AdapterHub: A Framework for Adapting Transformers. EMNLP.
-- Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., & Gurevych, I. (2020). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. ArXiv, abs/2005.00247.
-- Pfeiffer, J., Vulic, I., Gurevych, I., & Ruder, S. (2020). MAD-X: An Adapter-based Framework for Multi-task Cross-lingual Transfer. ArXiv, abs/2005.00052.
-- Rücklé, A., Geigle, G., Glockner, M., Beck, T., Pfeiffer, J., Reimers, N., & Gurevych, I. (2020). AdapterDrop: On the Efficiency of Adapters in Transformers. ArXiv, abs/2010.11918.
-- Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., Rault, T., Louf, R., Funtowicz, M., & Brew, J. (2019). HuggingFace's Transformers: State-of-the-art Natural Language Processing. ArXiv, abs/1910.03771.
+- Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., & Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML 2019, [http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf](http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf)
+- Pfeiffer, J., Rücklé, A., Poth, C., Kamath, A., Vulić, I., Ruder, S., Cho, K., & Gurevych, I. (2020). AdapterHub: A Framework for Adapting Transformers. EMNLP 2020 [https://www.aclweb.org/anthology/2020.emnlp-demos.7.pdf](https://www.aclweb.org/anthology/2020.emnlp-demos.7.pdf)
+- Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., & Gurevych, I. (2021). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. EACL 2021, [https://www.aclweb.org/anthology/2021.eacl-main.39.pdf](https://www.aclweb.org/anthology/2021.eacl-main.39.pdf)
+- Pfeiffer, J., Vulic, I., Gurevych, I., & Ruder, S. (2020). MAD-X: An Adapter-based Framework for Multi-task Cross-lingual Transfer. EMNLP 2020, [https://www.aclweb.org/anthology/2020.emnlp-main.617/](https://www.aclweb.org/anthology/2020.emnlp-main.617/)
+- Rücklé, A., Geigle, G., Glockner, M., Beck, T., Pfeiffer, J., Reimers, N., & Gurevych, I. (2020). AdapterDrop: On the Efficiency of Adapters in Transformers. ArXiv, [https://arxiv.org/abs/2010.11918](https://arxiv.org/abs/2010.11918)
+- Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., Rault, T., Louf, R., Funtowicz, M., & Brew, J. (2019). Transformers: State-of-the-Art Natural Language Processing. EMNLP 2020, [https://www.aclweb.org/anthology/2020.emnlp-demos.6/](https://www.aclweb.org/anthology/2020.emnlp-demos.6/)
