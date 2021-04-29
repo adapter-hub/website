@@ -13,7 +13,7 @@ authors:
 summary: |
   Adapters have proven to be an efficient alternative to fully finetung models. The version 2.0 of the AdapterHub framework includes adapters for the BART and GPT2 models.
 ---
-* equal contribution
+\* equal contribution
 
 <p align="center">
 <img src="/static/images/BARTLogo.png">
