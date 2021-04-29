@@ -212,16 +212,10 @@ We thank [André Fellenberg](https://www.behance.net/andrefellenberg) for the BA
 - Sheng, E., & Uthus, D. (2020). Investigating Societal Biases in a Poetry Composition System. Proceedings of the Second Workshop on Gender Bias in Natural Language Processing, [https://www.aclweb.org/anthology/2020.gebnlp-1.9/](https://www.aclweb.org/anthology/2020.gebnlp-1.9/)
 
 ## Bibtex
-@misc{sterz_2021, 
-
-      title={Adapters for Generative and Seq2Seq Models},
-      
-      url={https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/}, 
-      
-      author={Hannah Sterz and Clifton Poth and Andreas R\\"uckl\\'e and Jonas Pfeiffer}, 
-      
-      year={2021}, 
-      
-      month={Apr}
-      
+      @misc{sterz_2021, 
+        title={Adapters for Generative and Seq2Seq Models},
+        url={https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/}, 
+        author={Hannah Sterz and Clifton Poth and Andreas R\\"uckl\\'e and Jonas Pfeiffer}, 
+        year={2021}, 
+        month={Apr}
       }
