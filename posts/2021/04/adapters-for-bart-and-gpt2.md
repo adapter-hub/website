@@ -215,7 +215,7 @@ We thank [André Fellenberg](https://www.behance.net/andrefellenberg) for the BA
 @misc{sterz_2021, 
       title={Adapters for Generative and Seq2Seq Models},
       url={https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/}, 
-      author={Hannah Sterz and Clifton Poth and Andreas R\"uckl\'e and Jonas Pfeiffer}, 
+      author={Hannah Sterz and Clifton Poth and Andreas R\\"uckl\\'e and Jonas Pfeiffer}, 
       year={2021}, 
       month={Apr}
       }
