@@ -201,12 +201,21 @@ We thank [André Fellenberg](https://www.behance.net/andrefellenberg) for the BA
 
 
 ## References
-- Bapna, A., Arivazhagan, N., & Firat, O. (2019). Simple, scalable adaptation for neural machine translation. EMNLP 2019, https://www.aclweb.org/anthology/D19-1165.pdf
-- Chen, W., Chen, J., Su, Y., Chen, Z., & Wang, W. Y. (2020). Logical natural language generation from open-domain tables. ACL 2020, https://www.aclweb.org/anthology/2020.acl-main.708.pdf
-- Hermann, K. M., Kočiský, T., Grefenstette, E., Espeholt, L., Kay, W., Suleyman, M., & Blunsom, P. (2015). Teaching machines to read and comprehend. NeurIPS 2015 https://proceedings.neurips.cc/paper/2015/hash/afdec7005cc9f14302cd0474fd0f3c96-Abstract.html.
-- Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., & Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML 2019, http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf
-- Narayan, S., Cohen, S. B., & Lapata, M. (2018). Don't give me the details, just the summary! topic-aware convolutional neural networks for extreme summarization. EMNLP 2018, https://www.aclweb.org/anthology/D18-1206/ 
-- Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., & Gurevych, I. (2021). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. EACL 2021, https://www.aclweb.org/anthology/2021.eacl-main.39.pdf.
-- Philip†, J., Bérard, A., Gallé, M., Besacier, L. (2020). Monolingual Adapters for Zero-Shot Neural Machine Translation. EMNLP 2020, https://www.aclweb.org/anthology/2020.emnlp-main.361.pdf
-- See, A., Liu, P. J., & Manning, C. D. (2017). Get to the point: Summarization with pointer-generator networks. ACL 2017, https://www.aclweb.org/anthology/P17-1099/
-- Sheng, E., & Uthus, D. (2020). Investigating Societal Biases in a Poetry Composition System. Proceedings of the Second Workshop on Gender Bias in Natural Language Processing, https://www.aclweb.org/anthology/2020.gebnlp-1.9/
+- Bapna, A., Arivazhagan, N., & Firat, O. (2019). Simple, scalable adaptation for neural machine translation. EMNLP 2019, [https://www.aclweb.org/anthology/D19-1165.pdf](https://www.aclweb.org/anthology/D19-1165.pdf)
+- Chen, W., Chen, J., Su, Y., Chen, Z., & Wang, W. Y. (2020). Logical natural language generation from open-domain tables. ACL 2020, [https://www.aclweb.org/anthology/2020.acl-main.708.pdf](https://www.aclweb.org/anthology/2020.acl-main.708.pdf)
+- Hermann, K. M., Kočiský, T., Grefenstette, E., Espeholt, L., Kay, W., Suleyman, M., & Blunsom, P. (2015). Teaching machines to read and comprehend. NeurIPS 2015 [https://proceedings.neurips.cc/paper/2015/hash/afdec7005cc9f14302cd0474fd0f3c96-Abstract.html](https://proceedings.neurips.cc/paper/2015/hash/afdec7005cc9f14302cd0474fd0f3c96-Abstract.html.)
+- Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., & Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML 2019, [http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf](http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf)
+- Narayan, S., Cohen, S. B., & Lapata, M. (2018). Don't give me the details, just the summary! topic-aware convolutional neural networks for extreme summarization. EMNLP 2018, [https://www.aclweb.org/anthology/D18-1206/](https://www.aclweb.org/anthology/D18-1206/ )
+- Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., & Gurevych, I. (2021). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. EACL 2021, [https://www.aclweb.org/anthology/2021.eacl-main.39.pdf](https://www.aclweb.org/anthology/2021.eacl-main.39.pdf)
+- Philip†, J., Bérard, A., Gallé, M., Besacier, L. (2020). Monolingual Adapters for Zero-Shot Neural Machine Translation. EMNLP 2020, [https://www.aclweb.org/anthology/2020.emnlp-main.361.pdf](https://www.aclweb.org/anthology/2020.emnlp-main.361.pdf)
+- See, A., Liu, P. J., & Manning, C. D. (2017). Get to the point: Summarization with pointer-generator networks. ACL 2017, [https://www.aclweb.org/anthology/P17-1099/](https://www.aclweb.org/anthology/P17-1099/)
+- Sheng, E., & Uthus, D. (2020). Investigating Societal Biases in a Poetry Composition System. Proceedings of the Second Workshop on Gender Bias in Natural Language Processing, [https://www.aclweb.org/anthology/2020.gebnlp-1.9/](https://www.aclweb.org/anthology/2020.gebnlp-1.9/)
+
+## Bibtex
+@misc{sterz_2021, 
+      title={Adapters for Generative and Seq2Seq Models}
+      url={https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/}, 
+      author={Hannah Sterz, Clifton Poth, Andreas R\"uckl\'e, Jonas Pfeiffer}, 
+      year={2021}, 
+      month={Apr}
+      }
