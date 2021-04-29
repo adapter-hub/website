@@ -3,7 +3,7 @@ title: Adapters for Generative and Seq2Seq Models in NLP
 date: 2021-04-29
 authors:
   - name: Hannah Sterz*
-    twitter: "@Hannah70676760"
+    twitter: "@h_sterz"
   - name: Clifton Poth*
     twitter: "@clifapt"
   - name: Andreas Rücklé
