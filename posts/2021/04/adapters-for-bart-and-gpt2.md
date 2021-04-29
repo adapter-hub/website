@@ -1,5 +1,5 @@
 ---
-title: Adapters for BART and GPT2
+title: Adapters for Generative and Seq2Seq Models in NLP
 date: 2021-04-30
 authors:
   - name: Hannah Sterz*
@@ -213,8 +213,8 @@ We thank [André Fellenberg](https://www.behance.net/andrefellenberg) for the BA
 
 ## Bibtex
       @misc{sterz_2021, 
-        title={Adapters for Generative and Seq2Seq Models},
-        url={https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/}, 
+        title={Adapters for Generative and Seq2Seq Models in NLP},
+        url={https://adapterhub.ml/blog/2021/04/adapters-for-bart-and-gpt2/}, 
         author={Hannah Sterz and Clifton Poth and Andreas R\"uckl\'e and Jonas Pfeiffer}, 
         year={2021}, 
         month={Apr}
