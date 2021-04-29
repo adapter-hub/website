@@ -1,12 +1,12 @@
 ---
-title: Version 2 of adapter-transformers Released
+title: Version 2 of AdapterHub Released
 date: 2021-04-29
 authors:
   - name: Clifton Poth
     twitter: "@clifapt"
   - name: Hannah Sterz
     twitter: "@Hannah70676760"
-summary: Today, we are releasing version 2 of adapter-transformers. This release introduces several exciting new ways for composing adapters through composition blocks, including AdapterFusion, ParallelInference, Adapter stacking, and combinations thereof. Furthermore, we now support new Transformer architectures such as GPT-2 and BART.
+summary: Today, we are releasing version 2 of the AdapterHub. This release introduces several exciting new ways for composing adapters through composition blocks, including AdapterFusion, parallel inference, Adapter stacking, and combinations thereof. Furthermore, we now support new Transformer architectures such as GPT-2 and BART.
 ---
 
 ![](/static/images/v2_blocks.png "Illustration of adapter composition blocks supported in v2 of adapter-transformers.")
@@ -14,8 +14,8 @@ summary: Today, we are releasing version 2 of adapter-transformers. This release
 Adapters, a light-weight alternative to full language model fine-tuning, enable new ways of composing task-specific knowledge from multiple sources, e.g., for multi-task transfer learning ([Pfeiffer et al., 2021](https://arxiv.org/pdf/2005.00247.pdf)) or cross-lingual transfer ([Pfeiffer et al., 2020](https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf)).
 One of the most important advantages of adapters is their modularity, which allows many exciting possibilities for composition beyond the ones mentioned above.
 
-Today, we are releasing version 2 of `adapter-transformers`, which makes it easier to take advantage of the composability and flexibility of adapters.
-`adapter-transformers` --- an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/) --- is the heart of the [AdapterHub framework](https://adapterhub.ml/) and simplifies the entire adapter lifecycle.
+Today, we are releasing Version 2 of the [AdapterHub framework](https://adapterhub.ml/), including a major update of `adapter-transformers`, which makes it easier to take advantage of the composability and flexibility of adapters.
+`adapter-transformers` --- an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/) --- is the heart of the AdapterHub that simplifies the entire adapter lifecycle.
 (Check out [our first blog post for more on this](https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/).)
 
 In the following sections, we will discuss all new features and changes that we introduce with the v2 release.
@@ -53,7 +53,7 @@ refer to the [corresponding section in our documentation](https://docs.adapterhu
 
 ### New model support: Adapters for BART and GPT-2
 
-v2 adds support for BART and GPT-2, marking a new type of models we support in the framework, namely sequence-to-sequence models (more to come!)
+Version 2 adds support for BART and GPT-2, marking a new type of models we support in the framework, namely sequence-to-sequence models (more to come!)
 
 We have [a separate blog post](https://adapterhub.ml/blog/2021/04/adapters-for-bart-and-gpt2/) that studies the effectiveness of adapters within these two models in greater detail! This blog post also includes a hands-on example where we train GPT-2 to generate poetry.
 
@@ -151,7 +151,7 @@ Further details on the implementation can be found [in the guide for adding adap
 ## Conclusion
 
 
-Version 2 of `adapter-transformers` brings a range of new features to broaden the possibilities of working with adapters.
+As part of the new AdapterHub release, version 2 of `adapter-transformers` brings a range of new features to broaden the possibilities of working with adapters.
 The library is still under active development, so make sure to check it out [on GitHub](https://github.com/Adapter-Hub/adapter-transformers).
 Also, we're always happy for any kind of contributions!
 
