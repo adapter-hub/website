@@ -5,7 +5,7 @@ authors:
   - name: Clifton Poth
     twitter: "@clifapt"
   - name: Hannah Sterz
-    twitter: "@Hannah70676760"
+    twitter: "@h_sterz"
 summary: Today, we are releasing version 2 of the AdapterHub. This release introduces several exciting new ways for composing adapters through composition blocks, including AdapterFusion, parallel inference, Adapter stacking, and combinations thereof. Furthermore, we now support new Transformer architectures such as GPT-2 and BART.
 ---
 
