@@ -136,7 +136,9 @@
                         </span>
                     </div>
                     <p class="card-text">
-                        {{ item['description']|truncate(200) }}
+                        {% if item['description'] %}
+                            {{ item['description']|truncate(200) }}
+                        {% endif %}
                     </p>
                 </div>
             </a>
