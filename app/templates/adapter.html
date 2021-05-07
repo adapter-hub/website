@@ -42,7 +42,9 @@
     <section>
         <h2>Description</h2>
         <p>
+            {% if adapter["description"] %}
             {{ adapter['description'] | urlize }}
+            {% endif %}
         </p>
     </section>
 
