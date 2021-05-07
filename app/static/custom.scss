@@ -405,6 +405,10 @@ footer {
       border: 1px solid lighten($primary, 50%);
     }
 
+    &::selection {
+      background: $primary;
+    }
+
     &::placeholder {
       color: #fff;
       // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
