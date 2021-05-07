@@ -15,7 +15,7 @@
 model.add_adapter("sst-2")
 model.train_adapter("sst-2")
 </pre>
-<p>By calling <code>train_adapter(["sst-2"])</code> we freeze all transformer parameters except for the parameters of sst-2 adapter.
+<p>By calling <code>train_adapter("sst-2")</code> we freeze all transformer parameters except for the parameters of sst-2 adapter.
 Before training we add a new classification head to our model:</p>
 <pre class="code">model.add_classification_head("sst-2", num_labels=2)
 model.set_active_adapters("sst-2")
