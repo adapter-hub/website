@@ -98,14 +98,15 @@ class Model(db.Model):
 
 class Adapter(db.Model):
     __tablename__ = "adapters"
+    # source
+    source = db.Column(db.String(30), default="ah")
     # name
     groupname = db.Column(db.String(30), primary_key=True)
     filename = db.Column(db.String(80), primary_key=True)
 
     # type & task
-    type = db.Column(db.String(20), db.ForeignKey('adapter_types.id'))
-    adapter_type = db.relationship('AdapterType', backref='adapters')
     task = db.Column(db.String(30), nullable=False)
+    task_ref = db.relationship('Task', viewonly=True)
     subtask = db.Column(db.String(30), nullable=False)
     subtask_ref = db.relationship('Subtask', backref='adapters')
 
@@ -131,9 +132,10 @@ class Adapter(db.Model):
     # files
     default_version = db.Column(db.String(10), nullable=False)
 
-    upload_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    last_update = db.Column(db.DateTime)
 
     __table_args__ = (
+        ForeignKeyConstraint([task], [Task.task]),
         ForeignKeyConstraint([task, subtask], [Subtask.task, Subtask.subtask]),
     )
 

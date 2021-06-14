@@ -4,7 +4,7 @@ from flask import current_app
 from flask.cli import AppGroup
 from flask_frozen import Freezer
 from flask_filealchemy import FileAlchemy
-from .models import db, Adapter, Architecture, Model, Subtask
+from .models import db, Adapter, Architecture, Model, Subtask, Task
 
 
 freeze_cli = AppGroup("freeze")
@@ -29,12 +29,12 @@ def db_init():
         model_obj = Model(name=model_args[0], model_type=model_args[1])
         db.session.add(model_obj)
     # fill subtasks
-    subtasks = db.session.query(Adapter.task, Adapter.subtask, Adapter.type).distinct().all()
-    for subtask_args in subtasks:
-        kwargs = {'task': subtask_args[0], 'subtask': subtask_args[1]}
-        if not db.session.query(Subtask).filter_by(**kwargs).first():
-            subtask_obj = Subtask(task_type=subtask_args[2], **kwargs)
-            db.session.add(subtask_obj)
+    # subtasks = db.session.query(Adapter.task, Adapter.subtask).distinct().all()
+    # for subtask_args in subtasks:
+    #     kwargs = {'task': subtask_args[0], 'subtask': subtask_args[1]}
+    #     if not db.session.query(Subtask).filter_by(**kwargs).first():
+    #         subtask_obj = Subtask(**kwargs)
+    #         db.session.add(subtask_obj)
     # hack: fill additional config columns for architectures
     for architecture in db.session.query(Architecture).all():
         config = json.loads(architecture.config)
