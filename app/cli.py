@@ -4,7 +4,9 @@ from flask import current_app
 from flask.cli import AppGroup
 from flask_frozen import Freezer
 from flask_filealchemy import FileAlchemy
-from .models import db, Adapter, Architecture, Model, Subtask, Task
+
+from .hf_hub import build_adapter_entries
+from .models import db, Adapter, Architecture, Model
 
 
 freeze_cli = AppGroup("freeze")
@@ -23,6 +25,10 @@ def db_init():
     db.drop_all()
     db.create_all()
     FileAlchemy(current_app, db).load_tables()
+    # add adapters from HF hub
+    for adapter_data in build_adapter_entries():
+        adapter_obj = Adapter(**adapter_data)
+        db.session.add(adapter_obj)
     # fill list of models based on adapters
     models = db.session.query(Adapter.model_name, Adapter.model_type).distinct().all()
     for model_args in models:
@@ -42,8 +48,9 @@ def db_init():
         architecture.config_reduction_factor = config["reduction_factor"]
     # hack: fix all configs, this should be replaced with something better
     for adapter in db.session.query(Adapter).all():
-        config = json.loads(adapter.config.replace("\'", "\""))
-        adapter.config = config["using"]
-        adapter.config_non_linearity = config.get("non_linearity", None)
-        adapter.config_reduction_factor = config.get("reduction_factor", None)
+        if adapter.config is not None:
+            config = json.loads(adapter.config.replace("\'", "\""))
+            adapter.config = config["using"]
+            adapter.config_non_linearity = config.get("non_linearity", None)
+            adapter.config_reduction_factor = config.get("reduction_factor", None)
     db.session.commit()

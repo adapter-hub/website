@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% set active_page = "explore" %}
 {% set specifier = adapter['task']+"/"+adapter['subtask']+"@"+adapter['groupname'] %}
+{% set file_specifier = adapter['groupname'] + "/" + adapter['filename'] %}
 
-{% block title %}{{ adapter['groupname'] + "/" + adapter['filename'] }}{% endblock %}
+{% block title %}{{ file_specifier }}{% endblock %}
 
 {% block header %}
 <div class="row breadcrumb-nav mb-3">
@@ -34,22 +35,24 @@
 {% block content %}
 
     <div class="d-none d-md-inline float-md-right" style="margin-top: -16px;">
+        {% if adapter.source == "hf" %}
+        <a href="https://huggingface.co/{{adapter.groupname}}/{{adapter.filename}}" class="hf-link">
+            <img src="{{ url_for('static', filename='logos/huggingface.svg') }}" />&nbsp; View on huggingface.co
+        </a>
+        {% else %}
         <a href="{{ file }}">
             <i class="fa fa-edit"></i>&nbsp; Edit on GitHub
         </a>
+        {% endif %}
     </div>
 
+    <br>
     <section>
-        <h2>Description</h2>
-        <p>
-            {% if adapter["description"] %}
-            {{ adapter['description'] | urlize }}
-            {% endif %}
-        </p>
-    </section>
-
-    <section>
-        <h2>Usage</h2>
+        {% if adapter.source == "hf" %}
+        <pre class="p-4 code">
+model = AutoModelWithHeads.from_pretrained("{{ adapter.model_name }}")
+model.load_adapter("{{file_specifier}}", source="hf")</pre>
+        {% else %}
         {# Build config loading string #}
         {% set custom_config_str = "" %}
         {% if adapter.config_non_linearity %}
@@ -59,11 +62,21 @@
         {% set custom_config_str = custom_config_str + ", reduction_factor="+adapter.config_reduction_factor|string %}
         {% endif %}
         <pre class="p-4 code">
-model = {{ adapter.model_class or "AutoModel" }}.from_pretrained("{{ adapter.model_name }}")
+model = AutoModelWithHeads.from_pretrained("{{ adapter.model_name }}")
 config = AdapterConfig.load("{{ adapter.config }}"{{ custom_config_str }})
 model.load_adapter("{{specifier}}", config=config)</pre>
+        {% endif %}
         <i class="btn-clipboard"></i>
     </section>
+
+<section>
+    <h2>Description</h2>
+    <div class="adapter-description">
+        {% if adapter["description"] %}
+        {{ adapter['description'] | urlize | markdown }}
+        {% endif %}
+    </div>
+</section>
 
 <section>
     <h2>Properties</h2>
@@ -128,6 +141,7 @@ model.load_adapter("{{specifier}}", config=config)</pre>
 
 <section>
     <h2>Architecture</h2>
+    {% if adapter.config %}
     <div class="property-box">
         <div class="row">
             <div class="col-sm-3 label">Name</div>
@@ -142,6 +156,7 @@ model.load_adapter("{{specifier}}", config=config)</pre>
             <div class="col-sm-9">{{ adapter.config_reduction_factor or adapter.config_ref.config_reduction_factor }}</div>
         </div>
     </div>
+    {% endif %}
     <div class="collapse-container">
         <div class="collapse-header">
             <button class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#collapseConfig">
@@ -154,6 +169,7 @@ model.load_adapter("{{specifier}}", config=config)</pre>
     </div>
 </section>
 
+{% if adapter.source == "ah" %}
 <section>
     <h2>Author</h2>
     <div class="property-box">
@@ -218,6 +234,7 @@ model.load_adapter("{{specifier}}", config=config)</pre>
         </tbody>
     </table>
 </section>
+{% endif %}
 
 <section class="mb-5">
     <h2>Citations</h2>

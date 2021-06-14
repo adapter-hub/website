@@ -119,6 +119,8 @@ class Adapter(db.Model):
     config_ref = db.relationship('Architecture', backref='adapters')
     config_non_linearity = db.Column(db.Text)
     config_reduction_factor = db.Column(db.Integer)
+    # only used for HF hub
+    config_string = db.Column(db.Text)
 
     # meta
     description = db.Column(db.Text)
