@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 from itertools import groupby
+import json
 
 from flask import Blueprint, abort
 from flask import render_template, current_app
@@ -11,6 +12,11 @@ from .models import Adapter, AdapterType, Model, Task, Subtask
 bp = Blueprint('main', __name__)
 
 blog_posts = FlatPages()
+
+
+@bp.app_template_filter("jsondumps")
+def json_dumps(o):
+    return json.dumps(o, indent=2)
 
 
 @bp.route('/')
@@ -70,8 +76,12 @@ def explore_adapters(task, subtask, model_type=None, model=None):
 def adapter_details(groupname, filename):
     adapter = Adapter.query.get((groupname, filename))
     if adapter:
+        # Recreate the full adapter_config dict
+        adapter_config = json.loads(adapter.config_ref.config)
+        adapter_config["non_linearity"] = adapter.config_non_linearity
+        adapter_config["reduction_factor"] = adapter.config_reduction_factor
         file = current_app.config["HUB_URL"]+"/"+groupname+"/"+filename+".yaml"
-        return render_template('adapter.html', adapter=adapter, file=file)
+        return render_template('adapter.html', adapter=adapter, adapter_config=adapter_config, file=file)
     else:
         return abort(404)
 

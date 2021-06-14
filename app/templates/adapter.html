@@ -149,7 +149,7 @@ model.load_adapter("{{specifier}}", config=config)</pre>
             </button>
         </div>
         <div id="collapseConfig" class="collapse">
-            <pre class="p-4">{{ adapter.config_ref.config }}</pre>
+            <pre class="p-4">{{ adapter_config | jsondumps }}</pre>
         </div>
     </div>
 </section>
