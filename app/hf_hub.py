@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 import logging
+import os
 import requests
 
 
@@ -77,3 +78,37 @@ def build_adapter_entries():
             "last_update": last_update,
             "default_version": "main",
         }
+
+
+def check_last_modified(cache_file):
+    # read last modification time from cache
+    if os.path.exists(cache_file):
+        with open(cache_file, "r") as f:
+            cached_last_modified = datetime.strptime(f.read(), "%Y-%m-%dT%H:%M:%S")
+    else:
+        cached_last_modified = datetime.fromtimestamp(0)
+
+    has_new_modifications = False
+    for adapter_info in get_adapters():
+        adapter_last_modified = datetime.strptime(adapter_info["lastModified"].split(".")[0], "%Y-%m-%dT%H:%M:%S")
+        if adapter_last_modified > cached_last_modified:
+            has_new_modifications = True
+            break
+
+    # write current time to cache
+    with open(cache_file, "w") as f:
+        f.write(datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S"))
+
+    return has_new_modifications
+
+
+# When calling as script, returns 0 if there have been modifications and 1 otherwise.
+if __name__ == "__main__":
+    import sys
+
+    cache_file = sys.argv[1]
+
+    if check_last_modified(cache_file):
+        exit(0)
+    else:
+        exit(1)
