@@ -5,7 +5,7 @@ from flask.cli import AppGroup
 from flask_frozen import Freezer
 from flask_filealchemy import FileAlchemy
 
-from .hf_hub import build_adapter_entries
+from .utils import pull_hf_hub_entries
 from .models import db, Adapter, Architecture, Model
 
 
@@ -25,10 +25,9 @@ def db_init():
     db.drop_all()
     db.create_all()
     FileAlchemy(current_app, db).load_tables()
-    # add adapters from HF hub
-    for adapter_data in build_adapter_entries():
-        adapter_obj = Adapter(**adapter_data)
-        db.session.add(adapter_obj)
+    # add adapters from HF model hub
+    pull_hf_hub_entries()
+
     # fill list of models based on adapters
     models = db.session.query(Adapter.model_name, Adapter.model_type).distinct().all()
     for model_args in models:

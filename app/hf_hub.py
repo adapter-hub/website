@@ -10,11 +10,60 @@ logger = logging.getLogger(__name__)
 API_BASE_URL = "https://huggingface.co/api/"
 HF_CO_URL_TEMPLATE = "https://huggingface.co/{repo_id}/resolve/{revision}/{filename}"
 
+# TODO extend this list
+HF_TO_AH_TASK_MAP = {
+    "question-answering": "qa",
+    "natural-language-inference": "nli",
+    "translation": "mt",
+    "sentiment-analysis": "sentiment",
+    "sequence-modeling": "lm",
+    "summarization": "sum",
+    "part-of-speech-tagging": "pos",
+}
+
 
 def get_datasets():
-    response = requests.get(API_BASE_URL + "datasets")
+    params = {"full": True}
+    response = requests.get(API_BASE_URL + "datasets", params=params)
     response.raise_for_status()
-    return response.json()
+    dataset_list = response.json()
+    dataset_dict = {item["id"]: item for item in dataset_list}
+    return dataset_dict
+
+
+def convert_hf_dataset_to_subtask(dataset_info):
+    task = None
+    if isinstance(dataset_info["card_data"]["task_categories"], list):
+        for task_category in dataset_info["card_data"]["task_categories"]:
+            task = HF_TO_AH_TASK_MAP.get(task_category)
+            if task is not None:
+                break
+    if task is None and isinstance(dataset_info["card_data"]["task_ids"], list):
+        for task_id in dataset_info["card_data"]["task_ids"]:
+            task = HF_TO_AH_TASK_MAP.get(task_id)
+            if task is not None:
+                break
+    if task is None:
+        task = "other"
+    subtask = dataset_info["id"]
+    displayname = subtask.replace("_", " ").title()
+    description = dataset_info["description"]
+    citation = dataset_info["citation"]
+    # TODO
+    language = None
+    if isinstance(dataset_info["card_data"]["languages"], list):
+        language = dataset_info["card_data"]["languages"][0]
+    return {
+        "task": task,
+        "subtask": subtask,
+        "displayname": displayname,
+        "description": description,
+        "citation": citation,
+        # TODO
+        "task_type": "text_task",
+        "language": language,
+        "hf_datasets_id": dataset_info["id"],
+    }
 
 
 def get_adapters():
@@ -32,15 +81,20 @@ def _has_sibling(adapter_info, sibling):
 def build_adapter_entries():
     for adapter_info in get_adapters():
         adapterhub_tag = next((t for t in adapter_info["tags"] if t.startswith("adapterhub:")), None)
-        # TODO also allow adapters without this tag
-        if adapterhub_tag is None:
-            logger.warning(f"[{adapter_info['modelId']}] No adapterhub tag.")
+        dataset_tag = next((t for t in adapter_info["tags"] if t.startswith("dataset:")), None)
+        if adapterhub_tag is not None:
+            task_splits = adapterhub_tag.split(":")[-1].split("/")
+            if len(task_splits) != 2:
+                logger.warning(f"Invalid adapterhub tag {adapterhub_tag}")
+                continue
+            task, subtask = task_splits
+            hf_dataset = dataset_tag.split(":")[-1] if dataset_tag else None
+        elif dataset_tag is not None:
+            task, subtask = None, None
+            hf_dataset = dataset_tag.split(":")[-1]
+        else:
+            logger.warning(f"[{adapter_info['modelId']}] No adapterhub or dataset tag found.")
             continue
-        task_splits = adapterhub_tag.split(":")[-1].split("/")
-        if len(task_splits) != 2:
-            logger.warning(f"Invalid adapterhub tag {adapterhub_tag}")
-            continue
-        task, subtask = task_splits
         groupname, filename = adapter_info["modelId"].split("/")
         last_update = datetime.strptime(adapter_info["lastModified"].split(".")[0], "%Y-%m-%dT%H:%M:%S")
         # Get values from adapter_config.json
@@ -77,6 +131,8 @@ def build_adapter_entries():
             # ... others not available ...
             "last_update": last_update,
             "default_version": "main",
+        }, {
+            "hf_dataset": hf_dataset,
         }
 
 

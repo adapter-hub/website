@@ -53,6 +53,8 @@ class Subtask(db.Model):
 
     language = db.Column(db.String(30))
 
+    hf_datasets_id = db.Column(db.Text)
+
     def __repr__(self):
         return '{}/{}'.format(self.task, self.subtask)
 
