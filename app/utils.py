@@ -19,16 +19,25 @@ def pull_hf_hub_entries():
             adapter_obj = Adapter(**adapter_data)
             db.session.add(adapter_obj)
         elif meta_data["hf_dataset"] in hf_datasets:
-            dataset_info = hf_datasets[meta_data["hf_dataset"]]
-            subtask_data = convert_hf_dataset_to_subtask(dataset_info)
-            if subtask_data is not None:
-                adapter_data["task"] = subtask_data["task"]
-                adapter_data["subtask"] = subtask_data["subtask"]
+            # First, try to find a matching subtask in the database
+            subtasks = Subtask.query.filter_by(hf_datasets_id=meta_data["hf_dataset"]).all()
+            if len(subtasks) == 1:
+                adapter_data["task"] = subtasks[0].task
+                adapter_data["subtask"] = subtasks[0].subtask
                 adapter_obj = Adapter(**adapter_data)
                 db.session.add(adapter_obj)
-                # a subtask with the inferred id might exist, in that case we assume it's the same task
-                if not Subtask.query.get((subtask_data["task"], subtask_data["subtask"])):
-                    subtask_obj = Subtask(**subtask_data)
-                    db.session.add(subtask_obj)
+            # If the information is unclear or not available, try to rebuild from HF info
             else:
-                logger.warning("Could not convert HF dataset '%s' to a subtask", meta_data["hf_dataset"])
+                dataset_info = hf_datasets[meta_data["hf_dataset"]]
+                subtask_data = convert_hf_dataset_to_subtask(dataset_info)
+                if subtask_data is not None:
+                    adapter_data["task"] = subtask_data["task"]
+                    adapter_data["subtask"] = subtask_data["subtask"]
+                    adapter_obj = Adapter(**adapter_data)
+                    db.session.add(adapter_obj)
+                    # a subtask with the inferred id might exist, in that case we assume it's the same task
+                    if not Subtask.query.get((subtask_data["task"], subtask_data["subtask"])):
+                        subtask_obj = Subtask(**subtask_data)
+                        db.session.add(subtask_obj)
+                else:
+                    logger.warning("Could not convert HF dataset '%s' to a subtask", meta_data["hf_dataset"])

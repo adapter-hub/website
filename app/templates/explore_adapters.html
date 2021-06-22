@@ -102,6 +102,14 @@
                 {{ subtask.description }}
             </div>
         </div>
+        <div class="row mt-2 subtask-button-list">
+            {% if subtask.url %}
+            <a class="btn btn-outline-light" href="{{ subtask.url }}"><i class="fa fa-globe"></i>&nbsp; Website</a>
+            {% endif %}
+            {% if subtask.hf_datasets_id %}
+            <a class="btn btn-outline-light" href="https://huggingface.co/datasets/{{ subtask.hf_datasets_id }}">🤗&nbsp; huggingface.co</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}
