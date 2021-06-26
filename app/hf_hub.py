@@ -142,12 +142,15 @@ def check_last_modified(cache_file):
         with open(cache_file, "r") as f:
             cached_last_modified = datetime.strptime(f.read(), "%Y-%m-%dT%H:%M:%S")
     else:
+        logger.warning("No cache file found. Re-initializing.")
         cached_last_modified = datetime.fromtimestamp(0)
+    logger.info("Cached last modification date: %s", cached_last_modified)
 
     has_new_modifications = False
     for adapter_info in get_adapters():
         adapter_last_modified = datetime.strptime(adapter_info["lastModified"].split(".")[0], "%Y-%m-%dT%H:%M:%S")
         if adapter_last_modified > cached_last_modified:
+            logger.info("Found newer modification date: %s", adapter_last_modified)
             has_new_modifications = True
             break
 

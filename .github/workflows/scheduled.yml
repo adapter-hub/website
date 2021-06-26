@@ -21,7 +21,7 @@ jobs:
           sudo npm install -g sass
       - uses: actions/cache@v2
         with:
-          path: '.last_modified.cache'
+          path: './.last_modified.cache'
           key: ${{ runner.os }}-last-modified-cache
       - name: Update data
         run: |
@@ -33,7 +33,7 @@ jobs:
         run: source scheduled.sh
         continue-on-error: true
       - name: Deploy
-        if: ${{ success() }}
+        if: env.AH_SCHEDULED_CHANGE==1
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
