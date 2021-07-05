@@ -6,6 +6,8 @@ import requests
 
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
 
 API_BASE_URL = "https://huggingface.co/api/"
 HF_CO_URL_TEMPLATE = "https://huggingface.co/{repo_id}/resolve/{revision}/{filename}"

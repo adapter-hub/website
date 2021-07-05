@@ -7,9 +7,9 @@ python app/hf_hub.py $CACHE_FILE
 # using exit code of hf_hub script
 if [ $? -eq 1 ]
 then
-    export AH_SCHEDULED_CHANGE=0
+    echo AH_SCHEDULED_CHANGE=0 >> $GITHUB_ENV
 else
     flask db init
     flask freeze build
-    export AH_SCHEDULED_CHANGE=1
+    echo AH_SCHEDULED_CHANGE=1 >> $GITHUB_ENV
 fi
