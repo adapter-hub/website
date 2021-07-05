@@ -56,9 +56,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">
                                     {{ subtask['displayname'] or subtask['subtask'] }}
-                                    {% if subtask.language %}
-                                        <span class="notice">{{ subtask.language | capitalize }}</span>
-                                    {% endif %}
+                                    <span class="notice">{{ subtask['task']+"/"+subtask['subtask'] }}</span>
                                 </h5>
                                 <p class="card-text">
                                     {{ subtask.description|truncate(200) if subtask.description }}
