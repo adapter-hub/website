@@ -64,7 +64,7 @@ Version 2 of `adapter-transformers` integrates some of the key ideas presented i
 Parallel multi-task inference, for any given input, runs multiple task adapters in parallel and thereby achieves considerable improvements in inference speed compared to sequentially running multiple Transformer models (see the paper for more details). The `Parallel` adapter composition block implements this behavior, which we describe in more detail [here](adapter_composition.html#parallel).
 
 A central advantage of multi-task inference is that it shares the computations in lower transformer layers across all inference tasks (before the first adapter block). Dropping out adapters from lower transformer layers can thus result in even faster inference speeds, but it often comes at the cost of lower accuracies. To allow for _dynamic_ adjustment of the number of dropped adapter layers at run-time regarding the available computational resources, we introduce _robust_ adapter training. This technique drops adapters from a random number of lower transformer layers in each training step. The resulting adapter can be adjusted at run-time regarding the number of dropped layers, to dynamically select between a higher accuracy or faster inference speeds.
-We present an example for robust _AdapterDrop_ training [in this Colab notebook](https://github.com/Adapter-Hub/adapter-transformers/blob/master/notebooks/Adapter_Drop_Training.ipynb).
+We present an example for robust _AdapterDrop_ training [in this Colab notebook](https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/05_Adapter_Drop_Training.ipynb).
 
 
 ### Transformers upgrade
@@ -108,13 +108,13 @@ model.add_adapter("name", AdapterType.text_task, config="pfeiffer")
 model.add_adapter("name", config="pfeiffer+inv")
 ```
 
-### Removal of `adapter_names` parameter in model forward()
+### Changes to `adapter_names` parameter
 
-_Includes breaking changes ⚠️_
+_Version 2.0.0 temporarily removed the ``adapter_names`` parameter entirely. Due to user feedback, it was re-added in v2.0.1._
 
-In v1, it was possible to specify the active adapters using the `adapter_names` parameter in each call to the model's `forward()` method.
-With the integration of the new, unified mechanism for specifying adapter setups using composition blocks, this parameter was dropped.
-The active adapters now are exclusively set via `set_active_adapters()` or the `active_adapters` property.
+One possibility to specify the active adapters is to use the `adapter_names` parameter in each call to the model's `forward()` method.
+With the integration of the new, unified mechanism for specifying adapter setups using composition blocks,
+it is now recommended to specify the active adapters via `set_active_adapters()` or the `active_adapters` property.
 For example...
 
 ```python
