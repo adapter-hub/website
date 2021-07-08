@@ -42,9 +42,12 @@
 
 {% block content %}
     {% for task in tasks %}
+        {% if subtasks[task.task] | length %}
         <div class="task mb-4">
             <h3 class="mb-2">{{ task.displayname }}
+            {% if task.description %}
             <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="{{ task.description }}"></i>
+            {% endif %}
             </h3>
             <div class="row subtasks">
                 {% for subtask in subtasks[task.task] %}
@@ -53,9 +56,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">
                                     {{ subtask['displayname'] or subtask['subtask'] }}
-                                    {% if subtask.language %}
-                                        <span class="notice">{{ subtask.language | capitalize }}</span>
-                                    {% endif %}
+                                    <span class="notice">{{ subtask['task']+"/"+subtask['subtask'] }}</span>
                                 </h5>
                                 <p class="card-text">
                                     {{ subtask.description|truncate(200) if subtask.description }}
@@ -69,6 +70,7 @@
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
     {% endfor %}
 
     <div id="NoSearchResult" class="d-none">

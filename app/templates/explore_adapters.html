@@ -102,6 +102,14 @@
                 {{ subtask.description }}
             </div>
         </div>
+        <div class="row mt-2 subtask-button-list">
+            {% if subtask.url %}
+            <a class="btn btn-outline-light" href="{{ subtask.url }}"><i class="fa fa-globe"></i>&nbsp; Website</a>
+            {% endif %}
+            {% if subtask.hf_datasets_id %}
+            <a class="btn btn-outline-light" href="https://huggingface.co/datasets/{{ subtask.hf_datasets_id }}">🤗&nbsp; huggingface.co</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -113,19 +121,27 @@
             <a class="btn card bg-light border-0" href="{{ url_for('main.adapter_details', groupname=item['groupname'], filename=item['filename']) }}">
                 <div class="card-body">
                     <h5 class="card-title">
+                        {% if item.source == "hf" %}
+                        {{ item['groupname']+"/"+item['filename'] }}
+                        {% else %}
                         {{ item['task']+"/"+item['subtask'] }}@{{ item['groupname'] }}
+                        {% endif %}
                         <span class="notice">
                             {{ item.model_name }}
                         </span>
                     </h5>
                     <div class="features">
-                        <span class="badge badge-primary">{{ item.files|length }} version{% if item.files|length > 1 %}s{% endif %}</span>
-                        <span class="badge badge-primary">Architecture: {{ item['config'] }}</span>
-                        {% if item.config_non_linearity %}
-                        <span class="badge badge-primary">non-linearity: {{ item.config_non_linearity }}</span>
-                        {% endif %}
-                        {% if item.config_reduction_factor %}
-                        <span class="badge badge-primary">reduction factor: {{ item.config_reduction_factor }}</span>
+                        {% if item.source == "hf" %}
+                            <span class="badge badge-hf text-white">huggingface.co</span>
+                        {% else %}
+                            <span class="badge badge-primary">{{ item.files|length }} version{% if item.files|length > 1 %}s{% endif %}</span>
+                            <span class="badge badge-primary">Architecture: {{ item['config'] }}</span>
+                            {% if item.config_non_linearity %}
+                            <span class="badge badge-primary">non-linearity: {{ item.config_non_linearity }}</span>
+                            {% endif %}
+                            {% if item.config_reduction_factor %}
+                            <span class="badge badge-primary">reduction factor: {{ item.config_reduction_factor }}</span>
+                            {% endif %}
                         {% endif %}
                         <span class="badge badge-primary">Head:&nbsp;
                             {% if item.prediction_head %}

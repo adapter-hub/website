@@ -77,9 +77,12 @@ def adapter_details(groupname, filename):
     adapter = Adapter.query.get((groupname, filename))
     if adapter:
         # Recreate the full adapter_config dict
-        adapter_config = json.loads(adapter.config_ref.config)
-        adapter_config["non_linearity"] = adapter.config_non_linearity
-        adapter_config["reduction_factor"] = adapter.config_reduction_factor
+        if adapter.config_ref:
+            adapter_config = json.loads(adapter.config_ref.config)
+            adapter_config["non_linearity"] = adapter.config_non_linearity
+            adapter_config["reduction_factor"] = adapter.config_reduction_factor
+        elif adapter.config_string:
+            adapter_config = json.loads(adapter.config_string)
         file = current_app.config["HUB_URL"]+"/"+groupname+"/"+filename+".yaml"
         return render_template('adapter.html', adapter=adapter, adapter_config=adapter_config, file=file)
     else:

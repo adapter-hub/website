@@ -1,0 +1,51 @@
+name: Scheduled Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+      - name: Install
+        run: |
+          pip install -r requirements.txt
+          cd app/static && npm install && cd ../..
+          sudo npm install -g sass
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')"
+      - uses: actions/cache@v2
+        with:
+          path: './.last_modified.cache'
+          key: ${{ runner.os }}-last-modified-cache-${{ steps.date.outputs.date }}
+          restore-keys: |
+            ${{ runner.os }}-last-modified-cache-
+      - name: Update data
+        run: |
+          git submodule update --remote
+      - name: Check for modifications and build
+        env:
+          COMMENTS_REPO: ${{ secrets.COMMENTS_REPO }}
+          FREEZER_BASE_URL: ${{ secrets.FREEZER_BASE_URL }}
+        run: |
+          source scheduled.sh
+        continue-on-error: true
+      - name: Deploy
+        if: env.AH_SCHEDULED_CHANGE==1
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          user_name: "Adapter-Hub-Bert"
+          user_email: "65732326+adapter-hub-bert@users.noreply.github.com"
+          publish_dir: ./build
+          publish_branch: gh-pages
+          force_orphan: true
+          cname: adapterhub.ml

@@ -17,3 +17,4 @@ app/**/gen/
 
 # Other
 *.db
+.last_modified.cache

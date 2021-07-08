@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flaskext.markdown import Markdown
 from .config import Config
 from .models import db, Adapter
 from .assets import assets
@@ -10,6 +11,7 @@ from .cli import freeze_cli, db_cli
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    Markdown(app)
     # init modules
     db.init_app(app)
     assets.init_app(app)
