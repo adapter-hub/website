@@ -11,7 +11,7 @@ from .cli import freeze_cli, db_cli
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    Markdown(app)
+    Markdown(app, extensions=["codehilite", "fenced_code", "caption"])
     # init modules
     db.init_app(app)
     assets.init_app(app)
@@ -24,6 +24,6 @@ def create_app():
 
     @app.shell_context_processor
     def make_shell_context():
-        return {'db': db, 'Adapter': Adapter}
+        return {"db": db, "Adapter": Adapter}
 
     return app

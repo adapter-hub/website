@@ -73,7 +73,11 @@ model.load_adapter("{{specifier}}", config=config)</pre>
     <h2>Description</h2>
     <div class="adapter-description">
         {% if adapter["description"] %}
-        {{ adapter['description'] | urlize | markdown }}
+        {% if adapter.source == "ah" %}
+        {{ adapter['description'] | urlize }}
+        {% else %}
+        {{ adapter['description'] | markdown }}
+        {% endif %}
         {% endif %}
     </div>
 </section>
