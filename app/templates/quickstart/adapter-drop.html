@@ -9,4 +9,24 @@
     </div>
 </div>
 
-<p>TODO</p>
+<p>
+    AdapterDrop allows us to remove adapters on lower layers during training and inference. This can be realised with the
+    <code>skip_layers</code> argument. It specifies for which layers the adapters should be skipped during the forward pass. In
+    order to train a model with the AdaptreDrop we need to specify callback for the trainer class that sets the <code>skip_layers</code>
+    argument to the layers that should be skipped in each step as follows:
+</p>
+<pre class="code" id="QuickstartAdapterDropMore">
+class AdapterDropTrainerCallback(TrainerCallback):
+  def on_step_begin(self, args, state, control, **kwargs):
+    skip_layers = list(range(np.random.randint(0, 11)))
+    kwargs['model'].set_active_adapters("rotten_tomatoes", skip_layers=skip_layers)
+
+  def on_evaluate(self, args, state, control, **kwargs):
+    # Deactivate skipping layers during evaluation (otherwise it would use the
+    # previous randomly chosen skip_layers and thus yield results not comparable
+    # across different epochs)
+    kwargs['model'].set_active_adapters("rotten_tomatoes", skip_layers=None)
+</pre>
+<p>
+    Checkout the <a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/02_Adapter_Inference.ipynb">AdapterDrop Colab Notebook</a> for further details.
+</p>

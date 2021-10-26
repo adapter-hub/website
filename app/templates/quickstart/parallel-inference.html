@@ -9,4 +9,22 @@
     </div>
 </div>
 
-<p>TODO</p>
+<p>
+    During inference it might be beneficial to pass the input data through several different adapters, to compare
+    the results or predict different attributes in one forward pass. The
+    <a href="https://docs.adapterhub.ml/adapter_composition.html#parallel">Parallel Block</a> enables us to do this.
+    When the Parallel Block is used in combination with a <code>ModelWithHeads</code> class, each adapter has also a corresponding head.
+</p>
+<pre class="code" id="QuickstartAdapterDropMore">model = AutoModelWIthHeads.from_pretrained("bert-base-uncased")
+model.add_adapter("task1")
+model.add_adapter("task2")
+model.add_classification_head("task1", num_labels=3)
+model.add_classification_head("task2", num_labels=5)
+model.set_active_adapters(Parallel("task1", "task2")
+</pre>
+<p>
+    A forward pass through the model with the Parallel Block is equivalent to two single forward passes. One through the model
+    with the <code>task1</code> adapter and head activated and one through the model with the <code>task2</code> adapter and head.
+    The output is returned as a <code>MultiHeadOutput</code>, which acts as a list of the head outputs with an additional
+    <code>loss</code> attribute. The loss attribute is the sum of the losses of individual outputs.
+</p>
