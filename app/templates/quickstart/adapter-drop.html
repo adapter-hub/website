@@ -11,8 +11,8 @@
 
 <p>
     AdapterDrop allows us to remove adapters on lower layers during training and inference. This can be realised with the
-    <code>skip_layers</code> argument. It specifies for which layers the adapters should be skipped during the forward pass. In
-    order to train a model with the AdaptreDrop we need to specify callback for the trainer class that sets the <code>skip_layers</code>
+    <code>skip_layers</code> argument. It specifies for which layers the adapters should be skipped during a forward pass. In
+    order to train a model with AdapterDrop, we specify a callback for the <code>Trainer</code> class that sets the <code>skip_layers</code>
     argument to the layers that should be skipped in each step as follows:
 </p>
 <pre class="code" id="QuickstartAdapterDropMore">

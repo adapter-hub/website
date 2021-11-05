@@ -10,10 +10,10 @@
 </div>
 
 <p>
-    During inference it might be beneficial to pass the input data through several different adapters, to compare
+    During inference, it might be beneficial to pass the input data through several different adapters to compare
     the results or predict different attributes in one forward pass. The
     <a href="https://docs.adapterhub.ml/adapter_composition.html#parallel">Parallel Block</a> enables us to do this.
-    When the Parallel Block is used in combination with a <code>ModelWithHeads</code> class, each adapter has also a corresponding head.
+    When the Parallel Block is used in combination with a <code>ModelWithHeads</code> class, each adapter also has a corresponding head.
 </p>
 <pre class="code" id="QuickstartAdapterDropMore">model = AutoModelWIthHeads.from_pretrained("bert-base-uncased")
 model.add_adapter("task1")
