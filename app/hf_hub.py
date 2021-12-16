@@ -35,13 +35,13 @@ def get_datasets():
 
 def convert_hf_dataset_to_subtask(dataset_info):
     task = None
-    if isinstance(dataset_info["card_data"].get("task_categories", None), list):
-        for task_category in dataset_info["card_data"]["task_categories"]:
+    if isinstance(dataset_info["cardData"].get("task_categories", None), list):
+        for task_category in dataset_info["cardData"]["task_categories"]:
             task = HF_TO_AH_TASK_MAP.get(task_category)
             if task is not None:
                 break
-    if task is None and isinstance(dataset_info["card_data"].get("task_ids", None), list):
-        for task_id in dataset_info["card_data"]["task_ids"]:
+    if task is None and isinstance(dataset_info["cardData"].get("task_ids", None), list):
+        for task_id in dataset_info["cardData"]["task_ids"]:
             task = HF_TO_AH_TASK_MAP.get(task_id)
             if task is not None:
                 break
@@ -53,8 +53,8 @@ def convert_hf_dataset_to_subtask(dataset_info):
     citation = dataset_info["citation"]
     # TODO
     language = None
-    if isinstance(dataset_info["card_data"]["languages"], list):
-        language = dataset_info["card_data"]["languages"][0]
+    if isinstance(dataset_info["cardData"]["languages"], list):
+        language = dataset_info["cardData"]["languages"][0]
     return {
         "task": task,
         "subtask": subtask,
