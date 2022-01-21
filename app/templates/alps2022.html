@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% set active_page = "emnlp" %}
+
+{% block header %}
+    <h1>
+        {% block title %} ALPS 2022 {% endblock %}
+    </h1>
+    <h2>
+        AdapterHub Lab Session
+    </h2>
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <h2>Preliminaries</h2>
+    Hi 👋! This page collects all the materials and tasks for the ALPS 2022 Lab on AdapterHub.
+    Before we get started, some important preliminary notes:
+    <ul>
+        <li>This collection is built up from multiple <b>Google Colab notebooks</b> that allow you to run all the adapter code directly <b>in the browser</b>.</li>
+        <li>There are <b>two categories</b> of notebooks: Those marked with <i class="fa fa-laptop-code"></i> <b>demo</b> one concept, feature or task. They are ready to run from beginning to end.
+        Those marked with <i class="fa fa-edit"></i> require <b>your coding skills</b>!</li>
+        <li>Our library, <code>adapter-transformers</code> heavily builds upon <b>HuggingFace's <code>transformers</code> library</b>. Therefore, it helps if you have basic familiarity with HuggingFace's library (although you should be able to follow even if you don't).
+        We'll link <a target="_blank" href="https://huggingface.co/docs/transformers/quicktour">their documentation here</a> in case you need a refresher.</li>
+        <li>We've linked additional resources <a href="#resources">at the bottom of this page</a>.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>1. The Basics</h2>
+    In this section, we explore the basic functioning of <code>adapter-transformers.</code>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/01_Adapter_Training.ipynb">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-laptop-code"></i>&nbsp;
+                How to train your first task adapter for a Transformer model
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/02_Adapter_Inference.ipynb">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-laptop-code"></i>&nbsp;
+                How to download and use pre-trained adapters from AdapterHub
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://colab.research.google.com/drive/1cF-q86yVjnsxqLOn-ASrnvYwKczCw8mF?usp=sharing">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-edit"></i>&nbsp;
+                How to find and fine-tune relevant adapters automatically
+            </h5>
+        </div>
+    </a>
+</section>
+
+
+<section>
+    <h2>2. Adapter Composition Magic</h2>
+    In this section, we dive deeper into how adapters can be stacked, fused and parallelized.
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/03_Adapter_Fusion.ipynb">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-laptop-code"></i>&nbsp;
+                Combining multiple pre-trained adapters on a new task using AdapterFusion
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/04_Cross_Lingual_Transfer.ipynb">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-laptop-code"></i>&nbsp;
+                Performing zero-shot cross-lingual transfer between tasks using the MAD-X setup
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/Parallel_Adapter_Inference.ipynb">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-laptop-code"></i>&nbsp;
+                Using the <code>Parallel</code> composition block for inference
+            </h5>
+        </div>
+    </a>
+</section>
+
+<section>
+    <h2>3. Applications</h2>
+    Adapters can be applied to a wide range of NLP tasks. In this section, you can train an adapter for a task of your choice and upload share it with the world.
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/06_Text_Generation.ipynb">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-laptop-code"></i>&nbsp;
+                How to train an adapter for language generation
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://colab.research.google.com/drive/1Qz6rJUg7D1772cLxj_EhcoU8_9iA82Bo?usp=sharing">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-edit"></i>&nbsp;
+                Train and upload your own adapter
+            </h5>
+        </div>
+    </a>
+</section>
+
+<section>
+    <h2>Additional Resources <a name="resources"></a></h2>
+    Here are some additional pointers to AdapterHub resources that might help while working with AdapterHub:
+    <a class="my-4 btn card bg-light border-0" href="https://docs.adapterhub.ml/" target="_blank">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-book-reader"></i>&nbsp;
+                The <code>adapter-transformers</code> documentation
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" href="https://adapterhub.ml/explore/" target="_blank">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-binoculars"></i>&nbsp;
+                The Hub website with all available pre-trained adapters
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" href="https://vimeo.com/664228241/20319fc4dd" target="_blank">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-video"></i>&nbsp;
+                The ALPS lecture on adapters by Jonas Pfeiffer and Prof. Gurevych
+            </h5>
+        </div>
+    </a>
+</section>
+{% endblock %}
