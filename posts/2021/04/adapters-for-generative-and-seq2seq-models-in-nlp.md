@@ -142,7 +142,7 @@ Version 2.0 of the AdapterHub framework opens up new possibilities such as exper
 ## Hands-on example: Train an adapter to write poems
 
  [![Open Colab](https://colab.research.google.com/assets/colab-badge.svg)](
- https://colab.research.google.com/github/hSterz/adapter-transformers/blob/notebooks/notebooks/06_Text_Generation.ipynb) <br>
+ https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/06_Text_Generation.ipynb) <br>
 To illustrate how we can use adapters for text generation, we provide a hands-on example for training adapters within GPT-2 on a poem dataset by [Sheng et al. (2020)](https://arxiv.org/pdf/2011.02686.pdf) and let it create novel poems. The dataset contains poems from the Gutenberg project. The full code is available in the corresponding colab notebook linked above. If you have read the previous blog post, this might look very familiar. First, we need to add our adapters.  This is easily done with just a few lines of code:
 
 ```python
