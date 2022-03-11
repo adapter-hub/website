@@ -30,12 +30,18 @@ class Config(object):
     FLATPAGES_MARKDOWN_EXTENSIONS = [
         'codehilite',
         'fenced_code',
-        'caption'
+        'caption',
+        'tables',
+        'footnotes',
+        'mdx_math',
     ]
     FLATPAGES_EXTENSION_CONFIGS = {
         'caption': {
             'captionNumbering': True
-        }
+        },
+        'mdx_math': {
+            'enable_dollar_delimiter': True,
+        },
     }
 
     ### frozen flask
