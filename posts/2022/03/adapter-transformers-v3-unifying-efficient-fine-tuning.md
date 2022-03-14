@@ -111,6 +111,7 @@ Task | Model | Metrics | Reference | Ours
 SST-2 | roberta-base | Acc. | 94.2 | 94.26
 MNLI | roberta-base | Acc. | 87.4 | 86.47
 XSum | bart-large | R-1/R-2/R-L | 45.12/21.90/36.91 | 44.74/21.75/36.80
+WMT16 En-Ro | bart-large | BLEU | 37.5 | 36.9
 
 ### Compacters
 
@@ -123,7 +124,36 @@ You can find a full change log [here](https://github.com/Adapter-Hub/adapter-tra
 
 ### `XAdapterModel` classes
 
-TODO
+Version 3.0 introduces a new set of model classes (one class per model type) specifically designed for working with adapters.
+These classes follow the general schema `XAdapterModel`, where `X` is the respective model type (e.g. `Bert`, `GPT2`).
+They replace the `XModelWithHeads` classes of earlier versions.
+In summary, these classes provide the following main features:
+
+- Flexible configuration of predictions heads (see [documentation](https://docs.adapterhub.ml/prediction_heads.html#adaptermodel-classes)).
+- Compositions (such as parallel inference and `BatchSplit`) of adapters with different prediction heads.
+- One model class per model type, additionally, a `AutoAdapterModel` class for automatic class detection.
+
+**These classes are designed as the new default classes of `adapter-transformers`. It is recommended to use these classes for working with adapters whenever possible.**
+A usage example looks like this:
+```python
+from transformers.adapters import AutoAdapterModel
+
+# Load class
+model = AutoAdapterModel.from_pretrained("bert-base-uncased")
+
+# Configure adapters & heads
+model.add_adapter("first_task")
+model.add_adapter("second_task")
+model.add_classification_head("first_task", num_labels=2)
+model.add_multiple_choice_head("second_task", num_choices=4)
+
+# Define active setup
+model.train_adapter(Parallel("first_task", "second_task"))
+
+# Start training loop ...
+```
+
+⚠️ All `XModelWithHeads` classes are now deprecated as the new classes are direct replacements.
 
 ### Flexible configurations with `ConfigUnion`
 
