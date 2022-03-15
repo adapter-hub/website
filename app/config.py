@@ -33,6 +33,7 @@ class Config(object):
         'caption',
         'tables',
         'footnotes',
+        'toc',
         'mdx_math',
     ]
     FLATPAGES_EXTENSION_CONFIGS = {

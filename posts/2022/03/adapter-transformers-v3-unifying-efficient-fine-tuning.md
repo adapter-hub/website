@@ -20,7 +20,10 @@ With the release of version 3.0 of `adapter-transformers` today, we're taking th
 Our library, an extension of the great [Transformers library by HuggingFace](https://huggingface.co/transformers/), was introduced as a straightforward way to train, share, load and use adapters within Transformer models.
 The new version for the first time allows using methods beyond the "classic" adapter architecture within this framework, namely Prefix Tuning, Parallel adapters, Mix-and-Match adapters and Compacters.
 
-In the following, we will present all new features and methods introduced with the new release as well as all important changes.
+In the following sections, we will present all new features and methods introduced with the new release as well as all important changes one by one:
+
+[TOC]
+
 You can find `adapter-transformers` [on GitHub](https://github.com/Adapter-Hub/adapter-transformers) or install it via pip:
 
 ```bash
@@ -117,7 +120,7 @@ WMT16 En-Ro | bart-large | BLEU | 37.5 | 36.9
 
 TODO
 
-## More Updates and Changes
+## Library Updates and Changes
 
 Below, we highlight further updates and changes introduced with v3.0 of `adapter-transformers`.
 You can find a full change log [here](https://github.com/Adapter-Hub/adapter-transformers/releases/tag/adapters3.0.0).
