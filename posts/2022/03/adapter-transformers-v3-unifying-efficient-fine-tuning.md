@@ -9,7 +9,7 @@ authors:
 summary: With the release of version 3.0 of adapter-transformers today, we're taking the first steps at integrating the grown and diversified landscape of efficient fine-tuning methods. Version 3.0 adds support for a first batch of recently proposed methods, including Prefix Tuning, Parallel adapters, Mix-and-Match adapters and Compacters. Further, improvements and changes to various aspects of the library are introduced.
 ---
 
-<!-- ![](/static/images/v2_blocks.png "Illustration of adapter composition blocks supported in v2 of adapter-transformers.") -->
+![](/static/images/v3_methods.png "Illustration of efficient fine-tuning methods supported in v3 of adapter-transformers.")
 
 Since adapters were first introduced to NLP as a light-weight alternative to full fine-tuning of language models ([Houlsby et al., 2019](https://arxiv.org/pdf/1902.00751.pdf)), the relevance of efficient transfer learning methods has continuously gained importance throughout the field.
 With Transformer-based language models growing from millions to billions or trillions of parameters, the inherent advantages of methods such as adapters - parameter efficiency, computational efficiency and modularity - have only become even more relevant.
@@ -83,7 +83,7 @@ Here, activations are passed via the bottleneck adapter layer _in parallel_ to t
 as opposed to the established, sequential, order of computations.
 
 [He et al. (2021)](https://arxiv.org/pdf/2110.04366.pdf) study various variants and combinations of efficient fine-tuning methods.
-Among others, they propose _Mix-and-Match Adapters_ as a combination of Prefix Tuning and parallel bottleneck adapters.
+Among others, they propose _Mix-and-Match Adapters_ as a combination of Prefix Tuning and parallel adapters.
 This configuration is supported by adapter-transformers out-of-the-box:
 
 ```python
@@ -115,6 +115,16 @@ SST-2 | roberta-base | Acc. | 94.2 | 94.26
 MNLI | roberta-base | Acc. | 87.4 | 86.47
 XSum | bart-large | R-1/R-2/R-L | 45.12/21.90/36.91 | 44.74/21.75/36.80
 WMT16 En-Ro | bart-large | BLEU | 37.5 | 36.9
+
+Additionally, the next table shows initial runs of our parallel adapter implementation, again compared with the results reported by [He et al. (2021)](https://arxiv.org/pdf/2110.04366.pdf) when applicable.
+We use a reduction factor of 2 (i.e. a bottleneck dimension of 512).
+
+Task | Model | Metrics | Reference | Ours
+--- | --- | --- | --- | ---
+SST-2 | roberta-base | Acc. | - | 94.61
+MNLI | roberta-base | Acc. | - | 86.41
+XSum | bart-large | R-1/R-2/R-L | 44.35/20.98/35.98 | 44.88/21.53/36.55
+WMT16 En-Ro | bart-large | BLEU | 37.1 | ?
 
 ### Compacters
 
