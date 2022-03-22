@@ -75,6 +75,7 @@ Task | Model | Metrics | Reference | Ours
 SST-2 | roberta-base | Acc. | 94 | 94.72
 MNLI | roberta-base | Acc. | 86.3 | 86.1
 XSum | bart-large | R-1/R-2/R-L | 43.40/20.46/35.51 | 43.00/20.05/35.10
+WMT16 En-Ro | bart-large | BLEU | 35.6 | 35.0
 
 ### Parallel & Mix-and-Match adapters
 
@@ -216,11 +217,13 @@ Most importantly, the context manager is **thread-local**, i.e. we can use diffe
 
 ### Refactorings
 
-TODO
+Besides the already mentioned changes, v3.0 of `adapter-transformers` comes with major refactorings in the integration of adapter implementations into model classes and model configurations (e.g., see [here](https://github.com/Adapter-Hub/adapter-transformers/pull/263) and [here](https://github.com/Adapter-Hub/adapter-transformers/pull/304)).
+While these refactorings only affect the interface methods minimally, the process of integrating new model architectures has been substantially simplified.
+Please refer to the [updated model integration guide](https://github.com/Adapter-Hub/adapter-transformers/blob/master/adding_adapters_to_a_model.md) for more.
 
 ### Transformers upgrade
 
-Version 2.0.0 upgrades the underlying HuggingFace Transformers library from v3.5.1 to v4.5.1, bringing many awesome new features created by HuggingFace.
+Version 3.0 of `adapter-transformers` upgrades the underlying HuggingFace Transformers library from v4.12.5 to v4.17.0, bringing many awesome new features created by HuggingFace.
 
 ## Conclusion
 
