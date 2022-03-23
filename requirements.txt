@@ -4,7 +4,6 @@ Flask-Assets == 2.0
 Flask-Markdown == 0.3
 Flask-SQLAlchemy == 2.4.1
 Frozen-Flask == 0.15
-jsmin == 2.2.2
 pygments == 2.7.4
 python-markdown-math == 0.8
 requests == 2.23
