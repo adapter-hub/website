@@ -43,13 +43,13 @@ Please refer to [our documentation](https://docs.adapterhub.ml/quickstart.html) 
 <div align="center">
 <figure text-align="center">
   <img src="/static/images/bottleneck.png"  height="400">
-  <figcaption>Figure 2: The bottleneck adapter consists of a linear down and up projection network and a residual connection with the input. It 
-   is positioned after the attention layer and/or the feedforward layer.</figcaption>
+  <figcaption>Figure 2: The bottleneck adapter network consists of a linear down projection, non-linearity, and up projection, followed by a residual connection. It 
+   is positioned after the multihead attention layer and/or the feedforward layer.</figcaption>
 </figure> 
 </div>
 
-Until version 3.0 of `adapter-transformers`, it only supported bottleneck adapters. As illustrated above are small stitched-in layers that 
-consist of bottleneck feed-forward layers and a residual connection. These adapters can be after the attention block and 
+Until version 3.0 of `adapter-transformers`, we only supported bottleneck adapters. As illustrated above, small stitched-in layers that 
+consist of bottleneck feed-forward layers and a residual connection are added to the pre-trained transformer layers. These adapters are typically placed after the attention block and/or 
 after the feedforward layer. For further detail check out our documentation for 
 bottleneck adapters [here](https://docs.adapterhub.ml/overview).
 
@@ -58,19 +58,19 @@ bottleneck adapters [here](https://docs.adapterhub.ml/overview).
 <figure text-align="center">
 <img src="/static/images/prefix.png" height="400">
   <figcaption text-align="center">
-    Figure 3: Prefix Tuning adds trainable prefixes to the key and value vectors in the model.  
+    Figure 3: Prefix Tuning adds trainable prefix vectors to the key and value matrices in the model.  
   </figcaption>
  </figure>
 </div> 
 
 Prefix Tuning ([Li and Liang, 2021](https://aclanthology.org/2021.acl-long.353.pdf)) introduces new parameters in the multi-head attention blocks in each Transformer layer. 
-In the illustration above the prefixes are marked pink and purple. More, specifically, it prepends trainable prefix vectors $P^K$ and $P^V$ to the keys and values of the attention head input, each of a configurable prefix length $l$ (`prefix_length` attribute):
+In the illustration above the prefixes are marked pink and purple. More, specifically, we prepend trainable prefix vectors $P^K$ and $P^V$ to the keys and values of the attention head input, each of a configurable prefix length $l$ (`prefix_length` attribute):
 
 $$
 head_i = \text{Attention}(Q W_i^Q, [P_i^K, K W_i^K], [P_i^V, V W_i^V])
 $$
 
-Following the original authors, the prefix vectors in $P^K$ and $P^V$ are note optimized directly, but reparameterized via a bottleneck MLP.
+Following the original authors, the prefix vectors in $P^K$ and $P^V$ are not optimized directly, but reparameterized via a bottleneck MLP.
 This behavior is controlled via the `flat` attribute of the configuration.
 Using `PrefixTuningConfig(flat=True)` will create prefix tuning vectors that are optimized without reparameterization.
 
@@ -104,8 +104,8 @@ WMT16 En-Ro | bart-large | BLEU | 35.6 | 35.0
 <figure text-align="center">
 <img src="/static/images/parallel.png" height="400">
   <figcaption text-align="center">
-    Figure 4: The parallel adapter computes in parallel to the transformer sublayer. It does not get the output of 
-    the attention or feedforward layer, but its input such that the adapter is parallel to the attention or feedforward layer. 
+    Figure 4: The parallel adapter computes representations in parallel to the transformer sublayer. It does not receive the output of 
+    the attention or feedforward layer, but instead processes the same input such that the adapter is parallel to the attention or feedforward layer. The respective representations are added subsequently.
   </figcaption>
  </figure>
 </div> 
@@ -173,7 +173,7 @@ WMT16 En-Ro | bart-large | BLEU | 37.1 | 36.4
 
 
 Another alternative to the classical bottleneck adapter is the Compacter ([Mahabadi et al. (2021)](https://arxiv.org/pdf/2106.04647.pdf)). Here the linear down- and up-projection layer is replaced by a phm layer, which is marked in 
-black on the illustration. In the phm layer, the weights matrix is constructed from two smaller matrices by computing their kroenecker product. These matrices can be factorized and shared between all layers.
+black on the illustration. In the phm layer, the weights matrix is constructed from two smaller matrices by computing their kroenecker product. These matrices can be factorized and shared between all transformer layers.
 
 To add a Compacter in adapter-transformers, simply provide a `CompacterConfig`or a `CompacterPlusPlusConfig` when adding the adapter:
 ```
