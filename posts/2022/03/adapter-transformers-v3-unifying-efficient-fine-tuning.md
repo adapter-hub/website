@@ -39,7 +39,7 @@ The newly added methods seamlessly integrate into the existing framework of work
 Each method is specified and configured using a specific configuration class, all of which derive from the common `AdapterConfigBase` class.
 Please refer to [our documentation](https://docs.adapterhub.ml/quickstart.html) for more explanation on working with adapters.
 
-### Bottleneck Adapters
+### Recap: Bottleneck Adapters
 <div align="center">
 <figure text-align="center">
   <img src="/static/images/bottleneck.png"  height="400">
