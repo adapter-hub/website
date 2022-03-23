@@ -129,7 +129,29 @@ WMT16 En-Ro | bart-large | BLEU | 37.1 | ?
 
 ### Compacters
 
-TODO
+Another alternative to the classical bottleneck adapter is the compacter ([Mahabadi et al. (2021)](https://arxiv.org/pdf/2106.04647.pdf)). Here the linear down- and up-projection layer is replaced by a phm layer.
+In the phm layer, the weights matrix is constructed from two smaller matrices by computing their kroenecker product. These matrices can be factorized and shared between all layers.
+
+To add a compacter in adapter-transformers, simply provide a `CompacterConfig`or a `CompacterPlusPlusConfig` when adding the adapter:
+```
+from transformers.adapters import CompacterPlusPlusConfig
+
+config = CompacterPlusPlusConfig()
+model.add_adapter("compacter_plusplus", config=config)
+```
+
+The following table compares the results of training a compacter++ for T5 for the glue tasks with the results reported in [Mahabadi et al. (2021)](https://arxiv.org/pdf/2106.04647.pdf):
+
+Task | Metrics | Reference | Ours
+--- | --- | --- | ---
+COLA | Mathews Correlation | 61.27 | 58.45
+SST-2 | Acc. | 93.81| 94.61
+MRPC | Acc./F1 | 90.69/93.33 | 87.99/91.81
+QQP | Acc./F1 | 90.17/86.93 | 90.33/87.46 
+STS-B | Pearson/Spearman Correlation | 90.46/90.93 | 89.78/89.53
+MNLI | Acc. | 85.71 | 85.32
+QNLI | Acc. | 93.08 | 91.63
+RTE | Acc. | 74.82 | 77.25
 
 ## Library Updates and Changes
 
