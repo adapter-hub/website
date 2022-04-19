@@ -56,7 +56,7 @@ Additionally, their compact size with the majority of weights bein frozen, makes
 ## What is AdapterHub?
 
 With AdapterHub, we have developed a framework which makes working with adapters straightforward.
-AdapterHub is divided into two core components: [adapter-transformers](https://github.com/Adapter-Hub/adapter-transformers), a library built on top of HuggingFace `transformers` that integrates adapter support into various popular Transformer-based language models, and [the Hub](https://adapterhun.ml/explore), an open platform for sharing, exploring and consuming pre-trained adapters.
+AdapterHub is divided into two core components: [adapter-transformers](https://github.com/Adapter-Hub/adapter-transformers), a library built on top of HuggingFace `transformers` that integrates adapter support into various popular Transformer-based language models, and [the Hub](https://adapterhub.ml/explore), an open platform for sharing, exploring and consuming pre-trained adapters.
 
 ![](/static/images/lifecycle.png "The AdapterHub lifecycle")
 
