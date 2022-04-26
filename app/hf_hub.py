@@ -13,7 +13,7 @@ API_BASE_URL = "https://huggingface.co/api/"
 HF_CO_URL_TEMPLATE = "https://huggingface.co/{repo_id}/resolve/{revision}/{filename}"
 
 # TODO extend this list
-HF_TO_AH_TASK_MAP = {
+HF_TASK_TO_AH_TASK_MAP = {
     "question-answering": "qa",
     "natural-language-inference": "nli",
     "translation": "mt",
@@ -21,6 +21,18 @@ HF_TO_AH_TASK_MAP = {
     "sequence-modeling": "lm",
     "summarization": "sum",
     "part-of-speech-tagging": "pos",
+    "named-entity-recognition": "ner",
+}
+HF_DATASET_TO_AH_TASK_MAP = {
+    "emo": "emotion",
+    "emotion": "emotion",
+    "anli": "nli",
+    "art": "comsense",
+    "com_qa": "qa",
+    "hotpot_qa": "qa",
+    "quail": "rc",
+    "quoref": "qa",
+    "yelp_polarity": "sentiment",
 }
 
 
@@ -35,14 +47,16 @@ def get_datasets():
 
 def convert_hf_dataset_to_subtask(dataset_info):
     task = None
-    if isinstance(dataset_info["cardData"].get("task_categories", None), list):
+    if dataset_info["id"] in HF_DATASET_TO_AH_TASK_MAP:
+        task = HF_DATASET_TO_AH_TASK_MAP[dataset_info["id"]]
+    if task is None and isinstance(dataset_info["cardData"].get("task_categories", None), list):
         for task_category in dataset_info["cardData"]["task_categories"]:
-            task = HF_TO_AH_TASK_MAP.get(task_category)
+            task = HF_TASK_TO_AH_TASK_MAP.get(task_category)
             if task is not None:
                 break
     if task is None and isinstance(dataset_info["cardData"].get("task_ids", None), list):
         for task_id in dataset_info["cardData"]["task_ids"]:
-            task = HF_TO_AH_TASK_MAP.get(task_id)
+            task = HF_TASK_TO_AH_TASK_MAP.get(task_id)
             if task is not None:
                 break
     if task is None:
