@@ -50,7 +50,7 @@
     <section>
         {% if adapter.source == "hf" %}
         <pre class="p-4 code">
-model = AutoModelWithHeads.from_pretrained("{{ adapter.model_name }}")
+model = AutoAdapterModel.from_pretrained("{{ adapter.model_name }}")
 model.load_adapter("{{file_specifier}}", source="hf")</pre>
         {% else %}
         {# Build config loading string #}
@@ -62,7 +62,7 @@ model.load_adapter("{{file_specifier}}", source="hf")</pre>
         {% set custom_config_str = custom_config_str + ", reduction_factor="+adapter.config_reduction_factor|string %}
         {% endif %}
         <pre class="p-4 code">
-model = AutoModelWithHeads.from_pretrained("{{ adapter.model_name }}")
+model = AutoAdapterModel.from_pretrained("{{ adapter.model_name }}")
 config = AdapterConfig.load("{{ adapter.config }}"{{ custom_config_str }})
 model.load_adapter("{{specifier}}", config=config)</pre>
         {% endif %}

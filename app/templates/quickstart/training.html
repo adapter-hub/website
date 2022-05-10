@@ -11,7 +11,7 @@
 
 <p>Training a new task adapter requires only few modifications compared to fully fine-tuning a model with Hugging Face's <code>Trainer</code>.
     We first load a pre-trained model, e.g., <code>roberta-base</code> and add a new task adapter:</p>
-<pre class="code">model = AutoModelWithHeads.from_pretrained('roberta-base')
+<pre class="code">model = AutoAdapterModel.from_pretrained('roberta-base')
 model.add_adapter("sst-2")
 model.train_adapter("sst-2")
 </pre>
