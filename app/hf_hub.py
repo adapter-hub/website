@@ -67,8 +67,8 @@ def convert_hf_dataset_to_subtask(dataset_info):
     citation = dataset_info["citation"]
     # TODO
     language = None
-    if isinstance(dataset_info["cardData"]["languages"], list):
-        language = dataset_info["cardData"]["languages"][0]
+    if isinstance(dataset_info["cardData"]["language"], list):
+        language = dataset_info["cardData"]["language"][0]
     return {
         "task": task,
         "subtask": subtask,
