@@ -12,7 +12,8 @@ summary: With the newest release of our `adapter-transformers` library, version 
 Throughout the last few months, the field of parameter-efficient methods for fine-tuning Transformer-based models has seen a wide range of new innovations, proposing new adapter methods (e.g. [He et al., 2021](https://arxiv.org/pdf/2110.04366.pdf); [Liu et al., 2022](https://doi.org/10.48550/arXiv.2205.05638)) and applying them to new domains and tasks (e.g. [Chen et al., 2022](https://arxiv.org/pdf/2205.13535.pdf)).
 With the newest release of our `adapter-transformers` library, version 3.1, we take a further step towards integrating the diverse possibilities of parameter-efficient fine-tuning methods by supporting multiple new adapter methods and Transformer architectures.
 
-In the following sections, we highlight all important new features and methods introduced with the new release one by one.
+In the following sections, we highlight important new features and methods introduced with the new release.
+The full changelog can be found [here](https://github.com/adapter-hub/adapter-transformers/releases/tag/adapters3.1.0).
 
 [TOC]
 
@@ -27,22 +28,23 @@ pip install -U adapter-transformers
 With [the release of `adapter-transformers` v3](https://adapterhub.ml/blog/2022/03/adapter-transformers-v3-unifying-efficient-fine-tuning/) a few months back, we started the process of integrating new adapter methods.
 The new release v3.1 adds three new works that were released throughout the last year, namely _LoRA_ ([Hu et al., 2021](https://arxiv.org/pdf/2106.09685.pdf)), _UniPELT_ ([Mao et al., 2022](https://aclanthology.org/2022.acl-long.433.pdf)) and _(IA)^3_ ([Liu et al., 2022](https://doi.org/10.48550/arXiv.2205.05638)).
 
-For previously integrated methods, please refer [the blog post for the release of v3]((https://adapterhub.ml/blog/2022/03/adapter-transformers-v3-unifying-efficient-fine-tuning/)).
+Previously, we have already integrated bottleneck adapters ([Houlsby et al., 2019](https://arxiv.org/pdf/1902.00751.pdf)), Prefix Tuning ([Li and Liang, 2021](https://aclanthology.org/2021.acl-long.353.pdf)), parallel adapters, Mix-and-Match adapters ([He et al., 2021](https://arxiv.org/pdf/2110.04366.pdf)) and Compacters ([Mahabadi et al., 2021](https://arxiv.org/pdf/2106.04647.pdf)).
+For more on these methods, please refer [the blog post for the release of v3](https://adapterhub.ml/blog/2022/03/adapter-transformers-v3-unifying-efficient-fine-tuning/).
 For a more general introduction to working with adapters, please refer to [our documentation](https://docs.adapterhub.ml/quickstart.html).
 
-The following table compares the performance of our implementation of LoRA and (IA)^3, which are described in more detail afterwards, on the GLUE benchmark.
-We use `roberta-base` as the base Transformer model and train for 30 epochs with a learning rate of 1e-3 and 1e-4 for (IA)^3 and LoRA, respectively [^1].
+The following table compares the performance of our implementation of LoRA, (IA)^3 and bottleneck adapters, which are described in more detail afterwards, on the GLUE benchmark.
+We use `roberta-base` as the base Transformer model and train for 20 epochs with learning rates of 1e-3, 1e-4 and 1e-4 for (IA)^3, LoRA and bottleneck adapters, respectively.
 
-| Task      | Metric               |   (IA)^3 |   LoRA |
-|-----------|----------------------|-------|------------|
-| COLA      | Matthews Correlation | 55.65 |      59    |
-| MNLI      | Accuracy             | 84.43 |      87.05 |
-| MRPC      | F1                   | 88.55 |      91.51 |
-| QNLI      | Accuracy             | 90.83 |      92.76 |
-| QQP       | F1                   | 84.45 |      87.04 |
-| RTE       | Accuracy             | 69.68 |      73.53 |
-| SST2      | Accuracy             | 94.04 |      94.5  |
-| STS-B      | Spearmanr            | 88.65 |      90.12 |
+| Task      | Metric               |   (IA)^3 |   LoRA | Adapter (Houlsby)
+|-----------|----------------------|-------|------------| --- |
+| COLA      | Matthews Correlation | 52.14 |      58.35 | 59.81
+| MNLI      | Accuracy             | 84.18 |      87.15 | 86.68
+| MRPC      | F1                   | 87.9  |      90.63 | 90.53
+| QNLI      | Accuracy             | 90.63 |      92.82 | 92.7
+| QQP       | F1                   | 83.94 |      86.57 | 88.41
+| RTE       | Accuracy             | 68.95 |      72.08 | 77.9
+| SST2      | Accuracy             | 94.15 |      94.11 | 94.5
+| STSB      | Spearmanr            | 88.03 |      89.82 | 90.58
 
 ### LoRA
 
