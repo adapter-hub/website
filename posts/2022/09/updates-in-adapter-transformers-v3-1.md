@@ -197,10 +197,10 @@ While most of the current work on adapter methods for Transformers happened in t
 
 Below, we show some initial results of our ViT integration, using `google/vit-base-patch16-224` as the pre-trained base model:
 
-Task | Full FT | Houlsby | Pfeiffer
---- | --- | --- | ---
-CIFAR-10 | 98.88 | 98.72 | TBD
-CIFAR-100 | 92.08 | 92.4 | TBD
+Task | Full FT | Houlsby | Pfeiffer | LoRA
+--- | --- | --- | --- | ---
+CIFAR-10 | 98.88 | 98.72 | 99.09 | 98.84
+CIFAR-100 | 92.08 | 92.4 | 92.08 | 91.77
 
 All scores are accuracies on the evaluation set [^1].
 
@@ -233,7 +233,7 @@ prefix_tuning_flat       prefix_tuning       552,960       0.444       0       1
 parallel                 bottleneck        7,091,712       5.689       0       1
 scaled_parallel          bottleneck        7,091,724       5.690       0       1
 lora                     lora                294,912       0.237       0       1
-ia3                      lora                 18,432       0.015       0       1
+ia3                      lora                 27,648       0.022       0       1
 mam                      union            22,493,984      18.046       0       1
 --------------------------------------------------------------------------------
 Full model                               124,645,632     100.000               1
