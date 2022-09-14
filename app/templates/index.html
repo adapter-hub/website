@@ -97,6 +97,40 @@
         </div>
     </section>
 
+    <section id="Posts">
+        <div class="row">
+            <div class="col col-lg-12">
+                <h1>Latest Posts 🗞</h1>
+            </div>
+        </div>
+        <div class="row posts">
+            {% for post in posts|reverse %}
+            <div class="col-lg-12 my-lg-3 my-2">
+                <a class="btn card bg-light border-0" href="{{ url_for('main.blog_post', path=post.path) }}">
+                    <div class="card-body">
+                        <h4 class="card-title text-left">
+                            {{ post['title'] }}
+                            <span class="notice d-none d-lg-block">
+                                <i class="fa fa-calendar-alt"></i>&nbsp; {{ post['date'] }}
+                                <span class="mr-2">&nbsp;</span>
+                                <i class="fa fa-user"></i>&nbsp; {{ post['authors'][0]['name'] }}
+                            </span>
+                        </h4>
+                        <p class="notice d-lg-none text-left">
+                            <i class="fa fa-calendar-alt"></i>&nbsp; {{ post['date'] }}
+                            <span class="mr-2">&nbsp;</span>
+                            <i class="fa fa-user"></i>&nbsp; {{ post['authors'][0]['name'] }}
+                        </p>
+                        <p class="card-text text-left">
+                            {{ post['summary'] }}
+                        </p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
     <section id="Quickstart">
         <div class="row">
             <div class="col col-lg-12">

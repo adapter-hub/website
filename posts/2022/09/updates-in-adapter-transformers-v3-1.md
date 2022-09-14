@@ -4,7 +4,7 @@ date: 2022-09-05
 authors:
   - name: Clifton Poth
     twitter: "@clifapt"
-summary: With the newest release of our `adapter-transformers` library, version 3.1, we take a further step towards integrating the diverse possibilities of parameter-efficient fine-tuning methods by supporting multiple new adapter methods and Transformer architectures.
+summary: With the newest release of our adapter-transformers library, version 3.1, we take a further step towards integrating the diverse possibilities of parameter-efficient fine-tuning methods by supporting multiple new adapter methods and Transformer architectures.
 ---
 
 ![](/static/images/v3_methods.png "Illustration of efficient fine-tuning methods supported in v3 of adapter-transformers.")
