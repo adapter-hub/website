@@ -37,14 +37,14 @@ We use `roberta-base` as the base Transformer model and train for 20 epochs with
 
 | Task      | Metric               |   (IA)^3 |   LoRA | Adapter (Houlsby)
 |-----------|----------------------|-------|------------| --- |
-| COLA      | Matthews Correlation | 52.14 |      58.35 | 59.81
-| MNLI      | Accuracy             | 84.18 |      87.15 | 86.68
-| MRPC      | F1                   | 87.9  |      90.63 | 90.53
-| QNLI      | Accuracy             | 90.63 |      92.82 | 92.7
-| QQP       | F1                   | 83.94 |      86.57 | 88.41
-| RTE       | Accuracy             | 68.95 |      72.08 | 77.9
-| SST2      | Accuracy             | 94.15 |      94.11 | 94.5
-| STSB      | Spearmanr            | 88.03 |      89.82 | 90.58
+| COLA      | Matthews Correlation | 59.53 |      58.35 | 59.81
+| MNLI      | Accuracy             | 85.98 |      87.15 | 86.68
+| MRPC      | F1                   | 89.5  |      90.63 | 90.53
+| QNLI      | Accuracy             | 91.75 |      92.82 | 92.7
+| QQP       | F1                   | 85.96 |      86.57 | 88.41
+| RTE       | Accuracy             | 73.41 |      72.08 | 77.9
+| SST2      | Accuracy             | 93.92 |      94.11 | 94.5
+| STSB      | Spearmanr            | 89.78 |      89.82 | 90.58
 
 ### LoRA
 
@@ -186,6 +186,15 @@ In the example, `gating_scores` holds a dictionary of the following form:
 }
 ```
 
+The following table shows some initial results when running our UniPELT implementation. All adapter setups are trained for 20 epochs with a learning rate of 1e-4. Reported scores are accuracies [^1].
+
+Task | Model | UniPELT (ours) | UniPELT (paper)
+--- | --- | --- | ---
+SST-2 | bert-base-uncased | 92.32 | 91.51
+SST-2 | roberta-base | 94.61 | ---
+MNLI | bert-base-uncased | 84.53 | 83.89
+MNLI | roberta-base | 87.41 | ---
+
 ## Further Updates
 
 ### New model integrations
@@ -197,10 +206,10 @@ While most of the current work on adapter methods for Transformers happened in t
 
 Below, we show some initial results of our ViT integration, using `google/vit-base-patch16-224` as the pre-trained base model:
 
-Task | Full FT | Houlsby | Pfeiffer | LoRA
---- | --- | --- | --- | ---
-CIFAR-10 | 98.88 | 98.72 | 99.09 | 98.84
-CIFAR-100 | 92.08 | 92.4 | 92.08 | 91.77
+Task | Full FT | Houlsby | Pfeiffer | LoRA | Prefix Tuning
+--- | --- | --- | --- | --- | ---
+CIFAR-10 | 98.88 | 98.72 | 99.09 | 98.84 | 98.76
+CIFAR-100 | 92.08 | 92.4 | 92.08 | 91.77 | 91.76
 
 All scores are accuracies on the evaluation set [^1].
 
@@ -233,8 +242,9 @@ prefix_tuning_flat       prefix_tuning       552,960       0.444       0       1
 parallel                 bottleneck        7,091,712       5.689       0       1
 scaled_parallel          bottleneck        7,091,724       5.690       0       1
 lora                     lora                294,912       0.237       0       1
-ia3                      lora                 27,648       0.022       0       1
+ia3                      lora                 55,296       0.044       0       1
 mam                      union            22,493,984      18.046       0       1
+unipelt                  union            11,083,376       8.892       0       1
 --------------------------------------------------------------------------------
 Full model                               124,645,632     100.000               1
 ================================================================================
@@ -242,7 +252,7 @@ Full model                               124,645,632     100.000               1
 
 ### Transformers upgrade
 
-Version 3.1 of `adapter-transformers` upgrades the underlying HuggingFace Transformers library from v4.17.0 to v4.21.2, bringing many new features and bug fixes created by HuggingFace.
+Version 3.1 of `adapter-transformers` upgrades the underlying HuggingFace Transformers library from v4.17.0 to v4.21.3, bringing many new features and bug fixes created by HuggingFace.
 
 ## References
 
