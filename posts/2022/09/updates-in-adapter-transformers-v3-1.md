@@ -1,13 +1,13 @@
 ---
 title: Updates in Adapter-Transformers v3.1
-date: 2022-09-05
+date: 2022-09-15
 authors:
   - name: Clifton Poth
     twitter: "@clifapt"
 summary: With the newest release of our adapter-transformers library, version 3.1, we take a further step towards integrating the diverse possibilities of parameter-efficient fine-tuning methods by supporting multiple new adapter methods and Transformer architectures.
 ---
 
-![](/static/images/v3_methods.png "Illustration of efficient fine-tuning methods supported in v3 of adapter-transformers.")
+![](/static/images/v3_1_methods.png "Illustration of efficient fine-tuning methods added in v3.1 of adapter-transformers.")
 
 Throughout the last few months, the field of parameter-efficient methods for fine-tuning Transformer-based models has seen a wide range of new innovations, proposing new adapter methods (e.g. [He et al., 2021](https://arxiv.org/pdf/2110.04366.pdf); [Liu et al., 2022](https://doi.org/10.48550/arXiv.2205.05638)) and applying them to new domains and tasks (e.g. [Chen et al., 2022](https://arxiv.org/pdf/2205.13535.pdf)).
 With the newest release of our `adapter-transformers` library, version 3.1, we take a further step towards integrating the diverse possibilities of parameter-efficient fine-tuning methods by supporting multiple new adapter methods and Transformer architectures.
@@ -48,6 +48,15 @@ We use `roberta-base` as the base Transformer model and train for 20 epochs with
 
 ### LoRA
 
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/lora.png" height="350">
+  <figcaption text-align="center">
+    Figure 2: Illustration of the Low-Rank Adaptation (LoRA) method within one Transformer layer. Trained components are colored in shades of magenta.
+  </figcaption>
+ </figure>
+</div> 
+
 Low-Rank Adaptation (LoRA) is an efficient fine-tuning technique proposed by [Hu et al. (2021)](https://arxiv.org/pdf/2106.09685.pdf).
 LoRA injects trainable low-rank decomposition matrices into the layers of a pre-trained model.
 For any model layer expressed as a matrix multiplication of the form $h = W_0 x$, it therefore performs a reparameterization, such that:
@@ -84,6 +93,15 @@ model.reset_adapter("lora_adapter")
 ```
 
 ### (IA)^3
+
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/ia3.png" height="400">
+  <figcaption text-align="center">
+    Figure 3: Illustration of the (IA)^3 method within one Transformer layer. Trained components are colored in shades of magenta.
+  </figcaption>
+ </figure>
+</div> 
 
 _Infused Adapter by Inhibiting and Amplifying Inner Activations ((IA)^3)_ is an efficient fine-tuning method proposed within the _T-Few_ fine-tuning approach by [Liu et al. (2022)](https://arxiv.org/pdf/2205.05638.pdf).
 (IA)^3 introduces trainable vectors $l_W$ into different components of a Transformer model which perform element-wise rescaling of inner model activations.
@@ -125,6 +143,15 @@ model.reset_adapter("ia3_adapter")
 ```
 
 ### UniPELT
+
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/unipelt.png" height="400">
+  <figcaption text-align="center">
+    Figure 4: Illustration of the UniPELT method within one Transformer layer. Trained components are colored in shades of magenta.
+  </figcaption>
+ </figure>
+</div> 
 
 An approach similar to the work of [He et al. (2021)](https://arxiv.org/pdf/2110.04366.pdf) is taken by [Mao et al. (2022)](https://arxiv.org/pdf/2110.07577.pdf) in their _UniPELT_ framework.
 They, too, combine multiple efficient fine-tuning methods, namely LoRA, Prefix Tuning and bottleneck adapters, in a single unified setup.
