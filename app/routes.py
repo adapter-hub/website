@@ -28,7 +28,9 @@ def index():
         Task.task_type == 'text_lang'
     ).count()
     n_adapters = Adapter.query.count()
-    return render_template('index.html', posts=[], n_subtasks=n_subtasks, n_languages=n_languages,n_adapters=n_adapters)
+    num_posts_on_home = current_app.config["NUM_POSTS_ON_HOME"]
+    posts = sorted(blog_posts, key=lambda p: p["date"])[-num_posts_on_home:]
+    return render_template('index.html', posts=posts, n_subtasks=n_subtasks, n_languages=n_languages,n_adapters=n_adapters)
 
 
 @bp.route('/explore/')

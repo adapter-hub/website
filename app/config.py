@@ -19,6 +19,8 @@ class Config(object):
     DOCUMENTATION_URL = "https://docs.adapterhub.ml/"
     CONTRIBUTING_URL = DOCUMENTATION_URL+"contributing.html"
 
+    NUM_POSTS_ON_HOME = 1
+
     ### db
     SECRET_KEY = os.environ.get('SECRET_KEY') or "default_secret_key"
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
