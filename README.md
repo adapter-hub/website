@@ -16,24 +16,24 @@ git submodule update --remote
 ```
 (The second and third command pull the latest data from the Hub repo.)
 
-1. Install required Python libraries:
+2. Install required Python libraries:
 ```
 pip install -r requirements.txt
 ```
 
-1. Install Bootstrap and required npm modules:
+3. Install Bootstrap and required npm modules:
 ```
 cd app/static && npm install
 ```
 (Note: Building the website styles additionally requires [sass](https://sass-lang.com/) installed.)
 
-1. Run 🚀
+4. Run 🚀
 ```
 flask db init
 flask run
 ```
 
-1. Freeze ❄️ (optional). Freezing generates static pages that can be deployed to GitHub Pages.
+5. Freeze ❄️ (optional). Freezing generates static pages that can be deployed to GitHub Pages.
 ```
 flask freeze build
 ```
