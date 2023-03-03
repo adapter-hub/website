@@ -3,7 +3,7 @@ title: Updates in Adapter-Transformers v3.2
 date: 2023-03-03
 authors:
   - name: Hannah Sterz, Clifton Poth, Leon Engländer
-    twitter: "@hsterz"
+    twitter: "@h_sterz"
 summary: With the newest release of our adapter-transformers library, version 3.2, we add composition blocks for prefix tuning and adapters to several new models.
 ---
 
