@@ -32,6 +32,7 @@ In v3.2 you can use the `Parallel` block in combination with the `model.generate
 
 ## New model integrations
 The new v3.2 of `adapter-transformers` adds support for adapters for several new models: 
+
 - BEiT 
 - GPT-J 
 - CLIP 
