@@ -6,7 +6,8 @@ It's powered by Flask, [Frozen-Flask](https://pythonhosted.org/Frozen-Flask), Bo
 **All content of the exploration pages is pulled from the [Hub repo](https://github.com/adapter-hub/hub). All content contributions should be made there.**
 
 ## Build 🛠
-
+0. Make sure you use python 3.9 or older. 
+   
 1. Clone this repository and update data from Hub:
 ```
 git clone https://github.com/adapter-hub/website
