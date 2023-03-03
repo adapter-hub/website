@@ -121,6 +121,9 @@ def build_adapter_entries():
             logger.warning(f"[{adapter_info['modelId']}] Could not load adapter_config.json.")
             continue
         adapter_config = response.json()
+        if adapter_config.get("model_name", None) is None:
+            logger.warning(f"[{adapter_info['modelId']}] Could not load adapter_config.json.")
+            continue
         # Get README.md
         response = requests.get(
             HF_CO_URL_TEMPLATE.format(repo_id=adapter_info["modelId"], revision="main", filename="README.md")
