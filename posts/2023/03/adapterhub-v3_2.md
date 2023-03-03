@@ -9,7 +9,7 @@ summary: With the newest release of our adapter-transformers library, version 3.
 
 ![](/static/images/v3_2_prefix_stack.png "Illustration of composition for prefix tuning")
 
-Throughout the last months, we worked on improving the `adapter-transformers` library and including new features. This includes support for new models like CLIP and BEiT, more flexible adapter configuration, and adapter composition for prefix-tuning. In the following, we describe the new features and updates in more Detail
+Throughout the last months, we worked on improving the `adapter-transformers` library and including new features. This includes support for new models like CLIP and BEiT, more flexible adapter configuration, and adapter composition for prefix-tuning. In the following, we describe the new features and updates in more detail.
 
 
 ## Support for adapter configuration strings 
@@ -19,18 +19,18 @@ To create a Pfeiffer adapter with reduction factor 16 you can now use `pfeiffer[
 
 ## Adapter Composition for Prefix Tuning  
 Parameter-effifient fine-tuning methods have proven to be modular. Combining multiple adapters can be beneficial for transfer learning across languages. In v.3.2 we add `Stack`, `Parallel` & `BatchSplit` compositions to prefix tuning.
-In previous `adapter-transformers` versions, you could combine multiple bottleneck adapters. You could use them in parallel or stack them. Now, this is also possible for prefix-tuning adapters. Add multiple prefixes to the same model to combine the functionality of multiple adapters (Stack) or perform several tasks simultaneously (Parallel, BatchSplit) [Learn more](https://docs.adapterhub.ml/adapter_composition.html#stack)
+In previous `adapter-transformers` versions, you could combine multiple bottleneck adapters. You could use them in parallel or stack them. Now, this is also possible for prefix tuning adapters. Add multiple prefixes to the same model to combine the functionality of multiple adapters (`Stack`) or perform several tasks simultaneously (`Parallel`, `BatchSplit`). [Learn more](https://docs.adapterhub.ml/adapter_composition.html#stack)
 
 ## Enable parallel sequence generation with adapters 
 In v3.2 you can use the `Parallel` block in combination with the `model.generate()` method. This allows to generate text for multiple adapters simultaneously. As a result, generation can now be used in a multi task inference setup and generate text for multiple tasks within one forward pass. 
 
 ## New model integrations
 The new v3.2 of `adapter-transformers` adds support for adapters for several new models: 
-- Add BEiT integration 
-- Add GPT-J integration 
-- Add CLIP integration 
-- Add ALBERT integration 
-- Add BertGeneration 
+- BEiT 
+- GPT-J 
+- CLIP 
+- ALBERT 
+- BertGeneration 
 
 
 ## Fixed
