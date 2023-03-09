@@ -21,7 +21,7 @@ pip install -U adapter-transformers
 
 ## Support for adapter configuration strings 
 For running experiments at a large scale with varying hyperparameters, it can be annoying to set the correct hyperparameters whenever running the scripts. Now, you can configure the adapter with a string. In previous versions, it was possible to use one of the predefined configurations via a string e.g. `pfeiffer`. From v.3.2 on it is possible to adapt parameters within the string as well.
-To create a Pfeiffer adapter with reduction factor 16 you can now use `pfeiffer[bottleneck_size=800]`. This can also help run the example scripts. [Learn more](https://docs.adapterhub.ml/overview.html#configuration-strings)
+To create a Pfeiffer adapter with reduction factor 16 you can now use `pfeiffer[reduction_factor=16]`. This can also help run the example scripts. [Learn more](https://docs.adapterhub.ml/overview.html#configuration-strings)
 
 ## Adapter Composition for Prefix Tuning 
 
