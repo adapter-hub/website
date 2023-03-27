@@ -42,8 +42,15 @@ The new v3.2 of `adapter-transformers` adds support for adapters for several new
 - ALBERT 
 - BertGeneration 
 
+## Other notable changes
 
-## Fixed
+⚠️ **Breaking change**: The latest release removes the `MultiLingAdapterArguments` class which was previously used to add adapter support to training scripts.
+It is now recommended to use the [`AdapterArguments`](https://docs.adapterhub.ml/classes/adapter_training.html#transformers.adapters.training.setup_adapter_training) class and [`setup_adapter_training`](https://docs.adapterhub.ml/classes/adapter_training.html#transformers.adapters.training.setup_adapter_training) method instead. [Learn more](https://docs.adapterhub.ml/training.html).
+
+Finally, version 3.2 of `adapter-transformers` updates the underlying transformers version from v.4.23.1 to v4.26.1
+
+## Fixes
+
 - Fixes for GLUE & dependency parsing example script
 - Fix access to shared parameters of compacter (e.g. during sequence generation) 
 - Fix reference to adapter configs in `T5EncoderModel`
@@ -54,10 +61,6 @@ The new v3.2 of `adapter-transformers` adds support for adapters for several new
 - Move loading best adapter to AdapterTrainer class
 - Make HuggingFace Hub Mixin work with newer utilities 
 - Only compute fusion reg loss if the fusion layer is trained 
-
-
-### Transformers Update
-Version 3.2 of `adapter-transformers` updates the underlying transformers version from v.4.23.1 to v4.26.1
 
 ## References
 
