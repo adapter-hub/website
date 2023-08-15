@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% set active_page = "adapters" %}
+
+{% block header %}
+    <h1>
+        {% block title %} Adapters {% endblock %}
+    </h1>
+    <h2>
+        A Unified Library for Parameter-Efficient and Modular Transfer Learning
+    </h2>
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <h2>Abstract</h2>
+    <i>
+        We introduce Adapters, an open-source library
+        that unifies parameter-efficient and modular
+        transfer learning in large language models. By
+        integrating 10 diverse adapter methods into
+        a unified interface, Adapters offers ease of
+        use and flexible configuration. Our library
+        allows researchers and practitioners to lever-
+        age adapter modularity through composition
+        blocks, enabling the design of complex adapter
+        setups. We demonstrate the library's efficacy
+        by evaluating its performance against full fine-
+        tuning on various NLP tasks. Adapters pro-
+        vides a powerful tool for addressing the chal-
+        lenges of conventional fine-tuning paradigms
+        and promoting more efficient and modular
+        transfer learning.
+    </i>
+</section>
+
+<section>
+    <h2>Package</h2>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://pypi.org/project/adapters/">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-cube"></i>&nbsp;
+                PyPI Package
+            </h5>
+        </div>
+    </a>
+    <p>
+The <i>Adapters</i> package can be installed via pip:
+<pre class="code">
+pip install adapters
+</pre>
+    </p>
+</section>
+
+<div class="col-sm-3 text-right d-none d-md-block">
+</div>
+
+<section>
+    <h2>Demo</h2>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://youtu.be/sz2kaK6Ijtc">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fab fa-youtube"></i>&nbsp;
+                Screencast Video
+            </h5>
+        </div>
+    </a>
+    <p>
+        Example Usage:
+<pre class="code">
+import adapters
+from transformers import BertModel
+
+model = BertModel.from_pretrained("bert-base-uncased")
+adapters.init(model)
+
+model.add_adapter("my-adapter", config="seq_bn")
+</pre>
+    </p>
+</section>
+
+<section>
+    <h2>Code</h2>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://github.com/adapter-hub/adapter-transformers/tree/adapters">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fab fa-github"></i>&nbsp;
+                Code Repository
+            </h5>
+        </div>
+    </a>
+</section>
+
+<section>
+    <h2>Features</h2>
+    Feature comparison between the initial AdapterHub release and the proposed <i>Adapters</i> library:
+    <div align="center">
+        <img src="{{ url_for('static', filename='images/adapters_feature_table.png') }}" height="220"/>
+    </div>
+</section>
+
+{% endblock %}

@@ -141,6 +141,11 @@ def emnlp():
     return render_template('alps2022.html')
 
 
+@bp.route('/adapters/')
+def adapters_lib():
+    return render_template('adapters_lib.html')
+
+
 @bp.app_errorhandler(404)
 def error_404(error):
     return render_template('errors/404.html'), 404
