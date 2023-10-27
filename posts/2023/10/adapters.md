@@ -2,8 +2,13 @@
 title: Introducing Adapters
 date: 2023-10-23
 authors:
-  - name: Clifton Poth, Hannah Sterz, Leon Engländer, Timo Imhof
+  - name: Clifton Poth, 
     twitter: "@clifapt"
+  - name: Hannah Sterz
+    twitter: "@h_sterz"
+  - name: Leon Engländer
+    twitter: "@LeonEnglaender"
+  - name: Timo Imhof
 summary: |
   Introducing the new Adapters library the new package that supports adding parameter-efficient fine-tuning methods on top of transformers models and composition to achieve modular setups.
 paper:
@@ -11,29 +16,38 @@ paper:
     url: 
 ---
 
-We are happy to announce the new **Adapters** library. It provides the functionality to add, train, and compose parameter-efficient fine-tuning methods. This blog post summarizes the most important aspects as they are mentioned in the corresponding paper. In times of LLMs with an increasing number of parameters parameter-efficient fine-tuning methods, which do not fine-tune the whole model but instead only update a small number of parameters are promising methods. In addition to the parameter-efficient aspects, the adapters have achieved great results in modular transfer learning. Setups like MAD-X (Pfeiffer et el., 2020) exploit the modular nature of adapters by training separate task and language adapters. Swapping the language adapter during inference allows the transfer to other languages. 
+We are happy to announce the new **Adapters** library which succeeds our previous work with the `adapter-transformers` library. This blog post summarizes the most important aspects of the Adapters library as they are mentioned in the corresponding EMNLP paper.
+
+In times of LLMs with an increasing number of parameters parameter-efficient fine-tuning methods, which do not fine-tune the whole model but instead only update a small number of parameters are promising methods. **Adapters** provides the functionality to add, train, and modularly combine parameter-efficient fine-tuning methods.
+In addition to the parameter-efficient aspects, the adapter-based methods have achieved great results in modular transfer learning. Setups like MAD-X (Pfeiffer et al., 2020) exploit the modular nature of adapters by training separate task and language adapters. Swapping the language adapter during inference allows the transfer to other languages. 
 
 ![](/static/images/comparison.png "Version comparison")
 
-**Adapters** aims at providing unifying parameter-efficient and modular transfer learning. It is a self-contained library supporting 10 adapter methods and complex configurations. The adapters can be combined to achieve modular transfer learning with 6 different composition blocks. This provides substantial improvements compared to the predecessor `adapter-transformers:`
+**Adapters** is a self-contained library supporting 10 adapter methods, 20 model architectures and complex configurations.
+Modular transfer learning can be achieved by combining adapters via 6 different composition blocks.
+All in all, the **Adapters** library offers substantial improvements compared to the predecessor `adapter-transformers`:
 
 1. Decoupled from the HuggingFace `transformers` library
-2. Support of 10 Adapter Methods
-3. Support of 6 Composition Blocks
+2. Support of 10 adapter methods
+3. Support of 6 composition blocks
+4. Support of 20 diverse models
+
 
 ## Transformers Integration
 
-The **Adapters** library is self-contained. As a result, the HuggingFace models need to be attached with the adapter functionality:
+The **Adapters** library is self-contained. As a result, the HuggingFace Transformers models need to be attached with the adapter functionality:
 
 ```python
 from transformers import BertModel
 import adapters
 
 model = BertModel.from_pretrained("bert-base-uncased")
-adapters.init(model)
+adapters.init(model) # Adding adapter-specific functionality
 ```
 
-We recommend using the model classes provided by **Adapters** `XXXAdapterModel`(XXX denotes the model architecture e.g. Bert). They provide the adapter functionality without further initialization and support multiple heads, which is relevant when using composition blocks which can handle multiple outputs, for instance, the BatchSplit composition block.
+We recommend using the model classes provided by **Adapters**, such as `XXXAdapterModel`, where "XXX" denotes the model architecture, e.g., Bert. 
+These models provide the adapter functionality without further initialization and support multiple heads, which is relevant when using composition blocks which can handle multiple outputs, for instance, the BatchSplit composition block. Here's an example of how to use such an `XXXAdapterModel` class:
+
 
 ```python
 from adapters import AutoAdapterModel
@@ -44,26 +58,25 @@ model.train_adapters("adapter1") # freeze the model weights and activate the ada
 ```
 
 ## Adapter Methods
-
-Each adapter method is defined by a configuration object or string which allows flexible customization of various properties of an adapter module, including placement, capacity, residual connections, initialization etc. We distinguish between single methods consisting of one type of adapter module and complex methods consisting of multiple different adapter module types.
-
-```python
-model.add_adapter("seq_bn", config="seq_bn")
-model.add_adapter("compacter", config="compacter")
-model.add_adapter("prefix_tuning", config="prefix_tuning")
-model.add_adapter("lora", config="lora")
-model.add_adapter("ia3", config="ia3")
-```
+Each adapter method is defined by a configuration object or string, allowing for flexible customization of various adapter module properties, including placement, capacity, residual connections, initialization, etc. We distinguish between single methods consisting of one type of adapter module and complex methods consisting of multiple different adapter module types.
 
 ### Single Methods
 
-*Adapters* supports single adapter methods that introduce parameters in new feed-forward modules such as bottleneck adapters (Houlsby et al., 2019), introduce prompts at different locations such as prefix tuning (Li and Liang, 2021), reparameterize existing modules such as LoRA (Hu et al., 2022) or re-scale their output representations such as (IA)³ (Liu et al., 2022) (For more information see our [documentation](https://docs.adapterhub.ml/methods.html).)
+**Adapters** supports single adapter methods that introduce parameters in new feed-forward modules such as bottleneck adapters (Houlsby et al., 2019), introduce prompts at different locations such as prefix tuning (Li and Liang, 2021), reparameterize existing modules such as LoRA (Hu et al., 2022) or re-scale their output representations such as (IA)³ (Liu et al., 2022). For more information see our [documentation](https://docs.adapterhub.ml/methods.html).
+
+```python
+model.add_adapter("a", config="seq_bn")
+model.add_adapter("b", config="compacter")
+model.add_adapter("c", config="prefix_tuning")
+model.add_adapter("d", config="lora")
+model.add_adapter("e", config="ia3")
+```
 
 ### Complex Methods
 
-While different efficient fine-tuning methods and configurations have often been proposed as standalone, combining them for joint training has proven to be beneficial (He et al., 2022; Mao et al., 2022). To make this process easier, Adapters provides the possibility to group multiple configuration instances using the ConfigUnion class. This flexible mechanism allows easy integration of multiple complex methods proposed in the literature (as the two examples outlined below), as well as the construction of other, new complex configurations currently not available nor benchmarked in the literature (Zhou et al., 2023).
+While different efficient fine-tuning methods and configurations have often been proposed as standalone, combining them for joint training has proven to be beneficial (He et al., 2022; Mao et al., 2022). To make this process easier, Adapters provides the possibility to group multiple configuration instances using the `ConfigUnion` class. This flexible mechanism allows easy integration of multiple complex methods proposed in the literature (as the two examples outlined below), as well as the construction of other, new complex configurations currently not available nor benchmarked in the literature (Zhou et al., 2023).
 
-**Mix-and-Match Adapters** (He et al., 2022) was proposed as a combination of Prefix-Tuning and parallel bottleneck adapters. Using ConfigUnion, this method can be defined as:
+**Mix-and-Match Adapters** (He et al., 2022) were proposed as a combination of Prefix-Tuning and parallel bottleneck adapters. Using `ConfigUnion`, this method can be defined as:
 
 ```python
 config = ConfigUnion( 
@@ -79,7 +92,7 @@ $$
 G m ← σ(W G m · x).
 $$
 
-## Modularity
+## Modularity and Composition Blocks
 
 ![](/static/images/composition.png "Composition Blocks")
 
@@ -99,7 +112,7 @@ print(model.active_adapters) # The active congif is: Stack[a, Parallel[b, c]]
 
 For details also check out [this blog post](https://adapterhub.ml/blog/2021/04/version-2-of-adapterhub-released/) and the [documentation](https://docs.adapterhub.ml/adapter_composition.html). 
 
-## Adapter Evaluation
+## Evaluating Adapter Performance
 
 ![](/static/images/eval_results.png "Performance of different adapter architectures overdiffernt tasks evaluated with the RoBERTa model." )
 
