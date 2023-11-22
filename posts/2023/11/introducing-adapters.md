@@ -128,6 +128,7 @@ The following table gives an overview of all currently supported single methods,
 | `ia3` | `IA3Config()` | [IA³](https://docs.adapterhub.ml/methods.html#ia-3) |
 | `mam` | `MAMConfig()` | [Mix-and-Match Adapters](method_combinations.html#mix-and-match-adapters) |
 | `unipelt` | `UniPELTConfig()` | [UniPELT](method_combinations.html#unipelt) |
+| `prompt_tuning` | `LoRAConfig()` | [Prompt Tuning](https://docs.adapterhub.ml/methods.html#prompt_tuning) |
 
 For more details on all adapter methods, visit [our documentation](https://docs.adapterhub.ml/methods.html).
 
