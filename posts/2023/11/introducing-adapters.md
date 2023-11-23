@@ -191,7 +191,7 @@ Results are shown in Figure 2. The obvious takeaway from our evaluations is that
 ## Conclusion
 
 The field of adapter/ PEFT methods will continue to advance rapidly and gain importance.
-Already today, various interesting and promising approach are not yet covered by _AdapterHub_ and the _Adapters_ library.
+Already today, various interesting and promising approaches are not yet covered by _AdapterHub_ and the _Adapters_ library.
 However, _Adapters_ aims to provide a new solid foundation for research and application of adapters, upon which new and extended methods can be successively added in the future.
 _Adapters_ has a clear focus on parameter-efficiency *and* modularity of adapters and builds on the rich and successful history of _AdapterHub_ and `adapter-transformers`.
 In the end, integrating the latest great research into the library is a community effort, and we invite you to [contribute in one of many possible ways](https://docs.adapterhub.ml/contributing.html).
