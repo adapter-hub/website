@@ -9,6 +9,7 @@ authors:
   - name: Leon Engländer
     twitter: "@LeonEnglaender"
   - name: Timo Imhof
+    twitter: "@timo_imhof"
   - name: Jonas Pfeiffer
     twitter: "@PfeiffJo"
 summary: |
