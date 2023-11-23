@@ -4,12 +4,12 @@ date: 2023-11-22
 authors:
   - name: Hannah Sterz
     twitter: "@h_sterz"
-  - name: Clifton Poth, 
-    twitter: "@clifapt"
   - name: Leon Engländer
     twitter: "@LeonEnglaender"
   - name: Timo Imhof
     twitter: "@timo_imhof"
+  - name: Clifton Poth, 
+    twitter: "@clifapt"
   - name: Jonas Pfeiffer
     twitter: "@PfeiffJo"
 summary: |
@@ -60,7 +60,7 @@ The source code of _Adapters_ can be found [on GitHub](https://github.com/adapte
 In the following, we highlight important components of _Adapters_.
 If you have used `adapter-transformers` before, much of this will look familiar.
 In this case, you might directly want to jump to our [transitioning guide](https://docs.adapterhub.ml/transitioning.html), which highlights relevant differences between _Adapters_ and `adapter-transformers`.
-The additions and changes compared to the latest version of `adapter-transformers` can also be found [in our release notes)(https://github.com/adapter-hub/adapters/releases/tag/v0.1.0).
+The additions and changes compared to the latest version of `adapter-transformers` can also be found [in our release notes](https://github.com/adapter-hub/adapters/releases/tag/v0.1.0).
 
 ## Transformers Integration
 
@@ -78,7 +78,8 @@ model.add_adapter("adapter0")
 ```
 
 However, we recommend using the model classes provided by *Adapters*, such as `XXXAdapterModel`, where "XXX" denotes the model architecture, e.g., Bert.
-These models provide the adapter functionality without further initialization and support multiple heads, which is relevant when using composition blocks that can handle multiple outputs, for instance, the BatchSplit composition block. Here's an example of how to use such an `XXXAdapterModel` class:
+These models provide the adapter functionality without further initialization and support multiple heads.
+The latter is especially relevant when using composition blocks which can handle multiple outputs, for instance, the BatchSplit composition block. Here's an example of how to use such an `XXXAdapterModel` class:
 
 
 ```python
@@ -113,25 +114,22 @@ from adapters import PrefixTuningConfig
 model.add_adapter("adapter3", config=PrefixTuningConfig(prefix_length=20))
 ```
 
-The following table gives an overview of all currently supported single methods, along with their configuration class and configuration string:
+The following table gives an overview of many currently supported single methods, along with their configuration class and configuration string[^brackets]:
+
+[^brackets]: Options for identifiers and classes are given in brackets.
 
 | Identifier | Configuration class | More information
 | --- | --- | --- |
-| `seq_bn` | `SeqBnConfig()` | [Bottleneck Adapters](https://docs.adapterhub.ml/methods.html#bottleneck-adapters) |
-| `double_seq_bn` | `DoubleSeqBnConfig()` | [Bottleneck Adapters](https://docs.adapterhub.ml/methods.html#bottleneck-adapters) |
+| `[double_]seq_bn` | `[Double]SeqBnConfig()` | [Bottleneck Adapters](https://docs.adapterhub.ml/methods.html#bottleneck-adapters) |
 | `par_bn` | `ParBnConfig()` | [Bottleneck Adapters](https://docs.adapterhub.ml/methods.html#bottleneck-adapters) |
-| `scaled_par_bn` | `ParBnConfig(scaling="learned")` | [Bottleneck Adapters](https://docs.adapterhub.ml/methods.html#bottleneck-adapters) |
-| `seq_bn_inv` | `SeqBnInvConfig()` | [Invertible Adapters](https://docs.adapterhub.ml/methods.html#language-adapters---invertible-adapters) |
-| `double_seq_bn_inv` | `DoubleSeqBnInvConfig()` | [Invertible Adapters](https://docs.adapterhub.ml/methods.html#language-adapters---invertible-adapters) |
-| `compacter` | `CompacterConfig()` | [Compacter](https://docs.adapterhub.ml/methods.html#compacter) |
-| `compacter++` | `CompacterPlusPlusConfig()` | [Compacter](https://docs.adapterhub.ml/methods.html#compacter) |
+| `[double_]seq_bn_inv` | `[DoubleSeq]BnInvConfig()` | [Invertible Adapters](https://docs.adapterhub.ml/methods.html#language-adapters---invertible-adapters) |
+| `compacter[++]` | `Compacter[PlusPlus]Config()` | [Compacter](https://docs.adapterhub.ml/methods.html#compacter) |
 | `prefix_tuning` | `PrefixTuningConfig()` | [Prefix Tuning](https://docs.adapterhub.ml/methods.html#prefix-tuning) |
-| `prefix_tuning_flat` | `PrefixTuningConfig(flat=True)` | [Prefix Tuning](https://docs.adapterhub.ml/methods.html#prefix-tuning) |
 | `lora` | `LoRAConfig()` | [LoRA](https://docs.adapterhub.ml/methods.html#lora) |
 | `ia3` | `IA3Config()` | [IA³](https://docs.adapterhub.ml/methods.html#ia-3) |
 | `mam` | `MAMConfig()` | [Mix-and-Match Adapters](method_combinations.html#mix-and-match-adapters) |
 | `unipelt` | `UniPELTConfig()` | [UniPELT](method_combinations.html#unipelt) |
-| `prompt_tuning` | `LoRAConfig()` | [Prompt Tuning](https://docs.adapterhub.ml/methods.html#prompt_tuning) |
+| `prompt_tuning` | `PromptTuningConfig()` | [Prompt Tuning](https://docs.adapterhub.ml/methods.html#prompt_tuning) |
 
 For more details on all adapter methods, visit [our documentation](https://docs.adapterhub.ml/methods.html).
 
@@ -139,7 +137,7 @@ For more details on all adapter methods, visit [our documentation](https://docs.
 
 While different efficient fine-tuning methods and configurations have often been proposed as standalone, combining them for joint training has proven to be beneficial (He et al., 2022; Mao et al., 2022). To make this process easier, Adapters provides the possibility to group multiple configuration instances using the `ConfigUnion` class. This flexible mechanism allows easy integration of multiple complex methods proposed in the literature (as the two examples outlined below), as well as the construction of other, new complex configurations currently not available nor benchmarked in the literature (Zhou et al., 2023).
 
-**Mix-and-Match Adapters** (He et al., 2022) were proposed as a combination of Prefix-Tuning and parallel bottleneck adapters. Using `ConfigUnion`, this method can be defined as:
+Example: **Mix-and-Match Adapters** (He et al., 2022) were proposed as a combination of Prefix-Tuning and parallel bottleneck adapters. Using `ConfigUnion`, this method can be defined as:
 
 ```python
 from adapters import ConfigUnion, PrefixTuningConfig, ParBnConfig, AutoAdapterModel
@@ -153,29 +151,34 @@ adapter_config = ConfigUnion(
 model.add_adapter("my_adapter", config=adapter_config, set_active=True)
 ```
 
-**UniPELT** (Mao et al., 2022) combines LoRA, Prefix Tuning, and bottleneck adapters in a single unified setup. It additionally introduces a gating mechanism that controls the activation of the different adapter modules.
-
 Learn more about complex adapter configurations using `ConfigUnion` [in our documentation](https://docs.adapterhub.ml/method_combinations.html).
 
 ## Modularity and Composition Blocks
 
 ![](/static/images/composition.png "Composition Blocks")
 
-While the modularity and composability aspect of adapters have seen increasing interest in research, existing open-source libraries (Mangrulkar et al., 2022; Hu et al., 2023a) have largely overlooked these aspects. Adapters makes adapter compositions a central and accessible part of working with adapters by enabling the definition of complex, composed adapter setups. We define a set of simple composition blocks that each capture a specific method of aggregating the functionality of multiple adapters. Each composition block class takes a sequence of adapter identifiers plus optional configuration as arguments. The defined adapter setup is then parsed at runtime by Adapters to allow for dynamic switching between adapters per forward pass. Above, the different composition blocks are illustrated. A composition could look as follows:
+While the modularity and composability aspect of adapters have seen increasing interest in research, existing open-source libraries (Mangrulkar et al., 2022; Hu et al., 2023a) have largely overlooked these aspects. Adapters makes adapter compositions a central and accessible part of working with adapters by enabling the definition of complex, composed adapter setups. We define a set of simple composition blocks that each capture a specific method of aggregating the functionality of multiple adapters. Each composition block class takes a sequence of adapter identifiers plus optional configuration as arguments. The defined adapter setup is then parsed at runtime by Adapters to allow for dynamic switching between adapters per forward pass. Above, the different composition blocks are illustrated.
+
+An example composition could look as follows:
 
 ```python
-config = "mam" # mix-and-match adapters
+import adapters.composition as ac
 
+# ...
+
+config = "mam" # mix-and-match adapters
 model.add_adapter("a", config=config)
 model.add_adapter("b", config=config)
 model.add_adapter("c", config=config)
 
-model.set_active_adapters(Stack("a", Parallel("b", "c")))
+model.set_active_adapters(ac.Stack("a", ac.Parallel("b", "c")))
 
-print(model.active_adapters) # The active congif is: Stack[a, Parallel[b, c]]
+print(model.active_adapters) # The active config is: Stack[a, Parallel[b, c]]
 ```
 
-For details, also check out [this blog post](https://adapterhub.ml/blog/2021/04/version-2-of-adapterhub-released/) and the [documentation](https://docs.adapterhub.ml/adapter_composition.html). 
+With this setup activated, inputs in each layer would first flow through adapter "a" before being forwarded though "b" and "c" in parallel.
+
+To learn more, check out [this blog post](https://adapterhub.ml/blog/2021/04/version-2-of-adapterhub-released/) and [our documentation](https://docs.adapterhub.ml/adapter_composition.html). 
 
 ## Evaluating Adapter Performance
 
@@ -183,8 +186,15 @@ For details, also check out [this blog post](https://adapterhub.ml/blog/2021/04/
 
 In addition to the aforementioned ease of use, we show that the adapter methods offered by our library are performant across a range of settings. To this end, we conduct evaluations on the single adapter implementations made available by Adapters.
 
-The obvious takeaway from our evaluations is that all adapter implementations offered by our framework are competitive with full model fine-tuning, across all task classes. Approaches that offer more tunable hyper-parameters (and thus allow for easy scaling), such as Bottleneck adapters, LoRA, and Prefix Tuning predictably have the highest topline performance, often surpassing full fine-tuning. However, extremely parameter-frugal methods like (IA)3, which add < 0.005% of the parameters of the base model, also perform commendably and only fall short by a small fraction. Finally, the Compacter is the least volatile among the single methods, obtaining the lowest standard deviation between runs on the majority of tasks.
+Results are shown in Figure 2. The obvious takeaway from our evaluations is that all adapter implementations offered by our framework are competitive with full model fine-tuning, across all task classes. Approaches that offer more tunable hyper-parameters (and thus allow for easy scaling), such as Bottleneck adapters, LoRA, and Prefix Tuning predictably have the highest topline performance, often surpassing full fine-tuning. However, extremely parameter-frugal methods like (IA)3, which add < 0.005% of the parameters of the base model, also perform commendably and only fall short by a small fraction. Finally, the Compacter is the least volatile among the single methods, obtaining the lowest standard deviation between runs on the majority of tasks.
 
+## Conclusion
+
+The field of adapter/ PEFT methods will continue to advance rapidly and gain importance.
+Already today, various interesting and promising approach are not yet covered by _AdapterHub_ and the _Adapters_ library.
+However, _Adapters_ aims to provide a new solid foundation for research and application of adapters, upon which new and extended methods can be successively added in the future.
+_Adapters_ has a clear focus on parameter-efficiency *and* modularity of adapters and builds on the rich and successful history of _AdapterHub_ and `adapter-transformers`.
+In the end, integrating the latest great research into the library is a community effort, and we invite you to [contribute in one of many possible ways](https://docs.adapterhub.ml/contributing.html).
 
 ## References
 - He, J., Zhou, C., Ma, X., Berg-Kirkpatrick, T., & Neubig, G. (2021, October). Towards a Unified View of Parameter-Efficient Transfer Learning. In International Conference on Learning Representations.
