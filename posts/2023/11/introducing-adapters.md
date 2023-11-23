@@ -23,7 +23,7 @@ _Adapters_ stands in direct tradition to our previous work with the `adapter-tra
 This blog post summarizes the most important aspects of _Adapters_, as described in detail [in our paper](https://arxiv.org/abs/2311.11077) (to be presented as system demo at EMNLP 2023).
 
 In summer of 2020, when we released the first version of _AdapterHub_, along with the `adapter-transformers` library, adapters and parameter-efficient fine-tuning[^peft] were still a niche research topic.
-Adapters were first introduced to Transformer models in 2019 (Houlsby et al., 2019) and _AdapterHub_ was the very first framewerk to provide comprehensive tools for working with adapters, dramatically lowering the barrier of training own adapters or leveraging pre-trained ones.
+Adapters were first introduced to Transformer models a few months earlier (Houlsby et al., 2019) and _AdapterHub_ was the very first framewerk to provide comprehensive tools for working with adapters, dramatically lowering the barrier of training own adapters or leveraging pre-trained ones.
 
 [^peft]: We use the terms _parameter-efficient fine-tuning (PEFT)_ and _adapter_ interchangeably throughout this post and in all of our documents.
 
@@ -42,7 +42,7 @@ _Adapters_ continues and expands this focus on modularity.
 _Adapters_ is a self-contained library supporting a diverse set adapter methods, integrating them into many common Transformer architectures and allowing flexible and complex adapter configuration.
 Modular transfer learning can be achieved by combining adapters via six different composition blocks.
 
-All in all, _Adapters_ offers substantial improvements compared to the predecessing `adapter-transformers` library:
+All in all, _Adapters_ offers substantial improvements compared to the initial `adapter-transformers` library:
 
 1. Decoupled from the HuggingFace `transformers` library
 2. Support of 10 adapter methods
@@ -58,6 +58,8 @@ The source code of _Adapters_ can be found [on GitHub](https://github.com/adapte
 
 In the following, we highlight important components of _Adapters_.
 If you have used `adapter-transformers` before, much of this will look familiar.
+In this case, you might directly want to jump to our [transitioning guide](https://docs.adapterhub.ml/transitioning.html), which highlights relevant differences between _Adapters_ and `adapter-transformers`.
+The additions and changes compared to the latest version of `adapter-transformers` can also be found [in our release notes)(https://github.com/adapter-hub/adapters/releases/tag/v0.1.0).
 
 ## Transformers Integration
 
