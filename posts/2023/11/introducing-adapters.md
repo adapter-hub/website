@@ -20,27 +20,27 @@ paper:
 ---
 
 We are happy to announce *Adapters*, the new library at the heart of the AdapterHub framework.
-_Adapters_ stands in direct tradition to our previous work with the `adapter-transformers` library, while simultaneously revamping the implementation from ground up and smoothing many rough edges of the previous library.
-This blog post summarizes the most important aspects of _Adapters_, as described in detail [in our paper](https://arxiv.org/abs/2311.11077) (to be presented as system demo at EMNLP 2023).
+_Adapters_ stands in direct tradition to our previous work with the `adapter-transformers` library while simultaneously revamping the implementation from the ground up and smoothing many rough edges of the previous library.
+This blog post summarizes the most important aspects of _Adapters_, as described in detail [in our paper](https://arxiv.org/abs/2311.11077) (to be presented as a system demo at EMNLP 2023).
 
-In summer of 2020, when we released the first version of _AdapterHub_, along with the `adapter-transformers` library, adapters and parameter-efficient fine-tuning[^peft] were still a niche research topic.
-Adapters were first introduced to Transformer models a few months earlier (Houlsby et al., 2019) and _AdapterHub_ was the very first framewerk to provide comprehensive tools for working with adapters, dramatically lowering the barrier of training own adapters or leveraging pre-trained ones.
+In the summer of 2020, when we released the first version of _AdapterHub_, along with the `adapter-transformers` library, adapters and parameter-efficient fine-tuning[^peft] were still a niche research topic.
+Adapters were first introduced to Transformer models a few months earlier (Houlsby et al., 2019) and _AdapterHub_ was the very first framework to provide comprehensive tools for working with adapters, dramatically lowering the barrier of training own adapters or leveraging pre-trained ones.
 
 [^peft]: We use the terms _parameter-efficient fine-tuning (PEFT)_ and _adapter_ interchangeably throughout this post and in all of our documents.
 
-In the now more than three years following, _AdapterHub_ has increasingly gained traction within the NLP community, being [liked by thousands](https://github.com/adapter-hub/adapters/stargazers) and [used by hundreds](https://www.semanticscholar.org/paper/AdapterHub%3A-A-Framework-for-Adapting-Transformers-Pfeiffer-R%C3%BCckl%C3%A9/063f8b1ecf2394ca776ac61869734de9c1953808?utm_source=direct_link) for their resarch.
+In the now more than three years following, _AdapterHub_ has increasingly gained traction within the NLP community, being [liked by thousands](https://github.com/adapter-hub/adapters/stargazers) and [used by hundreds](https://www.semanticscholar.org/paper/AdapterHub%3A-A-Framework-for-Adapting-Transformers-Pfeiffer-R%C3%BCckl%C3%A9/063f8b1ecf2394ca776ac61869734de9c1953808?utm_source=direct_link) for their research.
 However, the field of parameter-efficient fine-tuning has grown even faster.
-Nowadays, with recent LLMs growing ever larger in size, adapter methods, which do not fine-tune the full model, but instead only update a small number of parameters, have become increasingly main-stream.
+Nowadays, with recent LLMs growing ever larger in size, adapter methods, which do not fine-tune the full model, but instead only update a small number of parameters, have become increasingly mainstream.
 [Multiple libraries, dozens of architectures and scores of applications](https://github.com/calpt/awesome-adapter-resources) compose a flourishing subfield of LLM research.
 
 Besides parameter-efficiency, modularity is a second important characteristic of adapters [(Pfeiffer et al., 2023)](https://arxiv.org/pdf/2302.11529.pdf).
 Sadly, this is overlooked by many existing tools.
-From beginning on, _AdapterHub_ payed special attention to adapter modularity and composition, integrating setups like MAD-X (Pfeiffer et al., 2020).
+From the beginning on, _AdapterHub_ paid special attention to adapter modularity and composition, integrating setups like MAD-X (Pfeiffer et al., 2020).
 _Adapters_ continues and expands this focus on modularity.
 
 ## The Library
 
-_Adapters_ is a self-contained library supporting a diverse set adapter methods, integrating them into many common Transformer architectures and allowing flexible and complex adapter configuration.
+_Adapters_ is a self-contained library supporting a diverse set of adapter methods, integrating them into many common Transformer architectures and allowing flexible and complex adapter configuration.
 Modular transfer learning can be achieved by combining adapters via six different composition blocks.
 
 All in all, _Adapters_ offers substantial improvements compared to the initial `adapter-transformers` library:
@@ -78,7 +78,7 @@ model.add_adapter("adapter0")
 ```
 
 However, we recommend using the model classes provided by *Adapters*, such as `XXXAdapterModel`, where "XXX" denotes the model architecture, e.g., Bert.
-These models provide the adapter functionality without further initialization and support multiple heads, which is relevant when using composition blocks which can handle multiple outputs, for instance, the BatchSplit composition block. Here's an example of how to use such an `XXXAdapterModel` class:
+These models provide the adapter functionality without further initialization and support multiple heads, which is relevant when using composition blocks that can handle multiple outputs, for instance, the BatchSplit composition block. Here's an example of how to use such an `XXXAdapterModel` class:
 
 
 ```python
@@ -97,7 +97,7 @@ Each adapter method is defined by a configuration object or string, allowing for
 
 ### Single Methods
 
-*Adapters* supports single adapter methods that introduce parameters in new feed-forward modules such as bottleneck adapters (Houlsby et al., 2019), introduce prompts at different locations such as prefix tuning (Li and Liang, 2021), reparameterize existing modules such as LoRA (Hu et al., 2022) or re-scale their output representations such as (IA)³ (Liu et al., 2022). For more information see our [documentation](https://docs.adapterhub.ml/methods.html).
+*Adapters* supports single adapter methods that introduce parameters in new feed-forward modules such as bottleneck adapters (Houlsby et al., 2019), introduce prompts at different locations such as prefix tuning (Li and Liang, 2021), reparameterize existing modules such as LoRA (Hu et al., 2022) or re-scale their output representations such as (IA)³ (Liu et al., 2022). For more information, see our [documentation](https://docs.adapterhub.ml/methods.html).
 
 All adapter methods can be added to a model by the unified `add_adapter()` method, e.g.:
 
@@ -161,7 +161,7 @@ Learn more about complex adapter configurations using `ConfigUnion` [in our docu
 
 ![](/static/images/composition.png "Composition Blocks")
 
-While the modularity and composability aspect of adapters have seen increasing interest in research, existing open-source libraries (Mangrulkar et al., 2022; Hu et al., 2023a) have largely overlooked these aspects. Adapters makes adapter compositions a central and accessible part of working with adapters by enabling the definition of complex, composed adapter setups. We define a set of simple composition blocks that each capture a specific method of aggregating the functionality of multiple adapters. Each composition block class takes a sequence of adapter identifiers plus optional configuration as arguments. The defined adapter setup is then parsed at runtime by Adapters to allow for dynamic switching between adapters per forward pass. Above the different composition blocks are illustrated. A composition could look as follows:
+While the modularity and composability aspect of adapters have seen increasing interest in research, existing open-source libraries (Mangrulkar et al., 2022; Hu et al., 2023a) have largely overlooked these aspects. Adapters makes adapter compositions a central and accessible part of working with adapters by enabling the definition of complex, composed adapter setups. We define a set of simple composition blocks that each capture a specific method of aggregating the functionality of multiple adapters. Each composition block class takes a sequence of adapter identifiers plus optional configuration as arguments. The defined adapter setup is then parsed at runtime by Adapters to allow for dynamic switching between adapters per forward pass. Above, the different composition blocks are illustrated. A composition could look as follows:
 
 ```python
 config = "mam" # mix-and-match adapters
@@ -175,15 +175,15 @@ model.set_active_adapters(Stack("a", Parallel("b", "c")))
 print(model.active_adapters) # The active congif is: Stack[a, Parallel[b, c]]
 ```
 
-For details also check out [this blog post](https://adapterhub.ml/blog/2021/04/version-2-of-adapterhub-released/) and the [documentation](https://docs.adapterhub.ml/adapter_composition.html). 
+For details, also check out [this blog post](https://adapterhub.ml/blog/2021/04/version-2-of-adapterhub-released/) and the [documentation](https://docs.adapterhub.ml/adapter_composition.html). 
 
 ## Evaluating Adapter Performance
 
 ![](/static/images/eval_results.png "Performance of different adapter architectures overdiffernt tasks evaluated with the RoBERTa model." )
 
-In addition to the ease of use aforementioned, we show that the adapter methods offered by our library are performant across a range of settings. To this end, we conduct evaluations on the single adapter implementations made available by Adapters.
+In addition to the aforementioned ease of use, we show that the adapter methods offered by our library are performant across a range of settings. To this end, we conduct evaluations on the single adapter implementations made available by Adapters.
 
-The obvious takeaway from our evaluations is that all adapter implementations offered by our framework are competitive with full model fine-tuning, across all task classes. Approaches that offer more tunable hyper-parameters (and thus allow for easy scaling) such as Bottleneck adapters, LoRA, and Prefix Tuning predictably have the highest topline performance, often surpassing full fine-tuning. However, extremely parameter-frugal methods like (IA) 3 , which add < 0.005% of the parameters of the base model, also perform commendably and only fall short by a small fraction. Finally, the Compacter is the least volatile among the single methods, obtaining the lowest standard deviation between runs on the majority of tasks.
+The obvious takeaway from our evaluations is that all adapter implementations offered by our framework are competitive with full model fine-tuning, across all task classes. Approaches that offer more tunable hyper-parameters (and thus allow for easy scaling), such as Bottleneck adapters, LoRA, and Prefix Tuning predictably have the highest topline performance, often surpassing full fine-tuning. However, extremely parameter-frugal methods like (IA)3, which add < 0.005% of the parameters of the base model, also perform commendably and only fall short by a small fraction. Finally, the Compacter is the least volatile among the single methods, obtaining the lowest standard deviation between runs on the majority of tasks.
 
 
 ## References
