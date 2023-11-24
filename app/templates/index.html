@@ -14,7 +14,7 @@
                 <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">{{ n_subtasks }} <span class=" font-weight-normal">text tasks</span></span>
                 <span class="badge badge-light p-1 py-md-2 px-md-3 text-black-65">{{ n_languages }} <span class=" font-weight-normal">languages</span></span>
             </p>
-            <pre class="text-white py-2 px-3 my-4 d-none d-md-block">pip install adapter-transformers</pre>
+            <pre class="text-white py-2 px-3 my-4 d-none d-md-block">pip install adapters</pre>
             <div id="IndexButtonRow" class="rounded mt-lg-1">
                 <a class="btn"
                    href="{{ url_for('main.explore_tasks') }}">
@@ -45,7 +45,7 @@
                     Blog
                 </a>
                 <a class="btn d-none d-lg-inline-block"
-                   href="https://github.com/Adapter-Hub/adapter-transformers">
+                   href="https://github.com/Adapter-Hub/adapters">
                     <div>
                         <i class="fab fa-github"></i>
                     </div>
@@ -155,7 +155,7 @@
                     <a href="#quickstartParallelInference" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartParallelInference" aria-selected="true">
                         Parallel Inference
                     </a>
-                    <a href="https://github.com/Adapter-Hub/adapter-transformers/tree/v2/notebooks" class="list-group-item list-group-item-action">
+                    <a href="https://github.com/Adapter-Hub/adapters/tree/main/notebooks" class="list-group-item list-group-item-action">
                         More&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
@@ -189,7 +189,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://github.com/Adapter-Hub/adapter-transformers/tree/v2/notebooks" class="nav-link">
+                        <a href="https://github.com/Adapter-Hub/adapters/tree/main/notebooks" class="nav-link">
                             More&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i>
                         </a>
                     </li>
@@ -222,6 +222,23 @@
 
     <section>
         <h1>Citation 📝</h1>
+        <p>
+            If you use the <i>Adapters</i> library in your work, please consider citing our library paper: <a href="https://arxiv.org/abs/2311.11077"> Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning </a>
+        </p>
+        <pre class="p-4 code">
+@misc{poth2023adapters,
+      title={Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning}, 
+      author={Clifton Poth and Hannah Sterz and Indraneil Paul and Sukannya Purkayastha and Leon Engländer and Timo Imhof and Ivan Vulić and Sebastian Ruder and Iryna Gurevych and Jonas Pfeiffer},
+      year={2023},
+      eprint={2311.11077},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}</pre>
+
+        <p>
+            Alternatively, for the predecessor <code>adapter-transformers</code>, the Hub infrastructure and adapters uploaded by the AdapterHub team, please consider citing our initial paper: <a href="https://arxiv.org/abs/2007.07779"> AdapterHub: A Framework for Adapting Transformers </a>
+        </p>
+    
         <pre class="p-4 code">
 @inproceedings{pfeiffer2020AdapterHub,
     title={AdapterHub: A Framework for Adapting Transformers},
