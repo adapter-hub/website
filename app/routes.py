@@ -136,9 +136,9 @@ def imprint_privacy():
     return render_template('imprint_privacy.html')
 
 
-@bp.route('/alps2022/')
+@bp.route('/emnlp2023/')
 def emnlp():
-    return render_template('alps2022.html')
+    return render_template('emnlp2023.html')
 
 
 @bp.route('/adapters/')

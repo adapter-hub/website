@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% set active_page = "emnlp" %}
+
+{% block header %}
+    <h1>
+        {% block title %} EMNLP 2023: System Demo {% endblock %}
+    </h1>
+    <h2>
+        Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning
+    </h2>
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <h4>Hi 👋! This page collects materials for the EMNLP 2023 System Demo of our <i>Adapters</i> library.</h4>
+</section>
+
+<section>
+    <h2>Intro</h2>
+    Quick introductory materials.
+    <a class="my-4 btn card bg-light border-0" href="https://underline.io/events/431/posters/16511/poster/89045-adapters-a-unified-library-for-parameter-efficient-and-modular-transfer-learning" target="_blank">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-video"></i>&nbsp;
+                Short Intro Video on Underline (in EMNLP 2023 event)
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="http://adapterhub.ml/blog/2023/11/introducing-adapters/">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fas fa-bullhorn"></i>&nbsp;
+                Release Blog Post of <i>Adapters</i>
+            </h5>
+        </div>
+    </a>
+</section>
+
+
+<section>
+    <h2>Hands on</h2>
+    <a class="my-4 btn card bg-light border-0" target="_blank" href="https://github.com/adapter-hub/adapters/tree/main/notebooks">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-laptop-code"></i>&nbsp;
+                Notebook Tutorials for Learning <i>Adapters</i> from 0 to 100
+            </h5>
+        </div>
+    </a>
+</section>
+
+<section>
+    <h2>Read up</h2>
+    More in-depth reading material.
+    <a class="my-4 btn card bg-light border-0" href="https://arxiv.org/pdf/2311.11077.pdf" target="_blank">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-bookmark"></i>&nbsp;
+                Our Paper: <i>Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning</i>
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" href="https://docs.adapterhub.ml/" target="_blank">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-book-reader"></i>&nbsp;
+                The <i>AdapterHub</i> documentation
+            </h5>
+        </div>
+    </a>
+</section>
+
+<section>
+    <h2>Additional Resources <a name="resources"></a></h2>
+    Some additional pointers to resources that might help while working with <i>Adapters</i>.
+    <a class="my-4 btn card bg-light border-0" href="https://github.com/adapter-hub/adapters" target="_blank">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fab fa-github"></i>&nbsp;
+                The <i>Adapters</i> GitHub repository
+            </h5>
+        </div>
+    </a>
+    <a class="my-4 btn card bg-light border-0" href="https://adapterhub.ml/explore/" target="_blank">
+        <div class="card-body text-left">
+            <h5 class="my-0">
+                <i class="fa fa-binoculars"></i>&nbsp;
+                The Hub website with all available pre-trained adapters
+            </h5>
+        </div>
+    </a>
+</section>
+{% endblock %}
