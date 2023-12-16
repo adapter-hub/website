@@ -2,6 +2,14 @@
 
 {% block title %} {{ n_adapters }} adapters for {{ n_subtasks }} text tasks and {{ n_languages }} languages {% endblock %}
 
+{% block banner %}
+    <div class="container">
+        <a href="{{ url_for('main.blog_post', path='2023/11/introducing-adapters') }}">
+            New Release: Introducing <i>Adapters</i>, the new unified adapter package
+        </a>
+    </div>
+{% endblock %}
+
 {% block header %}
     <div class="row">
         <div class="text-light col-md-9">

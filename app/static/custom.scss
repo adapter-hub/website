@@ -132,6 +132,22 @@ a {
   }
 }
 
+#Banner {
+  background-color: $secondary;
+  color: $white;
+  font-size: 1.02rem;
+
+  div {
+    padding: 0.3rem 15px;
+  }
+  a {
+    color: $white;
+    &:after {
+      content: " »";
+    }
+  }
+}
+
 #Header {
   background-color: $primary;
   padding: 2rem 0;
