@@ -206,3 +206,28 @@ In the end, integrating the latest great research into the library is a communit
 - Pfeiffer, J., Vulic, I., Gurevych, I., & Ruder, S. (2020). MAD-X: An Adapter-based Framework for Multi-task Cross-lingual Transfer. ArXiv, abs/2005.00052.
 - Pfeiffer, J., Ruder, S., Vulic, I., & Ponti, E. (2023). Modular Deep Learning. ArXiv, abs/2302.11529.
 - Zhou, H., Wan, X., Vulić, I., & Korhonen, A. (2023). AutoPEFT: Automatic Configuration Search for Parameter-Efficient Fine-Tuning. arXiv preprint arXiv:2301.12132.
+
+## Citation
+
+```bibtex
+@inproceedings{poth-etal-2023-adapters,
+    title = "Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning",
+    author = {Poth, Clifton  and
+      Sterz, Hannah  and
+      Paul, Indraneil  and
+      Purkayastha, Sukannya  and
+      Engl{\"a}nder, Leon  and
+      Imhof, Timo  and
+      Vuli{\'c}, Ivan  and
+      Ruder, Sebastian  and
+      Gurevych, Iryna  and
+      Pfeiffer, Jonas},
+    booktitle = "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    month = dec,
+    year = "2023",
+    address = "Singapore",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.emnlp-demo.13",
+    pages = "149--160",
+}
+```
