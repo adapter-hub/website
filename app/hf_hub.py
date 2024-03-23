@@ -62,9 +62,10 @@ def convert_hf_dataset_to_subtask(dataset_info):
     if task is None:
         task = "other"
     subtask = dataset_info["id"]
-    displayname = subtask.replace("_", " ").title()
-    description = dataset_info["description"]
-    citation = dataset_info["citation"]
+    displayname = dataset_info["cardData"].get("pretty_name", subtask.replace("_", " ").title())
+    # TODO can we still access descriptions?
+    description = dataset_info.get("description", "")
+    citation = dataset_info.get("citation", "")
     # TODO
     language = None
     if isinstance(dataset_info["cardData"]["language"], list):
