@@ -97,6 +97,50 @@ model.train_adapter("loreft_adapter")
 ```
 
 ## Adapter Merging
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/06_Task_Arithmetics.ipynb)
+
+We've expanded support for adapter merging, enabling the efficient combination of trained adapters without additional fine-tuning. Merging multiple adapters into a new one allows for efficient domain, language and task transfer. Adapter Merging is a form of Task Arithmetics ([Ilharco et al., 2023](https://arxiv.org/abs/2212.04089); [Zhang et al., 2023](https://proceedings.neurips.cc/paper_files/paper/2023/hash/299a08ee712d4752c890938da99a77c6-Abstract-Conference.html)) and hence also allows increasing or unlearning specific skills. All adapter methods support linear merging. For *N* adapters with parameters $\Phi_i$ the merged adapter parameters $\Phi_{merged}$ are calculated as:
+
+$$
+\Phi_{merged} = \sum_{i=0}^{N} \lambda_i \Phi_i
+$$
+
+Where $\lambda_i$ is the weight for each adapter. Example usage:
+
+```python
+model.average_adapter(
+    adapter_name="merged_adapter",
+    adapter_list=["lora1", "lora2", "lora3"],
+    weights=[0.2, -0.1, 0.9], # these are the λ_i
+    combine_strategy="linear",
+)
+```
+
+For LoRA adapters, [Chronopoulou et al. (2023)](https://arxiv.org/abs/2311.09344) have shown that linear combination can work effectively. However, the parameters of the LoRA matrices are interdependent. Hence simple linear combination may not always yield optimal results. Therefore, we support two additional LoRA-specific merging strategies:
+
+
+- `combine_strategy = "lora_linear_only_negate_b"`: As proposed by [Zhang et al. (2023)](https://proceedings.neurips.cc/paper_files/paper/2023/hash/299a08ee712d4752c890938da99a77c6-Abstract-Conference.html) this method only negates the B matrix for negative weights:
+  $$
+  A_{merged} = \sum_{i=0}^{N} |\lambda_i| A_i,\\
+  B_{merged} = \sum_{i=0}^{N} \lambda_i B_i
+  $$
+- `combine_strategy = "lora_delta_w_svd"`: Merges the LoRA delta W matrices and then applies SVD to obtain new A and B matrices.
+  $$
+  \Delta W_{new} = \sum_{i=0}^N \lambda_i \cdot (\Delta W_i),\\
+  A_{new}, B_{new} = \text{SVD}(\Delta W_{new})
+  $$
+
+Example usage:
+
+```python
+model.average_adapter(
+    adapter_name="lora_svd_merged",
+    adapter_list=["lora1", "lora2", "lora3"],
+    weights=[0.9, -0.7, 0.8],
+    combine_strategy="lora_delta_w_svd",
+    svd_rank=8,  # "lora_delta_w_svd" requires the "svd_rank" parameter, which determines the r (rank) of the resulting LoRA adapter after singular value decomposition (SVD)
+)
+```
 
 ## Quantized Training
 
@@ -158,7 +202,7 @@ model.add_adapter("qlora", config=config)
 model.train_adapter("qlora")
 ```
 
-Note you can easily swap out the adapter config here! You can not only train QLoRA, but also QBottleneck adapters, QPrefixTuning and more!
+This approach isn't limited to LoRA - you can easily swap out the adapter config here! You can not only train QLoRA, but also QBottleneck adapters, QPrefixTuning and more!
 
 For a full guide, check out our [Notebook tutorial for quantized fine-tuning of Llama](https://github.com/Adapter-Hub/adapters/blob/main/notebooks/QLoRA_Llama_Finetuning.ipynb).
 
@@ -189,6 +233,7 @@ However, some parameters related to Hub loading and discovery have been deprecat
 Learn more about breaking changes [here](https://github.com/adapter-hub/adapters/discussions/725).
 
 ## Citation
+If you use _Adapters_ in your research, please cite:
 
 ```bibtex
 @inproceedings{poth-etal-2023-adapters,
