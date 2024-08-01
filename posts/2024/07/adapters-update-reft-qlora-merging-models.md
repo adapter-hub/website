@@ -210,6 +210,19 @@ For a full guide, check out our [Notebook tutorial for quantized fine-tuning of 
 
 ### Whisper
 
+With the support of Whisper, we introduce the first model in the adapters library to operate in the audio domain, posing a fundamental step towards making our library more diverse for various modalities. 
+Whisper was originally presented by OpenAI in their paper [Robust Speech Recognition via Large-Scale Weak Supervision](https://arxiv.org/abs/2212.04356) and is a state-of-the-art model for audio processing trained on 680.000 hours of unsupervised data. 
+
+Our `WhisperAdapterModel` builds on the standard encoder-decoder architecture of the Hugging Face Whisper implementation and supports all the methods listed below, as well as flexible adding and removing of heads.
+
+| Model                                   | (Bottleneck)<br> Adapters | Prefix<br> Tuning | LoRA | Compacter | Adapter<br> Fusion | Invertible<br> Adapters | Parallel<br> block | Prompt<br> Tuning | ReFT |
+| --------------------------------------- | -| - | - | - | - | - | - |- | - |
+| [WHISPER](https://docs.adapterhub.ml/classes/models/whisper.html)    | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ |
+
+We also support enabling adapter capabilities for existing static head models of the classes `WhisperForConditionalGeneration` and `WhisperForAudioClassification` via the `init()` function.
+
+Since Whisper processes audio, the audio data requires additional processing steps that are different from standard text processing. For more information on that, check out our [new notebook tutorial](https://github.com/Adapter-Hub/adapters/blob/main/notebooks/Adapter_Whisper_Audio_FineTuning.ipynb) on how to finetune Whisper with LoRA for transcription.
+
 ### Other Models
 
 TODO
