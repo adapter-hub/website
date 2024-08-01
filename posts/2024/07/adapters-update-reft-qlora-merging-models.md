@@ -225,13 +225,13 @@ Since Whisper processes audio, the audio data requires additional processing ste
 
 ### Other Models
 
-TODO
-Models added since initial release:
+Since our initial release, we have also added a bunch of other models:
 
-- MT5
-- Whisper
-- Mistral
-- PLBart
+- [MT5](https://docs.adapterhub.ml/classes/models/mt5.html)
+- [Mistral](https://docs.adapterhub.ml/classes/models/mistral.html)
+- [PLBart](https://docs.adapterhub.ml/classes/models/plbart.html)
+
+Go check them out if you are interested!
 
 ## Hub Updates
 
