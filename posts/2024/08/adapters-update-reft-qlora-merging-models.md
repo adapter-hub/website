@@ -1,6 +1,6 @@
 ---
 title: "Adapters Updates: ReFT, QLoRA, Merging, New Models & Hub"
-date: 2024-07-22
+date: 2024-08-06
 authors:
   - name: Clifton Poth
     twitter: "@clifapt"
@@ -95,6 +95,8 @@ model.add_adapter("loreft_adapter", config=config)
 model.train_adapter("loreft_adapter")
 # add training loop ...
 ```
+
+Learn more about training adapters [in this notebook](https://github.com/adapter-hub/adapters/blob/main/notebooks/01_Adapter_Training.ipynb).
 
 ## Adapter Merging
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/06_Task_Arithmetics.ipynb)
@@ -217,7 +219,7 @@ Our `WhisperAdapterModel` builds on the standard encoder-decoder architecture of
 
 | Model                                   | (Bottleneck)<br> Adapters | Prefix<br> Tuning | LoRA | Compacter | Adapter<br> Fusion | Invertible<br> Adapters | Parallel<br> block | Prompt<br> Tuning | ReFT |
 | --------------------------------------- | -| - | - | - | - | - | - |- | - |
-| [WHISPER](https://docs.adapterhub.ml/classes/models/whisper.html)    | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ |
+| [Whisper](https://docs.adapterhub.ml/classes/models/whisper.html)    | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ |
 
 We also support enabling adapter capabilities for existing static head models of the classes `WhisperForConditionalGeneration` and `WhisperForAudioClassification` via the `init()` function.
 
