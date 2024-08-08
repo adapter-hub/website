@@ -212,6 +212,8 @@ For a full guide, check out our [Notebook tutorial for quantized fine-tuning of 
 
 ### Whisper
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/Adapter-Hub/adapters/blob/main/notebooks/Adapter_Whisper_Audio_FineTuning.ipynb) 
+
 With the support of Whisper, we introduce the first model in the adapters library to operate in the audio domain, posing a fundamental step towards making our library more diverse for various modalities. 
 Whisper was originally presented by OpenAI in their paper [Robust Speech Recognition via Large-Scale Weak Supervision](https://arxiv.org/abs/2212.04356) and is a state-of-the-art model for audio processing trained on 680.000 hours of unsupervised data. 
 
