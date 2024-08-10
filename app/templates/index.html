@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} {{ n_adapters }} adapters for {{ n_subtasks }} text tasks and {{ n_languages }} languages {% endblock %}
+{% block title %} Home of Adapters, the library for parameter-efficient and module fine-tuning {% endblock %}
 
 {% block banner %}
     <div class="container">
@@ -14,17 +14,26 @@
     <div class="row">
         <div class="text-light col-md-9">
             <p class="highlight-text my-0">
-                A <span class="highlight">central repository</span>
-                for pre-trained <span class="highlight">adapter modules</span>
+                Home of <span class="highlight"><i>Adapters</i></span>, the library
+                for <br><span class="highlight">parameter-efficient</span> and <span class="highlight">modular</span> fine-tuning
+                <!-- A <span class="highlight">central repository</span>
+                for pre-trained <span class="highlight">adapter modules</span> -->
             </p>
-            <p class="mt-2">
+            <!-- <p class="mt-2">
                 <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">{{ n_adapters }} <span class=" font-weight-normal">adapters</span></span>
                 <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">{{ n_subtasks }} <span class=" font-weight-normal">text tasks</span></span>
                 <span class="badge badge-light p-1 py-md-2 px-md-3 text-black-65">{{ n_languages }} <span class=" font-weight-normal">languages</span></span>
-            </p>
+            </p> -->
             <pre class="text-white py-2 px-3 my-4 d-none d-md-block">pip install adapters</pre>
             <div id="IndexButtonRow" class="rounded mt-lg-1">
                 <a class="btn"
+                   href="{{ url_for('main.blog') }}">
+                    <div>
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    Blog
+                </a>
+                <a class="btn d-none d-sm-inline-block"
                    href="{{ url_for('main.explore_tasks') }}">
                     <div>
                         <i class="fas fa-binoculars"></i>
@@ -37,13 +46,6 @@
                         <i class="fas fa-book"></i>
                     </div>
                     Docs
-                </a>
-                <a class="btn d-none d-sm-inline-block"
-                   href="{{ url_for('main.blog') }}">
-                    <div>
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    Blog
                 </a>
                 <a class="btn d-none d-lg-inline-block"
                    href="https://github.com/Adapter-Hub/adapters">
@@ -226,7 +228,19 @@
         <p>
             If you use the <i>Adapters</i> library in your work, please consider citing our library paper: <a href="https://arxiv.org/abs/2311.11077"> Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning </a>
         </p>
-        <pre class="p-4 code">
+        <div id="accordion" class="mb-3">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Poth et al. “Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning.” EMNLP (2023).
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <pre class="p-4 code small">
 @inproceedings{poth-etal-2023-adapters,
     title = "Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning",
     author = {Poth, Clifton  and
@@ -247,12 +261,27 @@
     url = "https://aclanthology.org/2023.emnlp-demo.13",
     pages = "149--160",
 }</pre>
+</div>
+</div>
+</div>
+</div>
 
         <p>
             Alternatively, for the Hub infrastructure and adapters uploaded by the AdapterHub team, please consider citing our initial paper: <a href="https://arxiv.org/abs/2007.07779"> AdapterHub: A Framework for Adapting Transformers </a>
         </p>
-    
-        <pre class="p-4 code">
+        <div id="accordion" class="mb-3">
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Pfeiffer et al. “AdapterHub: A Framework for Adapting Transformers.” EMNLP (2020).
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+        <pre class="p-4 code small">
 @inproceedings{pfeiffer2020AdapterHub,
     title={AdapterHub: A Framework for Adapting Transformers},
     author={Jonas Pfeiffer and
@@ -270,6 +299,10 @@
     url = "https://www.aclweb.org/anthology/2020.emnlp-demos.7",
     pages = "46--54",
 }</pre>
+</div>
+</div>
+</div>
+</div>
     </section>
 
 

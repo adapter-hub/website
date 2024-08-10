@@ -1,6 +1,6 @@
 ---
-title: "Adapters Updates: ReFT, QLoRA, Merging, New Models & Hub"
-date: 2024-08-06
+title: "Adapters Library Updates: ReFT, QLoRA, Merging, New Models & Hub"
+date: 2024-08-10
 authors:
   - name: Clifton Poth
     twitter: "@clifapt"
@@ -16,7 +16,7 @@ summary: |
   Today we are releasing the newest updates in our Adapters library. This post summarizes new features in the latest release as well as selected new features since our initial release in Nov 2023, including new adapter methods, new supported models and Hub updates.
 ---
 
-Eight months ago, [we released _Adapters_](https://adapterhub.ml/blog/2023/11/introducing-adapters/), our new unified library for parameter-efficient and modular fine-tuning.
+Nine months ago, [we released _Adapters_](https://adapterhub.ml/blog/2023/11/introducing-adapters/), our new unified library for parameter-efficient and modular fine-tuning.
 _Adapters_ stands in direct tradition to our work on `adapter-transformers` since 2020, the first open-source library for parameter-efficient fine-tuning.
 Since its initial release, _Adapters_ has received various updates, the newest being released today.
 In this post, we'll go through some of the most exciting new features released today and in the last few months.
@@ -99,6 +99,7 @@ model.train_adapter("loreft_adapter")
 Learn more about training adapters [in this notebook](https://github.com/adapter-hub/adapters/blob/main/notebooks/01_Adapter_Training.ipynb).
 
 ## Adapter Merging
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/06_Task_Arithmetics.ipynb)
 
 We've expanded support for adapter merging, enabling the efficient combination of trained adapters without additional fine-tuning. Merging multiple adapters into a new one allows for efficient domain, language and task transfer. Adapter Merging is a form of Task Arithmetics ([Ilharco et al., 2023](https://arxiv.org/abs/2212.04089); [Zhang et al., 2023](https://proceedings.neurips.cc/paper_files/paper/2023/hash/299a08ee712d4752c890938da99a77c6-Abstract-Conference.html)) and hence also allows increasing or unlearning specific skills. All adapter methods support linear merging. For *N* adapters with parameters $\Phi_i$ the merged adapter parameters $\Phi_{merged}$ are calculated as:
