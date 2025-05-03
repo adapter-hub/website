@@ -4,10 +4,11 @@ date: 2025-05-02
 authors:
   - name: The AdapterHub Team
 summary: |
-  Today we are releasing the newest updates in our Adapters library. This post summarizes new features in the latest release as well as selected new features since our initial release in Nov 2023, including new adapter methods, new supported models and Hub updates.
+  The latest release of Adapters v1.2.0 introduces a new adapter plugin interface that enables adding adapter functionality to nearly any Transformer model.
+  We go through the details of working with this interface and various additional novelties of the library.
 ---
 
-In the recent weeks and months, we've been working on greatly improving the integration of the _Adapters_ library with the Hugging Face ecosystem.
+In recent weeks and months, we've been working on greatly improving the integration of the _Adapters_ library with the Hugging Face ecosystem.
 This has resulted in our [new adapter plugin interface](https://docs.adapterhub.ml/plugin_interface.html).
 The plugin interface allows you to integrate most of the _Adapters_ library's features into nearly any Transformers model on the Hugging Face Hub with minimal effort.
 In this post, we'll walk you through using the plugin interface step by step and also show what else is new in the _Adapters_ library.
@@ -22,7 +23,7 @@ pip install -U adapters
 
 ## Adapters for Any Transformer with Plugin Interface
 
-In the following, we'll walk through adding adapter support to a custom or not pre-supported model with the _Adapters_ library's **[plugin interface](https://docs.adapterhub.ml/plugin_interface.html)**. Specifically, we'll be writing a plugin interface for the **Qwen 2.5** model and then train an adapter for mathematical reasoning.
+In the following, we'll walk through adding adapter support to a custom or not pre-supported model with the _Adapters_ library's [plugin interface](https://docs.adapterhub.ml/plugin_interface.html). Specifically, we'll be writing a plugin interface for the Qwen 2.5 model and then train an adapter for mathematical reasoning.
 
 **Important:** The interface below for Qwen 2 and Qwen 2.5 already comes pre-supported in _Adapters_, so you could skip this section entirely! It's merely to showcase how you could define interfaces for your own custom models!
 You can find a list of all pre-supported models here: https://docs.adapterhub.ml/model_overview.html.
@@ -251,10 +252,15 @@ trainer.train()
 
 After training, we can save just the adapter weights.
 
-
 ```python
 # Save only the adapter weights
 model.save_adapter("./qwen-math-adapter", adapter_name)
+```
+
+Additionally, we can push our newly trained adapter to the Hugging Face Model Hub:
+
+```python
+model.push_adapter_to_hub("qwen-math-adapter", adapter_name)
 ```
 
 ## Multi-Task Learning with Adapters
