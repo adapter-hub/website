@@ -1,6 +1,6 @@
 ---
 title: "Adapters for Any Model On the HuggingFace Hub"
-date: 2025-05-02
+date: 2025-05-09
 authors:
   - name: The AdapterHub Team
 summary: |
@@ -23,10 +23,12 @@ pip install -U adapters
 
 ## Adapters for Any Transformer with Plugin Interface
 
+_As notebook: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/Adapter_Interface_Qwen.ipynb)_
+
 In the following, we'll walk through adding adapter support to a custom or not pre-supported model with the _Adapters_ library's [plugin interface](https://docs.adapterhub.ml/plugin_interface.html). Specifically, we'll be writing a plugin interface for the Qwen 2.5 model and then train an adapter for mathematical reasoning.
 
 **Important:** The interface below for Qwen 2 and Qwen 2.5 already comes pre-supported in _Adapters_, so you could skip this section entirely! It's merely to showcase how you could define interfaces for your own custom models!
-You can find a list of all pre-supported models here: https://docs.adapterhub.ml/model_overview.html.
+You can find a list of all pre-supported models [in our docs](https://docs.adapterhub.ml/model_overview.html).
 
 ### Understanding the Model Architecture
 
@@ -277,7 +279,7 @@ $$
 
 where $\tau$ controls the sharpness of weight distribution. 
 
-`MTL-LoRA` is trainable with `MultiTask` composition and a datasets wich contains `task_ids` column (see. [`MultiTask` Composition](adapter_composition.md#multitask)).
+`MTL-LoRA` is trainable with `MultiTask` composition and a datasets wich contains `task_ids` column (see. [`MultiTask` Composition](https://docs.adapterhub.ml/adapter_composition.html#multitask)).
 
 
 _Example_:
@@ -302,14 +304,27 @@ model.share_parameters(
 model.active_adapters = ac.MultiTask("i", "k", "l")
 ```
 
+## New Adapter Method: VeRA
 
-## New Adapter Methods
+Vera is a LoRA based fine-tuning method proposed by [Kopiczko et al. (2024)](https://arxiv.org/pdf/2310.11454). In Vera, we add frozen matrices A and B that are shared across all layers. It reduces the number of trainable parameters but maintains the same performance when compared to LoRA. Furthermore, trainable scaling vectors $b$ and $d$ are introduced and are multipled by the frozen matrices to result in the equation:
 
-TODO
+$$ h = W_{0}x + \Lambda_{b}B\Lambda_{d}Ax $$
 
-## Conclusion
+where $\Lambda_{b}$ and $\Lambda_{d}$ receive updates during training.
 
-TODO
+_Example_:
+```python
+from adapters import VeraConfig
+
+config = VeraConfig()
+model.add_adapter("vera_config", config=config)
+```
+
+## Summary
+
+The latest Adapters library release introduces a powerful plugin interface that allows extending adapter functionality to virtually any Transformer model on the HuggingFace Hub with minimal effort.
+This release also brings new multi-task learning capabilities through MTL-LoRA, and adds the parameter-efficient VeRA adapter method.
+For the full list of changes, refer to [the release notes of v1.2.0](https://github.com/adapter-hub/adapters/releases/tag/v1.2.0).
 
 ## Citation
 If you use _Adapters_ in your research, please cite:
