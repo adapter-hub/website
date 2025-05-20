@@ -25,14 +25,14 @@ pip install -U adapters
 
 _As notebook: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/Adapter_Interface_Qwen.ipynb)_
 
-In the following, we'll walk through adding adapter support to a custom or not pre-supported model with the _Adapters_ library's [plugin interface](https://docs.adapterhub.ml/plugin_interface.html). Specifically, we'll be writing a plugin interface for the Qwen 2.5 model and then train an adapter for mathematical reasoning.
+In the following, we'll walk through adding adapter support to a custom or not pre-supported model with the _Adapters_ library's [plugin interface](https://docs.adapterhub.ml/plugin_interface.html). Specifically, we'll be writing a plugin interface for the Qwen 3 model and then train an adapter for mathematical reasoning.
 
-**Important:** The interface below for Qwen 2 and Qwen 2.5 already comes pre-supported in _Adapters_, so you could skip this section entirely! It's merely to showcase how you could define interfaces for your own custom models!
+**Important:** The interface below for Qwen 2 and Qwen 3 already comes pre-supported in _Adapters_, so you could skip this section entirely! It's merely to showcase how you could define interfaces for your own custom models!
 You can find a list of all pre-supported models [in our docs](https://docs.adapterhub.ml/model_overview.html).
 
 ### Understanding the Model Architecture
 
-Before creating our plugin interface, let's understand the basic structure of Qwen 2.5:
+Before creating our plugin interface, let's understand the basic structure of Qwen 3:
 
 - Like most Transformer language models, it consists of an embedding layer followed by a series of decoder layers
 - Each layer contains a self-attention block and an MLP block
@@ -44,7 +44,7 @@ To create an adapter interface, we need to map these components to the appropria
 
 ### Creating the Plugin Interface
 
-Now we'll create a plugin interface for Qwen 2.5 that maps the model's architecture to the adapter framework.
+Now we'll create a plugin interface for Qwen 3 that maps the model's architecture to the adapter framework.
 
 
 ```python
@@ -84,13 +84,13 @@ Each parameter in the interface maps to specific module names in the model's arc
 
 ### Loading the Model and Initializing with the Interface
 
-Now, let's load the Qwen 2.5 model and initialize it with our plugin interface.
+Now, let's load the Qwen 3 model and initialize it with our plugin interface.
 
 
 ```python
 # Load the model
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen2.5-1.5B",  # Using the 1.5B version
+    "Qwen/Qwen3-1.7B-Base",  # Using the 1.7B version
     device_map="auto",  # Automatically distribute model across available GPUs
     torch_dtype="bfloat16",  # Use half-precision for faster computation
 )
@@ -101,7 +101,7 @@ model = AutoModelForCausalLM.from_pretrained(
 from transformers import AutoTokenizer
 
 # Load the tokenizer
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-1.5B")
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-1.7B-Base")
 
 # Set the pad token ID to be different from the model's EOS token
 tokenizer.pad_token_id = 151645
