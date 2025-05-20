@@ -1,0 +1,1816 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub - ukp/bert-base-uncased_sts_stackexchange_pfeiffer</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="/explore/">Explore</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/explore/text_task/">Task</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/explore/sts/stackexchange/">sts/stackexchange</a>
+            </li>
+
+
+
+
+
+
+        </ol>
+    </nav>
+</div>
+
+<h1><span class="text-white-65">Adapter for</span> StackExchange QA Similarity</h1>
+<h2>ukp / bert-base-uncased_sts_stackexchange_pfeiffer</h2>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+
+    <div class="d-none d-md-inline float-md-right" style="margin-top: -16px;">
+        
+        <a href="https://github.com/Adapter-Hub/Hub/blob/master/adapters//ukp/bert-base-uncased_sts_stackexchange_pfeiffer.yaml">
+            <i class="fa fa-edit"></i>&nbsp; Edit on GitHub
+        </a>
+        
+    </div>
+
+    <br>
+    <section>
+        
+        
+        
+        
+        
+        
+        
+        <pre class="p-4 code">
+model = AutoAdapterModel.from_pretrained("bert-base-uncased")
+config = AdapterConfig.load("pfeiffer", reduction_factor=12)
+model.load_adapter("sts/stackexchange@ukp", config=config)</pre>
+        
+        <i class="btn-clipboard"></i>
+    </section>
+
+<section>
+    <h2>Description</h2>
+    <div class="adapter-description">
+        
+        
+        Our adapters from the MultiCQA paper (<a href="https://arxiv.org/abs/2010.00980" rel="noopener">https://arxiv.org/abs/2010.00980</a>) trained on the different StackExchange forums (see &#34;version&#34;) with self-supervised training signals of unlabeled questions.
+
+        
+        
+    </div>
+</section>
+
+<section>
+    <h2>Properties</h2>
+    <div class="property-box">
+        <div class="row">
+            <div class="col-sm-3 label">Pre-trained model</div>
+            <div class="col-sm-9">bert-base-uncased</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Adapter type</div>
+            <div class="col-sm-9">
+                <a href="/explore/text_task/">
+                    Task
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">
+                Prediction Head
+                <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top"
+                   title="If the adapter provides a prediction head, you can directly use it for inference.">
+                </i>
+            </div>
+            <div class="col-sm-9">
+                
+                <i class="fas fa-times"></i>&nbsp; No
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Task</div>
+            <div class="col-sm-9">Semantic Textual Similarity</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Dataset</div>
+            <div class="col-sm-9">
+                <a href="/explore/sts/stackexchange/">
+                    StackExchange QA Similarity
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <h2>Architecture</h2>
+    
+    <div class="property-box">
+        <div class="row">
+            <div class="col-sm-3 label">Name</div>
+            <div class="col-sm-9">pfeiffer</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Non-linearity</div>
+            <div class="col-sm-9">relu</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Reduction factor</div>
+            <div class="col-sm-9">12</div>
+        </div>
+    </div>
+    
+    <div class="collapse-container">
+        <div class="collapse-header">
+            <button class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#collapseConfig">
+                <h5 class="my-1">Configuration <i class="float-right mt-1 fas fa-angle-up rotate-icon"></i></h5>
+            </button>
+        </div>
+        <div id="collapseConfig" class="collapse">
+            <pre class="p-4">{
+  &#34;ln_after&#34;: false,
+  &#34;ln_before&#34;: false,
+  &#34;mh_adapter&#34;: false,
+  &#34;output_adapter&#34;: true,
+  &#34;adapter_residual_before_ln&#34;: false,
+  &#34;non_linearity&#34;: null,
+  &#34;original_ln_after&#34;: true,
+  &#34;original_ln_before&#34;: true,
+  &#34;reduction_factor&#34;: 12,
+  &#34;residual_before_ln&#34;: true
+}</pre>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <h2>Author</h2>
+    <div class="property-box">
+        <div class="row">
+            <div class="col-sm-3 label"><i class="fas fa-user"></i>&nbsp; Name</div>
+            <div class="col-sm-9">Andreas Rücklé</div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-3 label"><i class="fas fa-envelope"></i>&nbsp; E-Mail</div>
+            <div class="col-sm-9"><a href="mailto:rueckle@ukp.informatik.tu-darmstadt.de">rueckle@ukp.informatik.tu-darmstadt.de</a></div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-sm-3 label"><i class="fas fa-globe"></i>&nbsp; Web</div>
+            <div class="col-sm-9"><a href="http://rueckle.net" target="_blank">http://rueckle.net</a></div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-sm-3 label"><i class="fab fa-github"></i>&nbsp; GitHub</div>
+            <div class="col-sm-9"><a href="https://github.com/arueckle" target="_blank">arueckle</a></div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-sm-3 label"><i class="fab fa-twitter"></i>&nbsp; Twitter</div>
+            <div class="col-sm-9"><a href="https://twitter.com/arueckle" target="_blank">arueckle</a></div>
+        </div>
+        
+    </div>
+</section>
+
+<section>
+    <h2>Versions</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr class="d-flex">
+                <th scope="col" class="col-sm-5 col-md-3">Identifier</th>
+                <th scope="col" class="col-sm-7 col-md-6">Comment</th>
+                <th scope="col" class="col-md-1 d-none d-md-table-cell">Score
+                    <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Accuracy"></i>
+                </th>
+                <th scope="col" class="col-md-2 text-right d-none d-md-table-cell">Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    3dprinting_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/3dprinting_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    academia_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/academia_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    ai_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/ai_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    android_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/android_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    anime_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/anime_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    apple_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/apple_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    arduino_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/arduino_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    askubuntu_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/askubuntu_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    astronomy_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/astronomy_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    aviation_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/aviation_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    avp_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/avp_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    bicycles_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/bicycles_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    bioinformatics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/bioinformatics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    biology_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/biology_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    bitcoin_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/bitcoin_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    blender_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/blender_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    boardgames_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/boardgames_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    bricks_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/bricks_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    buddhism_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/buddhism_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    chemistry_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/chemistry_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    chess_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/chess_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    christianity_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/christianity_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    civicrm_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/civicrm_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    codegolf_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/codegolf_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    codereview_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/codereview_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    cogsci_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/cogsci_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    computergraphics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/computergraphics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    cooking_stackexchange_com
+                    
+                        <span class="badge badge-primary activate-tooltip" data-toggle="tooltip" data-placement="top" title="This is the default version for the adapter.">DEFAULT</span>
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/cooking_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    craftcms_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/craftcms_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    crypto_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/crypto_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    cs_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/cs_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    cstheory_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/cstheory_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    datascience_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/datascience_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    dba_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/dba_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    devops_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/devops_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    diy_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/diy_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    drupal_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/drupal_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    dsp_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/dsp_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    earthscience_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/earthscience_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    economics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/economics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    electronics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/electronics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    elementaryos_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/elementaryos_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    ell_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/ell_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    emacs_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/emacs_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    engineering_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/engineering_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    english_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/english_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    eosio_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/eosio_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    ethereum_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/ethereum_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    expatriates_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/expatriates_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    expressionengine_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/expressionengine_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    fitness_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/fitness_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    freelancing_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/freelancing_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    gamedev_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/gamedev_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    gaming_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/gaming_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    gardening_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/gardening_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    genealogy_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/genealogy_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    gis_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/gis_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    graphicdesign_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/graphicdesign_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    ham_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/ham_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    hardwarerecs_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/hardwarerecs_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    health_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/health_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    hermeneutics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/hermeneutics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    hinduism_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/hinduism_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    history_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/history_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    homebrew_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/homebrew_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    hsm_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/hsm_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    interpersonal_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/interpersonal_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    islam_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/islam_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    joomla_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/joomla_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    judaism_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/judaism_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    law_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/law_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    lifehacks_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/lifehacks_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    linguistics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/linguistics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    literature_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/literature_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    magento_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/magento_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    martialarts_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/martialarts_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    math_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/math_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    matheducators_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/matheducators_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    mathematica_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/mathematica_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    mechanics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/mechanics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    monero_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/monero_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    money_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/money_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    movies_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/movies_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    music_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/music_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    musicfans_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/musicfans_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    mythology_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/mythology_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    networkengineering_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/networkengineering_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    opendata_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/opendata_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    opensource_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/opensource_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    outdoors_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/outdoors_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    parenting_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/parenting_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    patents_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/patents_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    pets_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/pets_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    philosophy_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/philosophy_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    photo_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/photo_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    physics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/physics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    pm_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/pm_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    poker_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/poker_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    politics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/politics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    puzzling_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/puzzling_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    quant_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/quant_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    quantumcomputing_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/quantumcomputing_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    raspberrypi_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/raspberrypi_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    retrocomputing_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/retrocomputing_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    reverseengineering_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/reverseengineering_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    robotics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/robotics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    rpg_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/rpg_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    salesforce_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/salesforce_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    scicomp_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/scicomp_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    scifi_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/scifi_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    security_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/security_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    serverfault_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/serverfault_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    sharepoint_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/sharepoint_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    sitecore_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/sitecore_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    skeptics_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/skeptics_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    softwareengineering_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/softwareengineering_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    softwarerecs_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/softwarerecs_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    sound_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/sound_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    space_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/space_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    sports_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/sports_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    sqa_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/sqa_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    stackapps_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/stackapps_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    stackoverflow_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/stackoverflow_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    stats_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/stats_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    superuser_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/superuser_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    sustainability_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/sustainability_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    tex_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/tex_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    tor_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/tor_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    travel_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/travel_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    tridion_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/tridion_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    unix_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/unix_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    ux_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/ux_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    vi_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/vi_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    webapps_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/webapps_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    webmasters_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/webmasters_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    windowsphone_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/windowsphone_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    woodworking_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/woodworking_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    wordpress_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/wordpress_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    workplace_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/workplace_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    worldbuilding_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/worldbuilding_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+            <tr class="d-flex">
+                <th scope="row" class="col-sm-5 col-md-3">
+                    writers_stackexchange_com
+                    
+                </th>
+                <td class="col-sm-7 col-md-6"></td>
+                <td class="col-md-1 d-none d-md-table-cell"></td>
+                <td class="text-right col-2 d-none d-md-table-cell"><a href="https://public.ukp.informatik.tu-darmstadt.de/rueckle/multicqa/adapters/writers_stackexchange_com.zip"><i class="fa fa-download"></i></a></td>
+            </tr>
+            
+        </tbody>
+    </table>
+</section>
+
+
+<section class="mb-5">
+    <h2>Citations</h2>
+    <div class="collapse-container">
+        <div class="collapse-header">
+            <button class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#collapseOne">
+                <h5 class="my-1">BibTeX <i class="float-right mt-1 fas fa-angle-up rotate-icon"></i></h5>
+            </button>
+        </div>
+        <div id="collapseOne" class="collapse">
+            <div>
+                
+                <h5 class="citation-notice">Adapter</h5>
+                <pre class="p-4 code">@inproceedings{rueckle-etal-2020-multicqa,
+  title = &#34;{MultiCQA}: Zero-Shot Transfer of Self-Supervised Text Matching Models on a Massive Scale&#34;,
+  author = {R{\&#34;u}ckl{\&#39;e}, Andreas  and
+    Pfeiffer, Jonas and
+    Gurevych, Iryna},
+  booktitle = &#34;Proceedings of The 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP-2020)&#34;,
+  year = &#34;2020&#34;,
+  address = &#34;Virtual Conference&#34;,
+  url = &#34;https://arxiv.org/abs/2010.00980&#34;,
+}
+</pre>
+                
+                
+                <h5 class="citation-notice">Architecture</h5>
+                <pre class="p-4 code">@misc{pfeiffer2020adapterfusion,
+  title={AdapterFusion: Non-Destructive Task Composition for Transfer Learning},
+  author={Jonas Pfeiffer and Aishwarya Kamath and Andreas Rücklé and Kyunghyun Cho and Iryna Gurevych},
+  year={2020},
+  eprint={2005.00247},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL}
+}
+</pre>
+                
+                
+                <h5 class="citation-notice">Task</h5>
+                <pre class="p-4 code">@inproceedings{rueckle-etal-2020-multicqa,
+  title = &#34;{MultiCQA}: Zero-Shot Transfer of Self-Supervised Text Matching Models on a Massive Scale&#34;,
+  author = {R{\&#34;u}ckl{\&#39;e}, Andreas  and
+    Pfeiffer, Jonas and
+    Gurevych, Iryna},
+  booktitle = &#34;Proceedings of The 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP-2020)&#34;,
+  year = &#34;2020&#34;,
+  address = &#34;Virtual Conference&#34;,
+  url = &#34;https://arxiv.org/abs/2010.00980&#34;,
+}
+</pre>
+                
+            </div>
+        </div>
+      </div>
+</section>
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

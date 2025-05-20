@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub - is/cc100</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="/explore/">Explore</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/explore/text_lang/">Language</a>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </ol>
+    </nav>
+</div>
+
+<div class="row adapter-nav" id="ModelTypeNav">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-auto mr-5 mb-2">
+                <h1>
+                    Language Adapters
+                </h1>
+            </div>
+            <div class="col-md-auto">
+                <div class="navigation row">
+                    <div class="col-xs-auto ml-3">
+                        <div class="row">
+                            <div class="col-auto">
+                                <p>Pre-trained model: </p>
+                            </div>
+                            <div class="col">
+                                <div class="dropdown show mr-2 mb-1">
+                                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        xlm-roberta
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+                                        <a class="dropdown-item "
+                                           href="/explore/is/cc100/">
+                                            All architectures
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        
+                                            <a class="dropdown-item "
+                                               href="/explore/is/cc100/bert/">
+                                                bert
+                                            </a>
+                                        
+                                            <a class="dropdown-item active"
+                                               href="/explore/is/cc100/xlm-roberta/">
+                                                xlm-roberta
+                                            </a>
+                                        
+                                            <a class="dropdown-item "
+                                               href="/explore/is/cc100/distilbert/">
+                                                distilbert
+                                            </a>
+                                        
+                                            <a class="dropdown-item "
+                                               href="/explore/is/cc100/gpt2/">
+                                                gpt2
+                                            </a>
+                                        
+                                            <a class="dropdown-item "
+                                               href="/explore/is/cc100/bart/">
+                                                bart
+                                            </a>
+                                        
+                                            <a class="dropdown-item "
+                                               href="/explore/is/cc100/roberta/">
+                                                roberta
+                                            </a>
+                                        
+                                            <a class="dropdown-item "
+                                               href="/explore/is/cc100/mbart/">
+                                                mbart
+                                            </a>
+                                        
+                                    </div>
+                                </div>
+                                
+                                    <div class="dropdown show">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            xlm-roberta-base
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                                            <a class="dropdown-item "
+                                               href="/explore/is/cc100/xlm-roberta/">
+                                                All shortcut names
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            
+                                                <a class="dropdown-item active"
+                                                   href="/explore/is/cc100/xlm-roberta/xlm-roberta-base/">
+                                                    xlm-roberta-base
+                                                </a>
+                                            
+                                                <a class="dropdown-item "
+                                                   href="/explore/is/cc100/xlm-roberta/xlm-roberta-large/">
+                                                    xlm-roberta-large
+                                                </a>
+                                            
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-auto mr-5">
+                <h2 class="mt-0">
+                    is/cc100
+                </h2>
+            </div>
+            <div class="col-md documentation mt-2 mt-md-1">
+                <i class="fa fa-book"></i>
+                Language modeling for the Icelandic language on the CC-100 corpus.
+            </div>
+        </div>
+        <div class="row mt-2 subtask-button-list">
+            
+            <a class="btn btn-outline-light" href="https://data.statmt.org/cc-100/"><i class="fa fa-globe"></i>&nbsp; Website</a>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+<div class="row adapters">
+    
+</div>
+
+
+    <div id="NoSearchResult">
+        <div class="alert alert-light">
+            No language adapters available for <span class="font-weight-bold">is/cc100</span> <i class="fas fa-arrow-right"></i> <span class="font-weight-bold">xlm-roberta-base</span>
+        </div>
+        <div class="mt-5">
+            <div class="speech-bubble">
+                <p class="m-0">Add your adapter to AdapterHub,
+                    <br/>
+                    it's super awesome!
+                </p>
+                <div class="mt-3 text-right">
+                    <a class="text-white btn btn-sm border-white" href="https://docs.adapterhub.ml/contributing.html#add-your-pre-trained-adapter">
+                        <i class="fas fa-rocket"></i> Get started
+                    </a>
+                </div>
+            </div>
+            <img src="/static/adapter-bert.png" height="300"/>
+        </div>
+    </div>
+
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

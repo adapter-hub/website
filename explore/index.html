@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub -  Explore </title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+    <div class="row adapter-nav mb-4" id="AdapterTypeNav">
+        <div class="col-lg-2 mb-2">
+            <h1>
+                 Explore 
+            </h1>
+        </div>
+        <div class="col-lg-5 col-xl-4">
+            <div class="navigation">
+                <p>Adapters for</p>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           href="/explore/text_task/">
+                            Tasks
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="/explore/text_lang/">
+                            Languages
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg documentation mt-2 mt-lg-0">
+            <i class="fa fa-book"></i>
+            Adapter module for the text modality that captures knowledge of a specific downsteam task.
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="text" class="form-control form-control-lg" id="TypeToSearch"
+                   placeholder="Type to filter tasks...">
+        </div>
+    </div>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Argument Mining
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Argumentation Mining aims at automatically recognizing arguments in written discourse in order to establish new
+intelligent systems for facilitating information access, writing skills acquisition and text summarization."></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/argument/ukpsent/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    UKP Sentential Argument Mining
+                                    <span class="notice">argument/ukpsent</span>
+                                </h5>
+                                <p class="card-text">
+                                    The UKP Sentential Argument Mining Corpus includes 25,492 sentences over eight controversial topics. Each sentence
+was annotated via crowdsourcing as either a supporting argument, an attacking...
+
+                                    
+                                    <span class="invisible">Argument Mining</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Common Sense Reasoning
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Common sense reasoning tasks are intended to require the model to go beyond pattern recognition.
+Instead, the model should use &#34;common sense&#34; or world knowledge to make inferences.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/comsense/copa/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    COPA
+                                    <span class="notice">comsense/copa</span>
+                                </h5>
+                                <p class="card-text">
+                                    COPA (Gordon et al., 2012) is a causal commonsense reasoning task with the goal to select the more plausible sentence of two alternatives, given a premise sentence.
+
+
+                                    
+                                    <span class="invisible">Common Sense Reasoning</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/comsense/cosmosqa/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Cosmos QA
+                                    <span class="notice">comsense/cosmosqa</span>
+                                </h5>
+                                <p class="card-text">
+                                    Cosmos QA is a large-scale dataset of 35,600 problems that require commonsense-based reading comprehension,
+formulated as multiple-choice questions.
+
+
+                                    
+                                    <span class="invisible">Common Sense Reasoning</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/comsense/csqa/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Commonsense QA
+                                    <span class="notice">comsense/csqa</span>
+                                </h5>
+                                <p class="card-text">
+                                    To investigate question answering with prior knowledge, we present CommonsenseQA: a challenging new dataset for
+commonsense question answering. To capture common sense beyond associations, we...
+
+                                    
+                                    <span class="invisible">Common Sense Reasoning</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/comsense/hellaswag/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    HellaSwag
+                                    <span class="notice">comsense/hellaswag</span>
+                                </h5>
+                                <p class="card-text">
+                                    HellaSwag, a new benchmark for commonsense NLI.
+
+
+                                    
+                                    <span class="invisible">Common Sense Reasoning</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/comsense/siqa/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Social IQA
+                                    <span class="notice">comsense/siqa</span>
+                                </h5>
+                                <p class="card-text">
+                                    Social IQa is the first largescale benchmark for commonsense reasoning about social situations.
+Social IQa contains 38,000 multiple choice questions for probing emotional and social intelligence...
+
+                                    
+                                    <span class="invisible">Common Sense Reasoning</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/comsense/winogrande/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    WinoGrande
+                                    <span class="notice">comsense/winogrande</span>
+                                </h5>
+                                <p class="card-text">
+                                    WinoGrande is a new collection of 44k problems, inspired by Winograd Schema Challenge (Levesque, Davis, and
+Morgenstern 2011), but adjusted to improve the scale and robustness against the...
+
+                                    
+                                    <span class="invisible">Common Sense Reasoning</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Dependency Parsing
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Dependency parsing is the task of extracting a dependency parse of a sentence that represents its grammatical structure.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/dp/ud_ewt/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    UD English EWT
+                                    <span class="notice">dp/ud_ewt</span>
+                                </h5>
+                                <p class="card-text">
+                                    Dependency parsing on Universal Dependencies English EWT.
+UD English EWT is a Gold Standard Universal Dependencies Corpus for English, built over the source material of the English Web Treebank...
+
+                                    
+                                    <span class="invisible">Dependency Parsing</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Dependency Relation Classification
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Dependency relation classification is a simplified formulation of dependency parsing as a sequence labeling task.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/deprel/ud_ewt/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    UD English EWT
+                                    <span class="notice">deprel/ud_ewt</span>
+                                </h5>
+                                <p class="card-text">
+                                    Dependency relation classification on Universal Dependencies English EWT.
+UD English EWT is a Gold Standard Universal Dependencies Corpus for English, built over the source material of the English...
+
+                                    
+                                    <span class="invisible">Dependency Relation Classification</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Dialect Detection
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Dialect detection is a type of classifier which determines the regional origin
+of text in a language.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/dialect/arabic/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    ArabicDialect
+                                    <span class="notice">dialect/arabic</span>
+                                </h5>
+                                <p class="card-text">
+                                    Arabic Dialect Detection classifies text into Modern Standard Arabic (MSA),
+Egyptian, Maghrebi (northwest Africa), Gulf, and Levantine
+
+
+                                    
+                                    <span class="invisible">Dialect Detection</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Formality Classification
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="The goal of this task is to identify whether a sentence is informal or formal. Informal text
+tends to use simpler words, compromise spelling (short forms). It is generally spoken between
+close friends, often on mediums like online chat. Formal text is more common in literary articles,
+journalism, legal text, educational material. In conversational text it is more common between
+strangers, and tends to be polite. Formality classifiers are also used to evaluate formality transfer
+models.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/formality_classify/gyafc/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Grammarly&#39;s Yahoo Answers Formality Corpus (GYAFC)
+                                    <span class="notice">formality_classify/gyafc</span>
+                                </h5>
+                                <p class="card-text">
+                                    The Grammarly’s Yahoo Answers Formality Corpus (GYAFC) is the largest dataset for formality
+classification which contains a total of 110K informal / formal sentence pairs. This is a...
+
+                                    
+                                    <span class="invisible">Formality Classification</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Grammatical Error Detection
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="The task of grammatical error detection (GED) deals with identifying tokens in a sentence which require editing to construct a grammatically correct sentence.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ged/fce/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    CLC FCE Dataset
+                                    <span class="notice">ged/fce</span>
+                                </h5>
+                                <p class="card-text">
+                                    The First Certificate in English (FCE) dataset in sequence labeling format, converted by Rei and Yannakoudakis (2016), wher eeach token in a sentence is labelled either as correct or as incorrect....
+
+                                    
+                                    <span class="invisible">Grammatical Error Detection</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Language Modeling
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="The model is trained to learn the structure of the given text by trying to predict the next token in a sequence."></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/lm/poem/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    poem
+                                    <span class="notice">lm/poem</span>
+                                </h5>
+                                <p class="card-text">
+                                    The model is trained to learn the structure of poems in the english language.
+
+                                    
+                                    <span class="invisible">Language Modeling</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Linguistic Acceptability
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Tasks of judging the grammatical acceptability of a sentence, with the goal of testing their linguistic competence.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/lingaccept/cola/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    CoLA
+                                    <span class="notice">lingaccept/cola</span>
+                                </h5>
+                                <p class="card-text">
+                                    The Corpus of Linguistic Acceptability (CoLA) in its full form consists of 10657 sentences from 23 linguistics publications, expertly annotated for acceptability (grammaticality) by their original...
+
+                                    
+                                    <span class="invisible">Linguistic Acceptability</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Machine Reading Comprehension
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Machine Reading Comprehension is one of the key problems in Natural Language Understanding, where the task is to read and comprehend a given text passage.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/rc/multirc/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    MultiRC
+                                    <span class="notice">rc/multirc</span>
+                                </h5>
+                                <p class="card-text">
+                                    The Multi-Sentence Reading Comprehension dataset (MultiRC, Khashabi et al., 2018) is a true/false question-answering task.
+Each example consists of a context paragraph, a question about that...
+
+                                    
+                                    <span class="invisible">Machine Reading Comprehension</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/rc/race/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    RACE
+                                    <span class="notice">rc/race</span>
+                                </h5>
+                                <p class="card-text">
+                                    Race is a large-scale reading comprehension dataset with more than 28,000 passages and nearly 100,000 questions.
+The dataset is collected from English examinations in China, which are designed for...
+
+                                    
+                                    <span class="invisible">Machine Reading Comprehension</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/rc/record/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    ReCoRD
+                                    <span class="notice">rc/record</span>
+                                </h5>
+                                <p class="card-text">
+                                    ReCoRD is a reading comprehension task requiring commonsense reasoning. The context paragraphs and queries are generated from curated CNN/ Daily Mail news articles. The task itself is formulated...
+
+                                    
+                                    <span class="invisible">Machine Reading Comprehension</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Machine Translation
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Machine translation is the task of translating a sentence in a source language to a different target language."></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/mt/wmt16_en_ro/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    WMT16 English-Romanian
+                                    <span class="notice">mt/wmt16_en_ro</span>
+                                </h5>
+                                <p class="card-text">
+                                    The English-Romanian translation dataset from the shared task of the First Conference on Machine Translation (WMT16).
+
+
+                                    
+                                    <span class="invisible">Machine Translation</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Multilingual Knowledge Integration
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Multilingual Knowledge Integration is the task of enhancing the multilingual language model with multilingual knowledge graphs/bases (including cross-lingual entity alignments and factual knowledge triples)"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/mlki/ep/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    MLKI_EP
+                                    <span class="notice">mlki/ep</span>
+                                </h5>
+                                <p class="card-text">
+                                    Enhancing the phrase-level cross-lingual entity alignment in language models, which is suitable for knowledge graph tasks
+
+                                    
+                                    <span class="invisible">Multilingual Knowledge Integration</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/mlki/es/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    MLKI_ES
+                                    <span class="notice">mlki/es</span>
+                                </h5>
+                                <p class="card-text">
+                                    Enhancing the sentence-level cross-lingual entity alignment in language models, which is suitable for language modeling tasks
+
+                                    
+                                    <span class="invisible">Multilingual Knowledge Integration</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/mlki/tp/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    MLKI_TP
+                                    <span class="notice">mlki/tp</span>
+                                </h5>
+                                <p class="card-text">
+                                    Enhancing the phrase-level factual triple knowledge in language models, which is suitable for knowledge graph tasks
+
+                                    
+                                    <span class="invisible">Multilingual Knowledge Integration</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/mlki/ts/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    MLKI_TS
+                                    <span class="notice">mlki/ts</span>
+                                </h5>
+                                <p class="card-text">
+                                    Enhancing the sentence-level factual triple knowledge in language models, which is suitable for language modeling tasks
+
+                                    
+                                    <span class="invisible">Multilingual Knowledge Integration</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Named Entity Recognition
+
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Named Entity Recognition identifies named entities in a text. It classifies the found named entities as people, locations, organisations, ...
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ner/conll2003/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    conll2003
+                                    <span class="notice">ner/conll2003</span>
+                                </h5>
+                                <p class="card-text">
+                                    The CoNLL 2003 Task is a language independent Named Entity Recognition. In the dataset are englich and german training, development and test sets. The english data is from the Reuter corpus and...
+
+                                    
+                                    <span class="invisible">Named Entity Recognition
+</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ner/mit_movie_trivia/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    MIT Movie Corpus (trivia10k13)
+                                    <span class="notice">ner/mit_movie_trivia</span>
+                                </h5>
+                                <p class="card-text">
+                                    The MIT Movie Corpus contains movie reviews tagged in BIO format. We use the larger trivia10k13 corpus which contains more complex examples.
+
+
+                                    
+                                    <span class="invisible">Named Entity Recognition
+</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Natural Language Inference
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Natural language inference is the task of determining whether a &#34;hypothesis&#34; is
+true (entailment), false (contradiction), or undetermined (neutral) given a &#34;premise&#34;."></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/nli/cb/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    CommitmentBank
+                                    <span class="notice">nli/cb</span>
+                                </h5>
+                                <p class="card-text">
+                                    The CommitmentBank is a corpus of naturally occurring discourses whose final sentence contains a clause-embedding
+predicate under an entailment canceling operator.
+
+
+                                    
+                                    <span class="invisible">Natural Language Inference</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/nli/multinli/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    MultiNLI
+                                    <span class="notice">nli/multinli</span>
+                                </h5>
+                                <p class="card-text">
+                                    Multi-Genre Natural Language Inference is a large-scale, crowdsourced entailment classification task.
+Given a pair of sentences, the goal is to predict whether the second sentence is an...
+
+                                    
+                                    <span class="invisible">Natural Language Inference</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/nli/qnli/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    QNLI
+                                    <span class="notice">nli/qnli</span>
+                                </h5>
+                                <p class="card-text">
+                                    Question Natural Language Inference is a  version  of  SQuAD which  has  been converted  to  a  binary  classification  task.
+The positive examples are (question, sentence) pairs which do contain...
+
+                                    
+                                    <span class="invisible">Natural Language Inference</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/nli/rte/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    RTE
+                                    <span class="notice">nli/rte</span>
+                                </h5>
+                                <p class="card-text">
+                                    Recognizing Textual Entailment is a binary entailment task similar to MNLI, but with much less training data.
+
+
+                                    
+                                    <span class="invisible">Natural Language Inference</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/nli/scitail/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    SciTail
+                                    <span class="notice">nli/scitail</span>
+                                </h5>
+                                <p class="card-text">
+                                    The SciTail dataset is an entailment dataset created from multiple-choice science exams and web sentences.
+Each question and the correct answer choice are converted into an assertive statement to...
+
+                                    
+                                    <span class="invisible">Natural Language Inference</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/nli/sick/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    SICK
+                                    <span class="notice">nli/sick</span>
+                                </h5>
+                                <p class="card-text">
+                                    The SICK relatedness (SICK-R) task trains a linear model to output a score from 1 to 5 indicating the relatedness of
+two sentences. For the same dataset (SICK-E) can be treated as a three-class...
+
+                                    
+                                    <span class="invisible">Natural Language Inference</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Part-Of-Speech Tagging
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="POS tagging is the process of marking up a word in a text as corresponding to a particular part of speech such as noun, verb, adjective etc.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/pos/conll2003/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    CoNLL 2003
+                                    <span class="notice">pos/conll2003</span>
+                                </h5>
+                                <p class="card-text">
+                                    POS-tagging using the part-of-speech tags provided by the English subset of the dataset for the CoNLL 2003 shared task for NER.
+
+
+                                    
+                                    <span class="invisible">Part-Of-Speech Tagging</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/pos/ldc2012t13/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    LDC2012T13
+                                    <span class="notice">pos/ldc2012t13</span>
+                                </h5>
+                                <p class="card-text">
+                                    English Web Treebank was developed by the Linguistic Data Consortium (LDC) with funding through a gift from Google Inc. It consists of over 250,000 words of English weblogs, newsgroups, email,...
+
+                                    
+                                    <span class="invisible">Part-Of-Speech Tagging</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/pos/ud_ewt/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    UD English EWT
+                                    <span class="notice">pos/ud_ewt</span>
+                                </h5>
+                                <p class="card-text">
+                                    POS-tagging on Universal Dependencies English EWT.
+UD English EWT is a Gold Standard Universal Dependencies Corpus for English, built over the source material of the English Web Treebank...
+
+                                    
+                                    <span class="invisible">Part-Of-Speech Tagging</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Phrase Chunking
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Phrase chunking is a subtask of information extraction that seeks to locate and extract phrases from given sentences.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/chunk/conll2000/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    CoNLL 2000
+                                    <span class="notice">chunk/conll2000</span>
+                                </h5>
+                                <p class="card-text">
+                                    Text chunking was the shared task for CoNLL-2000. This data consists of the same partitions of the Wall Street Journal corpus (WSJ) as the widely used data for noun phrase chunking: sections 15-18...
+
+                                    
+                                    <span class="invisible">Phrase Chunking</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/chunk/conll2003/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    CONLL2003
+                                    <span class="notice">chunk/conll2003</span>
+                                </h5>
+                                <p class="card-text">
+                                    CoNLL-2003 shared task:language-independent named entity recognition is a dataset corpus consisting of the Reuters news stories between August 1996 and August 1997. Each line of the corpus has...
+
+                                    
+                                    <span class="invisible">Phrase Chunking</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Quality Estimation
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Estimating the quality of neural machine translation output at run-time, without relying on reference translations"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/quality_estimation/wmt21/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    WMT21
+                                    <span class="notice">quality_estimation/wmt21</span>
+                                </h5>
+                                <p class="card-text">
+                                    The WMT21 shared task on quality estimation. Training language pairs: high-resource English--German (En-De) and English--Chinese (En-Zh), medium-resource Russian-English (Ru-En), Romanian--English...
+
+                                    
+                                    <span class="invisible">Quality Estimation</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Question Answering
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Question answering is the task of answering a natural language question.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/qa/boolq/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    BoolQ
+                                    <span class="notice">qa/boolq</span>
+                                </h5>
+                                <p class="card-text">
+                                    We build a reading comprehension dataset, BoolQ, of such questions, and show that they are unexpectedly challenging.
+
+
+                                    
+                                    <span class="invisible">Question Answering</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/qa/cq/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    ComplexQuestions
+                                    <span class="notice">qa/cq</span>
+                                </h5>
+                                <p class="card-text">
+                                    ComplexQuestions is a QA dataset originally created for querying knowledge bases.
+The questions are obtained from Google web queries and don’t provide supporting context paragraphs inthe original...
+
+                                    
+                                    <span class="invisible">Question Answering</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/qa/narrativeqa/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    narrativeqa
+                                    <span class="notice">qa/narrativeqa</span>
+                                </h5>
+                                <p class="card-text">
+                                    NarrativeQA is dataset of stories and corresponding questions which are designed to test reading comprehension.
+
+                                    
+                                    <span class="invisible">Question Answering</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/qa/squad1/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    SQuAD 1.1
+                                    <span class="notice">qa/squad1</span>
+                                </h5>
+                                <p class="card-text">
+                                    Stanford Question Answering Dataset (SQuAD) is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is...
+
+                                    
+                                    <span class="invisible">Question Answering</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/qa/squad2/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    SQuAD 2.0
+                                    <span class="notice">qa/squad2</span>
+                                </h5>
+                                <p class="card-text">
+                                    SQuAD2.0 combines the 100,000 questions in SQuAD1.1 with over 50,000 unanswerable questions written adversarially by crowdworkers to look similar to answerable ones. To do well on SQuAD2.0,...
+
+                                    
+                                    <span class="invisible">Question Answering</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/qa/wikihop/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    WikiHop
+                                    <span class="notice">qa/wikihop</span>
+                                </h5>
+                                <p class="card-text">
+                                    WikiHop is open-domain and based on Wikipedia articles; the goal is to recover Wikidata information by hopping through documents. The example on the right shows the relevant documents leading to...
+
+                                    
+                                    <span class="invisible">Question Answering</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Semantic Tagging
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Semantic tagging describes the lexical semantics of word tokens in a sentence.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/semtag/pmb/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Parallel Meaning Bank
+                                    <span class="notice">semtag/pmb</span>
+                                </h5>
+                                <p class="card-text">
+                                    The Parallel Meaning Bank (PMB), developed at the University of Groningen and building upon the Groningen Meaning Bank, comprises sentences and texts in raw and tokenised format, syntactic...
+
+                                    
+                                    <span class="invisible">Semantic Tagging</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Semantic Textual Similarity
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Semantic textual similarity deals with determining how similar two pieces of texts are. This can take the form of assigning a score from 1 to 5. Related tasks are paraphrase or duplicate identification.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sts/mrpc/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    MRPC
+                                    <span class="notice">sts/mrpc</span>
+                                </h5>
+                                <p class="card-text">
+                                    Microsoft Research Paraphrase Corpus consists of sentence pairs automatically extracted from online news sources,
+with human annotations for whether the sentences in the pair are semantically equivalent.
+
+
+                                    
+                                    <span class="invisible">Semantic Textual Similarity</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sts/qqp/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    QQP
+                                    <span class="notice">sts/qqp</span>
+                                </h5>
+                                <p class="card-text">
+                                    Quora Question Pairs is a binary classification task where the goal is to determine if two questions asked on Quora are semantically equivalent.
+
+
+                                    
+                                    <span class="invisible">Semantic Textual Similarity</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sts/stackexchange/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    StackExchange QA Similarity
+                                    <span class="notice">sts/stackexchange</span>
+                                </h5>
+                                <p class="card-text">
+                                    StackExchange QA similarity determines whether two questions or a question-answer pair in StackExchange forums are related or not (e.g., to find duplicate questions or relevant answers).
+
+
+                                    
+                                    <span class="invisible">Semantic Textual Similarity</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sts/sts-b/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    STS-B
+                                    <span class="notice">sts/sts-b</span>
+                                </h5>
+                                <p class="card-text">
+                                    The Semantic Textual Similarity Benchmark is a collection of sentence pairs drawn from news headlines and other sources.
+They were annotated with a score from 1 to 5 denoting how similar the two...
+
+                                    
+                                    <span class="invisible">Semantic Textual Similarity</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Sentiment Analysis
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Sentiment analysis is the task of classifying the polarity of a given text.
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sentiment/hinglish-twitter-sentiment/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Hinglish Sentiment
+                                    <span class="notice">sentiment/hinglish-twitter-sentiment</span>
+                                </h5>
+                                <p class="card-text">
+                                    This dataset was released as part of SemEval 2020, Task 9 on Sentiment Analysis in Code Mixed Social Media (Twitter) text. It tags positive, neutral and negative sentiment. There are 17,000...
+
+                                    
+                                    <span class="invisible">Sentiment Analysis</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sentiment/imdb/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    IMDb
+                                    <span class="notice">sentiment/imdb</span>
+                                </h5>
+                                <p class="card-text">
+                                    MDB dataset having 50K movie reviews for natural language processing or Text analytics.
+This is a dataset for binary sentiment classification containing substantially more data than previous...
+
+                                    
+                                    <span class="invisible">Sentiment Analysis</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sentiment/rotten_tomatoes/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Rotten Tomatoes Movie Reviews
+                                    <span class="notice">sentiment/rotten_tomatoes</span>
+                                </h5>
+                                <p class="card-text">
+                                    Movie Review Dataset.
+This is a dataset of containing 5,331 positive and 5,331 negative processed sentences from Rotten Tomatoes movie reviews.
+This data was first used in Bo Pang and Lillian Lee,...
+
+                                    
+                                    <span class="invisible">Sentiment Analysis</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sentiment/sst-2/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    SST-2
+                                    <span class="notice">sentiment/sst-2</span>
+                                </h5>
+                                <p class="card-text">
+                                    The Stanford Sentiment Treebank is a binary single-sentence classification task consisting of sentences extracted from movie reviews with human annotations of their sentiment. 
+
+
+                                    
+                                    <span class="invisible">Sentiment Analysis</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Summarization
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Shortening a set of data computationally, to create a subset (a summary) that represents the most important or relevant information within the original content. 
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sum/cnn_dailymail/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    CNN/ DailyMail
+                                    <span class="notice">sum/cnn_dailymail</span>
+                                </h5>
+                                <p class="card-text">
+                                    CNN/ DailyMail summarization dataset.
+
+                                    
+                                    <span class="invisible">Summarization</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sum/xsum/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    XSum
+                                    <span class="notice">sum/xsum</span>
+                                </h5>
+                                <p class="card-text">
+                                    Extreme Summarization (XSum) Dataset.
+
+                                    
+                                    <span class="invisible">Summarization</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Wiki Ann NER
+
+            
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Named Entity Recognition identifies named entities in a text. It classifies the found named entities as people, locations, organisations, ...
+"></i>
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/wikiann/ar/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Arabic
+                                    <span class="notice">wikiann/ar</span>
+                                </h5>
+                                <p class="card-text">
+                                    NER on Wikipedia Documents.
+
+
+                                    
+                                    <span class="invisible">Wiki Ann NER
+</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/wikiann/en/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    English
+                                    <span class="notice">wikiann/en</span>
+                                </h5>
+                                <p class="card-text">
+                                    NER on Wikipedia Documents.
+
+
+                                    
+                                    <span class="invisible">Wiki Ann NER
+</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/wikiann/ja/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Japanese
+                                    <span class="notice">wikiann/ja</span>
+                                </h5>
+                                <p class="card-text">
+                                    NER on Wikipedia Documents.
+
+
+                                    
+                                    <span class="invisible">Wiki Ann NER
+</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/wikiann/zh/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Chinese
+                                    <span class="notice">wikiann/zh</span>
+                                </h5>
+                                <p class="card-text">
+                                    NER on Wikipedia Documents.
+
+
+                                    
+                                    <span class="invisible">Wiki Ann NER
+</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+        <div class="task mb-4">
+            <h3 class="mb-2">Word Sense Disambiguation
+            
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/wordsense/wic/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    WiC
+                                    <span class="notice">wordsense/wic</span>
+                                </h5>
+                                <p class="card-text">
+                                    The Word-in-Context dataset is a word sense disambiguation task in the form of a binary classification task. Each dataset example consists of two sentences and a polysemous word that appears in...
+
+                                    
+                                    <span class="invisible">Word Sense Disambiguation</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+        
+    
+        
+    
+
+    <div id="NoSearchResult" class="d-none">
+        <div class="alert alert-light">
+            No tasks and datasets for <span class="query font-weight-bold"></span>
+        </div>
+        <div class="mt-5">
+            <div class="speech-bubble">
+                <p class="m-0">Add your
+                    task
+                    to AdapterHub,
+                    <br/>
+                    it's super awesome!
+                </p>
+                <div class="mt-3 text-right">
+                    <a class="text-white btn btn-sm border-white" href="https://docs.adapterhub.ml/contributing.html#add-your-pre-trained-adapter">
+                        <i class="fas fa-rocket"></i> Get started
+                    </a>
+                </div>
+            </div>
+            <img src="/static/adapter-bert.png" height="350"/>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+            $('#TypeToSearch').on('input paste change', function() {
+                const searchBox = $('#TypeToSearch');
+                const searchInfo = $('#SearchInfo');
+                const q = searchBox.val().toLowerCase();
+
+                if(q.length === 0) {
+                    $('.subtask, .task').removeClass('d-none').addClass('d-block');
+                    $('#NoSearchResult').addClass('d-none').removeClass('d-block');
+                } else {
+                    searchInfo.removeClass('d-none')
+                    // hide subtasks
+                    $('.subtask').each(function () {
+                        var visible = $(this).text().toLowerCase().includes(q);
+                        if (visible) {
+                            $(this).removeClass('d-none').addClass('d-block');
+                        } else {
+                            $(this).addClass('d-none').removeClass('d-block');
+                        }
+                    })
+
+                    // hide tasks if no subtasks are present
+                    $('.task').each(function () {
+                        var visible = $(this).find('.subtask.d-block').length > 0;
+                        if (visible) {
+                            $(this).removeClass('d-none').addClass('d-block');
+                        } else {
+                            $(this).addClass('d-none').removeClass('d-block');
+                        }
+                    });
+
+                    // count search results
+                    const nResults = $('.subtask.d-block').length;
+                    if(nResults > 0) {
+                        $('#NoSearchResult').addClass('d-none');
+                    } else {
+                        $('#NoSearchResult').removeClass('d-none')
+                            .find('.query').text(searchBox.val());
+                    }
+                }
+            });
+        });
+    </script>
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

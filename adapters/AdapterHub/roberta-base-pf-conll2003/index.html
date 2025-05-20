@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub - AdapterHub/roberta-base-pf-conll2003</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="/explore/">Explore</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/explore/text_task/">Task</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/explore/ner/conll2003/">ner/conll2003</a>
+            </li>
+
+
+
+
+
+
+        </ol>
+    </nav>
+</div>
+
+<h1><span class="text-white-65">Adapter for</span> ner/conll2003</h1>
+<h2>AdapterHub / roberta-base-pf-conll2003</h2>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+
+    <div class="d-none d-md-inline float-md-right" style="margin-top: -16px;">
+        
+        <a href="https://huggingface.co/AdapterHub/roberta-base-pf-conll2003" class="hf-link">
+            <img src="/static/logos/huggingface.svg" />&nbsp; View on huggingface.co
+        </a>
+        
+    </div>
+
+    <br>
+    <section>
+        
+        <pre class="p-4 code">
+model = AutoAdapterModel.from_pretrained("roberta-base")
+model.load_adapter("AdapterHub/roberta-base-pf-conll2003", source="hf")</pre>
+        
+        <i class="btn-clipboard"></i>
+    </section>
+
+<section>
+    <h2>Description</h2>
+    <div class="adapter-description">
+        
+        
+        <h1>Adapter <code>AdapterHub/roberta-base-pf-conll2003</code> for roberta-base</h1>
+<p>An <a href="https://adapterhub.ml">adapter</a> for the <code>roberta-base</code> model that was trained on the <a href="https://adapterhub.ml/explore/ner/conll2003/">ner/conll2003</a> dataset and includes a prediction head for tagging.</p>
+<p>This adapter was created for usage with the <strong><a href="https://github.com/Adapter-Hub/adapter-transformers">adapter-transformers</a></strong> library.</p>
+<h2>Usage</h2>
+<p>First, install <code>adapter-transformers</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">pip install -U adapter-transformers</span>
+</code></pre></div>
+
+<p><em>Note: adapter-transformers is a fork of transformers that acts as a drop-in replacement with adapter support. <a href="https://docs.adapterhub.ml/installation.html">More</a></em></p>
+<p>Now, the adapter can be loaded and activated like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelWithHeads</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelWithHeads</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;roberta-base&quot;</span><span class="p">)</span>
+<span class="n">adapter_name</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">load_adapter</span><span class="p">(</span><span class="s2">&quot;AdapterHub/roberta-base-pf-conll2003&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;hf&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">active_adapters</span> <span class="o">=</span> <span class="n">adapter_name</span>
+</code></pre></div>
+
+<h2>Architecture &amp; Training</h2>
+<p>The training code for this adapter is available at https://github.com/adapter-hub/efficient-task-transfer.
+In particular, training configurations for all tasks can be found <a href="https://github.com/adapter-hub/efficient-task-transfer/tree/master/run_configs">here</a>.</p>
+<h2>Evaluation results</h2>
+<p>Refer to <a href="https://arxiv.org/pdf/2104.08247">the paper</a> for more information on results.</p>
+<h2>Citation</h2>
+<p>If you use this adapter, please cite our paper <a href="https://arxiv.org/pdf/2104.08247">"What to Pre-Train on? Efficient Intermediate Task Selection"</a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">poth-etal-2021-pre</span><span class="p">,</span>
+    <span class="na">title</span> <span class="p">=</span> <span class="s">&quot;{W}hat to Pre-Train on? {E}fficient Intermediate Task Selection&quot;</span><span class="p">,</span>
+    <span class="na">author</span> <span class="p">=</span> <span class="s">{Poth, Clifton  and</span>
+<span class="s">      Pfeiffer, Jonas  and</span>
+<span class="s">      R{&quot;u}ckl{&#39;e}, Andreas  and</span>
+<span class="s">      Gurevych, Iryna}</span><span class="p">,</span>
+    <span class="na">booktitle</span> <span class="p">=</span> <span class="s">&quot;Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing&quot;</span><span class="p">,</span>
+    <span class="na">month</span> <span class="p">=</span> <span class="nv">nov</span><span class="p">,</span>
+    <span class="na">year</span> <span class="p">=</span> <span class="s">&quot;2021&quot;</span><span class="p">,</span>
+    <span class="na">address</span> <span class="p">=</span> <span class="s">&quot;Online and Punta Cana, Dominican Republic&quot;</span><span class="p">,</span>
+    <span class="na">publisher</span> <span class="p">=</span> <span class="s">&quot;Association for Computational Linguistics&quot;</span><span class="p">,</span>
+    <span class="na">url</span> <span class="p">=</span> <span class="s">&quot;https://aclanthology.org/2021.emnlp-main.827&quot;</span><span class="p">,</span>
+    <span class="na">pages</span> <span class="p">=</span> <span class="s">&quot;10585--10605&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+        
+        
+    </div>
+</section>
+
+<section>
+    <h2>Properties</h2>
+    <div class="property-box">
+        <div class="row">
+            <div class="col-sm-3 label">Pre-trained model</div>
+            <div class="col-sm-9">roberta-base</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Adapter type</div>
+            <div class="col-sm-9">
+                <a href="/explore/text_task/">
+                    Task
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">
+                Prediction Head
+                <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top"
+                   title="If the adapter provides a prediction head, you can directly use it for inference.">
+                </i>
+            </div>
+            <div class="col-sm-9">
+                
+                <i class="fas fa-check"></i>&nbsp; Yes
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Task</div>
+            <div class="col-sm-9">Named Entity Recognition
+</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 label">Dataset</div>
+            <div class="col-sm-9">
+                <a href="/explore/ner/conll2003/">
+                    conll2003
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <h2>Architecture</h2>
+    
+    <div class="collapse-container">
+        <div class="collapse-header">
+            <button class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#collapseConfig">
+                <h5 class="my-1">Configuration <i class="float-right mt-1 fas fa-angle-up rotate-icon"></i></h5>
+            </button>
+        </div>
+        <div id="collapseConfig" class="collapse">
+            <pre class="p-4">{
+  &#34;adapter_residual_before_ln&#34;: false,
+  &#34;cross_adapter&#34;: false,
+  &#34;inv_adapter&#34;: null,
+  &#34;inv_adapter_reduction_factor&#34;: null,
+  &#34;leave_out&#34;: [],
+  &#34;ln_after&#34;: false,
+  &#34;ln_before&#34;: false,
+  &#34;mh_adapter&#34;: false,
+  &#34;non_linearity&#34;: &#34;relu&#34;,
+  &#34;original_ln_after&#34;: true,
+  &#34;original_ln_before&#34;: true,
+  &#34;output_adapter&#34;: true,
+  &#34;reduction_factor&#34;: 16,
+  &#34;residual_before_ln&#34;: true
+}</pre>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="mb-5">
+    <h2>Citations</h2>
+    <div class="collapse-container">
+        <div class="collapse-header">
+            <button class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#collapseOne">
+                <h5 class="my-1">BibTeX <i class="float-right mt-1 fas fa-angle-up rotate-icon"></i></h5>
+            </button>
+        </div>
+        <div id="collapseOne" class="collapse">
+            <div>
+                
+                
+                
+                <h5 class="citation-notice">Task</h5>
+                <pre class="p-4 code">@article{sang2003introduction,
+  title={Introduction to the CoNLL-2003 shared task: Language-independent named entity recognition},
+  author={Sang, Erik F and De Meulder, Fien},
+  journal={arXiv preprint cs/0306050},
+  year={2003}
+}
+</pre>
+                
+            </div>
+        </div>
+      </div>
+</section>
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

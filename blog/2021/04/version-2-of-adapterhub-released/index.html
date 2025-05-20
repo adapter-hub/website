@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<meta name="description" content="Today, we are releasing version 2 of the AdapterHub. This release introduces several exciting new ways for composing adapters through composition blocks, including AdapterFusion, parallel inference, Adapter stacking, and combinations thereof. Furthermore, we now support new Transformer architectures such as GPT-2 and BART." />
+
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub - Version 2 of AdapterHub Released</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="/blog/">Blog</a>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<h1>Version 2 of AdapterHub Released</h1>
+<ul class="blog-post-bar mt-4 mb-0">
+    <li><i class="fa fa-calendar-alt"></i>&nbsp; 2021-04-29</li>
+    <li><i class="fa fa-user"></i>&nbsp;
+    
+        Clifton Poth
+        
+        &nbsp;<a href="https://twitter.com/@clifapt"><i class="fab fa-twitter"></i></a>
+        
+        
+        ,&nbsp;
+        
+    
+        Hannah Sterz
+        
+        &nbsp;<a href="https://twitter.com/@h_sterz"><i class="fab fa-twitter"></i></a>
+        
+        
+    
+    </li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+
+<div class="row">
+    <div class="col-lg-10 my-2">
+        
+
+        <div class="blog-post-content">
+            <figure id="_caption-1">
+<img alt="" src="/static/images/v2_blocks.png" title="Illustration of adapter composition blocks supported in v2 of adapter-transformers." />
+<figcaption><span>Figure&nbsp;1:</span> Illustration of adapter composition blocks supported in v2 of adapter-transformers.</figcaption>
+</figure>
+<p>Adapters, a light-weight alternative to full language model fine-tuning, enable new ways of composing task-specific knowledge from multiple sources, e.g., for multi-task transfer learning (<a href="https://arxiv.org/pdf/2005.00247.pdf">Pfeiffer et al., 2021</a>) or cross-lingual transfer (<a href="https://www.aclweb.org/anthology/2020.emnlp-main.617.pdf">Pfeiffer et al., 2020</a>).
+One of the most important advantages of adapters is their modularity, which allows many exciting possibilities for composition beyond the ones mentioned above.</p>
+<p>Today, we are releasing Version 2 of the <a href="https://adapterhub.ml/">AdapterHub framework</a>, including a major update of <code>adapter-transformers</code>, which makes it easier to take advantage of the composability and flexibility of adapters.
+<code>adapter-transformers</code> --- an extension of the great <a href="https://huggingface.co/transformers/">Transformers library by HuggingFace</a> --- is the heart of the AdapterHub that simplifies the entire adapter lifecycle.
+(Check out <a href="https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/">our first blog post for more on this</a>.)</p>
+<p>In the following sections, we will discuss all new features and changes that we introduce with the v2 release.
+You can find <code>adapter-transformers</code> <a href="https://github.com/Adapter-Hub/adapter-transformers">on GitHub</a> or install it via pip:</p>
+<div class="codehilite"><pre><span></span><code>pip install -U adapter-transformers
+</code></pre></div>
+
+<h2 id="whats-new">What's new</h2>
+<h3 id="adapter-composition-blocks">Adapter composition blocks</h3>
+<p>The new version introduces a radically different way to define adapter setups in a Transformer model,
+allowing much more advanced and flexible adapter composition possibilities.
+An example setup using this new, modular composition mechanism might look like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">transformers.adapters.composition</span> <span class="k">as</span> <span class="nn">ac</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">active_adapters</span> <span class="o">=</span> <span class="n">ac</span><span class="o">.</span><span class="n">Stack</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">ac</span><span class="o">.</span><span class="n">Split</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="n">split_index</span><span class="o">=</span><span class="mi">60</span><span class="p">))</span>
+</code></pre></div>
+
+<p>As we can see, the basic building blocks of this setup are simple objects representing different possibilities to combine individual adapters.
+In the above example, <code>Stack</code> describes stacking adapters layers on top of each other,
+e.g., as it is used in the <em>MAD-X</em> framework for cross-lingual transfer.
+<code>Split</code> results in splitting the input sequences between two adapters at a specified <code>split_index</code>.
+In the depicted setup, at every transformer layer the token representations are first passed through adapter <code>a</code> before being split at the <code>split_index</code> and passed through adapters <code>b</code> and <code>c</code> respectively.</p>
+<p>Besides the two blocks shown, <code>adapter-transformers</code> includes a <code>Fuse</code> block (for <a href="https://arxiv.org/pdf/2005.00247.pdf"><em>AdapterFusion</em></a>) and a <code>Parallel</code> block (see below).
+All of these blocks are derived from <code>AdapterCompositionBlock</code>, and they can be flexibly combined in even very complex scenarios.
+Figure 1 shows an illustration of the structure of each composition block.
+For more information on specifying the active adapters using <code>active_adapters</code> and the new composition blocks,
+refer to the <a href="https://docs.adapterhub.ml/adapter_composition.html">corresponding section in our documentation</a>.</p>
+<h3 id="new-model-support-adapters-for-bart-and-gpt-2">New model support: Adapters for BART and GPT-2</h3>
+<p>Version 2 adds support for BART and GPT-2, marking a new type of models we support in the framework, namely sequence-to-sequence models (more to come!)</p>
+<p>We have <a href="https://adapterhub.ml/blog/2021/04/adapters-for-generative-and-seq2seq-models-in-nlp/">a separate blog post</a> that studies the effectiveness of adapters within these two models in greater detail! This blog post also includes a hands-on example where we train GPT-2 to generate poetry.</p>
+<h3 id="adapterdrop">AdapterDrop</h3>
+<p>Version 2 of <code>adapter-transformers</code> integrates some of the key ideas presented in <em>AdapterDrop</em> <a href="https://arxiv.org/pdf/2010.11918.pdf">(Rücklé et al., 2020)</a>, namely, (1) parallel multi-task inference and (2) <em>robust</em> AdapterDrop training. </p>
+<p>Parallel multi-task inference, for any given input, runs multiple task adapters in parallel and thereby achieves considerable improvements in inference speed compared to sequentially running multiple Transformer models (see the paper for more details). The <code>Parallel</code> adapter composition block implements this behavior, which we describe in more detail <a href="adapter_composition.html#parallel">here</a>.</p>
+<p>A central advantage of multi-task inference is that it shares the computations in lower transformer layers across all inference tasks (before the first adapter block). Dropping out adapters from lower transformer layers can thus result in even faster inference speeds, but it often comes at the cost of lower accuracies. To allow for <em>dynamic</em> adjustment of the number of dropped adapter layers at run-time regarding the available computational resources, we introduce <em>robust</em> adapter training. This technique drops adapters from a random number of lower transformer layers in each training step. The resulting adapter can be adjusted at run-time regarding the number of dropped layers, to dynamically select between a higher accuracy or faster inference speeds.
+We present an example for robust <em>AdapterDrop</em> training <a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/05_Adapter_Drop_Training.ipynb">in this Colab notebook</a>.</p>
+<h3 id="transformers-upgrade">Transformers upgrade</h3>
+<p>Version 2.0.0 upgrades the underlying HuggingFace Transformers library from v3.5.1 to v4.5.1, bringing many awesome new features created by HuggingFace.</p>
+<h2 id="what-has-changed">What has changed</h2>
+<h3 id="unified-handling-of-all-adapter-types">Unified handling of all adapter types</h3>
+<p><em>Includes breaking changes ⚠️</em></p>
+<p>The new version removes the hard distinction between <em>task</em> and <em>language</em> adapters (realized using the <code>AdapterType</code> enumeration in v1) everywhere in the library.
+Instead, all adapters use the same set of methods.
+This results in some breaking changes.
+For example, you don't have to specify the adapter type anymore when adding a new adapter.
+Instead of...</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># OLD (v1)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">AdapterType</span><span class="o">.</span><span class="n">text_task</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="s2">&quot;houlsby&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>... you would simply write...</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># NEW (v2)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="s2">&quot;houlsby&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>A similar change applies for loading adapters from the Hub using <code>load_adapter()</code>.</p>
+<p>In v1, adapters of type <code>text_lang</code> automatically had invertible adapter modules added.
+As this type distinction is now removed, adding invertible adapters can be specified via the adapter config.
+For example...</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># OLD (v1)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">AdapterType</span><span class="o">.</span><span class="n">text_task</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="s2">&quot;pfeiffer&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>... in v1 would be equivalent to the following in v2:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># NEW (v2)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="s2">&quot;pfeiffer+inv&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="changes-to-adapter_names-parameter">Changes to <code>adapter_names</code> parameter</h3>
+<p><em>Version 2.0.0 temporarily removed the <code>adapter_names</code> parameter entirely. Due to user feedback, it was re-added in v2.0.1.</em></p>
+<p>One possibility to specify the active adapters is to use the <code>adapter_names</code> parameter in each call to the model's <code>forward()</code> method.
+With the integration of the new, unified mechanism for specifying adapter setups using composition blocks,
+it is now recommended to specify the active adapters via <code>set_active_adapters()</code> or the <code>active_adapters</code> property.
+For example...</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># OLD (v1)</span>
+<span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">input_data</span><span class="p">,</span> <span class="n">adapter_names</span><span class="o">=</span><span class="s2">&quot;awesome_adapter&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>... would become...</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># NEW (v2)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">active_adapters</span> <span class="o">=</span> <span class="s2">&quot;awesome_adapter&quot;</span>
+<span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">input_data</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="internal-changes">Internal changes</h2>
+<h3 id="changes-to-adapter-weights-dictionaries-and-config">Changes to adapter weights dictionaries and config</h3>
+<p><em>Includes breaking changes ⚠️</em></p>
+<p>With the unification of different adapter types and other internal refactorings, the names of the modules holding the adapters have changed.
+This affects the weights dictionaries exported by <code>save_adapter()</code>, making the adapters incompatible <em>in name</em>.
+Nonetheless, this does not visibly affect loading older adapters with the new version.
+When loading an adapter trained with v1 in a newer version, <code>adapter-transformers</code> will automatically convert the weights to the new format.
+However, loading adapters trained with newer versions into an earlier v1.x version of the library does not work.</p>
+<p>Additionally, there have been some changes in the saved configuration dictionary, also including automatic conversions from older versions.</p>
+<h3 id="refactorings-in-adapter-implementations">Refactorings in adapter implementations</h3>
+<p>There have been some refactorings mainly in the adapter mixin implementations.
+Most importantly, all adapter-related code has been moved to the <code>transformers.adapters</code> namespace.
+Further details on the implementation can be found <a href="https://github.com/Adapter-Hub/adapter-transformers/blob/master/adding_adapters_to_a_model.md">in the guide for adding adapters to a new model</a>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>As part of the new AdapterHub release, version 2 of <code>adapter-transformers</code> brings a range of new features to broaden the possibilities of working with adapters.
+The library is still under active development, so make sure to check it out <a href="https://github.com/Adapter-Hub/adapter-transformers">on GitHub</a>.
+Also, we're always happy for any kind of contributions!</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., &amp; Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML 2019, <a href="http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf">http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf</a></li>
+<li>Pfeiffer, J., Rücklé, A., Poth, C., Kamath, A., Vulić, I., Ruder, S., Cho, K., &amp; Gurevych, I. (2020). AdapterHub: A Framework for Adapting Transformers. EMNLP 2020 <a href="https://www.aclweb.org/anthology/2020.emnlp-demos.7.pdf">https://www.aclweb.org/anthology/2020.emnlp-demos.7.pdf</a></li>
+<li>Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., &amp; Gurevych, I. (2021). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. EACL 2021, <a href="https://www.aclweb.org/anthology/2021.eacl-main.39.pdf">https://www.aclweb.org/anthology/2021.eacl-main.39.pdf</a></li>
+<li>Pfeiffer, J., Vulic, I., Gurevych, I., &amp; Ruder, S. (2020). MAD-X: An Adapter-based Framework for Multi-task Cross-lingual Transfer. EMNLP 2020, <a href="https://www.aclweb.org/anthology/2020.emnlp-main.617/">https://www.aclweb.org/anthology/2020.emnlp-main.617/</a></li>
+<li>Rücklé, A., Geigle, G., Glockner, M., Beck, T., Pfeiffer, J., Reimers, N., &amp; Gurevych, I. (2020). AdapterDrop: On the Efficiency of Adapters in Transformers. ArXiv, <a href="https://arxiv.org/abs/2010.11918">https://arxiv.org/abs/2010.11918</a></li>
+<li>Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., Rault, T., Louf, R., Funtowicz, M., &amp; Brew, J. (2019). Transformers: State-of-the-Art Natural Language Processing. EMNLP 2020, <a href="https://www.aclweb.org/anthology/2020.emnlp-demos.6/">https://www.aclweb.org/anthology/2020.emnlp-demos.6/</a></li>
+</ul>
+        </div>
+
+        <div class="my-5">
+            <a href="https://github.com/adapter-hub/website/blob/master/posts/2021/04/version-2-of-adapterhub-released.md">
+                <i class="fa fa-edit"></i>&nbsp; Edit Post on GitHub
+            </a>
+        </div>
+        
+        <div id="col-lg-10 comments">
+            <script src="https://utteranc.es/client.js"
+                repo="Adapter-Hub/website"
+                issue-term="pathname"
+                label="blog-post 💬"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

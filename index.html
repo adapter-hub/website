@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub -  Home of Adapters, the library for parameter-efficient and module fine-tuning </title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner">
+    <div class="container">
+        <a href="/blog/2023/11/introducing-adapters/">
+            New Release: Introducing <i>Adapters</i>, the new unified adapter package
+        </a>
+    </div>
+</div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+    <div class="row">
+        <div class="text-light col-md-9">
+            <p class="highlight-text my-0">
+                Home of <span class="highlight"><i>Adapters</i></span>, the library
+                for <br><span class="highlight">parameter-efficient</span> and <span class="highlight">modular</span> fine-tuning
+                <!-- A <span class="highlight">central repository</span>
+                for pre-trained <span class="highlight">adapter modules</span> -->
+            </p>
+            <!-- <p class="mt-2">
+                <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">406 <span class=" font-weight-normal">adapters</span></span>
+                <span class="badge badge-light p-1 py-md-2 mr-md-1 px-md-3 text-black-65">58 <span class=" font-weight-normal">text tasks</span></span>
+                <span class="badge badge-light p-1 py-md-2 px-md-3 text-black-65">97 <span class=" font-weight-normal">languages</span></span>
+            </p> -->
+            <pre class="text-white py-2 px-3 my-4 d-none d-md-block">pip install adapters</pre>
+            <div id="IndexButtonRow" class="rounded mt-lg-1">
+                <a class="btn"
+                   href="/blog/">
+                    <div>
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    Blog
+                </a>
+                <a class="btn d-none d-sm-inline-block"
+                   href="/explore/">
+                    <div>
+                        <i class="fas fa-binoculars"></i>
+                    </div>
+                    Explore
+                </a>
+                <a class="btn"
+                   href="https://docs.adapterhub.ml/">
+                    <div>
+                        <i class="fas fa-book"></i>
+                    </div>
+                    Docs
+                </a>
+                <a class="btn d-none d-lg-inline-block"
+                   href="https://github.com/Adapter-Hub/adapters">
+                    <div>
+                        <i class="fab fa-github"></i>
+                    </div>
+                    GitHub
+                </a>
+                <a class="btn"
+                   href="https://arxiv.org/abs/2311.11077" target="_blank">
+                    <div>
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    Paper
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-3 text-right d-none d-md-block">
+            <img id="HeaderLogo" src="/static/adapter-bert.png" height="252"/>
+        </div>
+    </div>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+
+    <section>
+        <div class="row pt-lg-3">
+            <div class="card col-md mx-3 px-0 px-md-2 bg-light border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Adapters are Lightweight 🤖</h5>
+                    <p class="card-text"> "Adapter" refers to a set of newly introduced weights, typically within the layers of a transformer model. Adapters provide an alternative to fully fine-tuning the model for each downstream task, while maintaining performance. They also have the added benefit of requiring as little as 1MB of storage space per task!
+                    <b><a href="https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub/">Learn More!</a></b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card col-md mx-3 ml-md-0 mr-md-3 mr-lg-0 mt-3 mt-md-0 px-0 px-md-2 bg-light border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Modular, Composable, and Extensible 🔧</h5>
+                    <p class="card-text"> Adapters, being self-contained moduar units, allow for easy extension and composition. This opens up opportunities to compose adapters to solve new tasks.
+                    <b><a href="https://docs.adapterhub.ml/adapter_composition.html">Learn More!</a></b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card col-lg mx-3 mt-3 mt-lg-0 px-0 px-md-2 bg-light border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Built on HuggingFace 🤗 Transformers 🚀</h5>
+                    <p class="card-text">AdapterHub builds on the <a href=https://github.com/huggingface/transformers target="_blank">HuggingFace transformers</a> framework, requiring as little as two additional lines of code to train adapters for a downstream task.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Posts">
+        <div class="row">
+            <div class="col col-lg-12">
+                <h1>Latest Posts 🗞</h1>
+            </div>
+        </div>
+        <div class="row posts">
+            
+            <div class="col-lg-12 my-lg-3 my-2">
+                <a class="btn card bg-light border-0" href="/blog/2025/05/adapters-for-any-transformer/">
+                    <div class="card-body">
+                        <h4 class="card-title text-left">
+                            Adapters for Any Transformer On the HuggingFace Hub
+                            <span class="notice d-none d-lg-block">
+                                <i class="fa fa-calendar-alt"></i>&nbsp; 2025-05-21
+                                <span class="mr-2">&nbsp;</span>
+                                <i class="fa fa-user"></i>&nbsp; The AdapterHub Team
+                            </span>
+                        </h4>
+                        <p class="notice d-lg-none text-left">
+                            <i class="fa fa-calendar-alt"></i>&nbsp; 2025-05-21
+                            <span class="mr-2">&nbsp;</span>
+                            <i class="fa fa-user"></i>&nbsp; The AdapterHub Team
+                        </p>
+                        <p class="card-text text-left">
+                            The latest release of Adapters v1.2.0 introduces a new adapter plugin interface that enables adding adapter functionality to nearly any Transformer model.
+We go through the details of working with this interface and various additional novelties of the library.
+
+                        </p>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="Quickstart">
+        <div class="row">
+            <div class="col col-lg-12">
+                <h1>Quickstart 🔥</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-12 col-md-4 d-none d-lg-block">
+                <div class="list-group flex-md-column flex-row" role="tablist">
+                    <a href="#quickstartInference" class="list-group-item list-group-item-action active" data-toggle="tab" role="tab" aria-controls="quickstartInference" aria-selected="true">
+                        Inference
+                    </a>
+                    <a href="#quickstartTraining" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartTraining" aria-selected="true">
+                        Training
+                    </a>
+                    <a href="#quickstartAdapterFusion" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartAdapterFusion" aria-selected="true">
+                        AdapterFusion
+                    </a>
+                    <a href="#quickstartAdapterDrop" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartAdapterDrop" aria-selected="true">
+                        AdapterDrop
+                    </a>
+                    <a href="#quickstartParallelInference" class="list-group-item list-group-item-action" data-toggle="tab" role="tab" aria-controls="quickstartParallelInference" aria-selected="true">
+                        Parallel Inference
+                    </a>
+                    <a href="https://github.com/Adapter-Hub/adapters/tree/main/notebooks" class="list-group-item list-group-item-action">
+                        More&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col col-12 d-lg-none">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a href="#quickstartInference" class="nav-link active" data-toggle="tab" role="tab" aria-controls="quickstartInference" aria-selected="true">
+                            Inference
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quickstartTraining" class="nav-link" data-toggle="tab" role="tab" aria-controls="quickstartTraining" aria-selected="true">
+                            Training
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quickstartAdapterFusion" class="nav-link" data-toggle="tab" role="tab" aria-controls="quickstartAdapterFusion" aria-selected="true">
+                            AdapterFusion
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quickstartAdapterDrop" class="nav-link" data-toggle="tab" role="tab" aria-controls="quickstartAdapterDrop" aria-selected="true">
+                            AdapterDrop
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quickstartParallelInference" class="nav-link" data-toggle="tab" role="tab" aria-controls="quickstartParallelInference" aria-selected="true">
+                            Parallel Inference
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/Adapter-Hub/adapters/tree/main/notebooks" class="nav-link">
+                            More&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content col col-12 col-lg-8 mt-4 mt-lg-0">
+                <div class="tab-pane fade show active" id="quickstartInference" role="tabpanel">
+                    <div class="row mb-3">
+    <div class="col-auto">
+        <h3 class="m-0">Load an Adapter for Inference 🏄</h3>
+    </div>
+    <div class="col text-right d-none d-lg-block">
+        <a class="btn-colab-headline" href="https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/02_Adapter_Inference.ipynb" target="_blank">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+        </a>
+    </div>
+</div>
+
+<p>Loading existing adapters from our repository is as simple as adding one additional line of code:</p>
+<pre class="code">from adapters import AutoAdapterModel
+
+model = AutoAdapterModel.from_pretrained("bert-base-uncased")
+model.load_adapter("sentiment/sst-2@ukp")
+model.set_active_adapters("sst-2")</pre>
+<p>The <a href="https://adapterhub.ml/adapters/ukp/bert-base-uncased_sentiment_sst-2_pfeiffer/">SST adapter</a> is light-weight: it is only 3MB! At
+    the same time, it achieves <a href="https://arxiv.org/abs/2007.07779" target="_blank">results</a> that are on-par with fully fine-tuned BERT.
+    We can now leverage SST adapter to predict the sentiment of sentences:</p>
+<pre class="code" id="QuickstartInferenceMore">
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+tokens = tokenizer.tokenize("AdapterHub is awesome!")
+input_tensor = torch.tensor([
+    tokenizer.convert_tokens_to_ids(tokens)
+])
+outputs = model(input_tensor)</pre>
+                </div>
+
+                <div class="tab-pane fade" id="quickstartTraining" role="tabpanel">
+                    <div class="row mb-3">
+    <div class="col-auto">
+        <h3 class="m-0">Train an Adapter 🏋️️</h3>
+    </div>
+    <div class="col text-right d-none d-lg-block">
+        <a class="btn-colab-headline" href="https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/01_Adapter_Training.ipynb" target="_blank">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+        </a>
+    </div>
+</div>
+
+<p>Training a new task adapter requires only few modifications compared to fully fine-tuning a model with Hugging Face's <code>Trainer</code>.
+    We first load a pre-trained model, e.g., <code>roberta-base</code> and add a new task adapter:</p>
+<pre class="code">model = AutoAdapterModel.from_pretrained('roberta-base')
+model.add_adapter("sst-2")
+model.train_adapter("sst-2")
+</pre>
+<p>By calling <code>train_adapter("sst-2")</code> we freeze all transformer parameters except for the parameters of sst-2 adapter.
+Before training we add a new classification head to our model:</p>
+<pre class="code">model.add_classification_head("sst-2", num_labels=2)
+model.set_active_adapters("sst-2")
+</pre>
+<p>The weights of this classification head can be stored together with the adapter weights to allow for a full reproducibility.
+The method call <code>model.set_active_adapters("sst-2")</code> registers the sst-2 adapter as a default for training. This also supports adapter stacking and adapter fusion!</p>
+<p>We can then train our adapter using the Hugging Face <code>Trainer</code>:</p>
+
+<pre class="code">trainer.train()
+model.save_all_adapters('output-path')</pre>
+
+<div class="row">
+    <div class="col-auto pr-0" style="font-size: 2rem">💡</div>
+    <div class="col">
+        <div class="alert alert-secondary">
+            <span class="font-weight-bold">Tip 1</span>️: Adapter weights are usually initialized randomly. That is why we require a higher learning rate.
+            We have found that a default adapter learning rate of <code>lr=0.0001</code> works well for most settings.</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-auto pr-0" style="font-size: 2rem">💡</div>
+    <div class="col">
+        <div class="alert alert-secondary">
+            <span class="font-weight-bold">Tip 2</span>️: Depending on your data set size you might also need to train longer than usual.
+            To avoid overfitting you can evaluating the adapters after each epoch on the development set and only save the best model.</div>
+    </div>
+</div>
+
+<p>That's it! <code>model.save_all_adapters('output-path')</code> exports all adapters. Consider sharing them on AdapterHub!</p>
+                </div>
+
+                <div class="tab-pane fade" id="quickstartAdapterFusion" role="tabpanel">
+                    <div class="row mb-3">
+    <div class="col-auto">
+        <h3 class="m-0">AdapterFusion</h3>
+    </div>
+    <div class="col text-right d-none d-lg-block">
+        <a class="btn-colab-headline" href="https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/03_Adapter_Fusion.ipynb" target="_blank">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+        </a>
+    </div>
+</div>
+
+<p>Using <i>AdapterFusion</i>, we can combine the knowledge of multiple pre-trained adapters on a downstream task.
+First, we load a pre-trained model and a couple of pre-trained adapters.
+As we discard the prediction heads of the pre-trained adapters, we add a new head afterwards.</p>
+<pre class="code">from adapters import AutoAdapterModel, Fuse
+
+model = AutoAdapterModel.from_pretrained("bert-base-uncased")
+model.load_adapter("nli/multinli@ukp", load_as="multinli", with_head=False)
+model.load_adapter("sts/qqp@ukp", with_head=False)
+model.load_adapter("nli/qnli@ukp", with_head=False)
+
+model.add_classification_head("cb")
+</pre>
+<p>On top of the loaded adapters, we add a new fusion layer using <code>add_fusion()</code>.
+For this purpose, we first define the adapter setup using the <code>Fuse</code> <a href="https://docs.adapterhub.ml/adapter_composition.html">composition block</a>.
+During training, only the weights of the fusion layer will be updated. We ensure this by first activating all adapters in the setup and then calling <code>train_fusion()</code>:</p>
+<pre class="code">adapter_setup = Fuse("multinli", "qqp", "qnli")
+model.add_adapter_fusion(adapter_setup)
+model.set_active_adapters(adapter_setup)
+model.train_adapter_fusion(adapter_setup)
+</pre>
+<p>From here on, the training procedure is identical to training a single adapters or a full model. Check out the full working example <a href="https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/03_Adapter_Fusion.ipynb">in the Colab notebook</a>.</p>
+                </div>
+
+                <div class="tab-pane fade" id="quickstartAdapterDrop" role="tabpanel">
+                    <div class="row mb-3">
+    <div class="col-auto">
+        <h3 class="m-0">AdapterDrop</h3>
+    </div>
+    <div class="col text-right d-none d-lg-block">
+        <a class="btn-colab-headline" href="https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/Adapter_Drop_Training.ipynb" target="_blank">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+        </a>
+    </div>
+</div>
+
+<p>
+    AdapterDrop allows us to remove adapters on lower layers during training and inference. This can be realised with the
+    <code>skip_layers</code> argument. It specifies for which layers the adapters should be skipped during a forward pass. In
+    order to train a model with AdapterDrop, we specify a callback for the <code>Trainer</code> class that sets the <code>skip_layers</code>
+    argument to the layers that should be skipped in each step as follows:
+</p>
+<pre class="code" id="QuickstartAdapterDropMore">
+class AdapterDropTrainerCallback(TrainerCallback):
+  def on_step_begin(self, args, state, control, **kwargs):
+    skip_layers = list(range(np.random.randint(0, 11)))
+    kwargs['model'].set_active_adapters("rotten_tomatoes", skip_layers=skip_layers)
+
+  def on_evaluate(self, args, state, control, **kwargs):
+    # Deactivate skipping layers during evaluation (otherwise it would use the
+    # previous randomly chosen skip_layers and thus yield results not comparable
+    # across different epochs)
+    kwargs['model'].set_active_adapters("rotten_tomatoes", skip_layers=None)
+</pre>
+<p>
+    Checkout the <a href="https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/Adapter_Drop_Training.ipynb">AdapterDrop Colab Notebook</a> for further details.
+</p>
+                </div>
+
+                <div class="tab-pane fade" id="quickstartParallelInference" role="tabpanel">
+                    <div class="row mb-3">
+    <div class="col-auto">
+        <h3 class="m-0">Parallel Inference️️</h3>
+    </div>
+    <div class="col text-right d-none d-lg-block">
+        <a class="btn-colab-headline" href="https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/05_Parallel_Adapter_Inference.ipynb" target="_blank">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+        </a>
+    </div>
+</div>
+
+<p>
+    During inference, it might be beneficial to pass the input data through several different adapters to compare
+    the results or predict different attributes in one forward pass. The
+    <a href="https://docs.adapterhub.ml/adapter_composition.html#parallel">Parallel Block</a> enables us to do this.
+    When the Parallel Block is used in combination with a <code>ModelWithHeads</code> class, each adapter also has a corresponding head.
+</p>
+<pre class="code" id="QuickstartAdapterDropMore">model = AutoAdapterModel.from_pretrained("bert-base-uncased")
+model.add_adapter("task1")
+model.add_adapter("task2")
+model.add_classification_head("task1", num_labels=3)
+model.add_classification_head("task2", num_labels=5)
+model.set_active_adapters(Parallel("task1", "task2")
+</pre>
+<p>
+    A forward pass through the model with the Parallel Block is equivalent to two single forward passes. One through the model
+    with the <code>task1</code> adapter and head activated and one through the model with the <code>task2</code> adapter and head.
+    The output is returned as a <code>MultiHeadOutput</code>, which acts as a list of the head outputs with an additional
+    <code>loss</code> attribute. The loss attribute is the sum of the losses of individual outputs.
+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h1>Citation 📝</h1>
+        <p>
+            If you use the <i>Adapters</i> library in your work, please consider citing our library paper: <a href="https://arxiv.org/abs/2311.11077"> Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning </a>
+        </p>
+        <div id="accordion" class="mb-3">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Poth et al. “Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning.” EMNLP (2023).
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <pre class="p-4 code small">
+@inproceedings{poth-etal-2023-adapters,
+    title = "Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning",
+    author = {Poth, Clifton  and
+        Sterz, Hannah  and
+        Paul, Indraneil  and
+        Purkayastha, Sukannya  and
+        Engl{\"a}nder, Leon  and
+        Imhof, Timo  and
+        Vuli{\'c}, Ivan  and
+        Ruder, Sebastian  and
+        Gurevych, Iryna  and
+        Pfeiffer, Jonas},
+    booktitle = "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    month = dec,
+    year = "2023",
+    address = "Singapore",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.emnlp-demo.13",
+    pages = "149--160",
+}</pre>
+</div>
+</div>
+</div>
+</div>
+
+        <p>
+            Alternatively, for the Hub infrastructure and adapters uploaded by the AdapterHub team, please consider citing our initial paper: <a href="https://arxiv.org/abs/2007.07779"> AdapterHub: A Framework for Adapting Transformers </a>
+        </p>
+        <div id="accordion" class="mb-3">
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Pfeiffer et al. “AdapterHub: A Framework for Adapting Transformers.” EMNLP (2020).
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+        <pre class="p-4 code small">
+@inproceedings{pfeiffer2020AdapterHub,
+    title={AdapterHub: A Framework for Adapting Transformers},
+    author={Jonas Pfeiffer and
+            Andreas R\"uckl\'{e} and
+            Clifton Poth and
+            Aishwarya Kamath and
+            Ivan Vuli\'{c} and
+            Sebastian Ruder and
+            Kyunghyun Cho and
+            Iryna Gurevych},
+    booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP 2020): Systems Demonstrations},
+    year={2020},
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2020.emnlp-demos.7",
+    pages = "46--54",
+}</pre>
+</div>
+</div>
+</div>
+</div>
+    </section>
+
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

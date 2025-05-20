@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<meta name="description" content="With the newest release of our adapter-transformers library, version 3.2, we add composition blocks for prefix tuning and adapters to several new models." />
+
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub - Updates in Adapter-Transformers v3.2</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="/blog/">Blog</a>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<h1>Updates in Adapter-Transformers v3.2</h1>
+<ul class="blog-post-bar mt-4 mb-0">
+    <li><i class="fa fa-calendar-alt"></i>&nbsp; 2023-03-03</li>
+    <li><i class="fa fa-user"></i>&nbsp;
+    
+        Hannah Sterz
+        
+        &nbsp;<a href="https://twitter.com/@h_sterz"><i class="fab fa-twitter"></i></a>
+        
+        
+        ,&nbsp;
+        
+    
+        Clifton Poth
+        
+        &nbsp;<a href="https://twitter.com/@clifapt"><i class="fab fa-twitter"></i></a>
+        
+        
+        ,&nbsp;
+        
+    
+        Leon Engländer
+        
+        
+    
+    </li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+
+<div class="row">
+    <div class="col-lg-10 my-2">
+        
+
+        <div class="blog-post-content">
+            <p>Throughout the last months, we worked on improving the <code>adapter-transformers</code> library and including new features. This includes support for new models like CLIP and BEiT, more flexible adapter configuration, and adapter composition for prefix-tuning. In the following, we describe the new features and updates in more detail.</p>
+<p>You can find version 3.2 of <code>adapter-transformers</code> <a href="https://github.com/Adapter-Hub/adapter-transformers">on GitHub</a> or install it via pip:</p>
+<div class="codehilite"><pre><span></span><code>pip install -U adapter-transformers
+</code></pre></div>
+
+<h2 id="support-for-adapter-configuration-strings">Support for adapter configuration strings</h2>
+<p>For running experiments at a large scale with varying hyperparameters, it can be annoying to set the correct hyperparameters whenever running the scripts. Now, you can configure the adapter with a string. In previous versions, it was possible to use one of the predefined configurations via a string e.g. <code>pfeiffer</code>. From v.3.2 on it is possible to adapt parameters within the string as well.
+To create a Pfeiffer adapter with reduction factor 16 you can now use <code>pfeiffer[reduction_factor=16]</code>. This can also help run the example scripts. <a href="https://docs.adapterhub.ml/overview.html#configuration-strings">Learn more</a></p>
+<h2 id="adapter-composition-for-prefix-tuning">Adapter Composition for Prefix Tuning</h2>
+<figure id="_caption-1">
+<img alt="" src="/static/images/v3_2_prefix_stack.png" title="Illustration of composition for prefix tuning (Pfeiffer et al.)" />
+<figcaption><span>Figure&nbsp;1:</span> Illustration of composition for prefix tuning (Pfeiffer et al.)</figcaption>
+</figure>
+<p>Parameter-effifient fine-tuning methods have proven to be modular. Combining multiple adapters can be beneficial for transfer learning across languages. In v.3.2 we add <code>Stack</code>, <code>Parallel</code> &amp; <code>BatchSplit</code> compositions to prefix tuning.
+In previous <code>adapter-transformers</code> versions, you could combine multiple bottleneck adapters. You could use them in parallel or stack them. Now, this is also possible for prefix tuning adapters. Add multiple prefixes to the same model to combine the functionality of multiple adapters (<code>Stack</code>) or perform several tasks simultaneously (<code>Parallel</code>, <code>BatchSplit</code>). <a href="https://docs.adapterhub.ml/adapter_composition.html#stack">Learn more</a></p>
+<h2 id="enable-parallel-sequence-generation-with-adapters">Enable parallel sequence generation with adapters</h2>
+<p>In v3.2 you can use the <code>Parallel</code> block in combination with the <code>model.generate()</code> method. This allows to generate text for multiple adapters simultaneously. As a result, generation can now be used in a multi task inference setup and generate text for multiple tasks within one forward pass. </p>
+<h2 id="new-model-integrations">New model integrations</h2>
+<p>The new v3.2 of <code>adapter-transformers</code> adds support for adapters for several new models: </p>
+<ul>
+<li>BEiT </li>
+<li>GPT-J </li>
+<li>CLIP </li>
+<li>ALBERT </li>
+<li>BertGeneration </li>
+</ul>
+<h2 id="other-notable-changes">Other notable changes</h2>
+<p>⚠️ <strong>Breaking change</strong>: The latest release removes the <code>MultiLingAdapterArguments</code> class which was previously used to add adapter support to training scripts.
+It is now recommended to use the <a href="https://docs.adapterhub.ml/classes/adapter_training.html#transformers.adapters.training.setup_adapter_training"><code>AdapterArguments</code></a> class and <a href="https://docs.adapterhub.ml/classes/adapter_training.html#transformers.adapters.training.setup_adapter_training"><code>setup_adapter_training</code></a> method instead. <a href="https://docs.adapterhub.ml/training.html">Learn more</a>.</p>
+<p>Finally, version 3.2 of <code>adapter-transformers</code> updates the underlying transformers version from v.4.23.1 to v4.26.1</p>
+<h2 id="fixes">Fixes</h2>
+<ul>
+<li>Fixes for GLUE &amp; dependency parsing example script</li>
+<li>Fix access to shared parameters of compacter (e.g. during sequence generation) </li>
+<li>Fix reference to adapter configs in <code>T5EncoderModel</code></li>
+<li>Fix DeBERTa prefix tuning with enabled relative attention </li>
+<li>Fix gating for prefix tuning layers </li>
+<li>Fix input to T5 adapter layers</li>
+<li>Fix AdapterTrainer hyperparameter tuning</li>
+<li>Move loading best adapter to AdapterTrainer class</li>
+<li>Make HuggingFace Hub Mixin work with newer utilities </li>
+<li>Only compute fusion reg loss if the fusion layer is trained </li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Pfeiffer, J., Ruder, S., Vulic, I., &amp; Ponti, E. (2023). Modular Deep Learning. ArXiv, abs/2302.11529.</li>
+</ul>
+        </div>
+
+        <div class="my-5">
+            <a href="https://github.com/adapter-hub/website/blob/master/posts/2023/03/adapterhub-v3_2.md">
+                <i class="fa fa-edit"></i>&nbsp; Edit Post on GitHub
+            </a>
+        </div>
+        
+        <div id="col-lg-10 comments">
+            <script src="https://utteranc.es/client.js"
+                repo="Adapter-Hub/website"
+                issue-term="pathname"
+                label="blog-post 💬"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

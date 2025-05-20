@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<meta name="description" content="With the newest release of our adapter-transformers library, version 3.1, we take a further step towards integrating the diverse possibilities of parameter-efficient fine-tuning methods by supporting multiple new adapter methods and Transformer architectures." />
+
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub - Updates in Adapter-Transformers v3.1</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="/blog/">Blog</a>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<h1>Updates in Adapter-Transformers v3.1</h1>
+<ul class="blog-post-bar mt-4 mb-0">
+    <li><i class="fa fa-calendar-alt"></i>&nbsp; 2022-09-15</li>
+    <li><i class="fa fa-user"></i>&nbsp;
+    
+        Clifton Poth
+        
+        &nbsp;<a href="https://twitter.com/@clifapt"><i class="fab fa-twitter"></i></a>
+        
+        
+    
+    </li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+
+<div class="row">
+    <div class="col-lg-10 my-2">
+        
+
+        <div class="blog-post-content">
+            <figure id="_caption-1">
+<img alt="" src="/static/images/v3_1_methods.png" title="Illustration of efficient fine-tuning methods added in v3.1 of adapter-transformers." />
+<figcaption><span>Figure&nbsp;1:</span> Illustration of efficient fine-tuning methods added in v3.1 of adapter-transformers.</figcaption>
+</figure>
+<p>Throughout the last few months, the field of parameter-efficient methods for fine-tuning Transformer-based models has seen a wide range of new innovations, proposing new adapter methods (e.g. <a href="https://arxiv.org/pdf/2110.04366.pdf">He et al., 2021</a>; <a href="https://doi.org/10.48550/arXiv.2205.05638">Liu et al., 2022</a>) and applying them to new domains and tasks (e.g. <a href="https://arxiv.org/pdf/2205.13535.pdf">Chen et al., 2022</a>).
+With the newest release of our <code>adapter-transformers</code> library, version 3.1, we take a further step towards integrating the diverse possibilities of parameter-efficient fine-tuning methods by supporting multiple new adapter methods and Transformer architectures.</p>
+<p>In the following sections, we highlight important new features and methods introduced with the new release.
+The full changelog can be found <a href="https://github.com/adapter-hub/adapter-transformers/releases/tag/adapters3.1.0">here</a>.</p>
+<div class="toc">
+<ul>
+<li><a href="#new-adapter-methods">New Adapter Methods</a><ul>
+<li><a href="#lora">LoRA</a></li>
+<li><a href="#ia3">(IA)^3</a></li>
+<li><a href="#unipelt">UniPELT</a></li>
+</ul>
+</li>
+<li><a href="#further-updates">Further Updates</a><ul>
+<li><a href="#new-model-integrations">New model integrations</a></li>
+<li><a href="#adapter_summary-method">adapter_summary() method</a></li>
+<li><a href="#transformers-upgrade">Transformers upgrade</a></li>
+</ul>
+</li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<p>You can find <code>adapter-transformers</code> <a href="https://github.com/Adapter-Hub/adapter-transformers">on GitHub</a> or install it via pip:</p>
+<div class="codehilite"><pre><span></span><code>pip install -U adapter-transformers
+</code></pre></div>
+
+<h2 id="new-adapter-methods">New Adapter Methods</h2>
+<p>With <a href="https://adapterhub.ml/blog/2022/03/adapter-transformers-v3-unifying-efficient-fine-tuning/">the release of <code>adapter-transformers</code> v3</a> a few months back, we started the process of integrating new adapter methods.
+The new release v3.1 adds three new works that were released throughout the last year, namely <em>LoRA</em> (<a href="https://arxiv.org/pdf/2106.09685.pdf">Hu et al., 2021</a>), <em>UniPELT</em> (<a href="https://aclanthology.org/2022.acl-long.433.pdf">Mao et al., 2022</a>) and <em>(IA)^3</em> (<a href="https://doi.org/10.48550/arXiv.2205.05638">Liu et al., 2022</a>).</p>
+<p>Previously, we have already integrated bottleneck adapters (<a href="https://arxiv.org/pdf/1902.00751.pdf">Houlsby et al., 2019</a>), Prefix Tuning (<a href="https://aclanthology.org/2021.acl-long.353.pdf">Li and Liang, 2021</a>), parallel adapters, Mix-and-Match adapters (<a href="https://arxiv.org/pdf/2110.04366.pdf">He et al., 2021</a>) and Compacters (<a href="https://arxiv.org/pdf/2106.04647.pdf">Mahabadi et al., 2021</a>).
+For more on these methods, please refer <a href="https://adapterhub.ml/blog/2022/03/adapter-transformers-v3-unifying-efficient-fine-tuning/">the blog post for the release of v3</a>.
+For a more general introduction to working with adapters, please refer to <a href="https://docs.adapterhub.ml/quickstart.html">our documentation</a>.</p>
+<p>The following table compares the performance of our implementation of LoRA, (IA)^3 and bottleneck adapters, which are described in more detail afterwards, on the GLUE benchmark.
+We use <code>roberta-base</code> as the base Transformer model and train for 20 epochs with learning rates of 1e-3, 1e-4 and 1e-4 for (IA)^3, LoRA and bottleneck adapters, respectively.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Metric</th>
+<th>(IA)^3</th>
+<th>LoRA</th>
+<th>Adapter (Houlsby)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COLA</td>
+<td>Matthews Correlation</td>
+<td>59.53</td>
+<td>58.35</td>
+<td>59.81</td>
+</tr>
+<tr>
+<td>MNLI</td>
+<td>Accuracy</td>
+<td>85.98</td>
+<td>87.15</td>
+<td>86.68</td>
+</tr>
+<tr>
+<td>MRPC</td>
+<td>F1</td>
+<td>89.5</td>
+<td>90.63</td>
+<td>90.53</td>
+</tr>
+<tr>
+<td>QNLI</td>
+<td>Accuracy</td>
+<td>91.75</td>
+<td>92.82</td>
+<td>92.7</td>
+</tr>
+<tr>
+<td>QQP</td>
+<td>F1</td>
+<td>85.96</td>
+<td>86.57</td>
+<td>88.41</td>
+</tr>
+<tr>
+<td>RTE</td>
+<td>Accuracy</td>
+<td>73.41</td>
+<td>72.08</td>
+<td>77.9</td>
+</tr>
+<tr>
+<td>SST2</td>
+<td>Accuracy</td>
+<td>93.92</td>
+<td>94.11</td>
+<td>94.5</td>
+</tr>
+<tr>
+<td>STSB</td>
+<td>Spearmanr</td>
+<td>89.78</td>
+<td>89.82</td>
+<td>90.58</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lora">LoRA</h3>
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/lora.png" height="350">
+  <figcaption text-align="center">
+    Figure 2: Illustration of the Low-Rank Adaptation (LoRA) method within one Transformer layer. Trained components are colored in shades of magenta.
+  </figcaption>
+ </figure>
+</div>
+
+<p>Low-Rank Adaptation (LoRA) is an efficient fine-tuning technique proposed by <a href="https://arxiv.org/pdf/2106.09685.pdf">Hu et al. (2021)</a>.
+LoRA injects trainable low-rank decomposition matrices into the layers of a pre-trained model.
+For any model layer expressed as a matrix multiplication of the form <script type="math/tex">h = W_0 x</script>, it therefore performs a reparameterization, such that:</p>
+<p>
+<script type="math/tex; mode=display">
+h = W_0 x + \frac{\alpha}{r} B A x
+</script>
+</p>
+<p>Here, <script type="math/tex">A \in \mathbb{R}^{r\times k}</script> and <script type="math/tex">B \in \mathbb{R}^{d\times r}</script> are the decomposition matrices and <script type="math/tex">r</script>, the low-dimensional rank of the decomposition, is the most important hyperparameter.</p>
+<p>While, in principle, this reparameterization can be applied to any weights matrix in a model, the original paper only adapts the attention weights of the Transformer self-attention sub-layer with LoRA.
+<code>adapter-transformers</code> additionally allows injecting LoRA into the dense feed-forward layers in the intermediate and output components of a Transformer block.
+You can configure the locations where LoRA weights should be injected using the attributes in the <a href="transformers.LoRAConfig"><code>LoRAConfig</code></a> class.</p>
+<p><em>Example</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">LoRAConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">LoRAConfig</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;lora_adapter&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In the design of LoRA, Hu et al. (2021) also pay special attention to keeping the inference latency overhead compared to full fine-tuning at a minimum.
+To accomplish this, the LoRA reparameterization can be merged with the original pre-trained weights of a model for inference.
+Thus, the adapted weights are directly used in every forward pass without passing activations through an additional module.
+In <code>adapter-transformers</code>, this can be realized using the built-in <code>merge_adapter()</code> method:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">merge_adapter</span><span class="p">(</span><span class="s2">&quot;lora_adapter&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>To continue training on this LoRA adapter or to deactivate it entirely, the merged weights first have to be reset again:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">reset_adapter</span><span class="p">(</span><span class="s2">&quot;lora_adapter&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="ia3">(IA)^3</h3>
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/ia3.png" height="400">
+  <figcaption text-align="center">
+    Figure 3: Illustration of the (IA)^3 method within one Transformer layer. Trained components are colored in shades of magenta.
+  </figcaption>
+ </figure>
+</div>
+
+<p><em>Infused Adapter by Inhibiting and Amplifying Inner Activations ((IA)^3)</em> is an efficient fine-tuning method proposed within the <em>T-Few</em> fine-tuning approach by <a href="https://arxiv.org/pdf/2205.05638.pdf">Liu et al. (2022)</a>.
+(IA)^3 introduces trainable vectors <script type="math/tex">l_W</script> into different components of a Transformer model which perform element-wise rescaling of inner model activations.
+For any model layer expressed as a matrix multiplication of the form <script type="math/tex">h = W x</script>, it therefore performs an element-wise multiplication with <script type="math/tex">l_W</script>, such that:</p>
+<p>
+<script type="math/tex; mode=display">
+h = l_W \odot W x
+</script>
+</p>
+<p>Here, <script type="math/tex">\odot</script> denotes element-wise multiplication where the entries of <script type="math/tex">l_W</script> are broadcasted to the shape of <script type="math/tex">W</script>.</p>
+<p><em>Example</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">IA3Config</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">IA3Config</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;ia3_adapter&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The implementation of (IA)^3, as well as the <code>IA3Config</code> class, are derived from the implementation of <a href="#lora">LoRA</a>, with a few main modifications.
+First, (IA)^3 uses multiplicative composition of weights instead of additive composition as in LoRA.
+Second, the added weights are not further decomposed into low-rank matrices.
+Both of these modifications are controlled via the <code>composition_mode</code> configuration attribute by setting <code>composition_mode="scale"</code>.
+Additionally, as the added weights are already of rank 1, <code>r=1</code> is set.</p>
+<p>Beyond that, both methods share the same configuration attributes that allow you to specify in which Transformer components rescaling vectors will be injected.
+Following the original implementation, <code>IA3Config</code> adds rescaling vectors to the self-attention weights (<code>selfattn_lora=True</code>) and the final feed-forward layer (<code>output_lora=True</code>).
+Further, you can modify which matrices of the attention mechanism to rescale by leveraging the <code>attn_matrices</code> attribute.
+By default, (IA)^3 injects weights into the key ('k') and value ('v') matrices, but not in the query ('q') matrix.</p>
+<p>Finally, similar to LoRA, (IA)^3 also allows merging the injected parameters with the original weight matrices of the Transformer model.
+E.g.:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Merge (IA)^3 adapter</span>
+<span class="n">model</span><span class="o">.</span><span class="n">merge_adapter</span><span class="p">(</span><span class="s2">&quot;ia3_adapter&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reset merged weights</span>
+<span class="n">model</span><span class="o">.</span><span class="n">reset_adapter</span><span class="p">(</span><span class="s2">&quot;ia3_adapter&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="unipelt">UniPELT</h3>
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/unipelt.png" height="400">
+  <figcaption text-align="center">
+    Figure 4: Illustration of the UniPELT method within one Transformer layer. Trained components are colored in shades of magenta.
+  </figcaption>
+ </figure>
+</div>
+
+<p>An approach similar to the work of <a href="https://arxiv.org/pdf/2110.04366.pdf">He et al. (2021)</a> is taken by <a href="https://arxiv.org/pdf/2110.07577.pdf">Mao et al. (2022)</a> in their <em>UniPELT</em> framework.
+They, too, combine multiple efficient fine-tuning methods, namely LoRA, Prefix Tuning and bottleneck adapters, in a single unified setup.
+<em>UniPELT</em> additionally introduces a gating mechanism that controls the activation of the different submodules.</p>
+<p>Concretely, for each adapted module <script type="math/tex">m</script>, UniPELT adds a trainable gating value <script type="math/tex">\mathcal{G}_m \in (0, 1)</script> that is computed via a feed-forward network (<script type="math/tex">W_{\mathcal{G}_m}</script>) and sigmoid activation (<script type="math/tex">\sigma</script>) from the Transformer layer input states (<script type="math/tex">x</script>):</p>
+<p>
+<script type="math/tex; mode=display">\mathcal{G}_m \leftarrow \sigma(W_{\mathcal{G}_m} \cdot x)</script>
+</p>
+<p>These gating values are then used to scale the output activations of the injected adapter modules, e.g. for a LoRA layer:</p>
+<p>
+<script type="math/tex; mode=display">
+h \leftarrow W_0 x + \mathcal{G}_{LoRA} B A x
+</script>
+</p>
+<p>In the configuration classes of <code>adapter-transformers</code>, these gating mechanisms can be activated via <code>use_gating=True</code>.
+The full UniPELT setup can be instantiated using <code>UniPELTConfig</code><sup id="fnref:unipelt"><a class="footnote-ref" href="#fn:unipelt">1</a></sup>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">UniPELTConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">UniPELTConfig</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;unipelt&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>which is identical to the following <code>ConfigUnion</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">ConfigUnion</span><span class="p">,</span> <span class="n">LoRAConfig</span><span class="p">,</span> <span class="n">PrefixTuningConfig</span><span class="p">,</span> <span class="n">PfeifferConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">ConfigUnion</span><span class="p">(</span>
+    <span class="n">LoRAConfig</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">use_gating</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">PrefixTuningConfig</span><span class="p">(</span><span class="n">prefix_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">use_gating</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">PfeifferConfig</span><span class="p">(</span><span class="n">reduction_factor</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">use_gating</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;unipelt&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Finally, as the gating values for each adapter module might provide interesting insights for analysis, <code>adapter-transformers</code> comes with an integrated mechanism of returning all gating values computed during a model forward pass via the <code>output_adapter_gating_scores</code> parameter:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">output_adapter_gating_scores</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gating_scores</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">adapter_gating_scores</span>
+</code></pre></div>
+
+<p>Note that this parameter is only available to base model classes and <a href="prediction_heads.md#adaptermodel-classes">AdapterModel classes</a>.
+In the example, <code>gating_scores</code> holds a dictionary of the following form:</p>
+<div class="codehilite"><pre><span></span><code>{
+    &#39;&lt;adapter_name&gt;&#39;: {
+        &lt;layer_id&gt;: {
+            &#39;&lt;module_location&gt;&#39;: np.array([...]),
+            ...
+        },
+        ...
+    },
+    ...
+}
+</code></pre></div>
+
+<p>The following table shows some initial results when running our UniPELT implementation. All adapter setups are trained for 20 epochs with a learning rate of 1e-4. Reported scores are accuracies <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">2</a></sup>.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Model</th>
+<th>UniPELT (ours)</th>
+<th>UniPELT (paper)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SST-2</td>
+<td>bert-base-uncased</td>
+<td>92.32</td>
+<td>91.51</td>
+</tr>
+<tr>
+<td>SST-2</td>
+<td>roberta-base</td>
+<td>94.61</td>
+<td>---</td>
+</tr>
+<tr>
+<td>MNLI</td>
+<td>bert-base-uncased</td>
+<td>84.53</td>
+<td>83.89</td>
+</tr>
+<tr>
+<td>MNLI</td>
+<td>roberta-base</td>
+<td>87.41</td>
+<td>---</td>
+</tr>
+</tbody>
+</table>
+<h2 id="further-updates">Further Updates</h2>
+<h3 id="new-model-integrations">New model integrations</h3>
+<p>Version 3.1 adds adapter support to the DeBERTa and Vision Transformer (ViT) architectures already integrated into HuggingFace Transformers.</p>
+<p>The ViT integration is of particular interest as it opens the application area of our adapter implementations to the computer vision domains.
+While most of the current work on adapter methods for Transformers happened in the NLP domain, adapters for Transformers in the vision domain have also been investigated recently (<a href="https://arxiv.org/pdf/2203.16329.pdf">He et al., 2022</a>; <a href="https://arxiv.org/pdf/2205.13535.pdf">Chen et al., 2022</a>).</p>
+<p>Below, we show some initial results of our ViT integration, using <code>google/vit-base-patch16-224</code> as the pre-trained base model:</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Full FT</th>
+<th>Houlsby</th>
+<th>Pfeiffer</th>
+<th>LoRA</th>
+<th>Prefix Tuning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CIFAR-10</td>
+<td>98.88</td>
+<td>98.72</td>
+<td>99.09</td>
+<td>98.84</td>
+<td>98.76</td>
+</tr>
+<tr>
+<td>CIFAR-100</td>
+<td>92.08</td>
+<td>92.4</td>
+<td>92.08</td>
+<td>91.77</td>
+<td>91.76</td>
+</tr>
+</tbody>
+</table>
+<p>All scores are accuracies on the evaluation set <sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">2</a></sup>.</p>
+<h3 id="adapter_summary-method"><code>adapter_summary()</code> method</h3>
+<p>The new release adds an <code>adapter_summary()</code> method that provides information on all adapters currently loaded into a base model in tabular form.
+The method can be used as follows:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">AutoAdapterModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;roberta-base&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">ADAPTER_CONFIG_MAP</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">adapter_summary</span><span class="p">())</span>
+</code></pre></div>
+
+<p>... which produces this output:</p>
+<div class="codehilite"><pre><span></span><code>================================================================================
+Name                     Architecture         #Param      %Param  Active   Train
+--------------------------------------------------------------------------------
+pfeiffer                 bottleneck          894,528       0.718       0       1
+houlsby                  bottleneck        1,789,056       1.435       0       1
+pfeiffer+inv             bottleneck        1,190,592       0.955       0       1
+houlsby+inv              bottleneck        2,085,120       1.673       0       1
+compacter++              bottleneck           28,576       0.023       0       1
+compacter                bottleneck           57,088       0.046       0       1
+prefix_tuning            prefix_tuning     9,872,384       7.920       0       1
+prefix_tuning_flat       prefix_tuning       552,960       0.444       0       1
+parallel                 bottleneck        7,091,712       5.689       0       1
+scaled_parallel          bottleneck        7,091,724       5.690       0       1
+lora                     lora                294,912       0.237       0       1
+ia3                      lora                 55,296       0.044       0       1
+mam                      union            22,493,984      18.046       0       1
+unipelt                  union            11,083,376       8.892       0       1
+--------------------------------------------------------------------------------
+Full model                               124,645,632     100.000               1
+================================================================================
+</code></pre></div>
+
+<h3 id="transformers-upgrade">Transformers upgrade</h3>
+<p>Version 3.1 of <code>adapter-transformers</code> upgrades the underlying HuggingFace Transformers library from v4.17.0 to v4.21.3, bringing many new features and bug fixes created by HuggingFace.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., &amp; Chen, W. (2022). LoRA: Low-Rank Adaptation of Large Language Models. ArXiv, abs/2106.09685.</li>
+<li>Liu, H., Tam, D., Muqeeth, M., Mohta, J., Huang, T., Bansal, M., &amp; Raffel, C. (2022). Few-Shot Parameter-Efficient Fine-Tuning is Better and Cheaper than In-Context Learning. ArXiv, abs/2205.05638.</li>
+<li>Mao, Y., Mathias, L., Hou, R., Almahairi, A., Ma, H., Han, J., Yih, W., &amp; Khabsa, M. (2021). UniPELT: A Unified Framework for Parameter-Efficient Language Model Tuning. ArXiv, abs/2110.07577.</li>
+<li>He, X., Li, C., Zhang, P., Yang, J., &amp; Wang, X. (2022). Parameter-efficient Fine-tuning for Vision Transformers. ArXiv, abs/2203.16329.</li>
+<li>Chen, S., Ge, C., Tong, Z., Wang, J., Song, Y., Wang, J., &amp; Luo, P. (2022). AdaptFormer: Adapting Vision Transformers for Scalable Visual Recognition. ArXiv, abs/2205.13535.</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:unipelt">
+<p>Note that the implementation of UniPELT in <code>adapter-transformers</code> follows the implementation in the original code, which is slighlty different from the description in the paper. See <a href="https://github.com/morningmoni/UniPELT/issues/1">here</a> for more.&#160;<a class="footnote-backref" href="#fnref:unipelt" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p>Reported results for <code>adapter-transformers</code> only contain a single run each without hyperparameter tuning.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </div>
+
+        <div class="my-5">
+            <a href="https://github.com/adapter-hub/website/blob/master/posts/2022/09/updates-in-adapter-transformers-v3-1.md">
+                <i class="fa fa-edit"></i>&nbsp; Edit Post on GitHub
+            </a>
+        </div>
+        
+        <div id="col-lg-10 comments">
+            <script src="https://utteranc.es/client.js"
+                repo="Adapter-Hub/website"
+                issue-term="pathname"
+                label="blog-post 💬"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

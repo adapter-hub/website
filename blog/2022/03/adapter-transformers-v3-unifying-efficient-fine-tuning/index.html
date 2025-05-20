@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<meta name="description" content="With the release of version 3.0 of adapter-transformers today, we&#39;re taking the first steps at integrating the grown and diversified landscape of efficient fine-tuning methods. Version 3.0 adds support for a first batch of recently proposed methods, including Prefix Tuning, Parallel adapters, Mix-and-Match adapters and Compacters. Further, improvements and changes to various aspects of the library are introduced." />
+
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub - Adapter-Transformers v3 - Unifying Efficient Fine-Tuning</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="/blog/">Blog</a>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<h1>Adapter-Transformers v3 - Unifying Efficient Fine-Tuning</h1>
+<ul class="blog-post-bar mt-4 mb-0">
+    <li><i class="fa fa-calendar-alt"></i>&nbsp; 2022-03-21</li>
+    <li><i class="fa fa-user"></i>&nbsp;
+    
+        Clifton Poth
+        
+        &nbsp;<a href="https://twitter.com/@clifapt"><i class="fab fa-twitter"></i></a>
+        
+        
+        ,&nbsp;
+        
+    
+        Hannah Sterz
+        
+        &nbsp;<a href="https://twitter.com/@h_sterz"><i class="fab fa-twitter"></i></a>
+        
+        
+    
+    </li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+
+<div class="row">
+    <div class="col-lg-10 my-2">
+        
+
+        <div class="blog-post-content">
+            <figure id="_caption-1">
+<img alt="" src="/static/images/v3_methods.png" title="Illustration of efficient fine-tuning methods supported in v3 of adapter-transformers." />
+<figcaption><span>Figure&nbsp;1:</span> Illustration of efficient fine-tuning methods supported in v3 of adapter-transformers.</figcaption>
+</figure>
+<p>Since adapters were first introduced to NLP as a light-weight alternative to full fine-tuning of language models (<a href="https://arxiv.org/pdf/1902.00751.pdf">Houlsby et al., 2019</a>), the relevance of efficient transfer learning methods has continuously gained importance throughout the field.
+With Transformer-based language models growing from millions to billions or trillions of parameters, the inherent advantages of methods such as adapters - parameter efficiency, computational efficiency and modularity - have only become even more relevant.
+Nowadays, the tool set of efficient fine-tuning methods contains a diverse palette of different methods, ranging from improved adapter architectures (<a href="https://arxiv.org/pdf/2106.04647.pdf">Mahabadi et al., 2021</a>, <a href="https://aclanthology.org/2021.emnlp-main.351/">Ribeiro et al., 2021</a>) to various methods of optimizing language model prompts (<a href="https://aclanthology.org/2021.acl-long.353.pdf">Li and Liang, 2021</a>, <a href="https://aclanthology.org/2021.emnlp-main.243/">Lester et al., 2021</a>).
+Recent work also has made attempts at combining multiple methods into a single unified architecture (<a href="https://arxiv.org/pdf/2110.04366.pdf">He et al., 2021</a>, <a href="https://arxiv.org/pdf/2110.07577.pdf">Mao et al., 2021</a>)</p>
+<p>With the release of version 3.0 of <code>adapter-transformers</code> today, we're taking the first steps at embracing this grown and diversified landscape of efficient fine-tuning methods.
+Our library, an extension of the great <a href="https://huggingface.co/transformers/">Transformers library by HuggingFace</a>, was introduced as a straightforward way to train, share, load and use adapters within Transformer models.
+The new version for the first time allows using methods beyond the "classic" adapter architecture within this framework, namely Prefix Tuning, Parallel adapters, Mix-and-Match adapters and Compacters.</p>
+<p>In the following sections, we will present all new features and methods introduced with the new release as well as all important changes one by one:</p>
+<div class="toc">
+<ul>
+<li><a href="#new-efficient-fine-tuning-methods">New Efficient Fine-Tuning Methods</a><ul>
+<li><a href="#recap-bottleneck-adapters">Recap: Bottleneck Adapters</a></li>
+<li><a href="#prefix-tuning">Prefix Tuning</a></li>
+<li><a href="#parallel-mix-and-match-adapters">Parallel &amp; Mix-and-Match adapters</a></li>
+<li><a href="#compacters">Compacters</a></li>
+</ul>
+</li>
+<li><a href="#library-updates-and-changes">Library Updates and Changes</a><ul>
+<li><a href="#xadaptermodel-classes">XAdapterModel classes</a></li>
+<li><a href="#flexible-configurations-with-configunion">Flexible configurations with ConfigUnion</a></li>
+<li><a href="#adaptersetup-context">AdapterSetup context</a></li>
+<li><a href="#refactorings">Refactorings</a></li>
+<li><a href="#transformers-upgrade">Transformers upgrade</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<p>You can find <code>adapter-transformers</code> <a href="https://github.com/Adapter-Hub/adapter-transformers">on GitHub</a> or install it via pip:</p>
+<div class="codehilite"><pre><span></span><code>pip install -U adapter-transformers
+</code></pre></div>
+
+<h2 id="new-efficient-fine-tuning-methods">New Efficient Fine-Tuning Methods</h2>
+<p>Version 3.0 of <code>adapter-transformers</code> integrates a first batch of new efficient fine-tuning methods.
+These include Prefix Tuning (<a href="https://aclanthology.org/2021.acl-long.353.pdf">Li and Liang, 2021</a>), Parallel adapters, Mix-and-Match adapters (<a href="https://arxiv.org/pdf/2110.04366.pdf">He et al., 2021</a>) and Compacters (<a href="https://arxiv.org/pdf/2106.04647.pdf">Mahabadi et al., 2021</a>).</p>
+<p>The newly added methods seamlessly integrate into the existing framework of working with adapters, i.e. they share the same methods for creation (<code>add_adapter()</code>), training (<code>train_adapter()</code>), saving (<code>save_adapter()</code>) and loading (<code>load_adapter()</code>).
+Each method is specified and configured using a specific configuration class, all of which derive from the common <code>AdapterConfigBase</code> class.
+Please refer to <a href="https://docs.adapterhub.ml/quickstart.html">our documentation</a> for more explanation on working with adapters.</p>
+<h3 id="recap-bottleneck-adapters">Recap: Bottleneck Adapters</h3>
+<div align="center">
+<figure text-align="center">
+  <img src="/static/images/bottleneck.png"  height="400">
+  <figcaption>Figure 2: The bottleneck adapter network consists of a linear down projection, non-linearity, and up projection, followed by a residual connection. It 
+   is positioned after the multihead attention layer and/or the feedforward layer.</figcaption>
+</figure> 
+</div>
+
+<p>Until version 3.0 of <code>adapter-transformers</code>, we only supported bottleneck adapters. As illustrated above, small stitched-in layers that 
+consist of bottleneck feed-forward layers and a residual connection are added to the pre-trained transformer layers. These adapters are typically placed after the attention block and/or 
+after the feedforward layer. For further detail check out our documentation for 
+bottleneck adapters <a href="https://docs.adapterhub.ml/overview">here</a>.</p>
+<h3 id="prefix-tuning">Prefix Tuning</h3>
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/prefix.png" height="400">
+  <figcaption text-align="center">
+    Figure 3: Prefix Tuning adds trainable prefix vectors to the key and value matrices in the model.  
+  </figcaption>
+ </figure>
+</div>
+
+<p>Prefix Tuning (<a href="https://aclanthology.org/2021.acl-long.353.pdf">Li and Liang, 2021</a>) introduces new parameters in the multi-head attention blocks in each Transformer layer. 
+In the illustration above the prefixes are marked pink and purple. More, specifically, we prepend trainable prefix vectors <script type="math/tex">P^K</script> and <script type="math/tex">P^V</script> to the keys and values of the attention head input, each of a configurable prefix length <script type="math/tex">l</script> (<code>prefix_length</code> attribute):</p>
+<p>
+<script type="math/tex; mode=display">
+head_i = \text{Attention}(Q W_i^Q, [P_i^K, K W_i^K], [P_i^V, V W_i^V])
+</script>
+</p>
+<p>Following the original authors, the prefix vectors in <script type="math/tex">P^K</script> and <script type="math/tex">P^V</script> are not optimized directly, but reparameterized via a bottleneck MLP.
+This behavior is controlled via the <code>flat</code> attribute of the configuration.
+Using <code>PrefixTuningConfig(flat=True)</code> will create prefix tuning vectors that are optimized without reparameterization.</p>
+<p><em>Example</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">PrefixTuningConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">PrefixTuningConfig</span><span class="p">(</span><span class="n">flat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prefix_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;prefix_tuning&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>As reparameterization using the bottleneck MLP is not necessary for performing inference on an already trained Prefix Tuning module, adapter-transformers includes a function to "eject" a reparameterized Prefix Tuning into a flat one:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">eject_prefix_tuning</span><span class="p">(</span><span class="s2">&quot;prefix_tuning&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This will only retain the necessary parameters and reduces the size of the trained Prefix Tuning.</p>
+<p><em>Results</em>:</p>
+<p>The following table compares initial runs of our Prefix Tuning implementation<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> with the results reported by <a href="https://arxiv.org/pdf/2110.04366.pdf">He et al. (2021)</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Model</th>
+<th>Metrics</th>
+<th>Reference</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SST-2</td>
+<td>roberta-base</td>
+<td>Acc.</td>
+<td>94</td>
+<td>94.72</td>
+</tr>
+<tr>
+<td>MNLI</td>
+<td>roberta-base</td>
+<td>Acc.</td>
+<td>86.3</td>
+<td>86.1</td>
+</tr>
+<tr>
+<td>XSum</td>
+<td>bart-large</td>
+<td>R-1/R-2/R-L</td>
+<td>43.40/20.46/35.51</td>
+<td>43.00/20.05/35.10</td>
+</tr>
+<tr>
+<td>WMT16 En-Ro</td>
+<td>bart-large</td>
+<td>BLEU</td>
+<td>35.6</td>
+<td>35.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parallel-mix-and-match-adapters">Parallel &amp; Mix-and-Match adapters</h3>
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/parallel.png" height="400">
+  <figcaption text-align="center">
+    Figure 4: The parallel adapter computes representations in parallel to the transformer sublayer. It does not receive the output of 
+    the attention or feedforward layer, but instead processes the same input such that the adapter is parallel to the attention or feedforward layer. The respective representations are added subsequently.
+  </figcaption>
+ </figure>
+</div>
+
+<p>Parallel adapters have been proposed as a variant of the classic bottleneck adapter architecture.
+Here, activations are passed via the bottleneck adapter layer <em>in parallel</em> to the adapted Transformer sub-layer (i.e. feed-forward or attention layer),
+as opposed to the established, sequential, order of computations.</p>
+<p><a href="https://arxiv.org/pdf/2110.04366.pdf">He et al. (2021)</a> study various variants and combinations of efficient fine-tuning methods.
+Among others, they propose <em>Mix-and-Match Adapters</em> as a combination of Prefix Tuning and parallel adapters.
+This configuration is supported by adapter-transformers out-of-the-box:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">MAMConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">MAMConfig</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;mam_adapter&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>and is identical to using the following <code>ConfigUnion</code> (see further below for more on <code>ConfigUnion</code>):</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">ConfigUnion</span><span class="p">,</span> <span class="n">ParallelConfig</span><span class="p">,</span> <span class="n">PrefixTuningConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">ConfigUnion</span><span class="p">(</span>
+    <span class="n">PrefixTuningConfig</span><span class="p">(</span><span class="n">bottleneck_size</span><span class="o">=</span><span class="mi">800</span><span class="p">),</span>
+    <span class="n">ParallelConfig</span><span class="p">(),</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;mam_adapter&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p><em>Results</em>:</p>
+<p>The following table compares initial runs of our Mix-and-Match adapter implementation<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> with the results reported by <a href="https://arxiv.org/pdf/2110.04366.pdf">He et al. (2021)</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Model</th>
+<th>Metrics</th>
+<th>Reference</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SST-2</td>
+<td>roberta-base</td>
+<td>Acc.</td>
+<td>94.2</td>
+<td>94.26</td>
+</tr>
+<tr>
+<td>MNLI</td>
+<td>roberta-base</td>
+<td>Acc.</td>
+<td>87.4</td>
+<td>86.47</td>
+</tr>
+<tr>
+<td>XSum</td>
+<td>bart-large</td>
+<td>R-1/R-2/R-L</td>
+<td>45.12/21.90/36.91</td>
+<td>44.74/21.75/36.80</td>
+</tr>
+<tr>
+<td>WMT16 En-Ro</td>
+<td>bart-large</td>
+<td>BLEU</td>
+<td>37.5</td>
+<td>36.9</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, the next table shows initial runs of our parallel adapter implementation, again compared with the results reported by <a href="https://arxiv.org/pdf/2110.04366.pdf">He et al. (2021)</a> when applicable.
+We use a reduction factor of 2 (corresponding to a bottleneck dimension of 384 for roberta-base and 512 for bart-large).</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Model</th>
+<th>Metrics</th>
+<th>Reference</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SST-2</td>
+<td>roberta-base</td>
+<td>Acc.</td>
+<td>-</td>
+<td>94.61</td>
+</tr>
+<tr>
+<td>MNLI</td>
+<td>roberta-base</td>
+<td>Acc.</td>
+<td>-</td>
+<td>86.41</td>
+</tr>
+<tr>
+<td>XSum</td>
+<td>bart-large</td>
+<td>R-1/R-2/R-L</td>
+<td>44.35/20.98/35.98</td>
+<td>44.88/21.53/36.55</td>
+</tr>
+<tr>
+<td>WMT16 En-Ro</td>
+<td>bart-large</td>
+<td>BLEU</td>
+<td>37.1</td>
+<td>36.4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="compacters">Compacters</h3>
+<div align="center">
+<figure text-align="center">
+<img src="/static/images/compacter.png" height="400">
+  <figcaption text-align="center">
+    Figure 5: The compacter replaces the linear down and up projection of the bottleneck adapter with a phm layer. 
+    The phm layer obtains its weights by computing the kronecker product of two smaller matrices.
+  </figcaption>
+ </figure>
+</div>
+
+<p>Another alternative to the classical bottleneck adapter is the Compacter (<a href="https://arxiv.org/pdf/2106.04647.pdf">Mahabadi et al. (2021)</a>). Here the linear down- and up-projection layer is replaced by a phm layer, which is marked in 
+black on the illustration. In the phm layer, the weights matrix is constructed from two smaller matrices by computing their kroenecker product. These matrices can be factorized and shared between all transformer layers.</p>
+<p>To add a Compacter in adapter-transformers, simply provide a <code>CompacterConfig</code>or a <code>CompacterPlusPlusConfig</code> when adding the adapter:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">CompacterPlusPlusConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">CompacterPlusPlusConfig</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;compacter_plusplus&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The following table compares the results of training a Compacter++<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup> for T5 for the glue tasks with the results reported in <a href="https://arxiv.org/pdf/2106.04647.pdf">Mahabadi et al. (2021)</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Metrics</th>
+<th>Reference</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COLA</td>
+<td>Mathews Correlation</td>
+<td>61.27</td>
+<td>58.45</td>
+</tr>
+<tr>
+<td>SST-2</td>
+<td>Acc.</td>
+<td>93.81</td>
+<td>94.61</td>
+</tr>
+<tr>
+<td>MRPC</td>
+<td>Acc./F1</td>
+<td>90.69/93.33</td>
+<td>87.99/91.81</td>
+</tr>
+<tr>
+<td>QQP</td>
+<td>Acc./F1</td>
+<td>90.17/86.93</td>
+<td>90.33/87.46</td>
+</tr>
+<tr>
+<td>STS-B</td>
+<td>Pearson/Spearman Correlation</td>
+<td>90.46/90.93</td>
+<td>89.78/89.53</td>
+</tr>
+<tr>
+<td>MNLI</td>
+<td>Acc.</td>
+<td>85.71</td>
+<td>85.32</td>
+</tr>
+<tr>
+<td>QNLI</td>
+<td>Acc.</td>
+<td>93.08</td>
+<td>91.63</td>
+</tr>
+<tr>
+<td>RTE</td>
+<td>Acc.</td>
+<td>74.82</td>
+<td>77.25</td>
+</tr>
+</tbody>
+</table>
+<h2 id="library-updates-and-changes">Library Updates and Changes</h2>
+<p>Below, we highlight further updates and changes introduced with v3.0 of <code>adapter-transformers</code>.
+You can find a full change log <a href="https://github.com/Adapter-Hub/adapter-transformers/releases/tag/adapters3.0.0">here</a>.</p>
+<h3 id="xadaptermodel-classes"><code>XAdapterModel</code> classes</h3>
+<p>Version 3.0 introduces a new set of model classes (one class per model type) specifically designed for working with adapters.
+These classes follow the general schema <code>XAdapterModel</code>, where <code>X</code> is the respective model type (e.g. <code>Bert</code>, <code>GPT2</code>).
+They replace the <code>XModelWithHeads</code> classes of earlier versions.
+In summary, these classes provide the following main features:</p>
+<ul>
+<li>Flexible configuration of predictions heads (see <a href="https://docs.adapterhub.ml/prediction_heads.html#adaptermodel-classes">documentation</a>).</li>
+<li>Compositions (such as parallel inference and <code>BatchSplit</code>) of adapters with different prediction heads.</li>
+<li>One model class per model type, additionally, a <code>AutoAdapterModel</code> class for automatic class detection.</li>
+</ul>
+<p><strong>These classes are designed as the new default classes of <code>adapter-transformers</code>. It is recommended to use these classes for working with adapters whenever possible.</strong>
+A usage example looks like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">AutoAdapterModel</span>
+
+<span class="c1"># Load class</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoAdapterModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configure adapters &amp; heads</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;first_task&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;second_task&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_classification_head</span><span class="p">(</span><span class="s2">&quot;first_task&quot;</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_multiple_choice_head</span><span class="p">(</span><span class="s2">&quot;second_task&quot;</span><span class="p">,</span> <span class="n">num_choices</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Define active setup</span>
+<span class="n">model</span><span class="o">.</span><span class="n">train_adapter</span><span class="p">(</span><span class="n">Parallel</span><span class="p">(</span><span class="s2">&quot;first_task&quot;</span><span class="p">,</span> <span class="s2">&quot;second_task&quot;</span><span class="p">))</span>
+
+<span class="c1"># Start training loop ...</span>
+</code></pre></div>
+
+<p>⚠️ All <code>XModelWithHeads</code> classes are now deprecated as the new classes are direct replacements.</p>
+<h3 id="flexible-configurations-with-configunion">Flexible configurations with <code>ConfigUnion</code></h3>
+<p>While different efficient fine-tuning methods and configurations have often been proposed as standalone, it might be beneficial to combine them for joint training.
+We have already seen this for the <em>Mix-and-Match</em> adapters proposed by <a href="https://arxiv.org/pdf/2110.04366.pdf">He et al. (2021)</a>.
+To make this process easier, adapter-transformers provides the possibility to group multiple configuration instances together using the <code>ConfigUnion</code> class.</p>
+<p>For example, this could be used to define different reduction factors for the adapter modules placed after the multi-head attention and the feed-forward blocks:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers.adapters</span> <span class="kn">import</span> <span class="n">AdapterConfig</span><span class="p">,</span> <span class="n">ConfigUnion</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">ConfigUnion</span><span class="p">(</span>
+    <span class="n">AdapterConfig</span><span class="p">(</span><span class="n">mh_adapter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output_adapter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reduction_factor</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">non_linearity</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">),</span>
+    <span class="n">AdapterConfig</span><span class="p">(</span><span class="n">mh_adapter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output_adapter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">reduction_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">non_linearity</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;union_adapter&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="adaptersetup-context"><code>AdapterSetup</code> context</h3>
+<p>As a replacement to the <code>adapter_names</code> parameter, v3.0 introduces a new <code>AdapterSetup</code> class for dynamic and state-less configuration of activated adapters.
+This class is intended to be used as a context manager, i.e. a typical use case would look like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># will use no adapters</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">AdapterSetup</span><span class="p">(</span><span class="n">Stack</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)):</span>
+    <span class="c1"># will use the adapter stack &quot;a&quot; and &quot;b&quot;</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Note that in the above example <strong>no</strong> adapters are activated via <code>active_adapters</code>. Within the <code>with</code> block, the adapter implementation will dynamically read the currently active setup from the context manager.</p>
+<p>This solution allows dynamic adapter activation, e.g. also with nesting:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">AdapterSetup</span><span class="p">(</span><span class="n">Stack</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)):</span>
+    <span class="c1"># will use the adapter stack &quot;a&quot; and &quot;b&quot;</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">AdapterSetup</span><span class="p">(</span><span class="n">Fuse</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">),</span> <span class="n">head_setup</span><span class="o">=</span><span class="s2">&quot;e&quot;</span><span class="p">):</span>
+        <span class="c1"># will use fusion between &quot;c&quot; and &quot;d&quot; &amp; head &quot;e&quot;</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Most importantly, the context manager is <strong>thread-local</strong>, i.e. we can use different setups in different threads with the same model instance.</p>
+<p>⚠️ Breaking change: The <code>adapter_names</code> parameter is removed for all model classes.</p>
+<h3 id="refactorings">Refactorings</h3>
+<p>Besides the already mentioned changes, v3.0 of <code>adapter-transformers</code> comes with major refactorings in the integration of adapter implementations into model classes and model configurations (e.g., see <a href="https://github.com/Adapter-Hub/adapter-transformers/pull/263">here</a> and <a href="https://github.com/Adapter-Hub/adapter-transformers/pull/304">here</a>).
+While these refactorings only affect the interface methods minimally, the process of integrating new model architectures has been substantially simplified.
+Please refer to the <a href="https://github.com/Adapter-Hub/adapter-transformers/blob/master/adding_adapters_to_a_model.md">updated model integration guide</a> for more.</p>
+<h3 id="transformers-upgrade">Transformers upgrade</h3>
+<p>Version 3.0 of <code>adapter-transformers</code> upgrades the underlying HuggingFace Transformers library from v4.12.5 to v4.17.0, bringing many awesome new features created by HuggingFace.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The release of version 3.0 of <code>adapter-transformers</code> today marks the starting point of integrating new efficient fine-tuning methods.
+In this release, we integrated a first batch of recently proposed methods, including Prefix Tuning, Parallel adapters, Mix-and-Match adapters and Compacters.
+Nonetheless, the range of available efficient fine-tuning methods goes far beyond these and continues to grow rapidly.
+Thus, we expect to integrate more and more methods step by step.</p>
+<p>Finally, as we're a very small team, your help on <code>adapter-transformers</code> is always very welcome.
+Head over to our <a href="https://github.com/Adapter-Hub/adapter-transformers">GitHub repository</a> and reach out if you're interested in contributing in any way.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., &amp; Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML 2019.</li>
+<li>Mahabadi, R.K., Henderson, J., &amp; Ruder, S. (2021). Compacter: Efficient Low-Rank Hypercomplex Adapter Layers. ArXiv, abs/2106.04647.</li>
+<li>Leonardo F. R. Ribeiro, Yue Zhang, and Iryna Gurevych. 2021. Structural Adapters in Pretrained Language Models for AMR-to-Text Generation. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing, pages 4269–4282, Online and Punta Cana, Dominican Republic. Association for Computational Linguistics.</li>
+<li>Xiang Lisa Li and Percy Liang. 2021. Prefix-Tuning: Optimizing Continuous Prompts for Generation. In Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers), pages 4582–4597, Online. Association for Computational Linguistics.</li>
+<li>Brian Lester, Rami Al-Rfou, and Noah Constant. 2021. The Power of Scale for Parameter-Efficient Prompt Tuning. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing, pages 3045–3059, Online and Punta Cana, Dominican Republic. Association for Computational Linguistics.</li>
+<li>He, J., Zhou, C., Ma, X., Berg-Kirkpatrick, T., &amp; Neubig, G. (2021). Towards a Unified View of Parameter-Efficient Transfer Learning. ArXiv, abs/2110.04366.</li>
+<li>Mao, Y., Mathias, L., Hou, R., Almahairi, A., Ma, H., Han, J., Yih, W., &amp; Khabsa, M. (2021). UniPELT: A Unified Framework for Parameter-Efficient Language Model Tuning. ArXiv, abs/2110.07577.</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Reported results for <code>adapter-transformers</code> only contain a single run each without hyperparameter tuning.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </div>
+
+        <div class="my-5">
+            <a href="https://github.com/adapter-hub/website/blob/master/posts/2022/03/adapter-transformers-v3-unifying-efficient-fine-tuning.md">
+                <i class="fa fa-edit"></i>&nbsp; Edit Post on GitHub
+            </a>
+        </div>
+        
+        <div id="col-lg-10 comments">
+            <script src="https://utteranc.es/client.js"
+                repo="Adapter-Hub/website"
+                issue-term="pathname"
+                label="blog-post 💬"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

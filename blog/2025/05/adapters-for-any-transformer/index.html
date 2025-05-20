@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<meta name="description" content="The latest release of Adapters v1.2.0 introduces a new adapter plugin interface that enables adding adapter functionality to nearly any Transformer model.
+We go through the details of working with this interface and various additional novelties of the library.
+" />
+
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?c557e741">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          config: ["MMLorHTML.js"],
+          jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+          extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+
+    <title>AdapterHub - Adapters for Any Transformer On the HuggingFace Hub</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Banner"> </div>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+<div class="row breadcrumb-nav mb-3">
+    <nav aria-label="breadcrumb" class="col">
+        <ol class="breadcrumb bg-transparent">
+            <li class="breadcrumb-item">
+                <a href="/blog/">Blog</a>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<h1>Adapters for Any Transformer On the HuggingFace Hub</h1>
+<ul class="blog-post-bar mt-4 mb-0">
+    <li><i class="fa fa-calendar-alt"></i>&nbsp; 2025-05-21</li>
+    <li><i class="fa fa-user"></i>&nbsp;
+    
+        The AdapterHub Team
+        
+        
+    
+    </li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+
+<div class="row">
+    <div class="col-lg-10 my-2">
+        
+
+        <div class="blog-post-content">
+            <p>In recent weeks and months, we've been working on greatly improving the integration of the <em>Adapters</em> library with the Hugging Face ecosystem.
+This has resulted in our <a href="https://docs.adapterhub.ml/plugin_interface.html">new adapter plugin interface</a>.
+The plugin interface allows you to integrate most of the <em>Adapters</em> library's features into nearly any Transformers model on the Hugging Face Hub with minimal effort.
+In this post, we'll walk you through using the plugin interface step by step and also show what else is new in the <em>Adapters</em> library.</p>
+<div class="toc">
+<ul>
+<li><a href="#adapters-for-any-transformer-with-plugin-interface">Adapters for Any Transformer with Plugin Interface</a><ul>
+<li><a href="#understanding-the-model-architecture">Understanding the Model Architecture</a></li>
+<li><a href="#creating-the-plugin-interface">Creating the Plugin Interface</a></li>
+<li><a href="#loading-the-model-and-initializing-with-the-interface">Loading the Model and Initializing with the Interface</a></li>
+<li><a href="#adding-and-training-an-adapter">Adding and Training an Adapter</a></li>
+<li><a href="#loading-processing-the-gsm8k-dataset-for-fine-tuning">Loading &amp; Processing the GSM8K Dataset for Fine-tuning</a></li>
+<li><a href="#fine-tuning-the-adapter">Fine-tuning the Adapter</a></li>
+</ul>
+</li>
+<li><a href="#multi-task-learning-with-adapters">Multi-Task Learning with Adapters</a></li>
+<li><a href="#new-adapter-method-vera">New Adapter Method: VeRA</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#citation">Citation</a></li>
+</ul>
+</div>
+<p>You can find <em>Adapters</em> <a href="https://github.com/Adapter-Hub/adapters">on GitHub</a> or install it via pip:</p>
+<div class="codehilite"><pre><span></span><code>pip install -U adapters
+</code></pre></div>
+
+<h2 id="adapters-for-any-transformer-with-plugin-interface">Adapters for Any Transformer with Plugin Interface</h2>
+<p><em>As notebook: <a href="https://colab.research.google.com/github/Adapter-Hub/adapters/blob/main/notebooks/Adapter_Interface_Qwen.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></em></p>
+<p>In the following, we'll walk through adding adapter support to a custom or not pre-supported model with the <em>Adapters</em> library's <a href="https://docs.adapterhub.ml/plugin_interface.html">plugin interface</a>. Specifically, we'll be writing a plugin interface for the Qwen 3 model and then train an adapter for mathematical reasoning.</p>
+<p><strong>Important:</strong> The interface below for Qwen 2 and Qwen 3 already comes pre-supported in <em>Adapters</em>, so you could skip this section entirely! It's merely to showcase how you could define interfaces for your own custom models!
+You can find a list of all pre-supported models <a href="https://docs.adapterhub.ml/model_overview.html">in our docs</a>.</p>
+<h3 id="understanding-the-model-architecture">Understanding the Model Architecture</h3>
+<p>Before creating our plugin interface, let's understand the basic structure of Qwen 3:</p>
+<ul>
+<li>Like most Transformer language models, it consists of an embedding layer followed by a series of decoder layers</li>
+<li>Each layer contains a self-attention block and an MLP block</li>
+<li>The self-attention block includes query, key, value, and output projections</li>
+<li>The MLP block includes multiple linear projections</li>
+<li>Qwen applies layer norms <em>before</em> the self-attention and MLP blocks</li>
+</ul>
+<p>To create an adapter interface, we need to map these components to the appropriate adapter hooks.</p>
+<h3 id="creating-the-plugin-interface">Creating the Plugin Interface</h3>
+<p>Now we'll create a plugin interface for Qwen 3 that maps the model's architecture to the adapter framework.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">adapters</span>
+<span class="kn">from</span> <span class="nn">adapters</span> <span class="kn">import</span> <span class="n">AdapterModelInterface</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span>
+
+<span class="n">plugin_interface</span> <span class="o">=</span> <span class="n">AdapterModelInterface</span><span class="p">(</span>
+    <span class="c1"># Specify which adapter methods to enable</span>
+    <span class="n">adapter_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lora&quot;</span><span class="p">,</span> <span class="s2">&quot;reft&quot;</span><span class="p">,</span> <span class="s2">&quot;bottleneck&quot;</span><span class="p">],</span>
+
+    <span class="c1"># Map the model&#39;s components to the adapter interface</span>
+    <span class="n">model_embeddings</span><span class="o">=</span><span class="s2">&quot;embed_tokens&quot;</span><span class="p">,</span>      <span class="c1"># Embedding layer</span>
+    <span class="n">model_layers</span><span class="o">=</span><span class="s2">&quot;layers&quot;</span><span class="p">,</span>                <span class="c1"># Transformer layers</span>
+    <span class="n">layer_self_attn</span><span class="o">=</span><span class="s2">&quot;self_attn&quot;</span><span class="p">,</span>          <span class="c1"># Self-attention module in each layer</span>
+    <span class="n">layer_cross_attn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                <span class="c1"># Qwen doesn&#39;t have cross-attention</span>
+
+    <span class="c1"># Projection matrices within the attention module</span>
+    <span class="n">attn_k_proj</span><span class="o">=</span><span class="s2">&quot;k_proj&quot;</span><span class="p">,</span>                 <span class="c1"># Key projection</span>
+    <span class="n">attn_q_proj</span><span class="o">=</span><span class="s2">&quot;q_proj&quot;</span><span class="p">,</span>                 <span class="c1"># Query projection</span>
+    <span class="n">attn_v_proj</span><span class="o">=</span><span class="s2">&quot;v_proj&quot;</span><span class="p">,</span>                 <span class="c1"># Value projection</span>
+    <span class="n">attn_o_proj</span><span class="o">=</span><span class="s2">&quot;o_proj&quot;</span><span class="p">,</span>                 <span class="c1"># Output projection</span>
+
+    <span class="c1"># MLP projections</span>
+    <span class="n">layer_intermediate_proj</span><span class="o">=</span><span class="s2">&quot;mlp.up_proj&quot;</span><span class="p">,</span>  <span class="c1"># Up projection in MLP</span>
+    <span class="n">layer_output_proj</span><span class="o">=</span><span class="s2">&quot;mlp.down_proj&quot;</span><span class="p">,</span>      <span class="c1"># Downward projection in MLP</span>
+
+    <span class="n">layer_pre_self_attn</span><span class="o">=</span><span class="s2">&quot;input_layernorm&quot;</span><span class="p">,</span>  <span class="c1"># Hook directly before self-attention</span>
+    <span class="n">layer_pre_ffn</span><span class="o">=</span><span class="s2">&quot;post_attention_layernorm&quot;</span><span class="p">,</span>  <span class="c1"># Hook directly before MLP</span>
+    <span class="c1"># Qwen applies layer norms before attention and MLP, so no need to add them here</span>
+    <span class="n">layer_ln_1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">layer_ln_2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Each parameter in the interface maps to specific module names in the model's architecture, allowing the adapter methods to hook into the right components.</p>
+<h3 id="loading-the-model-and-initializing-with-the-interface">Loading the Model and Initializing with the Interface</h3>
+<p>Now, let's load the Qwen 3 model and initialize it with our plugin interface.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Load the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;Qwen/Qwen3-1.7B-Base&quot;</span><span class="p">,</span>  <span class="c1"># Using the 1.7B version</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>  <span class="c1"># Automatically distribute model across available GPUs</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="s2">&quot;bfloat16&quot;</span><span class="p">,</span>  <span class="c1"># Use half-precision for faster computation</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
+
+<span class="c1"># Load the tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;Qwen/Qwen3-1.7B-Base&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the pad token ID to be different from the model&#39;s EOS token</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token_id</span> <span class="o">=</span> <span class="mi">151645</span>
+<span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">pad_token_id</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token_id</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># Initialize the adapter framework with our plugin interface</span>
+<span class="c1"># Remove the interface argument to use the default interface</span>
+<span class="n">adapters</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">interface</span><span class="o">=</span><span class="n">plugin_interface</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="adding-and-training-an-adapter">Adding and Training an Adapter</h3>
+<p>With the interface in place, we can now add an adapter to our model.
+In this example, we'll train a <a href="https://docs.adapterhub.ml/methods.html#bottleneck-adapters">bottleneck adapter</a>. You can easily switch to <a href="https://docs.adapterhub.ml/overview.html#table-of-adapter-methods">one of the other supported adapter methods</a> (e.g. LoRA) by changing the <code>adapter_config</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">adapters</span> <span class="kn">import</span> <span class="n">SeqBnConfig</span><span class="p">,</span> <span class="n">LoRAConfig</span>
+
+<span class="c1"># Add a LoRA adapter</span>
+<span class="n">adapter_name</span> <span class="o">=</span> <span class="s2">&quot;qwen-math-adapter&quot;</span>
+<span class="n">adapter_config</span> <span class="o">=</span> <span class="n">SeqBnConfig</span><span class="p">(</span>
+    <span class="n">reduction_factor</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>  <span class="c1"># Bottleneck size</span>
+<span class="p">)</span>
+<span class="c1"># Alternatively e.g.: </span>
+<span class="c1"># adapter_config = LoRAConfig(</span>
+<span class="c1">#     r=32,  # Rank of the low-rank decomposition</span>
+<span class="c1">#     alpha=16,  # Scaling factor for LoRA</span>
+<span class="c1"># )</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="n">adapter_name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">adapter_config</span><span class="p">)</span>
+
+<span class="c1"># Activate the adapter</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_active_adapters</span><span class="p">(</span><span class="n">adapter_name</span><span class="p">)</span>
+
+<span class="c1"># Set the model to train only the adapter parameters</span>
+<span class="n">model</span><span class="o">.</span><span class="n">train_adapter</span><span class="p">(</span><span class="n">adapter_name</span><span class="p">)</span>
+
+<span class="c1"># Verify adapter was correctly added</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">adapter_summary</span><span class="p">())</span>
+</code></pre></div>
+
+<h3 id="loading-processing-the-gsm8k-dataset-for-fine-tuning">Loading &amp; Processing the GSM8K Dataset for Fine-tuning</h3>
+<p>For this example, we'll use the GSM8K dataset to fine-tune our model for solving grade school math problems.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="c1"># Load the GSM8K dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;openai/gsm8k&quot;</span><span class="p">,</span> <span class="s2">&quot;main&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># Explore sample data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sample question:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;question&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sample answer:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;answer&quot;</span><span class="p">])</span>
+</code></pre></div>
+
+<p>We need to tokenize our math problems and their solutions for training.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">preprocess_function</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+    <span class="c1"># Create full prompts with question and expected answer format</span>
+    <span class="n">prompts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">f</span><span class="s2">&quot;Solve the following math problem step-by-step:</span><span class="se">\n\n</span><span class="s2">Question: </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Answer: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> &lt;|endoftext|&gt;&quot;</span>
+        <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">],</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">])</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Tokenize as regular sequences</span>
+    <span class="n">tokenized</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompts</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;max_length&quot;</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2048</span><span class="p">)</span>
+
+    <span class="c1"># For causal language modeling, labels are the same as input_ids</span>
+    <span class="n">tokenized</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokenized</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">tokenized</span>
+
+<span class="c1"># Apply preprocessing to the dataset</span>
+<span class="n">tokenized_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">preprocess_function</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset processed!&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="fine-tuning-the-adapter">Fine-tuning the Adapter</h3>
+<p>Now we can fine-tune our adapter for solving math problems.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TrainingArguments</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="c1"># Set up training arguments</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./qwen-math-adapter&quot;</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Increase or decrease based on GPU memory</span>
+    <span class="n">per_device_eval_batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># More epochs for complex task</span>
+    <span class="n">save_steps</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">eval_steps</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">evaluation_strategy</span><span class="o">=</span><span class="s2">&quot;steps&quot;</span><span class="p">,</span>
+    <span class="n">load_best_model_at_end</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">metric_for_best_model</span><span class="o">=</span><span class="s2">&quot;loss&quot;</span><span class="p">,</span>  <span class="c1"># Use loss as metric for best model</span>
+    <span class="n">greater_is_better</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Lower loss is better</span>
+    <span class="n">gradient_accumulation_steps</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="c1"># Accumulate gradients to simulate larger batch sizes</span>
+    <span class="n">bf16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Use mixed precision</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># Split dataset into train and validation</span>
+<span class="c1"># Use a bugger/ smaller subset as needed</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">tokenized_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenized_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]),</span> <span class="mi">4000</span><span class="p">)))</span>
+<span class="n">eval_dataset</span> <span class="o">=</span> <span class="n">tokenized_dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenized_dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]),</span> <span class="mi">200</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training on </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span><span class="si">}</span><span class="s2"> examples and evaluating on </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">eval_dataset</span><span class="p">)</span><span class="si">}</span><span class="s2"> examples&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">adapters</span> <span class="kn">import</span> <span class="n">AdapterTrainer</span>
+<span class="kn">from</span> <span class="nn">trl</span> <span class="kn">import</span> <span class="n">DataCollatorForCompletionOnlyLM</span>
+
+<span class="c1"># Initialize the trainer</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">AdapterTrainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">processing_class</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">data_collator</span><span class="o">=</span><span class="n">DataCollatorForCompletionOnlyLM</span><span class="p">(</span><span class="n">response_template</span><span class="o">=</span><span class="s2">&quot;Answer:&quot;</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">),</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>
+    <span class="n">eval_dataset</span><span class="o">=</span><span class="n">eval_dataset</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Train only the adapter parameters</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</code></pre></div>
+
+<p>After training, we can save just the adapter weights.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Save only the adapter weights</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_adapter</span><span class="p">(</span><span class="s2">&quot;./qwen-math-adapter&quot;</span><span class="p">,</span> <span class="n">adapter_name</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Additionally, we can push our newly trained adapter to the Hugging Face Model Hub:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">push_adapter_to_hub</span><span class="p">(</span><span class="s2">&quot;qwen-math-adapter&quot;</span><span class="p">,</span> <span class="n">adapter_name</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="multi-task-learning-with-adapters">Multi-Task Learning with Adapters</h2>
+<p>The <em>Adapters</em> library has long supported multi-task learning methods such as <a href="https://docs.adapterhub.ml/adapter_composition.html#fuse">AdapterFusion</a>.
+In v1.2.0, MTL-LoRA has been added as a new multi-task method for adapters.</p>
+<p>MTL-LoRA was introduced in "MTL-LoRA: Low-Rank Adaptation for Multi-Task Learning" (<a href="https://arxiv.org/pdf/2410.09437">Yang et al., 2024</a>) and enhances LoRA for multi-task learning (MTL) by improving task differentiation and knowledge sharing.
+It introduces a task-specific low-rank learnable matrix <script type="math/tex">\Lambda_t</script> to better capture task-specific information and utilizes <script type="math/tex">n</script> low-rank up-projection matrices for diverse information-sharing. A weighted averaging mechanism integrates these matrices, allowing adaptive knowledge transfer across tasks. Specifically, the MTL-LoRA output for task <script type="math/tex">t</script> is formulated as:  </p>
+<p>
+<script type="math/tex; mode=display">
+h_t = (W + \Delta W_t)x_t = Wx_t + \sum_{i=1}^n\frac{\text{exp}(w_t^i/\tau)B^i}{\sum_{j=1}^n\text{exp}(w_t^{j}/\tau)}\Lambda_t A x_t
+</script>
+</p>
+<p>where <script type="math/tex">\tau</script> controls the sharpness of weight distribution. </p>
+<p><code>MTL-LoRA</code> is trainable with <code>MultiTask</code> composition and a datasets wich contains <code>task_ids</code> column (see. <a href="https://docs.adapterhub.ml/adapter_composition.html#multitask"><code>MultiTask</code> Composition</a>).</p>
+<p><em>Example</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">adapters</span> <span class="kn">import</span> <span class="n">MTLLoRAConfig</span>
+<span class="kn">import</span> <span class="nn">adapters.composition</span> <span class="k">as</span> <span class="nn">ac</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">MTLLoRAConfig</span><span class="p">(</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">n_up_projection</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">share_parameters</span><span class="p">(</span>
+    <span class="n">adapter_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;l&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">active_adapters</span> <span class="o">=</span> <span class="n">ac</span><span class="o">.</span><span class="n">MultiTask</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;l&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="new-adapter-method-vera">New Adapter Method: VeRA</h2>
+<p>Vera is a LoRA based fine-tuning method proposed by <a href="https://arxiv.org/pdf/2310.11454">Kopiczko et al. (2024)</a>. In Vera, we add frozen matrices A and B that are shared across all layers. It reduces the number of trainable parameters but maintains the same performance when compared to LoRA. Furthermore, trainable scaling vectors <script type="math/tex">b</script> and <script type="math/tex">d</script> are introduced and are multipled by the frozen matrices to result in the equation:</p>
+<p>
+<script type="math/tex; mode=display"> h = W_{0}x + \Lambda_{b}B\Lambda_{d}Ax </script>
+</p>
+<p>where <script type="math/tex">\Lambda_{b}</script> and <script type="math/tex">\Lambda_{d}</script> receive updates during training.</p>
+<p><em>Example</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">adapters</span> <span class="kn">import</span> <span class="n">VeraConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">VeraConfig</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_adapter</span><span class="p">(</span><span class="s2">&quot;vera_config&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="summary">Summary</h2>
+<p>The latest Adapters library release introduces a powerful plugin interface that allows extending adapter functionality to virtually any Transformer model on the HuggingFace Hub with minimal effort.
+This release also brings new multi-task learning capabilities through MTL-LoRA, and adds the parameter-efficient VeRA adapter method.
+For the full list of changes, refer to <a href="https://github.com/adapter-hub/adapters/releases/tag/v1.2.0">the release notes of v1.2.0</a>.</p>
+<h2 id="citation">Citation</h2>
+<p>If you use <em>Adapters</em> in your research, please cite:</p>
+<div class="codehilite"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">poth-etal-2023-adapters</span><span class="p">,</span>
+    <span class="na">title</span> <span class="p">=</span> <span class="s">&quot;Adapters: A Unified Library for Parameter-Efficient and Modular Transfer Learning&quot;</span><span class="p">,</span>
+    <span class="na">author</span> <span class="p">=</span> <span class="s">{Poth, Clifton  and</span>
+<span class="s">      Sterz, Hannah  and</span>
+<span class="s">      Paul, Indraneil  and</span>
+<span class="s">      Purkayastha, Sukannya  and</span>
+<span class="s">      Engl{\&quot;a}nder, Leon  and</span>
+<span class="s">      Imhof, Timo  and</span>
+<span class="s">      Vuli{\&#39;c}, Ivan  and</span>
+<span class="s">      Ruder, Sebastian  and</span>
+<span class="s">      Gurevych, Iryna  and</span>
+<span class="s">      Pfeiffer, Jonas}</span><span class="p">,</span>
+    <span class="na">booktitle</span> <span class="p">=</span> <span class="s">&quot;Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing: System Demonstrations&quot;</span><span class="p">,</span>
+    <span class="na">month</span> <span class="p">=</span> <span class="nv">dec</span><span class="p">,</span>
+    <span class="na">year</span> <span class="p">=</span> <span class="s">&quot;2023&quot;</span><span class="p">,</span>
+    <span class="na">address</span> <span class="p">=</span> <span class="s">&quot;Singapore&quot;</span><span class="p">,</span>
+    <span class="na">publisher</span> <span class="p">=</span> <span class="s">&quot;Association for Computational Linguistics&quot;</span><span class="p">,</span>
+    <span class="na">url</span> <span class="p">=</span> <span class="s">&quot;https://aclanthology.org/2023.emnlp-demo.13&quot;</span><span class="p">,</span>
+    <span class="na">pages</span> <span class="p">=</span> <span class="s">&quot;149--160&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+        </div>
+
+        <div class="my-5">
+            <a href="https://github.com/adapter-hub/website/blob/master/posts/2025/05/adapters-for-any-transformer.md">
+                <i class="fa fa-edit"></i>&nbsp; Edit Post on GitHub
+            </a>
+        </div>
+        
+        <div id="col-lg-10 comments">
+            <script src="https://utteranc.es/client.js"
+                repo="Adapter-Hub/website"
+                issue-term="pathname"
+                label="blog-post 💬"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2311.11077" target="_blank">Paper</a>
+            <!--<span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>-->
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ by the AdapterHub Team</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>
