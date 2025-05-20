@@ -1,6 +1,6 @@
 ---
-title: "Adapters for Any Model On the HuggingFace Hub"
-date: 2025-05-09
+title: "Adapters for Any Transformer On the HuggingFace Hub"
+date: 2025-05-21
 authors:
   - name: The AdapterHub Team
 summary: |
